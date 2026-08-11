@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="zh-Hant" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>晶彩科 3535 — 解套試算</title>
+<meta name="description" content="晶彩科 (3535) 解套分析：輸入你的成本均價，即時算出真實解套價、所需漲幅、需要多久，以及加碼攤平後的新均價，並附基本面、技術面與策略風險。">
+<meta name="color-scheme" content="light dark">
+<meta property="og:title" content="晶彩科 3535 — 何時解套？">
+<meta property="og:description" content="輸入成本均價 → 立刻算出解套價、所需漲幅與時間推估">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧮</text></svg>">
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead-inner">
+    <div class="brand">
+      <span class="brand-name">🧮 晶彩科 <span id="brand-code">3535</span></span>
+      <span class="brand-ver" id="brand-ver">v—</span>
+    </div>
+    <div class="masthead-meta">
+      <a class="mast-link" href="../index.html">← 回總表</a>
+      <span class="stamp" id="stamp">—</span>
+      <button class="theme-btn" id="theme-btn" type="button" aria-label="切換深色／淺色模式" title="切換深色／淺色模式">◐</button>
+    </div>
+  </div>
+</header>
+
+<nav class="toc" aria-label="章節導覽">
+  <ul>
+    <li><a href="#calc">① 解套試算</a></li>
+    <li><a href="#targets">② 情境目標價</a></li>
+    <li><a href="#time">③ 需要多久</a></li>
+    <li><a href="#average">④ 加碼攤平</a></li>
+    <li><a href="#fundamental">⑤ 基本面</a></li>
+    <li><a href="#technical">⑥ 技術面</a></li>
+    <li><a href="#strategy">⑦ 策略與風險</a></li>
+    <li><a href="#sources">📚 資料來源</a></li>
+  </ul>
+</nav>
+
+<main class="wrap">
+
+  <div class="hero">
+    <h1>晶彩科 3535 — 何時解套？</h1>
+    <p class="sub" id="hero-sub">載入中…</p>
+  </div>
+
+  <section class="block" id="quote">
+    <div class="block-head"><h2>📍 目前位置</h2><span class="hint" id="quote-hint"></span></div>
+    <div class="card">
+      <div class="bigfig">
+        <span class="figure" id="q-price"></span>
+        <span class="delta" id="q-delta"></span>
+        <span class="meta" id="q-meta"></span>
+      </div>
+      <div class="stats" id="q-stats" style="margin-top:18px"></div>
+    </div>
+  </section>
+
+  <section class="block" id="calc">
+    <div class="block-head"><span class="kicker">01</span><h2>🧮 解套試算器</h2><span class="hint">數字只留在你的瀏覽器</span></div>
+    <div class="card">
+      <div class="calc-grid">
+        <div class="field primary">
+          <label for="in-cost">買進成本均價（元）</label>
+          <input id="in-cost" type="number" inputmode="decimal" step="0.05" min="0" placeholder="例：120.5" autocomplete="off">
+          <span class="field-hint">必填，其他區塊都靠這個數字</span>
+        </div>
+        <div class="field">
+          <label for="in-lots">持有張數</label>
+          <input id="in-lots" type="number" inputmode="decimal" step="1" min="0" value="1" autocomplete="off">
+          <span class="field-hint">1 張 = 1000 股</span>
+        </div>
+        <div class="field">
+          <label for="in-price">目前股價（元）</label>
+          <input id="in-price" type="number" inputmode="decimal" step="0.05" min="0" autocomplete="off">
+          <span class="field-hint" id="hint-price"></span>
+        </div>
+        <div class="field">
+          <label for="in-disc">手續費折數</label>
+          <input id="in-disc" type="number" inputmode="decimal" step="0.5" min="1" max="10" value="6" autocomplete="off">
+          <span class="field-hint">6 = 六折；原始費率 0.1425%</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="calc-status" id="calc-status"></div>
+      <div class="stats" id="calc-out"></div>
+      <p class="note" id="calc-foot" style="margin-top:14px"></p>
+    </div>
+  </section>
+
+  <section class="block" id="targets">
+    <div class="block-head"><span class="kicker">02</span><h2>📊 情境目標價 × 你的成本</h2></div>
+    <div class="card">
+      <div class="table-scroll">
+        <table>
+          <thead><tr>
+            <th>情境</th><th class="num" style="text-align:right">目標價</th>
+            <th class="num" style="text-align:right">距現價</th>
+            <th class="num" style="text-align:right">實現損益</th>
+            <th class="sig">解套</th><th>依據</th>
+          </tr></thead>
+          <tbody id="target-rows"></tbody>
+        </table>
+      </div>
+      <p class="note" style="margin-top:12px">「實現損益」已扣除買賣手續費與 0.3% 證交稅。目標價為技術結構推導的參考位置，不是預測。</p>
+    </div>
+  </section>
+
+  <section class="block" id="time">
+    <div class="block-head"><span class="kicker">03</span><h2>⏱ 需要多久？</h2><span class="hint">複利外推，非預測</span></div>
+    <div class="card" id="time-card">
+      <div class="table-scroll">
+        <table>
+          <thead><tr>
+            <th>假設月漲幅</th><th>情境</th>
+            <th class="num" style="text-align:right">所需月數</th>
+            <th class="num" style="text-align:right">預估解套時點</th>
+          </tr></thead>
+          <tbody id="time-rows"></tbody>
+        </table>
+      </div>
+      <div class="callout s-y" style="margin-top:14px">
+        <strong>怎麼讀這張表：</strong>它回答的是「若股價每個月穩定漲 X%，數學上要幾個月才會回到你的解套價」。
+        真實股價不會照等比級數走 — 這張表用來衡量<strong>你要等的耐心量級</strong>，不是用來預測日期。
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="average">
+    <div class="block-head"><span class="kicker">04</span><h2>➕ 加碼攤平試算</h2></div>
+    <div class="card">
+      <div class="calc-grid">
+        <div class="field">
+          <label for="in-add">再買進張數（以目前股價）</label>
+          <input id="in-add" type="number" inputmode="decimal" step="1" min="0" value="1" autocomplete="off">
+          <span class="field-hint">攤平會降低均價，但同時放大部位</span>
+        </div>
+      </div>
+      <div id="avg-out" style="margin-top:16px"></div>
+    </div>
+  </section>
+
+  <section class="block" id="fundamental">
+    <div class="block-head"><span class="kicker">05</span><h2>📈 基本面：營收 / EPS</h2></div>
+    <div class="card">
+      <div class="stats" id="fund-stats"></div>
+    </div>
+    <div class="card">
+      <h3 style="font-size:1rem;margin-bottom:12px">2026 逐月合併營收</h3>
+      <div class="table-scroll">
+        <table>
+          <thead><tr>
+            <th>月份</th><th class="num" style="text-align:right">營收(百萬)</th>
+            <th class="num" style="text-align:right">MoM</th>
+            <th class="num" style="text-align:right">YoY</th>
+            <th>相對高低</th>
+          </tr></thead>
+          <tbody id="rev-rows"></tbody>
+        </table>
+      </div>
+      <div class="callout s-r" id="rev-warn" style="margin-top:16px"></div>
+    </div>
+    <div class="card">
+      <h3 style="font-size:1rem;margin-bottom:12px">合理價矩陣：EPS × 本益比</h3>
+      <div class="table-scroll">
+        <table class="matrix">
+          <thead><tr id="fv-head"></tr></thead>
+          <tbody id="fv-rows"></tbody>
+        </table>
+      </div>
+      <p class="note" style="margin-top:12px" id="fv-note"></p>
+    </div>
+  </section>
+
+  <section class="block" id="technical">
+    <div class="block-head"><span class="kicker">06</span><h2>📉 技術面：關鍵價位</h2></div>
+    <div class="card">
+      <svg class="price-axis" id="price-axis" viewBox="0 0 1000 150" role="img" aria-label="52 週價格區間與關鍵價位"></svg>
+      <p class="note" style="margin-top:8px">🔵 現價　🟡 你的成本　🔴 壓力　🟢 支撐。壓力位由 52 週高低點的黃金分割回檔算得。</p>
+    </div>
+    <div class="card">
+      <div class="table-scroll">
+        <table>
+          <thead><tr>
+            <th class="num" style="text-align:right">價位</th><th>性質</th>
+            <th class="num" style="text-align:right">距現價</th><th>意義</th>
+          </tr></thead>
+          <tbody id="level-rows"></tbody>
+        </table>
+      </div>
+      <div id="level-note" style="margin-top:14px"></div>
+    </div>
+  </section>
+
+  <section class="block" id="strategy">
+    <div class="block-head"><span class="kicker">07</span><h2>🧭 策略路線與風險</h2><span class="hint">寫觸發條件，不寫結論</span></div>
+    <div class="branches" id="strategy-list"></div>
+    <div class="card" style="margin-top:14px">
+      <h3 style="font-size:1rem;margin-bottom:12px">🚨 這檔股票的真實風險</h3>
+      <ul class="checklist" id="risk-list"></ul>
+    </div>
+  </section>
+
+  <section class="block" id="sources">
+    <div class="block-head"><h2>📚 資料來源</h2></div>
+    <div class="card">
+      <ul class="sources" id="source-list"></ul>
+    </div>
+  </section>
+
+  <footer class="site">
+    <div>🧮 晶彩科 3535 解套分析 — 數據維護於 <code>data/stock-3535.js</code></div>
+    <div class="disclaimer">
+      本頁為個人市場筆記與資訊整理，僅供參考，不構成任何投資建議。數據以各原始來源公布值為準。
+      頁面上所有試算皆為數學推導（給定輸入的必然結果），<strong>不是對股價的預測</strong>；
+      情境目標價、EPS 推估與月漲幅假設都只是情境，不代表任何機率保證。
+    </div>
+  </footer>
+
+</main>
+
+<script src="../data/stock-3535.js"></script>
+<script src="../assets/stock.js"></script>
+</body>
+</html>

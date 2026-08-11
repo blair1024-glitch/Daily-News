@@ -435,3 +435,106 @@ footer.site .disclaimer { margin-top: 8px; }
   .masthead, .toc, .theme-btn { display: none !important; }
   .card { break-inside: avoid; box-shadow: none; }
 }
+
+/* ==========================================================================
+   Stock page (stock/*.html) — 個股分析頁專用
+   純新增，未覆寫任何既有規則
+   ========================================================================== */
+
+/* Masthead 跨頁連結 */
+.mast-link {
+  font-family: var(--sans); font-size: .82rem; font-weight: 600;
+  color: var(--text-muted); border: 1px solid var(--border);
+  background: var(--bg-elev); border-radius: 999px; padding: 4px 12px;
+  white-space: nowrap;
+}
+.mast-link:hover { color: var(--accent); border-color: var(--accent); text-decoration: none; }
+
+/* ---- 試算器輸入 ---- */
+.calc-grid {
+  display: grid; gap: 12px;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+}
+.field { display: flex; flex-direction: column; gap: 5px; min-width: 0; }
+.field label { font-size: .78rem; color: var(--text-muted); font-weight: 600; }
+.field input {
+  width: 100%;
+  /* 16px 是底線：再小 iOS Safari 聚焦時會自動放大整頁 */
+  font-family: var(--mono); font-size: 16px; font-variant-numeric: tabular-nums;
+  color: var(--text); background: var(--bg-sunken);
+  border: 1px solid var(--border); border-radius: var(--radius-sm);
+  padding: 10px 12px;
+  transition: border-color .15s ease, box-shadow .15s ease;
+}
+.field input::placeholder { color: var(--text-faint); }
+.field input:focus {
+  outline: none; border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+.field .field-hint { font-size: .72rem; color: var(--text-faint); }
+.field.primary input { border-color: var(--accent); font-weight: 700; }
+
+/* ---- 試算器輸出 ---- */
+.calc-status {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 10px;
+  margin-bottom: 14px; padding: 12px 16px; border-radius: var(--radius-sm);
+  background: var(--sig-soft, var(--bg-sunken));
+  border: 1px solid color-mix(in srgb, var(--sig, var(--border)) 30%, transparent);
+  border-left: 3px solid var(--sig, var(--border-strong));
+  font-weight: 700; color: var(--sig, var(--text));
+}
+.calc-status .sub { margin-left: auto; font-weight: 500; color: var(--text-muted); font-size: .85rem; }
+
+/* 未輸入成本時的佔位提示 */
+.calc-empty {
+  padding: 22px 18px; text-align: center;
+  color: var(--text-faint); font-size: .9rem;
+  background: var(--bg-sunken); border: 1px dashed var(--border-strong);
+  border-radius: var(--radius-sm);
+}
+
+/* 強調用的大數字（新增投入金額） */
+.emph {
+  font-family: var(--mono); font-weight: 800; letter-spacing: -0.02em;
+  font-size: clamp(1.5rem, 5vw, 2.1rem); font-variant-numeric: tabular-nums;
+  color: var(--sig, var(--text)); line-height: 1.15;
+}
+
+/* ---- 價格軸 (inline SVG) ---- */
+.price-axis { width: 100%; height: auto; display: block; overflow: visible; }
+.price-axis .ax-line { stroke: var(--border-strong); stroke-width: 2; }
+.price-axis .ax-tick { stroke: var(--text-faint); stroke-width: 1.5; }
+.price-axis .ax-res  { stroke: var(--red); stroke-width: 2; }
+.price-axis .ax-sup  { stroke: var(--green); stroke-width: 2; }
+.price-axis .ax-now  { stroke: var(--accent); stroke-width: 2.5; }
+.price-axis .ax-cost { stroke: var(--yellow); stroke-width: 2.5; stroke-dasharray: 5 3; }
+.price-axis text {
+  font-family: var(--mono); font-size: 22px; fill: var(--text-muted);
+  text-anchor: middle;
+}
+.price-axis text.t-now  { fill: var(--accent); font-weight: 700; }
+.price-axis text.t-cost { fill: var(--yellow); font-weight: 700; }
+.price-axis text.t-res  { fill: var(--red); }
+.price-axis text.t-sup  { fill: var(--green); }
+
+/* ---- 營收長條（沿用 .score-track / .score-fill 的視覺語言）---- */
+td.bar-cell { width: 34%; min-width: 110px; }
+td.bar-cell .score-track { border-radius: 4px; height: 10px; }
+td.bar-cell .score-fill { border-radius: 4px; transition: width .6s cubic-bezier(.2,.8,.2,1); }
+
+/* ---- 合理價矩陣 ---- */
+.matrix td.cell {
+  font-family: var(--mono); font-variant-numeric: tabular-nums;
+  text-align: right; font-weight: 700; color: var(--sig, var(--text));
+  background: var(--sig-soft, transparent);
+}
+.matrix th.rowhead { font-weight: 700; white-space: nowrap; }
+
+/* ---- 策略卡的觸發條件 ---- */
+.branch .trigger {
+  display: block; margin: 6px 0 8px;
+  font-size: .82rem; color: var(--text-muted);
+  background: color-mix(in srgb, var(--sig, var(--border)) 12%, transparent);
+  border-radius: 6px; padding: 6px 9px;
+}
+.branch .trigger b { color: var(--sig, var(--text)); }
