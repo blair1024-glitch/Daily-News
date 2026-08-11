@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="zh-Hant" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Blair Market Dashboard</title>
+<meta name="description" content="每日市場儀表板：美股、Fed / CPI、日圓、AI CapEx、NVIDIA、台股與台指期，一頁看完今天真正重要的事。">
+<meta name="color-scheme" content="light dark">
+<meta property="og:title" content="Blair Market Dashboard">
+<meta property="og:description" content="已發生 → 市場現在怎麼解讀 → 接下來什麼最重要">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📊</text></svg>">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead-inner">
+    <div class="brand">
+      <span class="brand-name">📊 Blair Market Dashboard</span>
+      <span class="brand-ver" id="brand-ver">v—</span>
+    </div>
+    <div class="masthead-meta">
+      <span class="stamp" id="stamp">—</span>
+      <button class="theme-btn" id="theme-btn" type="button" aria-label="切換深色／淺色模式" title="切換深色／淺色模式">◐</button>
+    </div>
+  </div>
+</header>
+
+<nav class="toc" aria-label="章節導覽">
+  <ul>
+    <li><a href="#global">① 全球市場</a></li>
+    <li><a href="#fed">② Fed / 通膨</a></li>
+    <li><a href="#cpi">③ CPI</a></li>
+    <li><a href="#jpy">④ 日圓</a></li>
+    <li><a href="#csp">⑤ CSP / AI</a></li>
+    <li><a href="#nvidia">⑥ NVIDIA</a></li>
+    <li><a href="#taiex">⑦ 台股</a></li>
+    <li><a href="#futures">⑧ 台指期</a></li>
+    <li><a href="#calendar">⑨ 重要事件</a></li>
+    <li><a href="#risks">⑩ 四大風險</a></li>
+    <li><a href="#scores">🎯 總評</a></li>
+    <li><a href="#watchlist">👀 追蹤清單</a></li>
+  </ul>
+</nav>
+
+<main class="wrap">
+
+  <div class="hero">
+    <h1>已發生 → 市場現在怎麼解讀 → 接下來什麼最重要</h1>
+    <p class="sub" id="hero-sub">載入中…</p>
+    <div class="countdown" id="countdown" hidden>
+      <div>
+        <div class="countdown-label" id="cd-label"></div>
+        <div class="countdown-note" id="cd-note"></div>
+      </div>
+      <div class="countdown-clock" id="cd-clock"></div>
+    </div>
+  </div>
+
+  <section class="block" id="verdict">
+    <div class="block-head">
+      <h2>🚦 一眼結論</h2>
+      <span class="hint">🟢 偏多／安全　🟡 中性／觀察　🔴 風險／警戒</span>
+    </div>
+    <div class="verdict-grid" id="verdict-grid"></div>
+  </section>
+
+  <section class="block" id="global">
+    <div class="block-head"><span class="kicker">01</span><h2>🌎 全球市場儀表板</h2></div>
+    <div class="card">
+      <div class="table-scroll">
+        <table>
+          <thead><tr><th>指標</th><th class="num" style="text-align:right">最新狀況</th><th class="sig">訊號</th></tr></thead>
+          <tbody id="global-rows"></tbody>
+        </table>
+      </div>
+    </div>
+    <div class="card" id="global-notes"></div>
+  </section>
+
+  <section class="block" id="fed">
+    <div class="block-head"><span class="kicker">02</span><h2>🇺🇸 Fed / 通膨 Dashboard</h2></div>
+    <div class="card">
+      <h3 id="fed-headline" style="font-size:1rem;margin-bottom:12px"></h3>
+      <div class="stats" id="fed-stats"></div>
+    </div>
+    <div class="card">
+      <div class="shift" id="fed-shift"></div>
+      <div class="prob" id="fed-prob"></div>
+      <p class="note" id="fed-foot" style="margin-top:12px"></p>
+    </div>
+  </section>
+
+  <section class="block" id="cpi">
+    <div class="block-head"><span class="kicker">03</span><h2 id="cpi-title">🔥 CPI</h2><span class="hint">第一順位事件</span></div>
+    <div class="card">
+      <div class="stats" id="cpi-release"></div>
+      <div class="table-scroll" style="margin-top:16px">
+        <table>
+          <thead><tr><th>CPI</th><th class="num" style="text-align:right">市場預期</th></tr></thead>
+          <tbody id="cpi-exp"></tbody>
+        </table>
+      </div>
+      <div class="callout s-r" id="cpi-fear" style="margin-top:16px"></div>
+    </div>
+    <div class="card">
+      <h3 style="font-size:1rem;margin-bottom:12px">📌 CPI 情境表</h3>
+      <div class="table-scroll">
+        <table>
+          <thead><tr><th>CPI 結果</th><th>Fed 預期</th><th class="sig">科技股</th></tr></thead>
+          <tbody id="cpi-scen"></tbody>
+        </table>
+      </div>
+      <div class="callout s-r" id="cpi-conc" style="margin-top:16px"></div>
+    </div>
+  </section>
+
+  <section class="block" id="jpy">
+    <div class="block-head"><span class="kicker">04</span><h2>🇯🇵 日圓 Dashboard</h2></div>
+    <div class="card">
+      <div class="bigfig"><span class="figure" id="jpy-level"></span></div>
+      <p class="note" id="jpy-bg" style="margin-top:12px"></p>
+      <div class="callout s-r" id="jpy-key" style="margin-top:14px"></div>
+      <div class="branches" id="jpy-branches" style="margin-top:14px"></div>
+      <div class="callout s-y" id="jpy-conc" style="margin-top:14px"></div>
+    </div>
+  </section>
+
+  <section class="block" id="csp">
+    <div class="block-head"><span class="kicker">05</span><h2>☁️ CSP / AI Dashboard</h2></div>
+    <div class="card">
+      <div class="table-scroll">
+        <table>
+          <thead><tr><th>公司</th><th>Q2 結果</th><th class="sig">AI 訊號</th></tr></thead>
+          <tbody id="csp-rows"></tbody>
+        </table>
+      </div>
+    </div>
+    <div class="card" id="csp-capex"></div>
+    <div class="card" id="csp-take"></div>
+  </section>
+
+  <section class="block" id="nvidia">
+    <div class="block-head"><span class="kicker">06</span><h2>🟢 NVIDIA</h2></div>
+    <div class="card">
+      <div class="bigfig">
+        <span class="figure" id="nv-event" style="font-size:clamp(1.4rem,4vw,2rem)"></span>
+        <span class="meta" id="nv-sub"></span>
+      </div>
+      <h3 style="font-size:.95rem;margin:18px 0 10px">市場最關注</h3>
+      <ul class="checklist" id="nv-watch"></ul>
+      <p class="note" id="nv-note" style="margin-top:14px"></p>
+    </div>
+  </section>
+
+  <section class="block" id="taiex">
+    <div class="block-head"><span class="kicker">07</span><h2>🇹🇼 台股 Dashboard</h2></div>
+    <div class="card">
+      <div class="bigfig">
+        <span class="figure" id="tw-close"></span>
+        <span class="delta" id="tw-delta"></span>
+        <span class="meta" id="tw-meta"></span>
+      </div>
+      <p class="note" id="tw-note" style="margin-top:14px"></p>
+    </div>
+  </section>
+
+  <section class="block" id="futures">
+    <div class="block-head"><span class="kicker">08</span><h2>📈 台指期 / 結算</h2></div>
+    <div class="card">
+      <div class="stats" id="fut-stats"></div>
+      <div class="callout s-r" id="fut-note" style="margin-top:14px"></div>
+    </div>
+  </section>
+
+  <section class="block" id="calendar">
+    <div class="block-head"><span class="kicker">09</span><h2>📅 未來重要事件</h2></div>
+    <div class="card">
+      <div class="cal-tier">
+        <h3>🔥🔥🔥 第一級</h3>
+        <div class="cal-list" id="cal-1"></div>
+      </div>
+      <div class="cal-tier">
+        <h3>🔥 第二級</h3>
+        <div class="cal-list" id="cal-2"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="risks">
+    <div class="block-head"><span class="kicker">10</span><h2>🚨 現在真正的「四大風險」</h2></div>
+    <div class="branches" id="risk-list"></div>
+  </section>
+
+  <section class="block" id="scores">
+    <div class="block-head"><h2>🎯 市場總評</h2><span class="hint">滿分 10</span></div>
+    <div class="card">
+      <div class="scores" id="score-list"></div>
+    </div>
+    <div class="card">
+      <div class="summary" id="score-summary"></div>
+    </div>
+  </section>
+
+  <section class="block" id="watchlist">
+    <div class="block-head"><h2>👀 明天特別追這幾個數字</h2></div>
+    <div class="card">
+      <ul class="checklist" id="watch-list"></ul>
+    </div>
+  </section>
+
+  <section class="block" id="sources">
+    <div class="block-head"><h2>📚 資料來源</h2></div>
+    <div class="card">
+      <ul class="sources" id="source-list"></ul>
+    </div>
+  </section>
+
+  <footer class="site">
+    <div>📊 Blair Market Dashboard — 每日更新於 <code>data/dashboard.js</code></div>
+    <div class="disclaimer">本頁為個人市場筆記與資訊整理，僅供參考，不構成任何投資建議。數據以各原始來源公布值為準。</div>
+  </footer>
+
+</main>
+
+<script src="data/dashboard.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>
