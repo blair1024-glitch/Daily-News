@@ -35,6 +35,7 @@ window.DASHBOARD = {
       { name: "🇺🇸 S&P 500", value: "7,728.20（-0.32%）", signal: "y" },
       { name: "🇺🇸 Nasdaq", value: "26,445.45（-0.6%）", signal: "y" },
       { name: "🇺🇸 Dow", value: "53,791.85（-184.13）", signal: "y" },
+      { name: "🔥 費城半導體 SOX", value: "11,993.86（8/10，-2.94%）", signal: "r" },
       { name: "VIX", value: "14.90（8/10）", signal: "g" },
       { name: "🇺🇸 10Y 公債", value: "4.71%（+6bps）", signal: "r" },
       { name: "🇺🇸 2Y 公債", value: "約 4.24%（前一交易日）", signal: "y" },
@@ -47,7 +48,8 @@ window.DASHBOARD = {
     notes: [
       "8/11（二）美股三大指數收黑，科技股領跌，資金轉向能源。市場在 CPI 前縮手，同時布蘭特原油因荷莫茲海峽不確定性連四日走高——通膨焦慮重新回到主導位置。",
       "台股 8/11 逆勢收 45,120.72（+191.96、+0.43%），成交 9,020.52 億元，盤中最高 45,195.41、最低 44,652.06，正式站穩 45,000 之上。",
-      "⚠️ VIX、黃金、DXY、2Y 為 8/10 或前一交易日數值，8/11 收盤價未取得可靠來源，已於欄位標註。"
+      "🔥 背離警訊：費半 8/10 重挫 2.94% 至 11,993.86（Intel 領跌，該公司 8/11 再以擴大規模的股票增發募資 200 億美元），台股卻同期逆勢創高。台灣 AI 供應鏈與 SOX 高度連動，這個背離要嘛是台股相對強勢，要嘛是補跌還沒發生——8/13 開盤會給答案。",
+      "⚠️ SOX、VIX、黃金、DXY、2Y 為 8/10 或前一交易日數值，8/11 收盤價未取得可靠來源，已於欄位標註。"
     ]
   },
 
@@ -212,7 +214,7 @@ window.DASHBOARD = {
       { name: "美股趨勢", score: 6.5, signal: "y", note: "8/11 三大指數全黑，科技股領跌，CPI 前縮手。" },
       { name: "Fed", score: 6, signal: "y", note: "升息機率降到 43.9%，但油價正在把它推回去。" },
       { name: "日圓", score: 4, signal: "r", note: "干預效果回吐一半，160 就在眼前。" },
-      { name: "台股 AI", score: 8.5, signal: "g", note: "逆勢創高站上 45,000，基差收斂，結構偏強。" }
+      { name: "台股 AI", score: 8, signal: "g", note: "逆勢創高、基差收斂，但與費半 -2.94% 出現背離，補跌風險未解除。" }
     ],
     overall: { name: "整體", score: 7.0, signal: "y" },
     summary: [
@@ -222,13 +224,14 @@ window.DASHBOARD = {
     ]
   },
 
-  // ── 👀 明天追蹤的 7 個數字 ─────────────────────────────────
+  // ── 👀 明天追蹤的數字 ──────────────────────────────────────
   watchlist: [
     "Core CPI YoY（2.5% 是分水嶺）",
     "Headline CPI YoY（預期 3.4%）",
     "布蘭特原油是否守住 88",
     "USD/JPY 有沒有破 160",
     "US 10Y 是否站上 4.75%",
+    "費半 SOX 能否止穩（台股連動指標）",
     "Nasdaq 與 NVDA 盤後反應",
     "台指期夜盤與基差變化"
   ],
@@ -239,6 +242,7 @@ window.DASHBOARD = {
     { label: "S&P 500 posts back-to-back losses, tech sell-off and Iran uncertainty — CNBC", url: "https://www.cnbc.com/2026/08/10/stock-market-today-live-updates.html" },
     { label: "最新台股大盤加權指數 — 財報狗", url: "https://statementdog.com/taiex" },
     { label: "台指期近一（WTX&）走勢圖 — Yahoo 股市", url: "https://tw.stock.yahoo.com/future/WTX&" },
+    { label: "PHLX Semiconductor (^SOX) 歷史資料 — Yahoo Finance", url: "https://finance.yahoo.com/quote/%5ESOX/history/" },
     { label: "Daily Market Outlook, August 11, 2026 — Tickmill", url: "https://www.tickmill.com/blog/daily-market-outlook-august-11-2026" },
     { label: "USD/JPY Analysis for August 11, 2026 — Babypips", url: "https://www.babypips.com/analysis/premium-strategy-2026-08-11-usdjpy" },
     { label: "Yen Underperforms G-10 Peers as Intervention Boost Fades — Bloomberg", url: "https://www.bloomberg.com/news/articles/2026-08-10/yen-underperforms-g-10-peers-as-intervention-boost-fades" },
