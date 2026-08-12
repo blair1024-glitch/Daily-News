@@ -195,7 +195,34 @@
   el("tw-meta").textContent = [t.date, "成交 " + (t.turnover || "")].filter(Boolean).join("　·　");
   el("tw-note").textContent = t.note || "";
 
-  // ---- ⑧ futures ----------------------------------------------------------
+  // ---- ⑧ chips（三大法人 / 融資融券）--------------------------------------
+  var ch = D.chips || {};
+  el("chips-date").textContent = ch.date || "";
+  // 買賣超依數字正負自動上色：買超綠、賣超紅、取不到值則中性
+  function flowCell(v) {
+    var s = String(v == null ? "" : v).trim();
+    var cls = /^\+/.test(s) ? "s-g" : /^-/.test(s) ? "s-r" : "";
+    return '<td class="num ' + cls + '">' + esc(s) + "</td>";
+  }
+  html(el("chips-rows"), (ch.institutions || []).map(function (r) {
+    var strong = /合計/.test(r.name);
+    return "<tr>" +
+      "<td>" + (strong ? "<strong>" + esc(r.name) + "</strong>" : esc(r.name)) + "</td>" +
+      flowCell(r.tse) + flowCell(r.otc) + "</tr>";
+  }).join(""));
+  el("chips-note").textContent = ch.note || "";
+
+  var mg = ch.margin || {};
+  el("margin-title").textContent = mg.title || "";
+  html(el("margin-stats"), (mg.rows || []).map(function (r) {
+    return '<div class="stat ' + sigClass(r.signal) + '">' +
+             '<div class="stat-label">' + esc(r.name) + "</div>" +
+             '<div class="stat-value" style="font-size:1.05rem">' + esc(r.value) + "</div>" +
+           "</div>";
+  }).join(""));
+  el("margin-warning").textContent = mg.warning || "";
+
+  // ---- ⑨ futures ----------------------------------------------------------
   var fu = D.futures || {};
   html(el("fut-stats"),
     '<div class="stat s-g"><div class="stat-label">現貨 TAIEX</div>' +

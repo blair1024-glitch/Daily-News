@@ -43,14 +43,41 @@ window.DASHBOARD = {
       { name: "🛢️ WTI 原油（9 月）", value: "83.05（-0.18%）", signal: "y" },
       { name: "Gold 黃金", value: "4,466.30（+0.57%）", signal: "g" },
       { name: "🇯🇵 USD/JPY", value: "159.34（+0.03%）", signal: "r" },
-      { name: "🇹🇼 TAIEX", value: "45,518.07（8/12，+0.88%）", signal: "g" }
+      { name: "🇨🇳 USD/CNY 中間價", value: "6.7882（+18 基點）", signal: "y" },
+      { name: "🇹🇼 USD/TWD", value: "32.261（8/6，待更新）", signal: "y" },
+      { name: "🇹🇼 TAIEX", value: "45,518.07（8/12，+0.88%）", signal: "g" },
+      { name: "🇹🇼 櫃買 OTC", value: "點位未取得", signal: "y" }
     ],
     notes: [
       "CPI 完全落在市場預期上，美股開盤即創高但隨後回吐大半漲幅——說明這個結果早已被定價。真正推動盤面的是 AI 基建財報：CoreWeave Q2 營收 26 億美元、年增 112%，股價單日 +19%，Nebius +34%，帶動伺服器、記憶體、光通訊全面走揚。",
       "✅ 昨天標記的「費半 vs 台股背離」已經有答案了：是**費半補漲**收斂，不是台股補跌。SOX 8/12 自低點 11,993 一路衝到 12,433，昨天的補跌疑慮解除。",
       "10Y 微降至 4.69%、VIX 跌至 14.68、黃金反彈至 4,466.30，油價則自高點回落（WTI 9 月 83.05）——通膨恐慌暫時退潮。",
-      "⚠️ DXY、2Y 公債、SOX 收盤價未取得 8/12 可靠來源，已於欄位標註為前值或區間。"
+      "⚠️ DXY、2Y 公債、SOX 收盤價、新台幣匯率、櫃買 OTC 指數未取得 8/12 可靠來源，已於欄位標註為前值、區間或未取得。人民幣中間價 6.7882 為 8/12 中國外匯交易中心公布值。"
     ]
+  },
+
+  // ── ⑧ 台股籌碼面（三大法人 / 融資融券）─────────────────────
+  chips: {
+    date: "8/11 盤後（集中市場 + 櫃買）",
+    institutions: [
+      { name: "外資", tse: "+223.29 億", otc: "-56.86 億", signal: "g" },
+      { name: "投信", tse: "+32.24 億", otc: "+19.49 億", signal: "g" },
+      { name: "自營商", tse: "+24.60 億", otc: "-4.44 億", signal: "g" },
+      { name: "三大法人合計", tse: "+280.13 億", otc: "-41.81 億", signal: "g" }
+    ],
+    note:
+      "外資單日買超集中市場 223.29 億元是這波推升的主力，投信、自營同步偏多，三大法人合計買超 280.13 億元。但櫃買市場外資反而賣超 56.86 億元——資金明顯集中在權值與 AI 大型股，中小型股沒有雨露均霑。",
+    margin: {
+      title: "融資融券（信用交易）",
+      rows: [
+        { name: "集中市場融資餘額", value: "6,050.4 億（6/23）", signal: "y" },
+        { name: "櫃買市場融資餘額", value: "2,084.4 億（6/23）", signal: "y" },
+        { name: "兩市合計", value: "8,134.8 億（6/23 首破 8 千億）", signal: "r" },
+        { name: "8 月最新數據", value: "未取得", signal: "y" }
+      ],
+      warning:
+        "⚠️ 融資數字是 6 月的，兩個月未更新，僅供結構參考，不可當作現況。當時兩市融資餘額首度突破 8,000 億元創歷史紀錄，逼近 2000 年網路泡沫前的水位——這是槓桿偏高的警訊。指數持續創高時，融資餘額同步暴衝通常代表散戶追價，是需要盯的過熱指標。今日起會每天嘗試更新此欄。"
+    }
   },
 
   // ── ② Fed / 通膨 ────────────────────────────────────────────
@@ -246,6 +273,12 @@ window.DASHBOARD = {
     { label: "CoreWeave gains 19%, Nebius surges 34% in post-earnings neocloud rally — CNBC", url: "https://www.cnbc.com/2026/08/12/coreweave-q2-earnings-ai-demand.html" },
     { label: "Why CoreWeave Stock Is Skyrocketing Today — Motley Fool", url: "https://www.fool.com/investing/2026/08/12/why-coreweave-stock-is-skyrocketing-today/" },
     { label: "最新台股大盤加權指數 — 財報狗", url: "https://statementdog.com/taiex" },
+    { label: "法人進出（三大法人買賣超）— Yahoo 奇摩股市", url: "https://tw.stock.yahoo.com/institutional-trading" },
+    { label: "三大法人買賣金額統計表 — 臺灣證券交易所", url: "https://www.twse.com.tw/zh/trading/foreign/bfi82u.html" },
+    { label: "融資融券餘額 — 臺灣證券交易所", url: "https://www.twse.com.tw/zh/trading/margin/mi-margn.html" },
+    { label: "台股融資餘額 8,134 億破紀錄 — 經濟日報", url: "https://money.udn.com/money/story/5607/9581922" },
+    { label: "8月12日人民幣對美元中間價報 6.7882 — 香港文匯報", url: "https://www.wenweipo.com/a/202608/12/AP6a7bd13be4b0c1e5002480c4.html" },
+    { label: "新臺幣/美元 銀行間收盤匯率 — 中央銀行", url: "https://www.cbc.gov.tw/tw/lp-645-1.html" },
     { label: "台指期近一（WTX&）走勢圖 — Yahoo 股市", url: "https://tw.stock.yahoo.com/future/WTX&" },
     { label: "PHLX Semiconductor (^SOX) 歷史資料 — Yahoo Finance", url: "https://finance.yahoo.com/quote/%5ESOX/history/" },
     { label: "US 10 Year Treasury Note Yield — Trading Economics", url: "https://tradingeconomics.com/united-states/government-bond-yield" },

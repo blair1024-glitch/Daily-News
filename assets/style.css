@@ -247,6 +247,8 @@ td.num {
   text-align: right; white-space: nowrap; font-weight: 600;
 }
 td.sig, th.sig { text-align: center; width: 1%; white-space: nowrap; }
+/* signal-tinted figures inside tables (e.g. 三大法人買賣超) */
+td.num.s-g, td.num.s-y, td.num.s-r { color: var(--sig); }
 
 .badge {
   display: inline-block; font-size: .75rem; font-weight: 700;

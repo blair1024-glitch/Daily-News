@@ -37,9 +37,10 @@
     <li><a href="#csp">⑤ CSP / AI</a></li>
     <li><a href="#nvidia">⑥ NVIDIA</a></li>
     <li><a href="#taiex">⑦ 台股</a></li>
-    <li><a href="#futures">⑧ 台指期</a></li>
-    <li><a href="#calendar">⑨ 重要事件</a></li>
-    <li><a href="#risks">⑩ 四大風險</a></li>
+    <li><a href="#chips">⑧ 籌碼面</a></li>
+    <li><a href="#futures">⑨ 台指期</a></li>
+    <li><a href="#calendar">⑩ 重要事件</a></li>
+    <li><a href="#risks">⑪ 四大風險</a></li>
     <li><a href="#scores">🎯 總評</a></li>
     <li><a href="#watchlist">👀 追蹤清單</a></li>
   </ul>
@@ -167,8 +168,26 @@
     </div>
   </section>
 
+  <section class="block" id="chips">
+    <div class="block-head"><span class="kicker">08</span><h2>🧾 台股籌碼面</h2><span class="hint" id="chips-date"></span></div>
+    <div class="card">
+      <div class="table-scroll">
+        <table>
+          <thead><tr><th>法人</th><th class="num" style="text-align:right">集中市場</th><th class="num" style="text-align:right">櫃買市場</th></tr></thead>
+          <tbody id="chips-rows"></tbody>
+        </table>
+      </div>
+      <p class="note" id="chips-note" style="margin-top:14px"></p>
+    </div>
+    <div class="card">
+      <h3 style="font-size:1rem;margin-bottom:12px" id="margin-title"></h3>
+      <div class="stats" id="margin-stats"></div>
+      <div class="callout s-r" id="margin-warning" style="margin-top:14px"></div>
+    </div>
+  </section>
+
   <section class="block" id="futures">
-    <div class="block-head"><span class="kicker">08</span><h2>📈 台指期 / 結算</h2></div>
+    <div class="block-head"><span class="kicker">09</span><h2>📈 台指期 / 結算</h2></div>
     <div class="card">
       <div class="stats" id="fut-stats"></div>
       <div class="callout s-r" id="fut-note" style="margin-top:14px"></div>
@@ -176,7 +195,7 @@
   </section>
 
   <section class="block" id="calendar">
-    <div class="block-head"><span class="kicker">09</span><h2>📅 未來重要事件</h2></div>
+    <div class="block-head"><span class="kicker">10</span><h2>📅 未來重要事件</h2></div>
     <div class="card">
       <div class="cal-tier">
         <h3>🔥🔥🔥 第一級</h3>
@@ -190,7 +209,7 @@
   </section>
 
   <section class="block" id="risks">
-    <div class="block-head"><span class="kicker">10</span><h2>🚨 現在真正的「四大風險」</h2></div>
+    <div class="block-head"><span class="kicker">11</span><h2>🚨 現在真正的「四大風險」</h2></div>
     <div class="branches" id="risk-list"></div>
   </section>
 

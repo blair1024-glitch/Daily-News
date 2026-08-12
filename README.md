@@ -91,14 +91,20 @@ meta: {
 | `csp`       | ⑤ CSP / AI CapEx  |
 | `nvidia`    | ⑥ NVIDIA          |
 | `taiex`     | ⑦ 台股              |
-| `futures`   | ⑧ 台指期 / 基差        |
-| `calendar`  | ⑨ 未來重要事件（兩級）      |
-| `risks`     | ⑩ 四大風險            |
+| `chips`     | ⑧ 台股籌碼面（三大法人 ＋ 融資融券） |
+| `futures`   | ⑨ 台指期 / 基差        |
+| `calendar`  | ⑩ 未來重要事件（兩級）      |
+| `risks`     | ⑪ 四大風險            |
 | `scores`    | 🎯 市場總評（分數條會自動畫）  |
 | `watchlist` | 👀 明天追蹤的數字        |
 | `sources`   | 📚 資料來源           |
 
 `scores` 的 `score` 是 0～10 的數字，長條圖寬度會自動換算。
+
+`chips.institutions` 的 `tse`／`otc` 兩欄**依字串開頭的正負號自動上色**（`+` 綠、`-` 紅），
+所以買超務必寫成 `"+223.29 億"`、賣超寫成 `"-56.86 億"`，不要省略正號。
+`chips.margin.rows` 取不到當日數字時，把 `value` 寫成 `"未取得"` 並在 `warning` 說明資料日期，
+不要沿用舊值而不標註。
 
 ### 4. 推上去
 
