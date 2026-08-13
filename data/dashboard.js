@@ -7,146 +7,122 @@
  */
 window.DASHBOARD = {
   meta: {
-    version: "v3.2",
-    date: "2026/08/13",
-    time: "07:40",
+    version: "v3.3",
+    date: "2026/08/14",
+    time: "07:30",
     timezone: "台灣時間",
     // 用來做倒數計時的下一個關鍵事件（ISO 8601，含時區位移）
     countdown: {
-      label: "🇺🇸 7 月 PPI 公布",
-      note: "今晚 20:30（美東 8/13 08:30）｜MoM 預期 +0.2%",
-      target: "2026-08-13T20:30:00+08:00"
+      label: "🇺🇸 7 月零售銷售",
+      note: "今晚 20:30（美東 8/14 08:30）｜MoM 預期 +0.2%",
+      target: "2026-08-14T20:30:00+08:00"
     }
   },
 
   // ── 🚦 一眼結論 ──────────────────────────────────────────────
   verdict: [
-    { label: "CPI", state: "✅ 完全命中預期，過關", signal: "g" },
-    { label: "AI 基本面", state: "CoreWeave 營收翻倍，實證", signal: "g" },
-    { label: "費半背離", state: "已由費半補漲收斂", signal: "g" },
-    { label: "Fed", state: "9 月按兵不動更確定", signal: "g" },
-    { label: "日圓", state: "159.3，160 關卡未解除", signal: "r" },
-    { label: "今晚 PPI", state: "通膨鏈的另一半", signal: "y" }
+    { label: "PPI", state: "✅ 0.0%，比預期更好", signal: "g" },
+    { label: "S&P 500", state: "創歷史新高 7,798.99", signal: "g" },
+    { label: "台股", state: "站上 46K，成交破兆", signal: "g" },
+    { label: "Fed 升息機率", state: "跌破 35%", signal: "g" },
+    { label: "短線過熱", state: "兩日漲 900 點，需留意", signal: "r" },
+    { label: "日圓", state: "159.3，160 仍未解除", signal: "r" }
   ],
 
   // ── ① 全球市場儀表板 ────────────────────────────────────────
   global: {
     rows: [
-      { name: "🇺🇸 S&P 500", value: "7,748.50（+0.26%）", signal: "g" },
-      { name: "🇺🇸 Nasdaq", value: "26,588.49（+0.54%）", signal: "g" },
-      { name: "🇺🇸 Dow", value: "53,770.27（-0.04%）", signal: "y" },
-      { name: "🔥 費城半導體 SOX", value: "8/12 區間 11,993–12,433（強彈）", signal: "g" },
-      { name: "VIX", value: "14.68（-3.93%）", signal: "g" },
-      { name: "🇺🇸 10Y 公債", value: "4.69%（-1bp）", signal: "y" },
-      { name: "🇺🇸 2Y 公債", value: "約 4.24%（前一交易日）", signal: "y" },
+      { name: "🇺🇸 S&P 500", value: "7,798.99（+0.65%）🏆 新高", signal: "g" },
+      { name: "🇺🇸 Nasdaq", value: "26,803（+0.81%）", signal: "g" },
+      { name: "🇺🇸 Dow", value: "53,840（+0.13%）", signal: "g" },
+      { name: "🔥 費城半導體 SOX", value: "12,589.43（+1.53%）", signal: "g" },
+      { name: "VIX", value: "14.68（8/12）", signal: "g" },
+      { name: "🇺🇸 10Y 公債", value: "4.657%（-1bp 內）", signal: "g" },
+      { name: "🇺🇸 2Y 公債", value: "4.18%（-2bps）", signal: "g" },
       { name: "DXY 美元指數", value: "約 99.7（前一交易日）", signal: "y" },
-      { name: "🛢️ WTI 原油（9 月）", value: "83.05（-0.18%）", signal: "y" },
-      { name: "Gold 黃金", value: "4,466.30（+0.57%）", signal: "g" },
-      { name: "🇯🇵 USD/JPY", value: "159.34（+0.03%）", signal: "r" },
-      { name: "🇨🇳 USD/CNY 中間價", value: "6.7882（+18 基點）", signal: "y" },
-      { name: "🇹🇼 USD/TWD", value: "32.261（8/6，待更新）", signal: "y" },
-      { name: "🇹🇼 TAIEX", value: "45,518.07（8/12，+0.88%）", signal: "g" },
+      { name: "🛢️ Brent 原油", value: "88.75（-0.2%）", signal: "r" },
+      { name: "Gold 黃金", value: "4,466.30（8/12）", signal: "g" },
+      { name: "🇯🇵 USD/JPY", value: "159.34（8/12）", signal: "r" },
+      { name: "🇨🇳 USD/CNY 中間價", value: "6.7882（8/12）", signal: "y" },
+      { name: "🇹🇼 USD/TWD", value: "32.2270（8/12，-0.05%）", signal: "y" },
+      { name: "🇹🇼 TAIEX", value: "46,021.48（8/13，+1.11%）🏆", signal: "g" },
       { name: "🇹🇼 櫃買 OTC", value: "點位未取得", signal: "y" }
     ],
     notes: [
-      "CPI 完全落在市場預期上，美股開盤即創高但隨後回吐大半漲幅——說明這個結果早已被定價。真正推動盤面的是 AI 基建財報：CoreWeave Q2 營收 26 億美元、年增 112%，股價單日 +19%，Nebius +34%，帶動伺服器、記憶體、光通訊全面走揚。",
-      "✅ 昨天標記的「費半 vs 台股背離」已經有答案了：是**費半補漲**收斂，不是台股補跌。SOX 8/12 自低點 11,993 一路衝到 12,433，昨天的補跌疑慮解除。",
-      "10Y 微降至 4.69%、VIX 跌至 14.68、黃金反彈至 4,466.30，油價則自高點回落（WTI 9 月 83.05）——通膨恐慌暫時退潮。",
-      "⚠️ DXY、2Y 公債、SOX 收盤價、新台幣匯率、櫃買 OTC 指數未取得 8/12 可靠來源，已於欄位標註為前值、區間或未取得。人民幣中間價 6.7882 為 8/12 中國外匯交易中心公布值。"
+      "PPI 最終需求月增 0.0%（持平），核心 PPI 月增 0.2%、年增降至 4.2% 為四個月最低，兩項都比市場預期更好。通膨上下游兩道關卡本週全部過關。",
+      "S&P 500 收 7,798.99 創歷史新高（盤中首度突破 7,800），Nasdaq 26,803、羅素 2000 同步創高，Workday 大漲 18%。債市同步反彈，2Y 殖利率下滑 2bps 至 4.18%，反映近期升息預期消退。",
+      "✅ 昨天情境表寫「PPI ≤ 0.1% → 通膨壓力確認退潮 🟢🟢」——實際 0.0%，落在最佳格。CME FedWatch 顯示升息機率由上週 55% 降至 35% 以下。",
+      "⚠️ 油價是唯一沒退的：Brent 仍在 88.75。VIX、黃金、USD/JPY、DXY、櫃買 OTC 未取得 8/13 可靠來源，已標註為前值或未取得。"
     ]
-  },
-
-  // ── ⑧ 台股籌碼面（三大法人 / 融資融券）─────────────────────
-  chips: {
-    date: "8/11 盤後（集中市場 + 櫃買）",
-    institutions: [
-      { name: "外資", tse: "+223.29 億", otc: "-56.86 億", signal: "g" },
-      { name: "投信", tse: "+32.24 億", otc: "+19.49 億", signal: "g" },
-      { name: "自營商", tse: "+24.60 億", otc: "-4.44 億", signal: "g" },
-      { name: "三大法人合計", tse: "+280.13 億", otc: "-41.81 億", signal: "g" }
-    ],
-    note:
-      "外資單日買超集中市場 223.29 億元是這波推升的主力，投信、自營同步偏多，三大法人合計買超 280.13 億元。但櫃買市場外資反而賣超 56.86 億元——資金明顯集中在權值與 AI 大型股，中小型股沒有雨露均霑。",
-    margin: {
-      title: "融資融券（信用交易）",
-      rows: [
-        { name: "集中市場融資餘額", value: "6,050.4 億（6/23）", signal: "y" },
-        { name: "櫃買市場融資餘額", value: "2,084.4 億（6/23）", signal: "y" },
-        { name: "兩市合計", value: "8,134.8 億（6/23 首破 8 千億）", signal: "r" },
-        { name: "8 月最新數據", value: "未取得", signal: "y" }
-      ],
-      warning:
-        "⚠️ 融資數字是 6 月的，兩個月未更新，僅供結構參考，不可當作現況。當時兩市融資餘額首度突破 8,000 億元創歷史紀錄，逼近 2000 年網路泡沫前的水位——這是槓桿偏高的警訊。指數持續創高時，融資餘額同步暴衝通常代表散戶追價，是需要盯的過熱指標。今日起會每天嘗試更新此欄。"
-    }
   },
 
   // ── ② Fed / 通膨 ────────────────────────────────────────────
   fed: {
-    headline: "CPI 命中預期 → 9 月按兵不動的定價站穩了",
+    headline: "CPI + PPI 連兩關過關 → 升息預期基本被拆解",
     stats: [
-      { label: "7 月 Headline CPI", value: "3.4% YoY", signal: "g" },
+      { label: "7 月 PPI MoM", value: "0.0%（持平）", signal: "g" },
+      { label: "核心 PPI YoY", value: "4.2%（四個月最低）", signal: "g" },
       { label: "7 月 Core CPI", value: "2.5% YoY", signal: "g" },
-      { label: "Core 對比前值", value: "2.6% → 2.5%", signal: "g" },
-      { label: "7 月非農", value: "-23,000 人", signal: "r" },
-      { label: "失業率", value: "4.1%", signal: "y" }
+      { label: "9 月升息機率", value: "< 35%", signal: "g" },
+      { label: "7 月非農", value: "-23,000 人", signal: "r" }
     ],
     shift: {
-      before: "🟡 「就業轉弱，但油價會不會把通膨推回去？」",
-      after: "🟢 「CPI 沒有被油價污染，Fed 有空間按兵不動」"
+      before: "🟡 「CPI 過了，但 PPI 會不會露出上游成本壓力？」",
+      after: "🟢 「上游也沒壓力，Fed 9 月按兵不動幾乎確定」"
     },
     probability: {
-      label: "市場對 9 月升息的定價（非農前 → 現在）",
-      from: "57%",
-      to: "43.9% 以下"
+      label: "CME FedWatch 9 月升息機率（上週 → 現在）",
+      from: "55%",
+      to: "< 35%"
     },
     footnote:
-      "Core CPI 2.5% 是 2 月以來最低。這份報告「剛好夠低」，讓 Fed 在 9/16 有理由不動。但要注意它涵蓋的是 7 月——8 月油價那一波還沒進到數字裡，所以下個月的 CPI 才是真正的考驗。"
+      "值得注意的是 PPI 的組成：最終需求商品跌 0.7%，服務漲 0.2%，營建漲 2.2%，商品端的下滑抵銷了服務端。這代表能源與商品的通膨壓力確實在退，但服務型通膨仍有黏性。就業疲弱（-23,000）仍是另一半的隱憂——現在的組合是「通膨降溫 + 經濟走弱」，對股市是甜蜜點，但不能持續太久。"
   },
 
-  // ── ③ 今晚 PPI ─────────────────────────────────────────────
+  // ── ③ 今晚零售銷售 ─────────────────────────────────────────
   cpi: {
-    title: "今晚 20:30 美國 7 月 PPI",
-    releaseUS: "8/13 美東 08:30（盤前）",
+    title: "今晚 20:30 美國 7 月零售銷售",
+    releaseUS: "8/14 美東 08:30（盤前）",
     releaseTW: "🇹🇼 今晚 20:30",
     expectations: [
-      { name: "PPI MoM", value: "預期 +0.2%" },
-      { name: "昨日 CPI Headline", value: "3.4% ✅ 命中" },
-      { name: "昨日 CPI Core", value: "2.5% ✅ 命中" },
-      { name: "明日零售銷售（8/14）", value: "MoM 預期 +0.2%" },
-      { name: "核心零售（ex-autos）", value: "預期 +0.2%（前值 -0.2%）" }
+      { name: "零售銷售 MoM", value: "預期 +0.2%（前值 +0.2%）" },
+      { name: "核心零售（ex-autos）", value: "預期 +0.2%（前值 -0.2%）" },
+      { name: "本週 CPI", value: "3.4% / Core 2.5% ✅ 命中" },
+      { name: "本週 PPI", value: "0.0% ✅ 優於預期" },
+      { name: "下週 FOMC Minutes", value: "8/19" }
     ],
     fear:
-      "PPI 是通膨鏈的上游。CPI 過關不代表壓力解除——如果 PPI 明顯高於 +0.2%，代表成本壓力還積在生產端，只是還沒轉嫁到消費者，那麼 8 月、9 月的 CPI 就會被推高。這正是油價那條線可能發作的路徑。",
+      "通膨這條線本週已經走完，今晚換一個問題：消費撐不撐得住。非農 -23,000、勞動參與率創五年新低，如果零售銷售同步轉弱，「通膨降溫」的敘事就會變成「需求崩壞」，那對股市不是利多而是利空。這是甜蜜點與衰退交易的分界線。",
     scenarios: [
-      { result: "PPI ≤ 0.1%", fed: "通膨壓力確認退潮", fedSignal: "g", tech: "🟢🟢", techSignal: "g" },
-      { result: "PPI +0.2%（符合預期）", fed: "維持按兵不動", fedSignal: "g", tech: "🟢", techSignal: "g" },
-      { result: "PPI +0.3% ~ 0.4%", fed: "上游壓力浮現", fedSignal: "y", tech: "🟡", techSignal: "y" },
-      { result: "PPI ≥ 0.5%", fed: "9 月升息論述回頭", fedSignal: "r", tech: "🔴", techSignal: "r" }
+      { result: "零售 ≥ +0.4%", fed: "消費強勁，軟著陸", fedSignal: "g", tech: "🟢🟢", techSignal: "g" },
+      { result: "+0.2%（符合預期）", fed: "維持現有路徑", fedSignal: "g", tech: "🟢", techSignal: "g" },
+      { result: "0% ~ +0.1%", fed: "消費轉弱訊號", fedSignal: "y", tech: "🟡", techSignal: "y" },
+      { result: "負值", fed: "衰退交易啟動", fedSignal: "r", tech: "🔴", techSignal: "r" }
     ],
     conclusion:
-      "CPI 已經過關，今晚 PPI 是本週最後一道通膨關卡。過了之後，市場焦點就會完全轉向 8/20 台指期結算與 8/26 NVIDIA。"
+      "本週的三份數據裡，這一份最容易被忽略，但它決定了市場是把「Fed 不升息」讀成利多還是讀成警訊。"
   },
 
   // ── ④ 日圓 ─────────────────────────────────────────────────
   jpy: {
-    level: "USD/JPY ≈ 159.34",
+    level: "USD/JPY ≈ 159.3",
     background:
-      "CPI 落在預期上，美元沒有明顯走弱，USD/JPY 幾乎不動（+0.03%）。這代表 8 月初美日協調干預所建立的防線正在被緩慢消耗——干預曾把匯價從接近 164 打到 156.34，如今已回到 159 中段，漲幅回吐超過一半，而且是在「美國通膨數據偏鴿」的背景下守不住。",
-    keyLevel: "USD/JPY 160 仍是關鍵心理關卡，距離不到 0.7 元",
+      "通膨數據偏鴿、美債殖利率全面下滑，理論上對日圓有利，但匯價仍卡在 159 附近動彈不得。8 月初美日協調干預曾把匯價從接近 164 打到 156.34，如今漲幅回吐過半。在美元走弱的環境下日圓還是升不上去，說明問題不在美元，而在日銀的政策利差本身。",
+    keyLevel: "160 / 161 是壓力區，160 仍未解除",
     branches: [
       {
-        condition: "今晚 PPI 偏高 → 美元走強、突破 160",
+        condition: "突破 160 → 進入干預警戒",
         signal: "r",
         items: ["二次干預風險大增", "Carry Trade 平倉風險 ↑", "台股與科技股波動放大"]
       },
       {
-        condition: "PPI 溫和 → 維持 158～160 區間震盪",
+        condition: "殖利率續降 → 回測 156~158",
         signal: "y",
-        items: ["短線壓力緩解 🟢", "但趨勢仍偏貶 🟡", "日銀政策才是解方，非干預 🟡"]
+        items: ["短線壓力緩解 🟢", "但需日銀實際動作才會反轉 🟡", "干預只能買時間 🟡"]
       }
     ],
     conclusion:
-      "在利多（CPI 鴿派）之下日圓仍站不回去，本身就是弱勢訊號。160 一旦破，反應會很快。"
+      "這是目前 dashboard 上唯一沒有跟著改善的指標。其他都轉好了，它沒有——所以權重反而更高。"
   },
 
   // ── ⑤ CSP / AI ─────────────────────────────────────────────
@@ -154,8 +130,8 @@ window.DASHBOARD = {
     rows: [
       { company: "CoreWeave", result: "Q2 營收 26 億、+112%，股價 +19%", ai: "🟢🟢🟢" },
       { company: "Nebius", result: "財報後單日 +34%", ai: "🟢🟢🟢" },
-      { company: "Microsoft", result: "Azure / AI 強", ai: "🟢🟢🟢" },
-      { company: "Amazon", result: "AWS 強、CapEx 提高", ai: "🟢🟢🟢" },
+      { company: "Workday", result: "8/13 財報後 +18%", ai: "🟢🟢" },
+      { company: "Microsoft / Amazon", result: "Azure、AWS 強，CapEx 提高", ai: "🟢🟢🟢" },
       { company: "Alphabet / Meta", result: "Cloud 與 AI CapEx 持續", ai: "🟢🟢🟢" },
       { company: "NVIDIA", result: "8/26 財報", ai: "⭐⭐⭐⭐⭐" }
     ],
@@ -165,10 +141,10 @@ window.DASHBOARD = {
       to: "2026 年預計約 7,250 億美元"
     },
     takeaway: {
-      not: "市場仍然沒有看到「AI 需求見頂」的任何跡象",
-      but: "反而看到 neocloud 業者營收年增 112%，且新增 Anthropic、Meta 等企業客戶、上調全年財測",
+      not: "仍然沒有看到任何 AI 需求見頂的跡象",
+      but: "neocloud 營收翻倍、企業軟體（Workday）也跟著受惠，AI 的營收效應正在往應用層擴散",
       conclusion:
-        "這是 CapEx 之外的第二層驗證——錢不只花出去，另一端已經開始收到營收。AI 主線目前是這波行情最硬的基本面支撐。"
+        "從 CapEx（花錢）→ neocloud 營收（收錢）→ 企業軟體（應用層）——三層驗證都到齊了。這是這波行情最硬的支撐，但也意味著 8/26 NVIDIA 一旦不如預期，回檔會很猛。"
     }
   },
 
@@ -186,40 +162,63 @@ window.DASHBOARD = {
       "下一季 Guidance"
     ],
     note:
-      "CoreWeave、Nebius 的財報等於幫 NVIDIA 先做了需求端背書——neocloud 營收翻倍，買的就是 NVIDIA 的卡。這讓 8/26 的預期門檻同步被墊高：達標是應該的，不如預期的懲罰會更重。"
+      "剩 8 個交易日。CoreWeave、Nebius 已經先幫需求端背書，SOX 也連兩日走強站上 12,589——市場等於提前把好消息買進去了。這讓 8/26 變成一個「達標無功、不達標重罰」的事件。"
   },
 
   // ── ⑦ 台股 ─────────────────────────────────────────────────
   taiex: {
-    date: "8/12 收盤",
-    close: "45,518.07",
-    change: "+397.35",
-    changePct: "+0.88%",
-    turnover: "NT$860.4B",
+    date: "8/13 收盤",
+    close: "46,021.48",
+    change: "+503.41",
+    changePct: "+1.11%",
+    turnover: "NT$1,051.6B",
     note:
-      "開 45,175.70（同為當日最低）、最高 45,529.48，幾乎是開低走高一路收在高檔。連兩日創高，且這次有費半同步走揚背書，不再是孤軍。成交金額 8,604 億元略低於前一日的 9,020 億，量能小幅縮減是唯一要留意的地方。"
+      "一舉收復 46,000 大關，成交金額突破 1 兆元（10,515.91 億），量價齊揚。台積電收 2,435 元（+0.83%、+20 元）。資金點火 AI 供應鏈、被動元件與記憶體。兩個交易日累計上漲近 900 點——這是強勢，但也是本 dashboard 目前最主要的過熱訊號。"
   },
 
-  // ── ⑧ 台指期 / 結算 ────────────────────────────────────────
+  // ── ⑧ 台股籌碼面（三大法人 / 融資融券）─────────────────────
+  chips: {
+    date: "8/13 盤後（集中市場）",
+    institutions: [
+      { name: "外資", tse: "+756.94 億", otc: "未取得", signal: "g" },
+      { name: "投信", tse: "+0.01 億", otc: "未取得", signal: "y" },
+      { name: "自營商", tse: "+150.59 億", otc: "未取得", signal: "g" },
+      { name: "三大法人合計", tse: "+907.56 億", otc: "未取得", signal: "g" }
+    ],
+    note:
+      "外資單日買超 756.94 億元是這波行情的絕對主力，自營商買超 150.59 億元（自行買賣 +32.57 億、避險 +118.02 億），投信則幾乎完全站在場邊（+0.01 億）。三大法人合計買超 907.56 億元。注意投信近乎零的參與度——這波是外資單邊行情，內資法人並沒有跟上，一旦外資轉向，缺乏承接力道。（合計為原始公布值；三項分計四捨五入後加總為 907.54 億，差 0.02 億屬進位差異。）櫃買市場 8/13 分項未取得。",
+    margin: {
+      title: "融資融券（信用交易）",
+      rows: [
+        { name: "集中市場融資餘額", value: "6,050.4 億（6/23）", signal: "y" },
+        { name: "櫃買市場融資餘額", value: "2,084.4 億（6/23）", signal: "y" },
+        { name: "兩市合計", value: "8,134.8 億（6/23 首破 8 千億）", signal: "r" },
+        { name: "8 月最新數據", value: "未取得（連續第 2 日）", signal: "y" }
+      ],
+      warning:
+        "⚠️ 融資數字仍是 6 月的，已連續兩日嘗試更新未果——證交所的每日融資融券頁面為動態載入，搜尋引擎抓不到當日數值。僅供結構參考，不可當作現況。當時兩市融資餘額首破 8,000 億元創歷史紀錄，逼近 2000 年網路泡沫前水位。在目前指數兩日大漲 900 點、成交破兆的環境下，這個數字很可能已經更高——這是本 dashboard 目前最大的資訊缺口。"
+    }
+  },
+
+  // ── ⑨ 台指期 / 結算 ────────────────────────────────────────
   futures: {
-    spot: "45,518.07",
-    future: "45,697",
-    basis: "約 179 點正價差",
-    month: "台指期近一（8/12）",
+    spot: "46,021.48",
+    future: "未取得",
+    basis: "未取得（前值 +179 點正價差）",
+    month: "台指期近一（8/13）",
     note:
-      "基差結構出現實質轉變：8 月初曾是 422.78 點的深度逆價差，8/11 收斂到接近平水，8/12 直接翻成 179 點正價差。期貨領先現貨，且已反映 CPI 後的美股走勢，today 開高機率高。距離 8/20 結算剩 5 個交易日，正價差能否維持是多方氣勢的溫度計。"
+      "8/13 台指期收盤價與基差未取得可靠來源。前一交易日（8/12）為 45,697、正價差約 179 點，而基差結構在本月已從 8 月初的 422.78 點深度逆價差一路翻正。距 8/20 結算剩 4 個交易日，正價差能否維持是多方氣勢的溫度計——若在指數創高的同時基差反而收斂甚至翻負，那會是第一個轉弱訊號。"
   },
 
-  // ── ⑨ 未來重要事件 ─────────────────────────────────────────
+  // ── ⑩ 未來重要事件 ─────────────────────────────────────────
   calendar: {
     tier1: [
-      { date: "今晚", event: "🇺🇸 7 月 PPI（20:30）", hot: true },
-      { date: "8/14", event: "🇺🇸 零售銷售（20:30）" },
+      { date: "今晚", event: "🇺🇸 零售銷售（20:30）", hot: true },
+      { date: "8/19", event: "FOMC Minutes" },
       { date: "8/20", event: "🇹🇼 台指期結算", hot: true },
       { date: "8/26", event: "🔥 NVIDIA 財報", hot: true }
     ],
     tier2: [
-      { date: "8/19", event: "FOMC Minutes" },
       { date: "8/19", event: "台指選擇權結算" },
       { date: "8 月底", event: "Jackson Hole 相關訊號" },
       { date: "8/31", event: "月底法人作帳" },
@@ -227,64 +226,59 @@ window.DASHBOARD = {
     ]
   },
 
-  // ── ⑩ 四大風險 ─────────────────────────────────────────────
+  // ── ⑪ 四大風險 ─────────────────────────────────────────────
   risks: [
-    { n: "①", name: "今晚 PPI", signal: "y", desc: "20:30。上游成本若沒降，油價那條線會在 8 月 CPI 發作。" },
-    { n: "②", name: "USD/JPY", signal: "r", desc: "159.34。在 CPI 偏鴿的環境下仍站不回去，160 一破反應會很快。" },
-    { n: "③", name: "AI 股短線過熱", signal: "r", desc: "CoreWeave +19%、Nebius +34%。基本面是真的，但單日漲幅已進入投機區間。" },
-    { n: "④", name: "8/26 NVIDIA 預期墊高", signal: "y", desc: "neocloud 財報先幫需求背書，反而讓 NVIDIA 的達標門檻變高。" }
+    { n: "①", name: "短線過熱", signal: "r", desc: "台股兩日漲近 900 點、成交破兆、外資單日買超 756 億，但投信幾乎沒參與。" },
+    { n: "②", name: "USD/JPY", signal: "r", desc: "159.3。全場都轉好了只有它沒有，160 未解除。" },
+    { n: "③", name: "油價", signal: "r", desc: "Brent 仍在 88.75。通膨數據已過關，但油價這條線還沒退。" },
+    { n: "④", name: "8/26 NVIDIA", signal: "y", desc: "剩 8 個交易日，好消息已被提前買進，達標無功、不達標重罰。" }
   ],
 
   // ── 🎯 總評 ────────────────────────────────────────────────
   scores: {
     items: [
-      { name: "AI 基本面", score: 9.5, signal: "g", note: "CoreWeave 營收年增 112%，需求端首次拿到硬數據驗證。" },
-      { name: "美股趨勢", score: 7.5, signal: "g", note: "CPI 過關，S&P 重回測試新高，但漲幅開高走低。" },
-      { name: "Fed", score: 7, signal: "g", note: "Core 2.5% 為 2 月以來最低，9 月按兵不動站穩。" },
-      { name: "日圓", score: 4, signal: "r", note: "利多之下仍守不住，干預漲幅回吐過半。" },
-      { name: "台股 AI", score: 8.5, signal: "g", note: "連兩日創高、費半同步走揚、基差翻正價差。" }
+      { name: "AI 基本面", score: 9.5, signal: "g", note: "CapEx → neocloud 營收 → 企業軟體，三層驗證到齊。" },
+      { name: "美股趨勢", score: 8.5, signal: "g", note: "S&P 創歷史新高 7,798.99，羅素 2000 同步創高。" },
+      { name: "Fed", score: 8, signal: "g", note: "CPI、PPI 連兩關過，升息機率跌破 35%。" },
+      { name: "日圓", score: 4.5, signal: "r", note: "殖利率下滑略減壓，但 159 動彈不得，160 未解。" },
+      { name: "台股 AI", score: 9, signal: "g", note: "站上 46K、成交破兆、外資買超 756 億。" }
     ],
-    overall: { name: "整體", score: 7.6, signal: "g" },
+    overall: { name: "整體", score: 8.2, signal: "g" },
     summary: [
-      "兩天前的三個問號——CPI、費半背離、基差——昨天一次全部給了正面答案。",
-      "AI 基本面 🟢🟢 ＋ CPI 過關 🟢 ＋ 費半補漲 🟢 ＋ 基差翻正 🟢 ＋ 日圓 160 未解 🔴 ＋ AI 股短線過熱 🔴",
-      "今晚 PPI → 8/20 台指期結算 → 8/26 NVIDIA。通膨這條線今晚就走完，之後行情的主導權會完全交回給 AI 財報。"
+      "本週三個問號——CPI、PPI、費半背離——全部給了正面答案，環境是這一個多月來最好的。",
+      "通膨兩關全過 🟢 ＋ S&P 創新高 🟢 ＋ 台股站上 46K 🟢 ＋ 短線過熱 🔴 ＋ 日圓 160 未解 🔴 ＋ 油價 88.75 🔴",
+      "但要提醒自己：評分 8.2 是這段期間的高點，而高分本身就是風險——當所有利多都已兌現，接下來的變數只會來自沒被定價的那一邊。今晚零售銷售 → 8/20 結算 → 8/26 NVIDIA。"
     ]
   },
 
   // ── 👀 明天追蹤的數字 ──────────────────────────────────────
   watchlist: [
-    "PPI MoM（+0.2% 是分水嶺）",
+    "零售銷售 MoM（+0.2% 是分水嶺）",
+    "台股量能能否守住兆元",
+    "外資是否連續買超",
+    "投信有沒有回頭進場",
+    "台指期基差（正價差能否維持到 8/20）",
     "USD/JPY 有沒有破 160",
-    "費半 SOX 能否守住 12,400",
-    "台指期正價差能否維持",
-    "CoreWeave / Nebius 是否回吐",
-    "US 10Y 是否續守 4.7% 以下",
-    "台股量能（8,604 億是否再縮）",
-    "8/14 零售銷售預覽"
+    "Brent 能否跌回 85 以下",
+    "SOX 能否守住 12,500"
   ],
 
   // ── 📚 資料來源 ────────────────────────────────────────────
   sources: [
-    { label: "CPI inflation report July 2026: 0.1% MoM, 3.4% YoY — CNBC", url: "https://www.cnbc.com/2026/08/12/cpi-inflation-report-july-2026.html" },
-    { label: "CPI report shows inflation cooled to 3.4% in July — Quartz", url: "https://qz.com/us-cpi-july-2026-consumer-prices-inflation-081226" },
-    { label: "S&P 500 closes higher after tame inflation report, tech rises — CNBC", url: "https://www.cnbc.com/2026/08/11/stock-market-today-live-updates.html" },
-    { label: "Stock Market Today (Aug. 12, 2026) — TheStreet", url: "https://www.thestreet.com/stock-market-today/stock-market-today-dow-jones-sp-500-nasdaq-updates-aug-12-2026" },
-    { label: "CoreWeave gains 19%, Nebius surges 34% in post-earnings neocloud rally — CNBC", url: "https://www.cnbc.com/2026/08/12/coreweave-q2-earnings-ai-demand.html" },
-    { label: "Why CoreWeave Stock Is Skyrocketing Today — Motley Fool", url: "https://www.fool.com/investing/2026/08/12/why-coreweave-stock-is-skyrocketing-today/" },
-    { label: "最新台股大盤加權指數 — 財報狗", url: "https://statementdog.com/taiex" },
-    { label: "法人進出（三大法人買賣超）— Yahoo 奇摩股市", url: "https://tw.stock.yahoo.com/institutional-trading" },
+    { label: "Producer Price Index News Release, July 2026 — BLS", url: "https://www.bls.gov/news.release/archives/ppi_08132026.htm" },
+    { label: "US wholesale inflation slowed more than expected in July — CNN Business", url: "https://www.cnn.com/2026/08/13/economy/us-ppi-wholesale-inflation-july" },
+    { label: "Stock Market Today (Aug. 13, 2026): S&P 500 clears 7,800 — TheStreet", url: "https://www.thestreet.com/stock-market-today/stock-market-today-dow-jones-sp-500-nasdaq-updates-aug-13-2026" },
+    { label: "S&P 500 closes at a new record on cooler inflation — CNBC", url: "https://www.cnbc.com/2026/08/12/stock-market-today-live-updates.html" },
+    { label: "Wall Street Rises as Soft PPI Boosts Fed Pause Hopes — HDFC Sky", url: "https://hdfcsky.com/news/dow-sp500-nasdaq-rally-cooling-ppi-russell-2000-record-high-august-13-2026" },
+    { label: "How major US stock indexes fared Thursday 8/13/2026 — Washington Post", url: "https://www.washingtonpost.com/business/2026/08/13/wall-street-stocks-dow-nasdaq/c1b80e16-9754-11f1-9ef9-1be722184483_story.html" },
+    { label: "台股收漲 503 點站上 46K，台積電漲 20 元至 2435 — ETtoday", url: "https://finance.ettoday.net/news/3218615" },
+    { label: "TAIEX climbs above 46,000 — Taiwan News", url: "https://www.taiwannews.com.tw/news/6420785" },
+    { label: "2026/08/13 法人買賣超整理", url: "https://stock.may.tw/2026/08/13/" },
     { label: "三大法人買賣金額統計表 — 臺灣證券交易所", url: "https://www.twse.com.tw/zh/trading/foreign/bfi82u.html" },
     { label: "融資融券餘額 — 臺灣證券交易所", url: "https://www.twse.com.tw/zh/trading/margin/mi-margn.html" },
-    { label: "台股融資餘額 8,134 億破紀錄 — 經濟日報", url: "https://money.udn.com/money/story/5607/9581922" },
-    { label: "8月12日人民幣對美元中間價報 6.7882 — 香港文匯報", url: "https://www.wenweipo.com/a/202608/12/AP6a7bd13be4b0c1e5002480c4.html" },
-    { label: "新臺幣/美元 銀行間收盤匯率 — 中央銀行", url: "https://www.cbc.gov.tw/tw/lp-645-1.html" },
-    { label: "台指期近一（WTX&）走勢圖 — Yahoo 股市", url: "https://tw.stock.yahoo.com/future/WTX&" },
+    { label: "Daily Market Outlook, August 13, 2026 — Tickmill", url: "https://www.tickmill.com/blog/daily-market-outlook-august-13-2026" },
     { label: "PHLX Semiconductor (^SOX) 歷史資料 — Yahoo Finance", url: "https://finance.yahoo.com/quote/%5ESOX/history/" },
-    { label: "US 10 Year Treasury Note Yield — Trading Economics", url: "https://tradingeconomics.com/united-states/government-bond-yield" },
-    { label: "Japanese Yen quote — Trading Economics", url: "https://tradingeconomics.com/japan/currency" },
-    { label: "CBOE Volatility Index (^VIX) — Yahoo Finance", url: "https://finance.yahoo.com/quote/%5EVIX/" },
-    { label: "Producer Price Index Home — BLS", url: "https://www.bls.gov/ppi/" },
+    { label: "Taiwanese Dollar quote — Trading Economics", url: "https://tradingeconomics.com/taiwan/currency" },
     { label: "Advance Monthly Retail Sales — US Census Bureau", url: "https://www.census.gov/retail/marts/www/marts_current.pdf" },
     { label: "Nvidia schedules Q2 fiscal 2027 earnings call for August 26 — Investing.com", url: "https://www.investing.com/news/assorted/nvidia-schedules-q2-fiscal-2027-earnings-call-for-august-26-432SI-4821803" }
   ]
