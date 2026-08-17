@@ -77,6 +77,35 @@ async function getJson(label, url, init) {
   }
 }
 
+/** 期交所 CSV 是 Big5(MS950)，必須用位元組解碼，否則表頭全是亂碼。 */
+async function requestBig5(label, url, init = {}) {
+  const started = Date.now();
+  const ctrl = new AbortController();
+  const timer = setTimeout(() => ctrl.abort(), TIMEOUT_MS);
+  try {
+    const res = await fetch(url, {
+      ...init,
+      signal: ctrl.signal,
+      headers: { "User-Agent": UA, Accept: "*/*", ...(init.headers || {}) }
+    });
+    const buf = await res.arrayBuffer();
+    let text;
+    try {
+      text = new TextDecoder("big5").decode(buf);
+    } catch {
+      text = new TextDecoder("utf-8").decode(buf); // 極少數環境無 Big5 支援
+    }
+    console.log(
+      `[${label}] HTTP ${res.status} ${Date.now() - started}ms ${buf.byteLength}B :: ` +
+        text.slice(0, 300).replace(/\s+/g, " ")
+    );
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    return text;
+  } finally {
+    clearTimeout(timer);
+  }
+}
+
 /** 把每個來源包起來：成功寫 value，失敗寫 error，永不 throw 出去。 */
 async function collect(items, key, source, fn) {
   try {
@@ -120,29 +149,52 @@ async function twseMargin(date) {
   const j = await getJson("TWSE margin", url);
   if (TWSE_NO_DATA.test(JSON.stringify(j.stat || ""))) return null;
 
-  // creditList/tables 內含「融資金額(仟元)」等彙總列，欄位版本間會變動，
-  // 因此用關鍵字尋找而非寫死索引。
-  const tables = j.tables || [];
-  const summary = tables.find((t) => /信用交易統計|融資融券彙總/.test(t.title || "")) || tables[0];
-  const rows = summary?.data || j.creditList || [];
+  // MI_MARGN 會回傳多張表，同時有「交易單位(張)」與「金額(仟元)」兩種彙總列。
+  // 直接用第一個命中的「融資」會抓到張數而非金額，因此改為掃描所有表、
+  // 用完整標籤精準比對。
+  const allRows = [];
+  for (const t of j.tables || []) for (const r of t.data || []) allRows.push(r);
+  for (const r of j.creditList || []) allRows.push(r);
+  if (!allRows.length) throw new Error("找不到任何資料列");
 
-  const fin = findRow(rows, "融資");
-  const shortSell = findRow(rows, "融券");
-  if (!fin && !shortSell) throw new Error("找不到融資／融券彙總列");
+  const labels = allRows.map((r) => String(r[0] || "").trim());
+  const rowByLabel = (re) => allRows.find((r) => re.test(String(r[0] || "")));
 
-  // MI_MARGN 彙總列格式：[項目, 買進, 賣出, 現金(償還), 前日餘額, 今日餘額, ...]
-  const pick = (row) => {
+  // 彙總列格式：[項目, 買進, 賣出, 現金(償還)/現券, 前日餘額, 今日餘額]
+  const pick = (row, transform = (v) => v) => {
     if (!row) return null;
     const prev = num(row[4]);
     const today = num(row[5]);
+    if (prev == null || today == null) return null;
+    const p = transform(prev);
+    const t = transform(today);
     return {
-      prevBalance: prev,
-      balance: today,
-      change: prev != null && today != null ? Math.round((today - prev) * 100) / 100 : null,
+      prevBalance: p,
+      balance: t,
+      change: Math.round((t - p) * 100) / 100,
       raw: row
     };
   };
-  return { date, financing: pick(fin), shortSelling: pick(shortSell), unit: "原始單位依 TWSE 公布（多為仟元或股數）" };
+  const round2 = (v) => Math.round(v * 100) / 100;
+  const qianYuanToYi = (v) => round2(v / 1e5); // 仟元 → 億元
+
+  const finAmount = pick(rowByLabel(/融資金額/), qianYuanToYi);
+  const shortAmount = pick(rowByLabel(/融券金額/), qianYuanToYi);
+  const finUnits = pick(rowByLabel(/融資\(交易單位\)|融資（交易單位）/));
+  const shortUnits = pick(rowByLabel(/融券\(交易單位\)|融券（交易單位）/));
+
+  if (!finAmount && !finUnits) throw new Error(`找不到融資彙總列，現有標籤：${labels.join("、")}`);
+
+  return {
+    date,
+    // 億元 —— dashboard 直接用這組
+    financingAmountYi: finAmount,
+    shortSellingAmountYi: shortAmount,
+    // 交易單位（張）—— 備查
+    financingUnits: finUnits,
+    shortSellingUnits: shortUnits,
+    rowLabels: labels
+  };
 }
 
 /** 集中市場三大法人買賣超（TWSE BFI82U） */
@@ -225,27 +277,63 @@ async function twseDailyMarket(date) {
   };
 }
 
-/** 櫃買中心 OpenAPI —— 先探測可用路徑，再取櫃買指數 */
+/**
+ * 櫃買中心 OpenAPI —— 取櫃買指數點位，並由個股報價彙總成交金額。
+ * 指數端點的路徑會隨櫃買改版變動，因此逐一嘗試並把結果記進 log。
+ */
 async function tpexOtc(date) {
-  // 這些路徑會隨櫃買改版變動，逐一嘗試並記錄結果。
-  const candidates = [
-    "https://www.tpex.org.tw/openapi/v1/tpex_mainboard_daily_close_quotes",
-    "https://www.tpex.org.tw/openapi/v1/tpex_otc_quotes",
-    "https://www.tpex.org.tw/openapi/v1/tpex_mainboard_daily_index"
+  const indexEndpoints = [
+    "https://www.tpex.org.tw/openapi/v1/tpex_mainboard_daily_index",
+    "https://www.tpex.org.tw/openapi/v1/tpex_index_summary",
+    "https://www.tpex.org.tw/openapi/v1/tpex_mainboard_index_summary"
   ];
-  const errors = [];
-  for (const url of candidates) {
+
+  let index = null;
+  const indexErrors = [];
+  for (const url of indexEndpoints) {
     try {
-      const j = await getJson("TPEx", url);
+      const j = await getJson("TPEx index", url);
       if (Array.isArray(j) && j.length) {
-        return { date, endpoint: url, sampleKeys: Object.keys(j[0]), rows: j.length, sample: j[0] };
+        // 找出代表「櫃買指數／大盤」的那一列；找不到就取第一列並保留原始鍵值
+        const row =
+          j.find((r) => /櫃買|大盤|OTC/i.test(JSON.stringify(r))) || j[0];
+        index = { endpoint: url, keys: Object.keys(row), row };
+        break;
       }
-      errors.push(`${url} → 空陣列`);
+      indexErrors.push(`${url} → 空陣列`);
     } catch (e) {
-      errors.push(`${url} → ${e.message}`);
+      indexErrors.push(`${url} → ${e.message}`);
     }
   }
-  throw new Error(errors.join(" | "));
+
+  // 個股報價彙總 → 櫃買成交金額（這個端點上一次驗證可用）
+  let turnover = null;
+  let quoteCount = null;
+  try {
+    const q = await getJson(
+      "TPEx quotes",
+      "https://www.tpex.org.tw/openapi/v1/tpex_mainboard_daily_close_quotes"
+    );
+    if (Array.isArray(q) && q.length) {
+      quoteCount = q.length;
+      const sum = q.reduce((acc, r) => {
+        const v = num(r.TransactionAmount ?? r.TradeValue ?? null);
+        return acc + (v || 0);
+      }, 0);
+      turnover = sum > 0 ? toYi(sum) : null;
+    }
+  } catch (e) {
+    indexErrors.push(`quotes → ${e.message}`);
+  }
+
+  if (!index && turnover == null) throw new Error(indexErrors.join(" | "));
+  return {
+    date,
+    index,
+    turnoverYi: turnover,
+    quoteCount,
+    notes: indexErrors.length ? indexErrors : undefined
+  };
 }
 
 /** 期交所台指期每日行情（CSV 下載） */
@@ -257,29 +345,50 @@ async function taifexTxf(date) {
     queryStartDate: d,
     queryEndDate: d
   });
-  const text = await request("TAIFEX TX", "https://www.taifex.com.tw/cht/3/futDataDown", {
+  const text = await requestBig5("TAIFEX TX", "https://www.taifex.com.tw/cht/3/futDataDown", {
     method: "POST",
     body,
     headers: { "Content-Type": "application/x-www-form-urlencoded" }
   });
   const lines = text.trim().split(/\r?\n/).filter(Boolean);
   if (lines.length < 2) return null; // 只有表頭 = 休市
+
   const header = lines[0].split(",").map((s) => s.trim());
-  // 近月合約通常是第一筆一般交易時段資料
-  const rows = lines.slice(1).map((l) => l.split(",").map((s) => s.trim()));
-  const first = rows[0];
-  const col = (name) => {
-    const i = header.findIndex((h) => h.includes(name));
-    return i >= 0 ? first[i] : null;
-  };
+  const idx = (re) => header.findIndex((h) => re.test(h));
+  const iSession = idx(/交易時段/);
+  const iMonth = idx(/到期月份|契約月份/);
+  const iClose = idx(/收盤價/);
+  const iChange = idx(/漲跌價/);
+  const iOI = idx(/未沖銷契約數/);
+  const iVol = idx(/成交量/);
+  if (iClose < 0) throw new Error(`表頭找不到收盤價，實際表頭：${header.join("|")}`);
+
+  const rows = lines
+    .slice(1)
+    .map((l) => l.split(",").map((s) => s.trim()))
+    .filter((r) => r.length >= header.length - 2);
+
+  // 只要一般交易時段（排除盤後），並排除週選型的合約月份（含 W 或空白）
+  const dayRows = rows.filter((r) => (iSession < 0 ? true : /一般/.test(r[iSession] || "")));
+  const pool = dayRows.length ? dayRows : rows;
+  // 近月 = 到期月份字串最小者（格式 YYYYMM）
+  const monthly = pool.filter((r) => iMonth < 0 || /^\d{6}$/.test(r[iMonth] || ""));
+  const candidates = monthly.length ? monthly : pool;
+  const near = candidates.slice().sort((a, b) =>
+    iMonth < 0 ? 0 : String(a[iMonth]).localeCompare(String(b[iMonth]))
+  )[0];
+  if (!near) return null;
+
   return {
     date,
-    contractMonth: col("契約月份"),
-    close: num(col("收盤價")),
-    change: num(col("漲跌價")),
-    openInterest: num(col("未沖銷契約數")),
-    header,
-    rowCount: rows.length
+    contractMonth: iMonth >= 0 ? near[iMonth] : null,
+    close: num(near[iClose]),
+    change: iChange >= 0 ? num(near[iChange]) : null,
+    volume: iVol >= 0 ? num(near[iVol]) : null,
+    openInterest: iOI >= 0 ? num(near[iOI]) : null,
+    session: iSession >= 0 ? near[iSession] : null,
+    rowCount: rows.length,
+    header
   };
 }
 
