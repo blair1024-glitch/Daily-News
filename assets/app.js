@@ -18,6 +18,12 @@
     });
   }
   function sigClass(s) { return "s-" + (s === "g" || s === "y" || s === "r" ? s : "y"); }
+  // 資料檔裡常出現 **粗體** 寫法。先做 HTML 逃逸，再把 ** 轉成 <strong>，
+  // 順序不能顛倒——否則等於放行任意標記。
+  function mdBold(s) {
+    return esc(s).replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
+  }
+  function setRich(node, s) { if (node) node.innerHTML = mdBold(s || ""); }
   function sigDot(s) { return { g: "🟢", y: "🟡", r: "🔴" }[s] || "⚪"; }
   function html(node, markup) { if (node) node.innerHTML = markup; }
 
@@ -93,7 +99,7 @@
            '</td><td class="sig">' + sigDot(r.signal) + "</td></tr>";
   }).join(""));
   html(el("global-notes"), (g.notes || []).map(function (n) {
-    return '<p class="note">' + esc(n) + "</p>";
+    return '<p class="note">' + mdBold(n) + "</p>";
   }).join(""));
 
   // ---- ② Fed --------------------------------------------------------------
@@ -120,7 +126,7 @@
       '<span class="lbl">→</span>' +
       '<span class="to">' + esc(f.probability.to) + "</span>");
   }
-  el("fed-foot").textContent = f.footnote || "";
+  setRich(el("fed-foot"), f.footnote);
 
   // ---- ③ CPI --------------------------------------------------------------
   var c = D.cpi || {};
@@ -133,7 +139,7 @@
   html(el("cpi-exp"), (c.expectations || []).map(function (e) {
     return "<tr><td>" + esc(e.name) + '</td><td class="num">' + esc(e.value) + "</td></tr>";
   }).join(""));
-  html(el("cpi-fear"), "<strong>⚠️ 真正的風險：</strong>" + esc(c.fear));
+  html(el("cpi-fear"), "<strong>⚠️ 真正的風險：</strong>" + mdBold(c.fear));
   html(el("cpi-scen"), (c.scenarios || []).map(function (s) {
     return '<tr><td class="num" style="text-align:left">' + esc(s.result) + "</td>" +
            "<td>" + sigDot(s.fedSignal) + " " + esc(s.fed) + "</td>" +
@@ -145,7 +151,7 @@
   // ---- ④ JPY --------------------------------------------------------------
   var j = D.jpy || {};
   el("jpy-level").textContent = j.level || "";
-  el("jpy-bg").textContent = j.background || "";
+  setRich(el("jpy-bg"), j.background);
   html(el("jpy-key"), "<strong>🚨 " + esc(j.keyLevel) + "</strong>");
   html(el("jpy-branches"), (j.branches || []).map(function (b) {
     return '<div class="branch ' + sigClass(b.signal) + '">' +
@@ -186,14 +192,14 @@
   html(el("nv-watch"), (n.watch || []).map(function (w, i) {
     return '<li><span class="idx">' + (i + 1) + "</span>" + esc(w) + "</li>";
   }).join(""));
-  el("nv-note").textContent = n.note || "";
+  setRich(el("nv-note"), n.note);
 
   // ---- ⑦ TAIEX ------------------------------------------------------------
   var t = D.taiex || {};
   el("tw-close").textContent = t.close || "";
   el("tw-delta").textContent = [t.change, t.changePct].filter(Boolean).join("　");
   el("tw-meta").textContent = [t.date, "成交 " + (t.turnover || "")].filter(Boolean).join("　·　");
-  el("tw-note").textContent = t.note || "";
+  setRich(el("tw-note"), t.note);
 
   // ---- ⑧ chips（三大法人 / 融資融券）--------------------------------------
   var ch = D.chips || {};
@@ -210,7 +216,7 @@
       "<td>" + (strong ? "<strong>" + esc(r.name) + "</strong>" : esc(r.name)) + "</td>" +
       flowCell(r.tse) + flowCell(r.otc) + "</tr>";
   }).join(""));
-  el("chips-note").textContent = ch.note || "";
+  setRich(el("chips-note"), ch.note);
 
   var mg = ch.margin || {};
   el("margin-title").textContent = mg.title || "";
@@ -220,7 +226,7 @@
              '<div class="stat-value" style="font-size:1.05rem">' + esc(r.value) + "</div>" +
            "</div>";
   }).join(""));
-  el("margin-warning").textContent = mg.warning || "";
+  setRich(el("margin-warning"), mg.warning);
 
   // ---- ⑨ futures ----------------------------------------------------------
   var fu = D.futures || {};
@@ -231,7 +237,7 @@
       '<div class="stat-value">' + esc(fu.future) + "</div></div>" +
     '<div class="stat s-r"><div class="stat-label">基差</div>' +
       '<div class="stat-value" style="font-size:1.05rem">' + esc(fu.basis) + "</div></div>");
-  html(el("fut-note"), "<strong>🚨 觀察重點：</strong>" + esc(fu.note));
+  html(el("fut-note"), mdBold(fu.note));
 
   // ---- ⑨ calendar ---------------------------------------------------------
   function calRows(list) {
@@ -273,7 +279,7 @@
   }
   html(el("score-list"), rows.join(""));
   html(el("score-summary"), (sc.summary || []).map(function (p) {
-    return "<p>" + esc(p) + "</p>";
+    return "<p>" + mdBold(p) + "</p>";
   }).join(""));
 
   // animate the bars in once they exist

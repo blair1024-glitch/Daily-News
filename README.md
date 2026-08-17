@@ -153,9 +153,23 @@ meta: {
 `scores` 的 `score` 是 0～10 的數字，長條圖寬度會自動換算。
 
 `chips.institutions` 的 `tse`／`otc` 兩欄**依字串開頭的正負號自動上色**（`+` 綠、`-` 紅），
-所以買超務必寫成 `"+223.29 億"`、賣超寫成 `"-56.86 億"`，不要省略正號。
-`chips.margin.rows` 取不到當日數字時，把 `value` 寫成 `"未取得"` 並在 `warning` 說明資料日期，
-不要沿用舊值而不標註。
+所以買超務必寫成 `"+453.51 億"`、賣超寫成 `"-16.61 億"`，不要省略正號。
+
+籌碼面與台指期的數字**來自 `data/market-auto.js`**，對應關係：
+
+| dashboard 欄位 | market-auto.js 來源 |
+| --- | --- |
+| `chips.institutions` | `items.instTwse.value`（`foreign` / `investmentTrust` / `dealer` / `total`） |
+| `chips.margin.rows` | `items.marginTwse.value.financingAmountYi` 與 `shortSellingUnits` |
+| `futures.future` | `items.txfTaifex.value.close` |
+| `futures.basis` | `txfTaifex.value.close − dailyMarket.value.taiexClose` |
+| `taiex.turnover` | `items.dailyMarket.value.turnoverYi` |
+
+抄之前先確認 `instTwse.value.checksumDelta` 是 0（合計 = 分項加總）。
+若某欄 `ok: false`，才寫 `"未取得"` 並在 `warning` 引述 `error`——不要沿用舊值而不標註。
+
+內文欄位（`note`、`warning`、`global.notes`、`scores.summary` 等）支援 `**粗體**`，
+renderer 會先做 HTML 逃逸再轉換，寫 markdown 是安全的。
 
 ### 4. 推上去
 
