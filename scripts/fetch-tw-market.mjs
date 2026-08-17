@@ -405,12 +405,20 @@ async function main() {
   await collect(items, "otcTpex", "TPEx OpenAPI", () => tpexOtc(date));
   await collect(items, "txfTaifex", "TAIFEX futDataDown", () => taifexTxf(date));
 
-  // 只要有任何一個來源明確回報「休市或無資料」，就視為非交易日
   const okCount = Object.values(items).filter((i) => i.ok).length;
-  const closedSignals = Object.values(items).filter(
-    (i) => !i.ok && i.error === "休市或無資料"
-  ).length;
-  const marketOpen = okCount > 0 || closedSignals === 0;
+
+  // 區分「休市」與「當日資料尚未發布」：若 dailyMarket 有值代表當天有開盤，
+  // 此時其他來源回報無資料就不是休市，而是抓取時間早於該來源的發布時間。
+  // （8/17 首次全自動執行即為此情況：17:42 抓，證交所融資尚未發布。）
+  const marketOpen = items.dailyMarket && items.dailyMarket.ok ? true : okCount > 0;
+  if (marketOpen) {
+    for (const [key, it] of Object.entries(items)) {
+      if (!it.ok && it.error === "休市或無資料") {
+        it.error = "當日資料尚未發布（抓取時間早於該來源發布時間）";
+        console.log(`[${key}] → 當天有開盤，改標記為「尚未發布」`);
+      }
+    }
+  }
 
   const payload = {
     fetchedAt: new Date().toISOString(),
