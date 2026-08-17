@@ -6,16 +6,63 @@
  * ok:false 代表該欄位當天抓不到，error 說明原因——請據實標註，不要沿用舊值。
  */
 window.MARKET_AUTO = {
-  "fetchedAt": "2026-08-17T09:42:52.181Z",
+  "fetchedAt": "2026-08-17T23:39:09.310Z",
   "tradeDate": "20260817",
   "marketOpen": true,
   "okCount": 4,
   "totalCount": 5,
   "items": {
     "marginTwse": {
-      "ok": false,
+      "ok": true,
       "source": "TWSE MI_MARGN",
-      "error": "休市或無資料"
+      "value": {
+        "date": "20260817",
+        "financingAmountYi": {
+          "prevBalance": 5470.59,
+          "balance": 5501.02,
+          "change": 30.43,
+          "raw": [
+            "融資金額(仟元)",
+            "35,073,983",
+            "31,418,197",
+            "613,432",
+            "547,059,318",
+            "550,101,672"
+          ]
+        },
+        "shortSellingAmountYi": null,
+        "financingUnits": {
+          "prevBalance": 8918284,
+          "balance": 8867617,
+          "change": -50667,
+          "raw": [
+            "融資(交易單位)",
+            "342,052",
+            "383,897",
+            "8,822",
+            "8,918,284",
+            "8,867,617"
+          ]
+        },
+        "shortSellingUnits": {
+          "prevBalance": 222827,
+          "balance": 218218,
+          "change": -4609,
+          "raw": [
+            "融券(交易單位)",
+            "23,943",
+            "21,799",
+            "2,465",
+            "222,827",
+            "218,218"
+          ]
+        },
+        "summaryLabels": [
+          "融資(交易單位)",
+          "融券(交易單位)",
+          "融資金額(仟元)"
+        ]
+      }
     },
     "instTwse": {
       "ok": true,
@@ -24,12 +71,12 @@ window.MARKET_AUTO = {
         "date": "20260817",
         "unit": "億元",
         "foreign": 454.47,
-        "investmentTrust": -177.47,
+        "investmentTrust": -177.77,
         "dealer": 14.05,
         "dealerSelf": 35.4,
         "dealerHedge": -21.35,
-        "total": 291.06,
-        "checksum": 291.05,
+        "total": 290.76,
+        "checksum": 290.75,
         "checksumDelta": -0.01,
         "unitNames": [
           "自營商(自行買賣)",
@@ -53,18 +100,9 @@ window.MARKET_AUTO = {
       }
     },
     "otcTpex": {
-      "ok": true,
+      "ok": false,
       "source": "TPEx OpenAPI",
-      "value": {
-        "date": "20260817",
-        "index": null,
-        "turnoverYi": 1805.96,
-        "quoteCount": 10512,
-        "notes": [
-          "index tpex_mainboard_daily_index → 回應不是 JSON（前 120 字：<!DOCTYPE html><html lang=\"zh-Hant-tw\"><he",
-          "index tpex_index_summary → 回應不是 JSON（前 120 字：<!DOCTYPE html><html lang=\"zh-Hant-tw\"><he"
-        ]
-      }
+      "error": "quotes → terminated | index tpex_mainboard_daily_index → 回應不是 JSON（前 120 字：<!DOCTYPE html><html lang=\"zh-Hant-tw\"><he | index tpex_index_summary → 回應不是 JSON（前 120 字：<!DOCTYPE html><html lang=\"zh-Hant-tw\"><he"
     },
     "txfTaifex": {
       "ok": true,
