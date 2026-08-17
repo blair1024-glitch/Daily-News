@@ -288,22 +288,29 @@ async function tpexOtc(date) {
   // ① 先做已驗證可用的：個股報價彙總 → 櫃買成交金額。
   //    這份 payload 有上萬筆，需要較長的 timeout，且必須優先執行，
   //    不能被後面的探測性請求排擠掉（上一版就是這樣超時的）。
+  // 這份 payload 有上萬筆，實測偶爾會逾時（7 次執行中失敗 2 次），故重試一次。
   let turnover = null;
   let quoteCount = null;
-  try {
-    const q = await getJson(
-      "TPEx quotes",
-      "https://www.tpex.org.tw/openapi/v1/tpex_mainboard_daily_close_quotes",
-      undefined,
-      90_000
-    );
-    if (Array.isArray(q) && q.length) {
-      quoteCount = q.length;
-      const sum = q.reduce((acc, r) => acc + (num(r.TransactionAmount ?? r.TradeValue) || 0), 0);
-      turnover = sum > 0 ? toYi(sum) : null;
+  for (let attempt = 1; attempt <= 2; attempt++) {
+    try {
+      const q = await getJson(
+        `TPEx quotes (第 ${attempt} 次)`,
+        "https://www.tpex.org.tw/openapi/v1/tpex_mainboard_daily_close_quotes",
+        undefined,
+        120_000
+      );
+      if (Array.isArray(q) && q.length) {
+        quoteCount = q.length;
+        const sum = q.reduce((acc, r) => acc + (num(r.TransactionAmount ?? r.TradeValue) || 0), 0);
+        turnover = sum > 0 ? toYi(sum) : null;
+        break;
+      }
+      notes.push(`quotes 第 ${attempt} 次 → 空陣列`);
+    } catch (e) {
+      notes.push(`quotes 第 ${attempt} 次 → ${String(e.message).slice(0, 100)}`);
+      if (attempt < 2) console.log("[TPEx quotes] 逾時，5 秒後重試");
+      await new Promise((r) => setTimeout(r, attempt < 2 ? 5000 : 0));
     }
-  } catch (e) {
-    notes.push(`quotes → ${String(e.message).slice(0, 120)}`);
   }
 
   // ② 再試指數點位。TPEx 的 OpenAPI 目錄是 JS 渲染的（原始碼無資料集名稱），
