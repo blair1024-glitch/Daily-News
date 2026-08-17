@@ -283,32 +283,27 @@ async function twseDailyMarket(date) {
  * 指數端點的路徑會隨櫃買改版變動，因此逐一嘗試並把結果記進 log。
  */
 async function tpexOtc(date) {
-  // 先從 OpenAPI 目錄探測「指數」相關的端點，避免再靠猜。
+  // swagger.json 不存在（回 520 或 HTML），改為直接抓 OpenAPI 頁面原始碼，
+  // 用 regex 撈出所有 tpex_* 資料集名稱——一次看到全部，不必逐一猜路徑。
   const indexEndpoints = [];
   const indexErrors = [];
-  for (const catalog of [
-    "https://www.tpex.org.tw/openapi/swagger.json",
-    "https://www.tpex.org.tw/openapi/v1/swagger.json"
-  ]) {
+  let datasets = [];
+  for (const catalog of ["https://www.tpex.org.tw/openapi/", "https://www.tpex.org.tw/openapi"]) {
     try {
-      const doc = await getJson("TPEx catalog", catalog);
-      const paths = Object.keys(doc.paths || {});
-      console.log(`[TPEx catalog] ${catalog} → ${paths.length} 個端點`);
-      const hits = paths.filter((p) => /index|indice/i.test(p));
-      console.log(`[TPEx catalog] 含 index 的端點：${hits.join(", ") || "(無)"}`);
-      for (const p of hits) {
-        indexEndpoints.push("https://www.tpex.org.tw" + (p.startsWith("/") ? p : "/" + p));
+      const html = await request("TPEx catalog", catalog);
+      datasets = [...new Set(html.match(/tpex_[a-z0-9_]+/gi) || [])];
+      console.log(`[TPEx catalog] ${catalog} → 找到 ${datasets.length} 個資料集`);
+      if (datasets.length) {
+        console.log(`[TPEx catalog] 全部：${datasets.join(", ")}`);
+        const hits = datasets.filter((d) => /index|indice|summary/i.test(d));
+        console.log(`[TPEx catalog] 疑似指數：${hits.join(", ") || "(無)"}`);
+        for (const d of hits) indexEndpoints.push(`https://www.tpex.org.tw/openapi/v1/${d}`);
+        break;
       }
-      if (paths.length) break;
     } catch (e) {
-      indexErrors.push(`catalog ${catalog} → ${e.message}`);
+      indexErrors.push(`catalog ${catalog} → ${String(e.message).slice(0, 100)}`);
     }
   }
-  // 探測不到時仍保留幾個常見猜測
-  indexEndpoints.push(
-    "https://www.tpex.org.tw/openapi/v1/tpex_mainboard_daily_index",
-    "https://www.tpex.org.tw/openapi/v1/tpex_index_summary"
-  );
 
   let index = null;
   for (const url of [...new Set(indexEndpoints)]) {
@@ -352,7 +347,9 @@ async function tpexOtc(date) {
     index,
     turnoverYi: turnover,
     quoteCount,
-    notes: indexErrors.length ? indexErrors : undefined
+    // 探測到的資料集清單，供日後釘住正確端點
+    availableDatasets: datasets.length ? datasets : undefined,
+    notes: indexErrors.length ? indexErrors.slice(0, 4) : undefined
   };
 }
 
