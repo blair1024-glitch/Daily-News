@@ -1,0 +1,65 @@
+name: 抓取台股盤後數據
+
+# 為什麼需要這個 workflow：
+# 產生 dashboard 的 Claude session 執行在一個有出網限制的環境裡，
+# 證交所／櫃買／期交所全部被 egress proxy 擋掉（403），因此融資融券、
+# 櫃買指數、台指期基差等只存在於交易所表格裡的數字抓不到。
+# GitHub Actions 的 runner 沒有這個限制，所以由它負責抓精確數字，
+# Claude 隔天早上讀 data/market-auto.js 來寫判斷。
+
+on:
+  schedule:
+    # 09:00 UTC = 17:00 台灣時間（週一～週五）
+    # 台股 13:30 收盤，證交所融資融券約 15:00-16:00 公布，抓 17:00 保險。
+    - cron: "0 9 * * 1-5"
+  workflow_dispatch:          # 手動觸發，用於驗證與補抓
+    inputs:
+      date:
+        description: "指定日期 YYYYMMDD（留空 = 今天）"
+        required: false
+        type: string
+
+permissions:
+  contents: write
+
+concurrency:
+  group: fetch-tw-market
+  cancel-in-progress: false
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: 抓取台股數據
+        run: node scripts/fetch-tw-market.mjs ${{ inputs.date }}
+
+      - name: 摘要
+        run: |
+          node -e "
+            global.window = {};
+            require('./data/market-auto.js');
+            const m = window.MARKET_AUTO;
+            console.log('抓取時間:', m.fetchedAt);
+            console.log('交易日:', m.tradeDate, '| 成功:', m.okCount + '/' + m.totalCount);
+            for (const [k, v] of Object.entries(m.items)) {
+              console.log((v.ok ? '  ✅ ' : '  ❌ ') + k + (v.ok ? '' : ' — ' + v.error));
+            }
+          "
+
+      - name: Commit 並推送
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/market-auto.js
+          if git diff --staged --quiet; then
+            echo "沒有變化，不產生 commit"
+          else
+            git commit -m "chore(data): 台股數據 $(TZ=Asia/Taipei date +%Y/%m/%d)"
+            git push
+          fi

@@ -35,7 +35,12 @@ https://<你的帳號>.github.io/Daily-News/
 │   └── stock.js          # 讀 data/stock-3535.js 並渲染個股頁 ＋ 試算器
 ├── data/
 │   ├── dashboard.js      # ★ 每天只要改這一個檔案 ★
+│   ├── market-auto.js    # Actions 自動抓的交易所數字（勿手動改）
 │   └── stock-3535.js     # 個股頁的所有數字
+├── scripts/
+│   └── fetch-tw-market.mjs   # 抓數腳本（在 GitHub Actions 上跑）
+├── .github/workflows/
+│   └── fetch-tw-market.yml   # 每天 17:00 台灣時間排程
 └── README.md
 ```
 
@@ -44,6 +49,43 @@ https://<你的帳號>.github.io/Daily-News/
 
 > `app.js` 與 `stock.js` 不互通：`app.js` 綁的是總表專屬的 DOM id，
 > 個股頁若載入它會直接報錯。新增個股頁請複製 `stock.js` 的架構，不要沿用 `app.js`。
+
+---
+
+## 🤖 資料從哪來
+
+這個專案有**兩條**資料管道，分工明確：
+
+```
+GitHub Actions（機器）          每日 Claude session（判斷）
+  每天 17:00 台灣時間              每天 07:32 台灣時間
+  抓交易所精確數字        ──▶      讀 market-auto.js
+  寫 data/market-auto.js          ＋ WebSearch 補國際行情
+  commit 進 main                  ＋ 寫判斷與解讀
+                                  寫 data/dashboard.js
+```
+
+**為什麼要分兩條？** 產生 dashboard 的 Claude session 執行在有出網限制的環境裡，
+`twse.com.tw`、`tpex.org.tw`、`taifex.com.tw` 全部被 egress proxy 擋掉（403），
+所以只存在於交易所表格裡的數字（融資融券、櫃買指數、台指期基差）搜尋不到。
+GitHub Actions 的 runner 沒有這個限制，由它負責抓數。
+
+| 檔案 | 誰寫 | 內容 |
+| --- | --- | --- |
+| `data/market-auto.js` | GitHub Actions | 交易所原始數字，**請勿手動編輯** |
+| `data/dashboard.js` | 每日 Claude session / 你 | 經過整理與判斷的網站內容 |
+
+`market-auto.js` 不會被 `index.html` 載入，它只是給更新流程讀的中繼檔。
+每個欄位都帶 `ok` 狀態，抓不到時是 `ok: false` 加 `error` 說明——
+**絕不會沿用舊值或推估**，據實標註是這個專案的基本原則。
+
+手動補抓某一天：
+
+```bash
+node scripts/fetch-tw-market.mjs 20260814
+```
+
+或到 GitHub 的 Actions 頁面手動觸發「抓取台股盤後數據」，可指定日期。
 
 ---
 
