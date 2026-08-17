@@ -45,10 +45,10 @@ function slashed(s) {
 // ── 抓取工具 ────────────────────────────────────────────────────
 const TWSE_NO_DATA = /沒有符合條件的資料/;
 
-async function request(label, url, init = {}) {
+async function request(label, url, init = {}, timeoutMs = TIMEOUT_MS) {
   const started = Date.now();
   const ctrl = new AbortController();
-  const timer = setTimeout(() => ctrl.abort(), TIMEOUT_MS);
+  const timer = setTimeout(() => ctrl.abort(), timeoutMs);
   try {
     const res = await fetch(url, {
       ...init,
@@ -68,8 +68,8 @@ async function request(label, url, init = {}) {
   }
 }
 
-async function getJson(label, url, init) {
-  const text = await request(label, url, init);
+async function getJson(label, url, init, timeoutMs) {
+  const text = await request(label, url, init, timeoutMs);
   try {
     return JSON.parse(text);
   } catch {
@@ -283,73 +283,56 @@ async function twseDailyMarket(date) {
  * 指數端點的路徑會隨櫃買改版變動，因此逐一嘗試並把結果記進 log。
  */
 async function tpexOtc(date) {
-  // swagger.json 不存在（回 520 或 HTML），改為直接抓 OpenAPI 頁面原始碼，
-  // 用 regex 撈出所有 tpex_* 資料集名稱——一次看到全部，不必逐一猜路徑。
-  const indexEndpoints = [];
-  const indexErrors = [];
-  let datasets = [];
-  for (const catalog of ["https://www.tpex.org.tw/openapi/", "https://www.tpex.org.tw/openapi"]) {
-    try {
-      const html = await request("TPEx catalog", catalog);
-      datasets = [...new Set(html.match(/tpex_[a-z0-9_]+/gi) || [])];
-      console.log(`[TPEx catalog] ${catalog} → 找到 ${datasets.length} 個資料集`);
-      if (datasets.length) {
-        console.log(`[TPEx catalog] 全部：${datasets.join(", ")}`);
-        const hits = datasets.filter((d) => /index|indice|summary/i.test(d));
-        console.log(`[TPEx catalog] 疑似指數：${hits.join(", ") || "(無)"}`);
-        for (const d of hits) indexEndpoints.push(`https://www.tpex.org.tw/openapi/v1/${d}`);
-        break;
-      }
-    } catch (e) {
-      indexErrors.push(`catalog ${catalog} → ${String(e.message).slice(0, 100)}`);
-    }
-  }
+  const notes = [];
 
-  let index = null;
-  for (const url of [...new Set(indexEndpoints)]) {
-    try {
-      const j = await getJson("TPEx index", url);
-      if (Array.isArray(j) && j.length) {
-        // 找出代表「櫃買指數／大盤」的那一列；找不到就取第一列並保留原始鍵值
-        const row = j.find((r) => /櫃買|大盤|OTC/i.test(JSON.stringify(r))) || j[0];
-        index = { endpoint: url, keys: Object.keys(row), row };
-        break;
-      }
-      indexErrors.push(`${url} → 空陣列`);
-    } catch (e) {
-      indexErrors.push(`${url} → ${String(e.message).slice(0, 120)}`);
-    }
-  }
-
-  // 個股報價彙總 → 櫃買成交金額（這個端點上一次驗證可用）
+  // ① 先做已驗證可用的：個股報價彙總 → 櫃買成交金額。
+  //    這份 payload 有上萬筆，需要較長的 timeout，且必須優先執行，
+  //    不能被後面的探測性請求排擠掉（上一版就是這樣超時的）。
   let turnover = null;
   let quoteCount = null;
   try {
     const q = await getJson(
       "TPEx quotes",
-      "https://www.tpex.org.tw/openapi/v1/tpex_mainboard_daily_close_quotes"
+      "https://www.tpex.org.tw/openapi/v1/tpex_mainboard_daily_close_quotes",
+      undefined,
+      90_000
     );
     if (Array.isArray(q) && q.length) {
       quoteCount = q.length;
-      const sum = q.reduce((acc, r) => {
-        const v = num(r.TransactionAmount ?? r.TradeValue ?? null);
-        return acc + (v || 0);
-      }, 0);
+      const sum = q.reduce((acc, r) => acc + (num(r.TransactionAmount ?? r.TradeValue) || 0), 0);
       turnover = sum > 0 ? toYi(sum) : null;
     }
   } catch (e) {
-    indexErrors.push(`quotes → ${e.message}`);
+    notes.push(`quotes → ${String(e.message).slice(0, 120)}`);
   }
 
-  if (!index && turnover == null) throw new Error(indexErrors.join(" | "));
+  // ② 再試指數點位。TPEx 的 OpenAPI 目錄是 JS 渲染的（原始碼無資料集名稱），
+  //    swagger.json 回 520，因此只能試少數幾個候選，且用短 timeout
+  //    避免拖累整體。目前尚未找到可用端點——見 README 的已知限制。
+  let index = null;
+  for (const url of [
+    "https://www.tpex.org.tw/openapi/v1/tpex_mainboard_daily_index",
+    "https://www.tpex.org.tw/openapi/v1/tpex_index_summary"
+  ]) {
+    try {
+      const j = await getJson("TPEx index", url, undefined, 10_000);
+      if (Array.isArray(j) && j.length) {
+        const row = j.find((r) => /櫃買|大盤|OTC/i.test(JSON.stringify(r))) || j[0];
+        index = { endpoint: url, keys: Object.keys(row), row };
+        break;
+      }
+    } catch (e) {
+      notes.push(`index ${url.split("/").pop()} → ${String(e.message).slice(0, 60)}`);
+    }
+  }
+
+  if (!index && turnover == null) throw new Error(notes.join(" | ") || "全部來源皆失敗");
   return {
     date,
-    index,
+    index, // 目前恆為 null，指數點位改由每日 WebSearch 補（見 README 已知限制）
     turnoverYi: turnover,
     quoteCount,
-    // 探測到的資料集清單，供日後釘住正確端點
-    availableDatasets: datasets.length ? datasets : undefined,
-    notes: indexErrors.length ? indexErrors.slice(0, 4) : undefined
+    notes: notes.length ? notes : undefined
   };
 }
 
