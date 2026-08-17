@@ -6,10 +6,10 @@
  * ok:false 代表該欄位當天抓不到，error 說明原因——請據實標註，不要沿用舊值。
  */
 window.MARKET_AUTO = {
-  "fetchedAt": "2026-08-17T01:36:34.909Z",
+  "fetchedAt": "2026-08-17T01:38:15.232Z",
   "tradeDate": "20260814",
   "marketOpen": true,
-  "okCount": 5,
+  "okCount": 4,
   "totalCount": 5,
   "items": {
     "marginTwse": {
@@ -100,20 +100,9 @@ window.MARKET_AUTO = {
       }
     },
     "otcTpex": {
-      "ok": true,
+      "ok": false,
       "source": "TPEx OpenAPI",
-      "value": {
-        "date": "20260814",
-        "index": null,
-        "turnoverYi": 2445.17,
-        "quoteCount": 10489,
-        "notes": [
-          "catalog https://www.tpex.org.tw/openapi/swagger.json → HTTP 520",
-          "catalog https://www.tpex.org.tw/openapi/v1/swagger.json → 回應不是 JSON（前 120 字：<!DOCTYPE html><html lang=\"zh-Hant-tw\"><head><title>證券櫃檯買賣中心</title><meta charset=\"utf-8\"><meta name=\"viewport\" content=）",
-          "https://www.tpex.org.tw/openapi/v1/tpex_mainboard_daily_index → 回應不是 JSON（前 120 字：<!DOCTYPE html><html lang=\"zh-Hant-tw\"><head><title>證券櫃檯買賣中心</title><meta charset=\"utf-8\"><meta name=\"",
-          "https://www.tpex.org.tw/openapi/v1/tpex_index_summary → HTTP 520"
-        ]
-      }
+      "error": "quotes → terminated"
     },
     "txfTaifex": {
       "ok": true,
