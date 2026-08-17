@@ -190,10 +190,11 @@ async function twseMargin(date) {
     // 億元 —— dashboard 直接用這組
     financingAmountYi: finAmount,
     shortSellingAmountYi: shortAmount,
-    // 交易單位（張）—— 備查
+    // 交易單位（張）—— 融券只有這個口徑，TWSE 未提供融券金額
     financingUnits: finUnits,
     shortSellingUnits: shortUnits,
-    rowLabels: labels
+    // 只保留彙總列標籤；個股代號有上千筆，全寫進檔案會無謂膨脹
+    summaryLabels: labels.filter((l) => !/^\d/.test(l))
   };
 }
 
@@ -282,27 +283,46 @@ async function twseDailyMarket(date) {
  * 指數端點的路徑會隨櫃買改版變動，因此逐一嘗試並把結果記進 log。
  */
 async function tpexOtc(date) {
-  const indexEndpoints = [
+  // 先從 OpenAPI 目錄探測「指數」相關的端點，避免再靠猜。
+  const indexEndpoints = [];
+  const indexErrors = [];
+  for (const catalog of [
+    "https://www.tpex.org.tw/openapi/swagger.json",
+    "https://www.tpex.org.tw/openapi/v1/swagger.json"
+  ]) {
+    try {
+      const doc = await getJson("TPEx catalog", catalog);
+      const paths = Object.keys(doc.paths || {});
+      console.log(`[TPEx catalog] ${catalog} → ${paths.length} 個端點`);
+      const hits = paths.filter((p) => /index|indice/i.test(p));
+      console.log(`[TPEx catalog] 含 index 的端點：${hits.join(", ") || "(無)"}`);
+      for (const p of hits) {
+        indexEndpoints.push("https://www.tpex.org.tw" + (p.startsWith("/") ? p : "/" + p));
+      }
+      if (paths.length) break;
+    } catch (e) {
+      indexErrors.push(`catalog ${catalog} → ${e.message}`);
+    }
+  }
+  // 探測不到時仍保留幾個常見猜測
+  indexEndpoints.push(
     "https://www.tpex.org.tw/openapi/v1/tpex_mainboard_daily_index",
-    "https://www.tpex.org.tw/openapi/v1/tpex_index_summary",
-    "https://www.tpex.org.tw/openapi/v1/tpex_mainboard_index_summary"
-  ];
+    "https://www.tpex.org.tw/openapi/v1/tpex_index_summary"
+  );
 
   let index = null;
-  const indexErrors = [];
-  for (const url of indexEndpoints) {
+  for (const url of [...new Set(indexEndpoints)]) {
     try {
       const j = await getJson("TPEx index", url);
       if (Array.isArray(j) && j.length) {
         // 找出代表「櫃買指數／大盤」的那一列；找不到就取第一列並保留原始鍵值
-        const row =
-          j.find((r) => /櫃買|大盤|OTC/i.test(JSON.stringify(r))) || j[0];
+        const row = j.find((r) => /櫃買|大盤|OTC/i.test(JSON.stringify(r))) || j[0];
         index = { endpoint: url, keys: Object.keys(row), row };
         break;
       }
       indexErrors.push(`${url} → 空陣列`);
     } catch (e) {
-      indexErrors.push(`${url} → ${e.message}`);
+      indexErrors.push(`${url} → ${String(e.message).slice(0, 120)}`);
     }
   }
 
