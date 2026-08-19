@@ -6,10 +6,10 @@
  * ok:false 代表該欄位當天抓不到，error 說明原因——請據實標註，不要沿用舊值。
  */
 window.MARKET_AUTO = {
-  "fetchedAt": "2026-08-18T11:26:12.230Z",
-  "tradeDate": "20260818",
+  "fetchedAt": "2026-08-19T11:25:17.839Z",
+  "tradeDate": "20260819",
   "marketOpen": true,
-  "okCount": 3,
+  "okCount": 4,
   "totalCount": 5,
   "items": {
     "marginTwse": {
@@ -21,15 +21,15 @@ window.MARKET_AUTO = {
       "ok": true,
       "source": "TWSE BFI82U",
       "value": {
-        "date": "20260818",
+        "date": "20260819",
         "unit": "億元",
-        "foreign": -119.86,
-        "investmentTrust": 56.63,
-        "dealer": -176.07,
-        "dealerSelf": -21.73,
-        "dealerHedge": -154.34,
-        "total": -239.3,
-        "checksum": -239.3,
+        "foreign": -416.39,
+        "investmentTrust": -120.91,
+        "dealer": -171.18,
+        "dealerSelf": -39.62,
+        "dealerHedge": -131.56,
+        "total": -708.48,
+        "checksum": -708.48,
         "checksumDelta": 0,
         "unitNames": [
           "自營商(自行買賣)",
@@ -42,18 +42,24 @@ window.MARKET_AUTO = {
       }
     },
     "dailyMarket": {
-      "ok": false,
+      "ok": true,
       "source": "TWSE FMTQIK",
-      "error": "This operation was aborted"
+      "value": {
+        "date": "20260819",
+        "rocDate": "115/08/19",
+        "turnoverYi": 8902.7,
+        "taiexClose": 44719.35,
+        "taiexChange": -589.33
+      }
     },
     "otcTpex": {
       "ok": true,
       "source": "TPEx OpenAPI",
       "value": {
-        "date": "20260818",
+        "date": "20260819",
         "index": null,
-        "turnoverYi": 2466.51,
-        "quoteCount": 10561,
+        "turnoverYi": 1850.32,
+        "quoteCount": 10602,
         "notes": [
           "index tpex_mainboard_daily_index → 回應不是 JSON（前 120 字：<!DOCTYPE html><html lang=\"zh-Hant-tw\"><he",
           "index tpex_index_summary → 回應不是 JSON（前 120 字：<!DOCTYPE html><html lang=\"zh-Hant-tw\"><he"
@@ -64,14 +70,14 @@ window.MARKET_AUTO = {
       "ok": true,
       "source": "TAIFEX futDataDown",
       "value": {
-        "date": "20260818",
+        "date": "20260819",
         "contractMonth": "202608",
-        "close": 45085,
-        "change": -782,
-        "volume": 83392,
-        "openInterest": 20738,
+        "close": 44612,
+        "change": -476,
+        "volume": 27795,
+        "openInterest": 11402,
         "session": "一般",
-        "rowCount": 28,
+        "rowCount": 27,
         "header": [
           "交易日期",
           "契約",
