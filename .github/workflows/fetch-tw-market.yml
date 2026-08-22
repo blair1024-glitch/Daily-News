@@ -13,6 +13,10 @@ on:
     # 台股 13:30 收盤。原訂 17:00 抓，但 8/17 首次全自動執行時證交所
     # 融資融券當日資料尚未發布（回「無資料」），故延後至 19:00。
     - cron: "0 11 * * 1-5"
+    # 23:00 UTC = 隔天 07:00 台灣時間（週二～週六），重抓「前一交易日」。
+    # 19:00 那次仍取不到融資融券（證交所發布更晚），但次日上午已可取得，
+    # 故補這一次，剛好趕在每日 07:32 更新流程之前 30 分鐘。
+    - cron: "0 23 * * 1-5"
   workflow_dispatch:          # 手動觸發，用於驗證與補抓
     inputs:
       date:
@@ -37,8 +41,21 @@ jobs:
         with:
           node-version: "22"
 
+      - name: 決定抓取日期
+        id: pick
+        run: |
+          if [ -n "${{ inputs.date }}" ]; then
+            D="${{ inputs.date }}"                       # 手動指定
+          elif [ "$(date -u +%H)" = "23" ]; then
+            D="$(TZ=Asia/Taipei date -d yesterday +%Y%m%d)"  # 隔天早上那次：抓前一交易日
+          else
+            D="$(TZ=Asia/Taipei date +%Y%m%d)"           # 傍晚那次：抓當天
+          fi
+          echo "date=$D" >> "$GITHUB_OUTPUT"
+          echo "抓取日期：$D"
+
       - name: 抓取台股數據
-        run: node scripts/fetch-tw-market.mjs ${{ inputs.date }}
+        run: node scripts/fetch-tw-market.mjs ${{ steps.pick.outputs.date }}
 
       - name: 摘要
         run: |

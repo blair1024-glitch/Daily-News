@@ -40,7 +40,7 @@ https://<你的帳號>.github.io/Daily-News/
 ├── scripts/
 │   └── fetch-tw-market.mjs   # 抓數腳本（在 GitHub Actions 上跑）
 ├── .github/workflows/
-│   └── fetch-tw-market.yml   # 每天 17:00 台灣時間排程
+│   └── fetch-tw-market.yml   # 19:00 抓當日 ＋ 隔天 07:00 補抓
 └── README.md
 ```
 
@@ -58,7 +58,7 @@ https://<你的帳號>.github.io/Daily-News/
 
 ```
 GitHub Actions（機器）          每日 Claude session（判斷）
-  每天 17:00 台灣時間              每天 07:32 台灣時間
+  19:00 抓當日、07:00 補抓        每天 07:32 台灣時間
   抓交易所精確數字        ──▶      讀 market-auto.js
   寫 data/market-auto.js          ＋ WebSearch 補國際行情
   commit 進 main                  ＋ 寫判斷與解讀
