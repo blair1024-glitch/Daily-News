@@ -6,9 +6,9 @@
  */
 window.DASHBOARD = {
   meta: {
-    version: "v3.8",
-    date: "2026/08/22",
-    time: "23:30",
+    version: "v3.9",
+    date: "2026/08/24",
+    time: "07:45",
     timezone: "台灣時間",
     countdown: {
       label: "🔥 NVIDIA 財報",
@@ -21,9 +21,9 @@ window.DASHBOARD = {
     { label: "台指期基差", state: "翻逆價差 -76 點，訊號成立", signal: "r" },
     { label: "FOMC 紀要", state: "三張反對票主張升息", signal: "r" },
     { label: "Fed 點名 AI", state: "列為系統性下行風險", signal: "r" },
-    { label: "美股週線", state: "-1.4%，中斷三週連漲", signal: "r" },
     { label: "台股量能", state: "7,549 億，續縮", signal: "r" },
-    { label: "NVIDIA", state: "剩 2 個交易日", signal: "y" }
+    { label: "Fed 主席", state: "Warsh 推動體制轉變", signal: "r" },
+    { label: "本週雙事件", state: "8/26 NVIDIA、8/28 Warsh", signal: "y" }
   ],
 
   global: {
@@ -44,58 +44,58 @@ window.DASHBOARD = {
       { name: "🇹🇼 櫃買 OTC", value: "成交 2,024.42 億（點位未取得）", signal: "y" }
     ],
     notes: [
-      "**這一週是債市主導的一週。** 30 年期美債殖利率盤中一度觸及 5.34%（19 年新高）、10 年期觸 4.75%（20 個月新高），引發風險資產賣壓。週五雖回穩（30Y 5.273%、10Y 約 4.64%、VIX 降至 15.13），但 **S&P 500 全週仍下跌 1.4%，中斷三週連漲**，主要指數全週皆黑。",
+      "📅 **本版無新交易數據。** 8/22–23 為週末，最後一個交易日仍是 8/21（五），所有行情與籌碼數字均維持 v3.8 的 8/21 收盤值，未做任何調整。台股今日 09:00 開盤。本版更新的是 Fed 人事與下週行事曆兩件事實。",
+      "**上週是債市主導的一週。** 30 年期美債殖利率盤中一度觸及 5.34%（19 年新高）、10 年期觸 4.75%（20 個月新高），引發風險資產賣壓。週五雖回穩（30Y 5.273%、10Y 約 4.64%、VIX 降至 15.13），但 **S&P 500 全週仍下跌 1.4%，中斷三週連漲**，主要指數全週皆黑。",
       "🔴 **一個重要的認知修正**：先前幾版把「長端殖利率飆升」與「AI 主題」當成兩條獨立的風險線。實際成因浮現後，它們是同一條——長天期殖利率自 7 月起走高，主因是 **AI 公司大量發債** 加上聯邦赤字支出增加。也就是說，AI 的資本支出狂潮正在自己推高自己的折現率。",
       "美國準備對伊朗實施全面經濟制裁，油價續為通膨疑慮來源。",
-      "⚠️ SOX、2Y、DXY、原油、黃金、USD/JPY 的 8/21 收盤價未取得可靠來源，一律標示未取得而非沿用舊值。今日為週六，台股休市，本版資料更新至 8/21（五）收盤。"
+      "⚠️ SOX、2Y、DXY、原油、黃金、USD/JPY 的 8/21 收盤價未取得可靠來源，一律標示未取得而非沿用舊值。本版資料截至 8/21（五）收盤。"
     ]
   },
 
   fed: {
-    headline: "紀要揭曉：三張反對票主張升息，而且 Fed 自己點名了 AI",
+    headline: "更正：那不是「內部分歧」，是新主席的方向",
     stats: [
+      { label: "現任主席", value: "Kevin Warsh（5/22 就任）", signal: "r" },
+      { label: "參院同意", value: "54-45（Fed 史上最分歧）", signal: "r" },
       { label: "7 月決議", value: "維持 3.50%~3.75%", signal: "y" },
       { label: "反對票", value: "3 票主張升息 1 碼", signal: "r" },
-      { label: "30Y 殖利率", value: "5.273%（週間高 5.34%）", signal: "r" },
-      { label: "10Y 殖利率", value: "約 4.64%", signal: "r" },
       { label: "下次 FOMC", value: "9/15-16", signal: "y" }
     ],
     shift: {
-      before: "🔴 「Fed 就算不動，長天期殖利率照樣自己漲上去」",
-      after: "🔴 「而且 Fed 內部有三個人想升息，還把 AI 情緒當成風險」"
+      before: "🟡 「Fed 內部有三個人想升息」（前一版的讀法）",
+      after: "🔴 「那三票不是分歧，是新主席正在推的方向」"
     },
     probability: {
-      label: "7/28-29 決議票數",
-      from: "全票通過（市場原本認知）",
-      to: "3 票反對、主張升息"
+      label: "Fed 主席更迭（本版補上）",
+      from: "Jerome Powell",
+      to: "Kevin Warsh"
     },
     footnote:
-      "Logan、Hammack、Kashkari 三位地區聯準銀行總裁投票主張升息 1 碼。紀要對經濟的描述是「在高度不確定下仍屬穩健」，商業投資強勁、消費具韌性——這種措辭離降息很遠。更值得注意的是紀要明列的下行風險之一：**投資人對 AI 的樂觀情緒若降溫，將導致股價下跌，進而拖累消費**。Fed 已經把 AI 行情本身視為總體經濟的風險源。"
+      "🔴 **這是這份 dashboard 存在兩週的空白，今天補上並更正。** Kevin Warsh 已於 **2026/5/22 宣誓就任第 17 任 Fed 主席**，接替 Jerome Powell（參議院 5/13 以 54-45 通過，是 Fed 史上最分歧的人事同意）。我從 v3.0 到 v3.8 的 Fed 區塊從未提過換主席，導致上一版把 7 月會議紀要的三張升息反對票寫成「內部鷹派分歧」。放進正確脈絡後，那個判讀是錯的——Warsh 公開主張**收緊通膨紀律**、精簡 Fed 溝通、縮小央行職能，並明確推動「政策體制轉變（regime change）」，矛頭指向前任採行的彈性平均通膨目標架構。**三張反對票不是雜音，是方向。** 這也讓紀要點名 AI 情緒一事更值得重視：這屆 Fed 對資產價格的容忍度，可能比市場習慣的更低。"
   },
 
   cpi: {
-    title: "8/19 FOMC 會議紀要（已公布）",
-    releaseUS: "8/19 美東 14:00 ✅",
-    releaseTW: "🇹🇼 8/20 清晨 02:00 ✅",
+    title: "本週雙事件：NVIDIA ＋ Warsh 首演說",
+    releaseUS: "8/26 NVIDIA（美西 14:00）",
+    releaseTW: "🇹🇼 8/28 Warsh 首場主席演說",
     expectations: [
-      { name: "涵蓋會議", value: "7/28-29 FOMC" },
-      { name: "決議", value: "維持 3.50%~3.75%" },
-      { name: "反對票", value: "Logan／Hammack／Kashkari" },
-      { name: "經濟描述", value: "「在高度不確定下仍屬穩健」" },
-      { name: "點名風險", value: "AI 樂觀情緒降溫" }
+      { name: "8/26 NVIDIA", value: "Q2 FY2027 財報（台灣 8/27 05:00）" },
+      { name: "8/27-29", value: "Jackson Hole 年會" },
+      { name: "8/28 Warsh", value: "**首場**主席身分主題演說" },
+      { name: "年會主題", value: "金融創新對支付與政策的意涵" },
+      { name: "接續", value: "8 月非農、8 月 CPI → 9/15-16 FOMC" }
     ],
     fear:
-      "🔴 **我的情境表設計不足，要誠實說明。** 前一版只設了三格：「提及長端殖利率／財政供給」「聚焦通膨與就業平衡」「偏鷹、無視長端」。實際結果落在一個我沒設想到的位置——紀要**既偏鷹（三張升息反對票），又主動把 AI 情緒列為系統性風險**。第二點是我完全沒預期的：Fed 不只在看殖利率，它在看這波 AI 行情本身。這比三格裡任何一格都更需要注意。",
+      "**兩天之內、兩個第一順位事件，而且方向可能互相抵銷。** 8/26 NVIDIA 決定 AI 敘事還撐不撐得住；8/28 Warsh 以新主席身分首度站上 Jackson Hole 講台。歷史上這個講台就是政策轉向的訊號場——2022 年 Powell 的「痛苦」演說當天 S&P 500 跌約 3.4%，2025 年那場則讓九月降息機率從 71% 跳到 91.5%。Warsh 上任以來一直主張體制轉變與更嚴的通膨紀律，這場演說的風險偏向鷹派。最壞的組合是：NVIDIA 財報不如預期，緊接著 Warsh 再確認緊縮方向。",
     scenarios: [
-      { result: "✅ 實際：三票主張升息", fed: "比市場認知更鷹", fedSignal: "r", tech: "🔴", techSignal: "r" },
-      { result: "✅ 實際：點名 AI 為風險", fed: "情境表未涵蓋", fedSignal: "r", tech: "🔴", techSignal: "r" },
-      { result: "✅ 實際：經濟描述穩健", fed: "離降息很遠", fedSignal: "y", tech: "🟡", techSignal: "y" },
-      { result: "下一關：9/15-16 FOMC", fed: "反對票會否增加", fedSignal: "y", tech: "🟡", techSignal: "y" }
+      { result: "NVIDIA 強 ＋ Warsh 溫和", fed: "壓力同時解除", fedSignal: "g", tech: "🟢🟢", techSignal: "g" },
+      { result: "NVIDIA 強 ＋ Warsh 偏鷹", fed: "估值受壓但基本面撐住", fedSignal: "y", tech: "🟡", techSignal: "y" },
+      { result: "NVIDIA 平 ＋ Warsh 偏鷹", fed: "AI 敘事與利率雙殺", fedSignal: "r", tech: "🔴", techSignal: "r" },
+      { result: "NVIDIA 弱", fed: "呼應紀要點名的 AI 風險", fedSignal: "r", tech: "🔴🔴", techSignal: "r" }
     ],
     conclusion:
-      "紀要已成過去式，焦點完全移交給 8/26 的 NVIDIA 財報——而 Fed 剛好告訴我們，它也在看同一件事。"
+      "這一週結束前，AI 敘事與 Fed 方向兩件事都會有答案。在那之前，基差逆價差與量能萎縮已經先表態了。"
   },
-
   jpy: {
     level: "USD/JPY 8/21 收盤未取得",
     background:
@@ -152,7 +152,7 @@ window.DASHBOARD = {
       "對 AI 需求週期的說法"
     ],
     note:
-      "**剩 2 個交易日，這是目前唯一的主導事件。** 而它的份量比前幾版更重：Fed 在會議紀要裡把「AI 樂觀情緒降溫」列為總體下行風險，等於把這場財報從產業事件升格為總經事件。同時台指期基差已翻逆價差、美股週線中斷三連漲——市場在財報前明顯降風險。達標無功、不達標重罰的結構完全沒變，只是賭注更大了。"
+      "**剩 2 個交易日，這是目前唯一的主導事件。** 而它的份量比前幾版更重：Fed 在會議紀要裡把「AI 樂觀情緒降溫」列為總體下行風險，等於把這場財報從產業事件升格為總經事件。同時台指期基差已翻逆價差、美股週線中斷三連漲——市場在財報前明顯降風險。達標無功、不達標重罰的結構完全沒變，只是賭注更大了。**而且兩天後（8/28）還有 Warsh 的首場主席演說**——這一週要連過兩關。"
   },
 
   taiex: {
@@ -202,19 +202,21 @@ window.DASHBOARD = {
   calendar: {
     tier1: [
       { date: "8/26", event: "🔥 NVIDIA 財報（台灣 8/27 05:00）", hot: true },
-      { date: "8/28", event: "🇺🇸 PCE 物價指數" },
+      { date: "8/27-29", event: "🇺🇸 Jackson Hole 年會" },
+      { date: "8/28", event: "🎙️ Warsh 首場主席演說", hot: true },
       { date: "9/15-16", event: "🇺🇸 FOMC 利率決議", hot: true }
     ],
     tier2: [
-      { date: "8 月底", event: "Jackson Hole 相關訊號" },
+      { date: "8/28", event: "🇺🇸 PCE 物價指數" },
       { date: "8/31", event: "月底法人作帳" },
-      { date: "9 月", event: "台指期新倉布局觀察" }
+      { date: "9 月初", event: "8 月非農就業" },
+      { date: "9 月中", event: "8 月 CPI（FOMC 前最後一份）" }
     ]
   },
 
   risks: [
     { n: "①", name: "基差翻逆價差", signal: "r", desc: "-76.29 點，連續三版標記的轉弱訊號成立，且發生在指數上漲當天。" },
-    { n: "②", name: "Fed 鷹派分歧＋點名 AI", signal: "r", desc: "三票主張升息；紀要將 AI 樂觀情緒降溫列為總體下行風險。" },
+    { n: "②", name: "8/28 Warsh 首演說", signal: "r", desc: "新主席首度站上 Jackson Hole，公開立場為收緊通膨紀律與體制轉變，風險偏鷹。" },
     { n: "③", name: "AI 發債推升殖利率", signal: "r", desc: "長端殖利率飆升主因之一是 AI 公司大量發債——AI 正在推高自己的折現率。" },
     { n: "④", name: "台股量能萎縮", signal: "r", desc: "7,549 億為本波最低，較 8/17 再縮 23%，法人買超但市場沒跟。" }
   ],
@@ -223,7 +225,7 @@ window.DASHBOARD = {
     items: [
       { name: "AI 基本面", score: 8, signal: "g", note: "需求驗證仍在，但融資成本已成為新的壓力來源。" },
       { name: "美股趨勢", score: 6, signal: "y", note: "週線 -1.4%，中斷三週連漲；債市主導盤面。" },
-      { name: "Fed", score: 6, signal: "y", note: "三張升息反對票，措辭離降息很遠。" },
+      { name: "Fed", score: 6, signal: "y", note: "主席已換為 Warsh，主張體制轉變；三張升息反對票是方向而非雜音。" },
       { name: "日圓", score: 4, signal: "r", note: "8/21 數據未取得，前值 159.47，維持警戒不上修。" },
       { name: "台股 AI", score: 6, signal: "y", note: "價漲量縮、基差翻負，法人買超但市場未跟。" }
     ],
@@ -247,6 +249,10 @@ window.DASHBOARD = {
   ],
 
   sources: [
+    { label: "Kevin Warsh 宣誓就任主席（官方新聞稿）— Federal Reserve", url: "https://www.federalreserve.gov/newsevents/pressreleases/other20260522a.htm" },
+    { label: "Kevin Warsh sworn in as Fed chair, replacing Powell — CNBC", url: "https://www.cnbc.com/2026/05/18/kevin-warsh-trump-federal-reserve-chair.html" },
+    { label: "Kevin Warsh confirmed as Fed chair (54-45) — CNN Business", url: "https://www.cnn.com/2026/05/13/economy/kevin-warsh-confirmation-trump-fed-chair" },
+    { label: "Jackson Hole 2026：8/27-29 議程與 Warsh 首演說 — Regards of Wallstreet", url: "https://www.regardsofwallstreet.com/news/jackson-hole-2026-dates-schedule-warsh-first-speech" },
     { label: "Minutes of the FOMC, July 28–29, 2026 — Federal Reserve", url: "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260819a.htm" },
     { label: "PREVIEW/REVIEW: FOMC Minutes, 19 August 2026 — Newsquawk", url: "https://www.newsquawk.com/headlines/preview-fomc-minutes-due-wednesday-19th-august-2026-at-1900bst1400edt" },
     { label: "FOMC Minutes 19 August 2026 — PNC Economics Research", url: "https://www.pnc.com/content/dam/pnc-com/pdf/aboutpnc/EconomicReports/EconomicUpdates/2026/PNC_Economics_Research_FOMC_Minutes_19_August_2026.pdf" },
