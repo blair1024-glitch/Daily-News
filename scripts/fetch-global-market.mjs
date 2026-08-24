@@ -73,6 +73,32 @@ function ymdInTz(epochSec, tz) {
   }
 }
 
+/** epoch 秒 → 交易所當地小時（0-23）。解析失敗回 null。 */
+function hourInTz(epochSec, tz) {
+  try {
+    const h = new Date(epochSec * 1000).toLocaleString("en-US", {
+      timeZone: tz || "UTC",
+      hour: "2-digit",
+      hour12: false
+    });
+    const n = parseInt(h, 10);
+    return isFinite(n) ? n % 24 : null;
+  } catch {
+    return null;
+  }
+}
+
+/**
+ * 過了這個當地時間，就認定當天的日線已經收定。
+ *
+ * 為什麼需要這個門檻：24 小時商品（黃金、原油、DXY）的
+ * currentTradingPeriod.regular 不可靠——8/25 那次執行，把 end 落在次日的
+ * 情況修掉之後，這四項仍然卡在前一交易日，代表它們回報的 end 就在當天
+ * 而且遠在傍晚之後。與其繼續猜 Yahoo 的時段中繼資料，直接用當地時間
+ * 當作退路：紐約 17:00 之後，當天的日線不會再變了。
+ */
+const SETTLE_HOUR = 17;
+
 /**
  * asOf（YYYY-MM-DD）距今幾天。無法解析回 null。
  *
@@ -159,15 +185,18 @@ async function fromYahoo(sym) {
   const nowSec = Math.floor(Date.now() / 1000);
   const todayEx = ymdInTz(nowSec, tz);
 
-  // 「本盤是否還沒收」：必須是**今天**的收盤時刻，而且還沒到。
-  //
-  // 為什麼要加「同一天」這個條件：24 小時交易的商品（黃金、原油、DXY、
-  // 美債殖利率）在 Yahoo 的 currentTradingPeriod.regular 裡，end 是**次日**
-  // 的收盤時刻。只比 now < end 的話，8/24 晚上 19:22 ET 也會被判成盤中，
-  // 於是 settled 被退回 8/21——8/25 那次執行就有六項因此落後一天。
+  // 「本盤是否還沒收」，兩道判準取其一即視為已收盤：
+  //   ① 今天的收盤時刻已經過了（end 必須落在今天——24 小時商品的 end
+  //      常指向次日，那種不算數）
+  //   ② 交易所當地時間已過 SETTLE_HOUR（上面那條對某些 24h 商品仍失效
+  //      時的退路）
+  const nowHour = hourInTz(nowSec, tz);
   const endsToday =
     tp && tp.end != null ? ymdInTz(tp.end, tz) === todayEx : false;
-  const beforeEnd = endsToday && nowSec < tp.end;
+  const sessionEnded =
+    (endsToday && nowSec >= tp.end) ||
+    (nowHour != null && nowHour >= SETTLE_HOUR);
+  const beforeEnd = !sessionEnded;
 
   const ts = Array.isArray(r.timestamp) ? r.timestamp : [];
   const closes = Array.isArray(r.indicators?.quote?.[0]?.close)
@@ -227,6 +256,13 @@ async function fromYahoo(sym) {
   const lastDate = series[series.length - 1].date;
   const live =
     lastDate > todayEx ? true : lastDate < todayEx ? false : beforeEnd;
+
+  // 日期判定的診斷。settled 若跳日，從這一行就能看出是哪個環節誤判。
+  console.log(
+    `  ⌚ tz=${tz} 當地=${todayEx} ${nowHour}時 | 末根=${lastDate} | ` +
+      `tp.end=${tp && tp.end != null ? ymdInTz(tp.end, tz) : "無"} ` +
+      `endsToday=${endsToday} | live=${live}`
+  );
 
   const latest = deltaAt(series, series.length - 1);
   const settled = deltaAt(series, live ? series.length - 2 : series.length - 1);
