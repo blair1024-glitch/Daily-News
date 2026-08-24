@@ -139,14 +139,53 @@ async function fromYahoo(sym) {
   const meta = r.meta || {};
   const tz = meta.exchangeTimezoneName || null;
 
+  // 是否正在盤中：最後成交時間落在當前盤中時段且尚未到收盤時刻。
+  const tp = meta.currentTradingPeriod?.regular;
+  const rmt = meta.regularMarketTime ?? null;
+  const marketOpen =
+    tp && rmt != null && tp.start != null && tp.end != null
+      ? rmt >= tp.start && rmt < tp.end
+      : false;
+
   const ts = Array.isArray(r.timestamp) ? r.timestamp : [];
   const closes = Array.isArray(r.indicators?.quote?.[0]?.close)
     ? r.indicators.quote[0].close
     : [];
+
+  // 櫃買指數 ^TWOII 是特例：Yahoo 認得這個代號、meta 有即時報價，
+  // 但 timestamp / close 兩個陣列都是空的（沒有日線歷史）。
+  // 這種情況下退而求其次用 meta 的即時報價，並明確標記 quoteOnly，
+  // 讓每日更新流程知道這個數字沒有經過日線交叉驗證。
   if (!ts.length || !closes.length) {
-    throw new Error(
-      `無日線陣列（timestamp ${ts.length} 筆、close ${closes.length} 筆，meta 鍵值：${Object.keys(meta).join(",")}）`
-    );
+    const p = meta.regularMarketPrice ?? null;
+    if (p == null) {
+      throw new Error(
+        `無日線陣列且 meta 無 regularMarketPrice（meta 鍵值：${Object.keys(meta).join(",")}）`
+      );
+    }
+    const prev = meta.chartPreviousClose ?? meta.previousClose ?? null;
+    const change = prev != null ? round(p - prev, 4) : null;
+    return {
+      close: round(p, 4),
+      prevClose: round(prev, 4),
+      change,
+      changePct: prev ? round((change / prev) * 100, 2) : null,
+      asOf: rmt != null ? ymdInTz(rmt, tz) : null,
+      prevAsOf: null,
+      live: marketOpen,
+      latest: null,
+      settled: null,
+      quotePrice: round(p, 4),
+      series: [],
+      quoteOnly: true,
+      note:
+        "此標的 Yahoo 無日線歷史，數字取自 meta 即時報價；" +
+        "prevClose 為 Yahoo 自報前收，未經日線交叉驗證。" +
+        (marketOpen ? "抓取當下仍在盤中，這不是收盤價。" : ""),
+      currency: meta.currency ?? null,
+      timezone: tz,
+      source: "Yahoo Finance chart API（僅即時報價，無日線）"
+    };
   }
 
   // 同一天偶爾會出現兩根（最後一根是進行中的），用 Map 以日期去重、後者覆蓋。
@@ -159,15 +198,8 @@ async function fromYahoo(sym) {
   const series = [...byDate].map(([date, close]) => ({ date, close }));
   if (series.length < 2) throw new Error(`有效日線不足 2 根（${series.length} 根）`);
 
-  // 最後一根是否還在跳動：最後成交時間落在「當前盤中時段」且尚未到收盤時刻，
-  // 而且那筆成交跟最後一根 K 棒是同一天。
-  const tp = meta.currentTradingPeriod?.regular;
-  const rmt = meta.regularMarketTime ?? null;
+  // 最後一根是否還在跳動：市場正在交易，而且最後那筆成交跟最後一根 K 棒同一天。
   const lastDate = series[series.length - 1].date;
-  const marketOpen =
-    tp && rmt != null && tp.start != null && tp.end != null
-      ? rmt >= tp.start && rmt < tp.end
-      : false;
   const live = marketOpen && rmt != null && ymdInTz(rmt, tz) === lastDate;
 
   const latest = deltaAt(series, series.length - 1);

@@ -82,13 +82,39 @@ GitHub Actions 的 runner 沒有這個限制，由它負責抓數。
 每個欄位都帶 `ok` 狀態，抓不到時是 `ok: false` 加 `error` 說明——
 **絕不會沿用舊值或推估**，據實標註是這個專案的基本原則。
 
+### 日期語意：收盤價 vs 盤中價
+
+`market-global.js` 每個標的的 `value` 裡：
+
+| 欄位 | 意義 |
+| --- | --- |
+| `close` / `change` / `changePct` | **最後一根已收盤日線**，dashboard 一律引用這組 |
+| `asOf` | 上面那個收盤價的日期（YYYY-MM-DD，交易所當地時區） |
+| `live` | `true` = 抓取當下該市場正在交易 |
+| `latest` / `quotePrice` | 最後一根（`live` 時為盤中價）——**不可當收盤價用** |
+| `series` | 最近 6 根日線，供交叉驗證 |
+
+這一組語意是 8/24 修過的。第一版用 `meta.chartPreviousClose` 算漲跌，
+搭配 `range=5d` 等於拿「5 天前」的收盤，S&P 500 因此顯示 −1.43%（那是週變動，
+日變動其實是 +0.43%）；`close` 用 `meta.regularMarketPrice`，盤中會拿到即時價，
+TAIEX 一度抓到 44,987.11，而 8/21 的收盤是 45,224.29。
+現在改讀 `timestamp` / `indicators.quote[0].close` 日線陣列相鄰兩根相減，
+並以 `currentTradingPeriod` 判斷最後一根是否未收盤。
+
+`items.taiex` 是刻意放進去的**交叉驗證欄**：它應與 `market-auto.js` 的
+`dailyMarket.value.taiexClose` 一致（前提是同一個交易日）。不一致代表某一條管道有問題。
+
 ### 已知限制
 
 **櫃買 OTC 指數點位**：櫃買中心的 OpenAPI 沒有指數端點——目錄頁是 JS 渲染的
 （原始碼裡沒有資料集名稱），`swagger.json` 回 520，候選路徑全是 HTML 404。
-成交金額可以由個股報價彙總得出（已在用）。指數點位改由 `fetch-global-market.mjs`
-以 Yahoo Finance 的 `^TWOII` 嘗試；若該路徑也不可用，就在頁面標「點位未取得」，
-**不要推估**。
+成交金額可以由個股報價彙總得出（已在用）。
+
+指數點位改由 `fetch-global-market.mjs` 走 Yahoo Finance 的 `^TWOII`：Yahoo **認得**
+這個代號、`meta` 有即時報價，但 `timestamp` / `close` 兩個陣列是空的——**沒有日線歷史**。
+因此這一項會帶 `quoteOnly: true`，數字取自 `meta.regularMarketPrice`、
+前收取自 Yahoo 自報的 `chartPreviousClose`，**未經日線交叉驗證**，
+而且若 `live: true` 就代表那是盤中價、不是收盤。引用時請照 `note` 的敘述標註。
 
 > 📌 **為什麼國際行情也要走 Actions？** 早期版本只有台股走自動管道，
 > SOX、原油、黃金、USD/JPY 全靠 WebSearch——但搜尋只讀得到新聞句子裡
