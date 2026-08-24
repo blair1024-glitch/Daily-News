@@ -154,13 +154,20 @@ async function fromYahoo(sym) {
   const meta = r.meta || {};
   const tz = meta.exchangeTimezoneName || null;
 
-  // 是否正在盤中：最後成交時間落在當前盤中時段且尚未到收盤時刻。
   const tp = meta.currentTradingPeriod?.regular;
   const rmt = meta.regularMarketTime ?? null;
-  const marketOpen =
-    tp && rmt != null && tp.start != null && tp.end != null
-      ? rmt >= tp.start && rmt < tp.end
-      : false;
+  const nowSec = Math.floor(Date.now() / 1000);
+  const todayEx = ymdInTz(nowSec, tz);
+
+  // 「本盤是否還沒收」：必須是**今天**的收盤時刻，而且還沒到。
+  //
+  // 為什麼要加「同一天」這個條件：24 小時交易的商品（黃金、原油、DXY、
+  // 美債殖利率）在 Yahoo 的 currentTradingPeriod.regular 裡，end 是**次日**
+  // 的收盤時刻。只比 now < end 的話，8/24 晚上 19:22 ET 也會被判成盤中，
+  // 於是 settled 被退回 8/21——8/25 那次執行就有六項因此落後一天。
+  const endsToday =
+    tp && tp.end != null ? ymdInTz(tp.end, tz) === todayEx : false;
+  const beforeEnd = endsToday && nowSec < tp.end;
 
   const ts = Array.isArray(r.timestamp) ? r.timestamp : [];
   const closes = Array.isArray(r.indicators?.quote?.[0]?.close)
@@ -187,7 +194,7 @@ async function fromYahoo(sym) {
       changePct: prev ? round((change / prev) * 100, 2) : null,
       asOf: rmt != null ? ymdInTz(rmt, tz) : null,
       prevAsOf: null,
-      live: marketOpen,
+      live: beforeEnd,
       latest: null,
       settled: null,
       quotePrice: round(p, 4),
@@ -196,7 +203,7 @@ async function fromYahoo(sym) {
       note:
         "此標的 Yahoo 無日線歷史，數字取自 meta 即時報價；" +
         "prevClose 為 Yahoo 自報前收，未經日線交叉驗證。" +
-        (marketOpen ? "抓取當下仍在盤中，這不是收盤價。" : ""),
+        (beforeEnd ? "抓取當下仍在盤中，這不是收盤價。" : ""),
       currency: meta.currency ?? null,
       timezone: tz,
       source: "Yahoo Finance chart API（僅即時報價，無日線）"
@@ -213,9 +220,13 @@ async function fromYahoo(sym) {
   const series = [...byDate].map(([date, close]) => ({ date, close }));
   if (series.length < 2) throw new Error(`有效日線不足 2 根（${series.length} 根）`);
 
-  // 最後一根是否還在跳動：市場正在交易，而且最後那筆成交跟最後一根 K 棒同一天。
+  // 最後一根 K 棒是否還在累積：
+  //   日期比交易所當地的今天還新 → 剛開始的次日 K 棒，一定還在跳
+  //   比今天舊                   → 已經是過去的日期，收定了
+  //   就是今天                   → 看今天的收盤時刻到了沒
   const lastDate = series[series.length - 1].date;
-  const live = marketOpen && rmt != null && ymdInTz(rmt, tz) === lastDate;
+  const live =
+    lastDate > todayEx ? true : lastDate < todayEx ? false : beforeEnd;
 
   const latest = deltaAt(series, series.length - 1);
   const settled = deltaAt(series, live ? series.length - 2 : series.length - 1);
