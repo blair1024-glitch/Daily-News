@@ -6,8 +6,8 @@
  * ok:false 代表該標的當次抓不到，error 說明原因——請據實標註，不要沿用舊值。
  */
 window.MARKET_GLOBAL = {
-  "fetchedAt": "2026-08-24T06:15:51.875Z",
-  "okCount": 17,
+  "fetchedAt": "2026-08-24T06:17:18.175Z",
+  "okCount": 16,
   "totalCount": 17,
   "items": {
     "sox": {
@@ -504,10 +504,10 @@ window.MARKET_GLOBAL = {
         "live": true,
         "latest": {
           "date": "2026-08-24",
-          "close": 98.851,
+          "close": 98.846,
           "prevDate": "2026-08-21",
           "prevClose": 98.8,
-          "change": 0.051,
+          "change": 0.046,
           "changePct": 0.05
         },
         "settled": {
@@ -518,7 +518,7 @@ window.MARKET_GLOBAL = {
           "change": -0.1,
           "changePct": -0.1
         },
-        "quotePrice": 98.851,
+        "quotePrice": 98.846,
         "series": [
           {
             "date": "2026-08-17",
@@ -542,7 +542,7 @@ window.MARKET_GLOBAL = {
           },
           {
             "date": "2026-08-24",
-            "close": 98.851
+            "close": 98.846
           }
         ],
         "currency": "USD",
@@ -564,11 +564,11 @@ window.MARKET_GLOBAL = {
         "live": true,
         "latest": {
           "date": "2026-08-24",
-          "close": 85.37,
+          "close": 85.4,
           "prevDate": "2026-08-21",
           "prevClose": 87.06,
-          "change": -1.69,
-          "changePct": -1.94
+          "change": -1.66,
+          "changePct": -1.91
         },
         "settled": {
           "date": "2026-08-21",
@@ -578,7 +578,7 @@ window.MARKET_GLOBAL = {
           "change": -0.77,
           "changePct": -0.88
         },
-        "quotePrice": 85.37,
+        "quotePrice": 85.4,
         "series": [
           {
             "date": "2026-08-17",
@@ -602,7 +602,7 @@ window.MARKET_GLOBAL = {
           },
           {
             "date": "2026-08-24",
-            "close": 85.37
+            "close": 85.4
           }
         ],
         "currency": "USD",
@@ -624,11 +624,11 @@ window.MARKET_GLOBAL = {
         "live": true,
         "latest": {
           "date": "2026-08-24",
-          "close": 92.86,
+          "close": 92.89,
           "prevDate": "2026-08-21",
           "prevClose": 94.39,
-          "change": -1.53,
-          "changePct": -1.62
+          "change": -1.5,
+          "changePct": -1.59
         },
         "settled": {
           "date": "2026-08-21",
@@ -638,7 +638,7 @@ window.MARKET_GLOBAL = {
           "change": 0.61,
           "changePct": 0.65
         },
-        "quotePrice": 92.86,
+        "quotePrice": 92.89,
         "series": [
           {
             "date": "2026-08-17",
@@ -662,7 +662,7 @@ window.MARKET_GLOBAL = {
           },
           {
             "date": "2026-08-24",
-            "close": 92.86
+            "close": 92.89
           }
         ],
         "currency": "USD",
@@ -684,11 +684,11 @@ window.MARKET_GLOBAL = {
         "live": true,
         "latest": {
           "date": "2026-08-24",
-          "close": 4702.3999,
+          "close": 4705.5,
           "prevDate": "2026-08-21",
           "prevClose": 4624.1001,
-          "change": 78.2998,
-          "changePct": 1.69
+          "change": 81.3999,
+          "changePct": 1.76
         },
         "settled": {
           "date": "2026-08-21",
@@ -698,7 +698,7 @@ window.MARKET_GLOBAL = {
           "change": 107.8003,
           "changePct": 2.39
         },
-        "quotePrice": 4702.4,
+        "quotePrice": 4705.5,
         "series": [
           {
             "date": "2026-08-17",
@@ -722,7 +722,7 @@ window.MARKET_GLOBAL = {
           },
           {
             "date": "2026-08-24",
-            "close": 4702.3999
+            "close": 4705.5
           }
         ],
         "currency": "USD",
@@ -744,11 +744,11 @@ window.MARKET_GLOBAL = {
         "live": true,
         "latest": {
           "date": "2026-08-24",
-          "close": 158.884,
+          "close": 158.904,
           "prevDate": "2026-08-21",
           "prevClose": 158.883,
-          "change": 0.001,
-          "changePct": 0
+          "change": 0.021,
+          "changePct": 0.01
         },
         "settled": {
           "date": "2026-08-21",
@@ -758,7 +758,7 @@ window.MARKET_GLOBAL = {
           "change": 0.607,
           "changePct": 0.38
         },
-        "quotePrice": 158.884,
+        "quotePrice": 158.904,
         "series": [
           {
             "date": "2026-08-17",
@@ -782,7 +782,7 @@ window.MARKET_GLOBAL = {
           },
           {
             "date": "2026-08-24",
-            "close": 158.884
+            "close": 158.904
           }
         ],
         "currency": "JPY",
@@ -804,10 +804,10 @@ window.MARKET_GLOBAL = {
         "live": true,
         "latest": {
           "date": "2026-08-24",
-          "close": 6.7219,
+          "close": 6.7217,
           "prevDate": "2026-08-21",
           "prevClose": 6.7225,
-          "change": -0.0006,
+          "change": -0.0008,
           "changePct": -0.01
         },
         "settled": {
@@ -818,7 +818,7 @@ window.MARKET_GLOBAL = {
           "change": -0.007,
           "changePct": -0.1
         },
-        "quotePrice": 6.7219,
+        "quotePrice": 6.7217,
         "series": [
           {
             "date": "2026-08-17",
@@ -842,7 +842,7 @@ window.MARKET_GLOBAL = {
           },
           {
             "date": "2026-08-24",
-            "close": 6.7219
+            "close": 6.7217
           }
         ],
         "currency": "CNY",
@@ -911,27 +911,9 @@ window.MARKET_GLOBAL = {
       }
     },
     "otcTwo": {
-      "ok": true,
+      "ok": false,
       "label": "櫃買指數 OTC",
-      "symbol": "%5ETWOII",
-      "value": {
-        "close": 269.45,
-        "prevClose": 267.72,
-        "change": 1.73,
-        "changePct": 0.65,
-        "asOf": "2024-10-12",
-        "prevAsOf": null,
-        "live": false,
-        "latest": null,
-        "settled": null,
-        "quotePrice": 269.45,
-        "series": [],
-        "quoteOnly": true,
-        "note": "此標的 Yahoo 無日線歷史，數字取自 meta 即時報價；prevClose 為 Yahoo 自報前收，未經日線交叉驗證。",
-        "currency": "TWD",
-        "timezone": "Asia/Taipei",
-        "source": "Yahoo Finance chart API（僅即時報價，無日線）"
-      }
+      "error": "yahoo(%5ETWOII) → 報價過期：asOf 2024-10-12 距今 681 天（上限 10 天），該來源可能已停止更新此代號"
     },
     "taiex": {
       "ok": true,
