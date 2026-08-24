@@ -104,11 +104,16 @@ TAIEX 一度抓到 44,987.11，而 8/21 的收盤是 45,224.29。
 `items.taiex` 是刻意放進去的**交叉驗證欄**：它應與 `market-auto.js` 的
 `dailyMarket.value.taiexClose` 一致（前提是同一個交易日）。不一致代表某一條管道有問題。
 
-**待修：`live` 判定對 24 小時市場過嚴。** 8/25 的執行中，殖利率（^TNX/^TYX/^FVX）、
-DXY、WTI、Brent、黃金六項因近乎 24 小時交易，`currentTradingPeriod.regular` 仍顯示開盤中，
-於是 `settled` 被退回前一個交易日，`close` 因此落後一天（`latest` 才是當日日線）。
-美股現貨（SOX/VIX/S&P/Nasdaq/Dow）判定正確。在修好之前，**讀這六項要先比對 `asOf`**，
-必要時改用 `latest` 並以新聞交叉驗證。
+**`live` 是怎麼判的。** 最後一根日線是否還在累積，依序看三件事：日期比交易所當地的
+今天新 → 剛開的次日 K 棒（live）；比今天舊 → 收定了；就是今天 → 才看本盤收了沒。
+「本盤收了沒」兩道判準取其一：今天的 `currentTradingPeriod.regular.end` 已過（可捕捉
+提早收盤），或當地時間已過 `SETTLE_HOUR`（17:00）。
+
+第二道是必要的退路：24 小時商品（黃金、原油、DXY）回報的 `end` 不可靠——有的指向
+**次日**，有的就在當天卻遠在傍晚之後。8/25 那次執行因此讓殖利率、DXY、WTI、Brent、
+黃金六項的 `settled` 全部落後一天。加上 `SETTLE_HOUR` 後 15 項全部回到當日。
+每個標的都會印一行 `⌚ tz=… 當地=… 末根=… tp.end=… live=…` 的診斷到 Actions log，
+日期若再跳掉可直接定位。
 
 ### 已知限制
 
