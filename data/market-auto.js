@@ -6,16 +6,63 @@
  * ok:false 代表該欄位當天抓不到，error 說明原因——請據實標註，不要沿用舊值。
  */
 window.MARKET_AUTO = {
-  "fetchedAt": "2026-08-24T11:28:39.173Z",
+  "fetchedAt": "2026-08-24T23:21:58.983Z",
   "tradeDate": "20260824",
   "marketOpen": true,
-  "okCount": 4,
+  "okCount": 5,
   "totalCount": 5,
   "items": {
     "marginTwse": {
-      "ok": false,
+      "ok": true,
       "source": "TWSE MI_MARGN",
-      "error": "當日資料尚未發布（抓取時間早於該來源發布時間）"
+      "value": {
+        "date": "20260824",
+        "financingAmountYi": {
+          "prevBalance": 5469.39,
+          "balance": 5452.59,
+          "change": -16.8,
+          "raw": [
+            "融資金額(仟元)",
+            "21,480,689",
+            "22,688,300",
+            "472,283",
+            "546,939,324",
+            "545,259,430"
+          ]
+        },
+        "shortSellingAmountYi": null,
+        "financingUnits": {
+          "prevBalance": 8845947,
+          "balance": 8856848,
+          "change": 10901,
+          "raw": [
+            "融資(交易單位)",
+            "281,110",
+            "266,401",
+            "3,808",
+            "8,845,947",
+            "8,856,848"
+          ]
+        },
+        "shortSellingUnits": {
+          "prevBalance": 199998,
+          "balance": 201513,
+          "change": 1515,
+          "raw": [
+            "融券(交易單位)",
+            "16,009",
+            "18,286",
+            "762",
+            "199,998",
+            "201,513"
+          ]
+        },
+        "summaryLabels": [
+          "融資(交易單位)",
+          "融券(交易單位)",
+          "融資金額(仟元)"
+        ]
+      }
     },
     "instTwse": {
       "ok": true,
@@ -23,14 +70,14 @@ window.MARKET_AUTO = {
       "value": {
         "date": "20260824",
         "unit": "億元",
-        "foreign": -157.51,
-        "investmentTrust": 37.05,
+        "foreign": -157.36,
+        "investmentTrust": 30.55,
         "dealer": -43.33,
         "dealerSelf": -0.15,
         "dealerHedge": -43.18,
-        "total": -163.78,
-        "checksum": -163.79,
-        "checksumDelta": -0.01,
+        "total": -170.14,
+        "checksum": -170.14,
+        "checksumDelta": 0,
         "unitNames": [
           "自營商(自行買賣)",
           "自營商(避險)",
