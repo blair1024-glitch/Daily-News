@@ -81,7 +81,13 @@ jobs:
               console.log('--- 國際行情 ---');
               console.log('抓取時間:', g.fetchedAt, '| 成功:', g.okCount + '/' + g.totalCount);
               for (const [k, v] of Object.entries(g.items)) {
-                console.log((v.ok ? '  ✅ ' : '  ❌ ') + k + (v.ok ? ' = ' + v.value.close : ''));
+                if (!v.ok) { console.log('  ❌ ' + k + ' — ' + v.error); continue; }
+                const x = v.value;
+                console.log(
+                  '  ✅ ' + k.padEnd(8) + ' ' + x.asOf + ' 收 ' + x.close +
+                  ' (' + (x.change ?? '—') + ' / ' + (x.changePct ?? '—') + '%)' +
+                  (x.live ? '  ⏱ 盤中 ' + x.quotePrice : '')
+                );
               }
             } catch (e) { console.log('（尚無 market-global.js）'); }
           "

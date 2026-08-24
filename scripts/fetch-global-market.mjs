@@ -63,6 +63,32 @@ function num(s) {
   return Number(c);
 }
 
+/** epoch 秒 → 交易所當地日期 YYYY-MM-DD。用當地時區才不會把亞洲收盤算成前一天。 */
+function ymdInTz(epochSec, tz) {
+  const d = new Date(epochSec * 1000);
+  try {
+    return d.toLocaleDateString("en-CA", { timeZone: tz || "UTC" });
+  } catch {
+    return d.toISOString().slice(0, 10);
+  }
+}
+
+/** 由 [{date, close}] 序列的某一格與其前一格算出日變動。 */
+function deltaAt(series, i) {
+  if (i < 0 || i >= series.length) return null;
+  const cur = series[i];
+  const prev = i > 0 ? series[i - 1] : null;
+  const change = prev ? round(cur.close - prev.close, 4) : null;
+  return {
+    date: cur.date,
+    close: cur.close,
+    prevDate: prev ? prev.date : null,
+    prevClose: prev ? prev.close : null,
+    change,
+    changePct: prev && prev.close ? round((change / prev.close) * 100, 2) : null
+  };
+}
+
 async function request(label, url, timeoutMs = 20_000) {
   const t0 = Date.now();
   const ctrl = new AbortController();
@@ -84,11 +110,23 @@ async function request(label, url, timeoutMs = 20_000) {
   }
 }
 
-// ── 來源 ① Yahoo Finance chart API（主要：同時給收盤與前收）──────
+// ── 來源 ① Yahoo Finance chart API（主要）───────────────────────
+//
+// 首次執行（8/24）17/17 全綠但**日期語意是錯的**，兩個缺陷：
+//   1. change 用 meta.chartPreviousClose 算。搭配 range=5d 時那是「5 天前」
+//      的收盤，不是前一日——S&P 500 因此顯示 -1.43%（週變動），實際日變動
+//      是 +0.43%。
+//   2. close 用 meta.regularMarketPrice，盤中會拿到**即時報價**。當時
+//      TAIEX 抓到 44,987.11，但 8/21 的收盤是 45,224.29——那是 8/24 盤中價。
+//
+// 修法：改讀 timestamp / indicators.quote[0].close 兩個陣列組成日線序列，
+// 由相鄰兩根 K 棒相減得到真正的日變動；並判斷最後一根是否為未收盤的
+// 進行中 K 棒，另外提供 settled（最後一根**已收盤**日線）。
+// dashboard 報的是收盤價，所以更新流程請用 settled。
 async function fromYahoo(sym) {
   const url =
     `https://query1.finance.yahoo.com/v8/finance/chart/${sym}` +
-    `?range=5d&interval=1d`;
+    `?range=1mo&interval=1d`;
   const text = await request("yahoo", url);
   let j;
   try {
@@ -99,47 +137,108 @@ async function fromYahoo(sym) {
   const r = j?.chart?.result?.[0];
   if (!r) throw new Error(`chart.result 為空（error: ${JSON.stringify(j?.chart?.error)}）`);
   const meta = r.meta || {};
-  const close = meta.regularMarketPrice ?? null;
-  const prev = meta.chartPreviousClose ?? meta.previousClose ?? null;
-  if (close == null) throw new Error(`meta 無 regularMarketPrice，鍵值：${Object.keys(meta).join(",")}`);
-  const change = prev != null ? round(close - prev, 4) : null;
+  const tz = meta.exchangeTimezoneName || null;
+
+  const ts = Array.isArray(r.timestamp) ? r.timestamp : [];
+  const closes = Array.isArray(r.indicators?.quote?.[0]?.close)
+    ? r.indicators.quote[0].close
+    : [];
+  if (!ts.length || !closes.length) {
+    throw new Error(
+      `無日線陣列（timestamp ${ts.length} 筆、close ${closes.length} 筆，meta 鍵值：${Object.keys(meta).join(",")}）`
+    );
+  }
+
+  // 同一天偶爾會出現兩根（最後一根是進行中的），用 Map 以日期去重、後者覆蓋。
+  const byDate = new Map();
+  for (let i = 0; i < ts.length; i++) {
+    const c = closes[i];
+    if (c == null || !isFinite(c)) continue;
+    byDate.set(ymdInTz(ts[i], tz), round(c, 4));
+  }
+  const series = [...byDate].map(([date, close]) => ({ date, close }));
+  if (series.length < 2) throw new Error(`有效日線不足 2 根（${series.length} 根）`);
+
+  // 最後一根是否還在跳動：最後成交時間落在「當前盤中時段」且尚未到收盤時刻，
+  // 而且那筆成交跟最後一根 K 棒是同一天。
+  const tp = meta.currentTradingPeriod?.regular;
+  const rmt = meta.regularMarketTime ?? null;
+  const lastDate = series[series.length - 1].date;
+  const marketOpen =
+    tp && rmt != null && tp.start != null && tp.end != null
+      ? rmt >= tp.start && rmt < tp.end
+      : false;
+  const live = marketOpen && rmt != null && ymdInTz(rmt, tz) === lastDate;
+
+  const latest = deltaAt(series, series.length - 1);
+  const settled = deltaAt(series, live ? series.length - 2 : series.length - 1);
+  if (!settled) throw new Error("無法取得已收盤日線（序列過短）");
+
   return {
-    close: round(close, 4),
-    prevClose: round(prev, 4),
-    change,
-    changePct: prev ? round((change / prev) * 100, 2) : null,
-    asOf: meta.regularMarketTime
-      ? new Date(meta.regularMarketTime * 1000).toISOString()
-      : null,
+    // close / change 一律代表「最後一根已收盤日線」，供 dashboard 直接引用。
+    close: settled.close,
+    prevClose: settled.prevClose,
+    change: settled.change,
+    changePct: settled.changePct,
+    asOf: settled.date,
+    prevAsOf: settled.prevDate,
+    live, // true = 抓取當下該市場正在交易，latest 是盤中價
+    latest, // 最後一根（可能未收盤）
+    settled, // 最後一根已收盤日線（= 上面的 close/change）
+    quotePrice: meta.regularMarketPrice ?? null, // 抓取當下即時價，僅供對照
+    series: series.slice(-6),
     currency: meta.currency ?? null,
-    source: "Yahoo Finance chart API"
+    timezone: tz,
+    source: "Yahoo Finance chart API（日線）"
   };
 }
 
-// ── 來源 ② Stooq CSV（備援）─────────────────────────────────────
+// ── 來源 ② Stooq 日線 CSV（備援）────────────────────────────────
+//
+// 原本用單筆報價端點（/q/l/），只給一列、算不出對前一日的變動。
+// 改用日線歷史端點（/q/d/l/），拿最近一段區間的 K 棒，語意與 Yahoo 那條一致。
+// Stooq 日線本來就是收盤資料，不會有盤中價的問題。
 async function fromStooq(sym) {
-  const url = `https://stooq.com/q/l/?s=${encodeURIComponent(sym)}&f=sd2t2ohlcv&h&e=csv`;
+  const day = 86_400_000;
+  const fmt = (d) => d.toISOString().slice(0, 10).replace(/-/g, "");
+  const d2 = new Date();
+  const d1 = new Date(d2.getTime() - 45 * day); // 45 天足以涵蓋連假
+  const url =
+    `https://stooq.com/q/d/l/?s=${encodeURIComponent(sym)}` +
+    `&d1=${fmt(d1)}&d2=${fmt(d2)}&i=d`;
   const text = await request("stooq", url);
   const lines = text.trim().split(/\r?\n/);
-  if (lines.length < 2) throw new Error("CSV 只有表頭");
+  if (lines.length < 3) throw new Error(`日線列數不足（${lines.length} 列：${text.slice(0, 120)}）`);
   const head = lines[0].split(",").map((h) => h.trim().toLowerCase());
-  const row = lines[1].split(",").map((c) => c.trim());
-  const col = (n) => {
-    const i = head.indexOf(n);
-    return i >= 0 ? row[i] : null;
-  };
-  const close = num(col("close"));
-  if (close == null) throw new Error(`無法解析 close（原始列：${lines[1]}）`);
-  const open = num(col("open"));
+  const iDate = head.indexOf("date");
+  const iClose = head.indexOf("close");
+  if (iDate < 0 || iClose < 0) throw new Error(`表頭缺 date/close：${lines[0]}`);
+
+  const series = [];
+  for (const line of lines.slice(1)) {
+    const cells = line.split(",").map((c) => c.trim());
+    const close = num(cells[iClose]);
+    if (close == null || !cells[iDate]) continue;
+    series.push({ date: cells[iDate], close: round(close, 4) });
+  }
+  if (series.length < 2) throw new Error(`有效日線不足 2 根（${series.length} 根）`);
+
+  const settled = deltaAt(series, series.length - 1);
   return {
-    close: round(close, 4),
-    prevClose: null, // Stooq 單筆報價不提供前收
-    change: open != null ? round(close - open, 4) : null, // 僅為當日開盤至收盤
-    changePct: null,
-    asOf: col("date") ? `${col("date")} ${col("time") || ""}`.trim() : null,
+    close: settled.close,
+    prevClose: settled.prevClose,
+    change: settled.change,
+    changePct: settled.changePct,
+    asOf: settled.date,
+    prevAsOf: settled.prevDate,
+    live: false, // 日線歷史一律是已收盤資料
+    latest: settled,
+    settled,
+    quotePrice: null,
+    series: series.slice(-6),
     currency: null,
-    note: "change 為開盤至收盤，非對前一日收盤",
-    source: "Stooq CSV"
+    timezone: null,
+    source: "Stooq 日線 CSV"
   };
 }
 
@@ -161,7 +260,12 @@ async function main() {
       try {
         const value = await fn(sym);
         items[t.key] = { ok: true, label: t.label, symbol: sym, value };
-        console.log(`  ✅ ${t.label} = ${value.close}（${value.source}）`);
+        console.log(
+          `  ✅ ${t.label} 收盤 ${value.close}（${value.asOf}）` +
+            ` 日變動 ${value.change ?? "—"} / ${value.changePct ?? "—"}%` +
+            (value.live ? ` ⏱ 盤中價 ${value.quotePrice}（未計入）` : "") +
+            `　${value.source}`
+        );
         done = true;
         break;
       } catch (e) {
