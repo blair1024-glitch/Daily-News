@@ -1,11 +1,13 @@
-name: 抓取台股盤後數據
+name: 抓取台股盤後數據與國際行情
 
 # 為什麼需要這個 workflow：
 # 產生 dashboard 的 Claude session 執行在一個有出網限制的環境裡，
 # 證交所／櫃買／期交所全部被 egress proxy 擋掉（403），因此融資融券、
 # 櫃買指數、台指期基差等只存在於交易所表格裡的數字抓不到。
 # GitHub Actions 的 runner 沒有這個限制，所以由它負責抓精確數字，
-# Claude 隔天早上讀 data/market-auto.js 來寫判斷。
+# Claude 隔天早上讀 data/market-auto.js 與 data/market-global.js 來寫判斷。
+# 國際行情（SOX、原油、黃金、USD/JPY 等）同樣抓不到，因為那些數字只在
+# 新聞句子裡偶爾出現，搜尋不可靠——故一併由本 workflow 抓取。
 
 on:
   schedule:
@@ -57,6 +59,10 @@ jobs:
       - name: 抓取台股數據
         run: node scripts/fetch-tw-market.mjs ${{ steps.pick.outputs.date }}
 
+      - name: 抓取國際行情
+        run: node scripts/fetch-global-market.mjs
+        continue-on-error: true      # 國際行情失敗不影響台股數據 commit
+
       - name: 摘要
         run: |
           node -e "
@@ -68,16 +74,26 @@ jobs:
             for (const [k, v] of Object.entries(m.items)) {
               console.log((v.ok ? '  ✅ ' : '  ❌ ') + k + (v.ok ? '' : ' — ' + v.error));
             }
+            try {
+              global.window = {};
+              require('./data/market-global.js');
+              const g = window.MARKET_GLOBAL;
+              console.log('--- 國際行情 ---');
+              console.log('抓取時間:', g.fetchedAt, '| 成功:', g.okCount + '/' + g.totalCount);
+              for (const [k, v] of Object.entries(g.items)) {
+                console.log((v.ok ? '  ✅ ' : '  ❌ ') + k + (v.ok ? ' = ' + v.value.close : ''));
+              }
+            } catch (e) { console.log('（尚無 market-global.js）'); }
           "
 
       - name: Commit 並推送
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/market-auto.js
+          git add data/market-auto.js data/market-global.js
           if git diff --staged --quiet; then
             echo "沒有變化，不產生 commit"
           else
-            git commit -m "chore(data): 台股數據 $(TZ=Asia/Taipei date +%Y/%m/%d)"
+            git commit -m "chore(data): 行情數據 $(TZ=Asia/Taipei date +%Y/%m/%d)"
             git push
           fi

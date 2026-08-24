@@ -35,10 +35,12 @@ https://<你的帳號>.github.io/Daily-News/
 │   └── stock.js          # 讀 data/stock-3535.js 並渲染個股頁 ＋ 試算器
 ├── data/
 │   ├── dashboard.js      # ★ 每天只要改這一個檔案 ★
-│   ├── market-auto.js    # Actions 自動抓的交易所數字（勿手動改）
+│   ├── market-auto.js    # Actions 自動抓的台股數字（勿手動改）
+│   ├── market-global.js  # Actions 自動抓的國際行情（勿手動改）
 │   └── stock-3535.js     # 個股頁的所有數字
 ├── scripts/
-│   └── fetch-tw-market.mjs   # 抓數腳本（在 GitHub Actions 上跑）
+│   ├── fetch-tw-market.mjs      # 台股抓數（TWSE／TPEx／TAIFEX）
+│   └── fetch-global-market.mjs  # 國際行情（Yahoo Finance／Stooq）
 ├── .github/workflows/
 │   └── fetch-tw-market.yml   # 19:00 抓當日 ＋ 隔天 07:00 補抓
 └── README.md
@@ -59,9 +61,9 @@ https://<你的帳號>.github.io/Daily-News/
 ```
 GitHub Actions（機器）          每日 Claude session（判斷）
   19:00 抓當日、07:00 補抓        每天 07:32 台灣時間
-  抓交易所精確數字        ──▶      讀 market-auto.js
-  寫 data/market-auto.js          ＋ WebSearch 補國際行情
-  commit 進 main                  ＋ 寫判斷與解讀
+  台股：TWSE／TPEx／TAIFEX  ──▶   讀 market-auto.js
+  國際：Yahoo Finance／Stooq       ＋ 讀 market-global.js
+  commit 進 main                  ＋ WebSearch 補新聞與事件
                                   寫 data/dashboard.js
 ```
 
@@ -72,7 +74,8 @@ GitHub Actions 的 runner 沒有這個限制，由它負責抓數。
 
 | 檔案 | 誰寫 | 內容 |
 | --- | --- | --- |
-| `data/market-auto.js` | GitHub Actions | 交易所原始數字，**請勿手動編輯** |
+| `data/market-auto.js` | GitHub Actions | 台股交易所原始數字，**請勿手動編輯** |
+| `data/market-global.js` | GitHub Actions | 國際行情原始數字，**請勿手動編輯** |
 | `data/dashboard.js` | 每日 Claude session / 你 | 經過整理與判斷的網站內容 |
 
 `market-auto.js` 不會被 `index.html` 載入，它只是給更新流程讀的中繼檔。
@@ -81,17 +84,22 @@ GitHub Actions 的 runner 沒有這個限制，由它負責抓數。
 
 ### 已知限制
 
-**櫃買 OTC 指數點位**目前抓不到。櫃買中心的 OpenAPI 目錄頁是 JS 渲染的
-（原始碼裡沒有資料集名稱），`swagger.json` 回 520，逐一嘗試候選路徑也都是 HTML 404。
-成交金額可以由個股報價彙總得出（已在用），但指數點位沒有對應端點。
+**櫃買 OTC 指數點位**：櫃買中心的 OpenAPI 沒有指數端點——目錄頁是 JS 渲染的
+（原始碼裡沒有資料集名稱），`swagger.json` 回 520，候選路徑全是 HTML 404。
+成交金額可以由個股報價彙總得出（已在用）。指數點位改由 `fetch-global-market.mjs`
+以 Yahoo Finance 的 `^TWOII` 嘗試；若該路徑也不可用，就在頁面標「點位未取得」，
+**不要推估**。
 
-→ 這一項改由每日更新時用 WebSearch 從新聞補（櫃買指數漲跌常出現在盤後新聞標題），
-抓不到就在頁面標「點位未取得」，不要推估。
+> 📌 **為什麼國際行情也要走 Actions？** 早期版本只有台股走自動管道，
+> SOX、原油、黃金、USD/JPY 全靠 WebSearch——但搜尋只讀得到新聞句子裡
+> 真的寫出來的數字。S&P 500 幾乎天天有人寫，SOX 的收盤點位很少被寫進句子，
+> 所以那幾項長期時有時無。改由 Actions 直接抓報價後即可穩定取得。
 
 手動補抓某一天：
 
 ```bash
-node scripts/fetch-tw-market.mjs 20260814
+node scripts/fetch-tw-market.mjs 20260814   # 台股（可指定日期）
+node scripts/fetch-global-market.mjs        # 國際行情（一律抓最新）
 ```
 
 或到 GitHub 的 Actions 頁面手動觸發「抓取台股盤後數據」，可指定日期。
