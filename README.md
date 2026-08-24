@@ -110,11 +110,21 @@ TAIEX 一度抓到 44,987.11，而 8/21 的收盤是 45,224.29。
 （原始碼裡沒有資料集名稱），`swagger.json` 回 520，候選路徑全是 HTML 404。
 成交金額可以由個股報價彙總得出（已在用）。
 
-指數點位改由 `fetch-global-market.mjs` 走 Yahoo Finance 的 `^TWOII`：Yahoo **認得**
-這個代號、`meta` 有即時報價，但 `timestamp` / `close` 兩個陣列是空的——**沒有日線歷史**。
-因此這一項會帶 `quoteOnly: true`，數字取自 `meta.regularMarketPrice`、
-前收取自 Yahoo 自報的 `chartPreviousClose`，**未經日線交叉驗證**，
-而且若 `live: true` 就代表那是盤中價、不是收盤。引用時請照 `note` 的敘述標註。
+Yahoo Finance 的 `^TWOII` 也**不可用**，而且失敗方式很危險：Yahoo 認得這個代號、
+`meta` 回一個看起來完全正常的報價（269.45，量級也對），但
+`timestamp` / `close` 兩個陣列是空的，`regularMarketTime` 指向 **2024-10-12**——
+那是將近兩年前的死報價。照抄就會把 2024 年的數字當成今天的櫃買指數印上頁面。
+
+因此 `fetch-global-market.mjs` 加了一道 `MAX_STALE_DAYS = 10` 的過期檢查：
+任何標的的 `asOf` 距今超過 10 天一律轉為 `ok: false`，錯誤訊息寫明距今幾天。
+`^TWOII` 保留在清單裡，讓它每天以明確理由失敗（若 Yahoo 哪天恢復更新即自動生效）。
+
+**結論：櫃買 OTC 指數點位目前無可用自動來源。**成交金額有（個股彙總），
+點位請用 WebSearch 從盤後新聞補；找不到就標「點位未取得」，**不要推估**。
+
+另有一條 `quoteOnly: true` 的退路：某標的有 `meta` 報價但無日線歷史時會啟用，
+此時前收取自 Yahoo 自報的 `chartPreviousClose`、**未經日線交叉驗證**，
+且 `live: true` 代表那是盤中價。引用時請照 `note` 的敘述標註。
 
 > 📌 **為什麼國際行情也要走 Actions？** 早期版本只有台股走自動管道，
 > SOX、原油、黃金、USD/JPY 全靠 WebSearch——但搜尋只讀得到新聞句子裡

@@ -73,6 +73,21 @@ function ymdInTz(epochSec, tz) {
   }
 }
 
+/**
+ * asOf（YYYY-MM-DD）距今幾天。無法解析回 null。
+ *
+ * 存在的理由：Yahoo 的 ^TWOII 會回一個看起來很正常的報價（269.45），
+ * 但 regularMarketTime 是 2024-10-12——那是將近兩年前的死報價。
+ * 沒有這道檢查就會把它當成當日櫃買指數印上頁面。
+ */
+const MAX_STALE_DAYS = 10;
+function stalenessDays(asOf) {
+  if (!asOf || !/^\d{4}-\d{2}-\d{2}$/.test(asOf)) return null;
+  const t = Date.parse(asOf + "T00:00:00Z");
+  if (!isFinite(t)) return null;
+  return Math.floor((Date.now() - t) / 86_400_000);
+}
+
 /** 由 [{date, close}] 序列的某一格與其前一格算出日變動。 */
 function deltaAt(series, i) {
   if (i < 0 || i >= series.length) return null;
@@ -291,6 +306,13 @@ async function main() {
       if (!sym) continue;
       try {
         const value = await fn(sym);
+        const age = stalenessDays(value.asOf);
+        if (age != null && age > MAX_STALE_DAYS) {
+          throw new Error(
+            `報價過期：asOf ${value.asOf} 距今 ${age} 天（上限 ${MAX_STALE_DAYS} 天），` +
+              `該來源可能已停止更新此代號`
+          );
+        }
         items[t.key] = { ok: true, label: t.label, symbol: sym, value };
         console.log(
           `  ✅ ${t.label} 收盤 ${value.close}（${value.asOf}）` +
