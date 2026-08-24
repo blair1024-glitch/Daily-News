@@ -6,8 +6,8 @@
  * ok:false 代表該標的當次抓不到，error 說明原因——請據實標註，不要沿用舊值。
  */
 window.MARKET_GLOBAL = {
-  "fetchedAt": "2026-08-24T05:15:38.569Z",
-  "okCount": 17,
+  "fetchedAt": "2026-08-24T06:12:41.215Z",
+  "okCount": 16,
   "totalCount": 17,
   "items": {
     "sox": {
@@ -15,13 +15,59 @@ window.MARKET_GLOBAL = {
       "label": "費城半導體 SOX",
       "symbol": "%5ESOX",
       "value": {
-        "close": 11740.374,
-        "prevClose": 12417.05,
-        "change": -676.676,
-        "changePct": -5.45,
-        "asOf": "2026-08-21T21:15:59.000Z",
+        "close": 11740.3701,
+        "prevClose": 11800.0195,
+        "change": -59.6494,
+        "changePct": -0.51,
+        "asOf": "2026-08-21",
+        "prevAsOf": "2026-08-20",
+        "live": false,
+        "latest": {
+          "date": "2026-08-21",
+          "close": 11740.3701,
+          "prevDate": "2026-08-20",
+          "prevClose": 11800.0195,
+          "change": -59.6494,
+          "changePct": -0.51
+        },
+        "settled": {
+          "date": "2026-08-21",
+          "close": 11740.3701,
+          "prevDate": "2026-08-20",
+          "prevClose": 11800.0195,
+          "change": -59.6494,
+          "changePct": -0.51
+        },
+        "quotePrice": 11740.374,
+        "series": [
+          {
+            "date": "2026-08-14",
+            "close": 12417.0498
+          },
+          {
+            "date": "2026-08-17",
+            "close": 12621
+          },
+          {
+            "date": "2026-08-18",
+            "close": 11992.46
+          },
+          {
+            "date": "2026-08-19",
+            "close": 11738.2305
+          },
+          {
+            "date": "2026-08-20",
+            "close": 11800.0195
+          },
+          {
+            "date": "2026-08-21",
+            "close": 11740.3701
+          }
+        ],
         "currency": "USD",
-        "source": "Yahoo Finance chart API"
+        "timezone": "America/New_York",
+        "source": "Yahoo Finance chart API（日線）"
       }
     },
     "vix": {
@@ -30,12 +76,58 @@ window.MARKET_GLOBAL = {
       "symbol": "%5EVIX",
       "value": {
         "close": 15.13,
-        "prevClose": 15.19,
-        "change": -0.06,
-        "changePct": -0.39,
-        "asOf": "2026-08-21T20:15:01.000Z",
+        "prevClose": 16.01,
+        "change": -0.88,
+        "changePct": -5.5,
+        "asOf": "2026-08-21",
+        "prevAsOf": "2026-08-20",
+        "live": false,
+        "latest": {
+          "date": "2026-08-21",
+          "close": 15.13,
+          "prevDate": "2026-08-20",
+          "prevClose": 16.01,
+          "change": -0.88,
+          "changePct": -5.5
+        },
+        "settled": {
+          "date": "2026-08-21",
+          "close": 15.13,
+          "prevDate": "2026-08-20",
+          "prevClose": 16.01,
+          "change": -0.88,
+          "changePct": -5.5
+        },
+        "quotePrice": 15.13,
+        "series": [
+          {
+            "date": "2026-08-14",
+            "close": 14.25
+          },
+          {
+            "date": "2026-08-17",
+            "close": 15.19
+          },
+          {
+            "date": "2026-08-18",
+            "close": 15.84
+          },
+          {
+            "date": "2026-08-19",
+            "close": 14.89
+          },
+          {
+            "date": "2026-08-20",
+            "close": 16.01
+          },
+          {
+            "date": "2026-08-21",
+            "close": 15.13
+          }
+        ],
         "currency": "USD",
-        "source": "Yahoo Finance chart API"
+        "timezone": "America/Chicago",
+        "source": "Yahoo Finance chart API（日線）"
       }
     },
     "spx": {
@@ -43,13 +135,59 @@ window.MARKET_GLOBAL = {
       "label": "S&P 500",
       "symbol": "%5EGSPC",
       "value": {
-        "close": 7674.37,
-        "prevClose": 7785.76,
-        "change": -111.39,
-        "changePct": -1.43,
-        "asOf": "2026-08-21T20:41:52.000Z",
+        "close": 7674.3701,
+        "prevClose": 7641.1602,
+        "change": 33.2099,
+        "changePct": 0.43,
+        "asOf": "2026-08-21",
+        "prevAsOf": "2026-08-20",
+        "live": false,
+        "latest": {
+          "date": "2026-08-21",
+          "close": 7674.3701,
+          "prevDate": "2026-08-20",
+          "prevClose": 7641.1602,
+          "change": 33.2099,
+          "changePct": 0.43
+        },
+        "settled": {
+          "date": "2026-08-21",
+          "close": 7674.3701,
+          "prevDate": "2026-08-20",
+          "prevClose": 7641.1602,
+          "change": 33.2099,
+          "changePct": 0.43
+        },
+        "quotePrice": 7674.37,
+        "series": [
+          {
+            "date": "2026-08-14",
+            "close": 7785.7598
+          },
+          {
+            "date": "2026-08-17",
+            "close": 7745.0601
+          },
+          {
+            "date": "2026-08-18",
+            "close": 7691.7598
+          },
+          {
+            "date": "2026-08-19",
+            "close": 7707.98
+          },
+          {
+            "date": "2026-08-20",
+            "close": 7641.1602
+          },
+          {
+            "date": "2026-08-21",
+            "close": 7674.3701
+          }
+        ],
         "currency": "USD",
-        "source": "Yahoo Finance chart API"
+        "timezone": "America/New_York",
+        "source": "Yahoo Finance chart API（日線）"
       }
     },
     "ndx": {
@@ -57,13 +195,59 @@ window.MARKET_GLOBAL = {
       "label": "Nasdaq 綜合",
       "symbol": "%5EIXIC",
       "value": {
-        "close": 26180.455,
-        "prevClose": 26729.16,
-        "change": -548.705,
-        "changePct": -2.05,
-        "asOf": "2026-08-21T21:15:59.000Z",
+        "close": 26180.4609,
+        "prevClose": 26067.1699,
+        "change": 113.291,
+        "changePct": 0.43,
+        "asOf": "2026-08-21",
+        "prevAsOf": "2026-08-20",
+        "live": false,
+        "latest": {
+          "date": "2026-08-21",
+          "close": 26180.4609,
+          "prevDate": "2026-08-20",
+          "prevClose": 26067.1699,
+          "change": 113.291,
+          "changePct": 0.43
+        },
+        "settled": {
+          "date": "2026-08-21",
+          "close": 26180.4609,
+          "prevDate": "2026-08-20",
+          "prevClose": 26067.1699,
+          "change": 113.291,
+          "changePct": 0.43
+        },
+        "quotePrice": 26180.455,
+        "series": [
+          {
+            "date": "2026-08-14",
+            "close": 26729.1602
+          },
+          {
+            "date": "2026-08-17",
+            "close": 26644.9102
+          },
+          {
+            "date": "2026-08-18",
+            "close": 26289.7109
+          },
+          {
+            "date": "2026-08-19",
+            "close": 26331.0898
+          },
+          {
+            "date": "2026-08-20",
+            "close": 26067.1699
+          },
+          {
+            "date": "2026-08-21",
+            "close": 26180.4609
+          }
+        ],
         "currency": "USD",
-        "source": "Yahoo Finance chart API"
+        "timezone": "America/New_York",
+        "source": "Yahoo Finance chart API（日線）"
       }
     },
     "dji": {
@@ -71,13 +255,59 @@ window.MARKET_GLOBAL = {
       "label": "Dow Jones",
       "symbol": "%5EDJI",
       "value": {
-        "close": 53277.01,
-        "prevClose": 53732.41,
-        "change": -455.4,
-        "changePct": -0.85,
-        "asOf": "2026-08-21T20:41:57.000Z",
+        "close": 53277.0117,
+        "prevClose": 52759.2109,
+        "change": 517.8008,
+        "changePct": 0.98,
+        "asOf": "2026-08-21",
+        "prevAsOf": "2026-08-20",
+        "live": false,
+        "latest": {
+          "date": "2026-08-21",
+          "close": 53277.0117,
+          "prevDate": "2026-08-20",
+          "prevClose": 52759.2109,
+          "change": 517.8008,
+          "changePct": 0.98
+        },
+        "settled": {
+          "date": "2026-08-21",
+          "close": 53277.0117,
+          "prevDate": "2026-08-20",
+          "prevClose": 52759.2109,
+          "change": 517.8008,
+          "changePct": 0.98
+        },
+        "quotePrice": 53277.01,
+        "series": [
+          {
+            "date": "2026-08-14",
+            "close": 53732.4102
+          },
+          {
+            "date": "2026-08-17",
+            "close": 53459.7813
+          },
+          {
+            "date": "2026-08-18",
+            "close": 53343.3984
+          },
+          {
+            "date": "2026-08-19",
+            "close": 53463.0508
+          },
+          {
+            "date": "2026-08-20",
+            "close": 52759.2109
+          },
+          {
+            "date": "2026-08-21",
+            "close": 53277.0117
+          }
+        ],
         "currency": "USD",
-        "source": "Yahoo Finance chart API"
+        "timezone": "America/New_York",
+        "source": "Yahoo Finance chart API（日線）"
       }
     },
     "us10y": {
@@ -86,12 +316,58 @@ window.MARKET_GLOBAL = {
       "symbol": "%5ETNX",
       "value": {
         "close": 4.738,
-        "prevClose": 4.724,
-        "change": 0.014,
-        "changePct": 0.3,
-        "asOf": "2026-08-21T18:59:54.000Z",
+        "prevClose": 4.696,
+        "change": 0.042,
+        "changePct": 0.89,
+        "asOf": "2026-08-21",
+        "prevAsOf": "2026-08-20",
+        "live": false,
+        "latest": {
+          "date": "2026-08-21",
+          "close": 4.738,
+          "prevDate": "2026-08-20",
+          "prevClose": 4.696,
+          "change": 0.042,
+          "changePct": 0.89
+        },
+        "settled": {
+          "date": "2026-08-21",
+          "close": 4.738,
+          "prevDate": "2026-08-20",
+          "prevClose": 4.696,
+          "change": 0.042,
+          "changePct": 0.89
+        },
+        "quotePrice": 4.738,
+        "series": [
+          {
+            "date": "2026-08-14",
+            "close": 4.696
+          },
+          {
+            "date": "2026-08-17",
+            "close": 4.724
+          },
+          {
+            "date": "2026-08-18",
+            "close": 4.706
+          },
+          {
+            "date": "2026-08-19",
+            "close": 4.653
+          },
+          {
+            "date": "2026-08-20",
+            "close": 4.696
+          },
+          {
+            "date": "2026-08-21",
+            "close": 4.738
+          }
+        ],
         "currency": "USD",
-        "source": "Yahoo Finance chart API"
+        "timezone": "America/Chicago",
+        "source": "Yahoo Finance chart API（日線）"
       }
     },
     "us30y": {
@@ -100,12 +376,58 @@ window.MARKET_GLOBAL = {
       "symbol": "%5ETYX",
       "value": {
         "close": 5.276,
-        "prevClose": 5.309,
-        "change": -0.033,
-        "changePct": -0.62,
-        "asOf": "2026-08-21T18:59:54.000Z",
+        "prevClose": 5.237,
+        "change": 0.039,
+        "changePct": 0.74,
+        "asOf": "2026-08-21",
+        "prevAsOf": "2026-08-20",
+        "live": false,
+        "latest": {
+          "date": "2026-08-21",
+          "close": 5.276,
+          "prevDate": "2026-08-20",
+          "prevClose": 5.237,
+          "change": 0.039,
+          "changePct": 0.74
+        },
+        "settled": {
+          "date": "2026-08-21",
+          "close": 5.276,
+          "prevDate": "2026-08-20",
+          "prevClose": 5.237,
+          "change": 0.039,
+          "changePct": 0.74
+        },
+        "quotePrice": 5.276,
+        "series": [
+          {
+            "date": "2026-08-14",
+            "close": 5.265
+          },
+          {
+            "date": "2026-08-17",
+            "close": 5.309
+          },
+          {
+            "date": "2026-08-18",
+            "close": 5.285
+          },
+          {
+            "date": "2026-08-19",
+            "close": 5.194
+          },
+          {
+            "date": "2026-08-20",
+            "close": 5.237
+          },
+          {
+            "date": "2026-08-21",
+            "close": 5.276
+          }
+        ],
         "currency": "USD",
-        "source": "Yahoo Finance chart API"
+        "timezone": "America/Chicago",
+        "source": "Yahoo Finance chart API（日線）"
       }
     },
     "us5y": {
@@ -114,12 +436,58 @@ window.MARKET_GLOBAL = {
       "symbol": "%5EFVX",
       "value": {
         "close": 4.424,
-        "prevClose": 4.376,
-        "change": 0.048,
-        "changePct": 1.1,
-        "asOf": "2026-08-21T18:59:54.000Z",
+        "prevClose": 4.387,
+        "change": 0.037,
+        "changePct": 0.84,
+        "asOf": "2026-08-21",
+        "prevAsOf": "2026-08-20",
+        "live": false,
+        "latest": {
+          "date": "2026-08-21",
+          "close": 4.424,
+          "prevDate": "2026-08-20",
+          "prevClose": 4.387,
+          "change": 0.037,
+          "changePct": 0.84
+        },
+        "settled": {
+          "date": "2026-08-21",
+          "close": 4.424,
+          "prevDate": "2026-08-20",
+          "prevClose": 4.387,
+          "change": 0.037,
+          "changePct": 0.84
+        },
+        "quotePrice": 4.424,
+        "series": [
+          {
+            "date": "2026-08-14",
+            "close": 4.362
+          },
+          {
+            "date": "2026-08-17",
+            "close": 4.376
+          },
+          {
+            "date": "2026-08-18",
+            "close": 4.367
+          },
+          {
+            "date": "2026-08-19",
+            "close": 4.353
+          },
+          {
+            "date": "2026-08-20",
+            "close": 4.387
+          },
+          {
+            "date": "2026-08-21",
+            "close": 4.424
+          }
+        ],
         "currency": "USD",
-        "source": "Yahoo Finance chart API"
+        "timezone": "America/Chicago",
+        "source": "Yahoo Finance chart API（日線）"
       }
     },
     "dxy": {
@@ -127,13 +495,59 @@ window.MARKET_GLOBAL = {
       "label": "DXY 美元指數",
       "symbol": "DX-Y.NYB",
       "value": {
-        "close": 98.824,
-        "prevClose": 98.83,
-        "change": -0.006,
-        "changePct": -0.01,
-        "asOf": "2026-08-24T05:05:32.000Z",
+        "close": 98.8,
+        "prevClose": 98.9,
+        "change": -0.1,
+        "changePct": -0.1,
+        "asOf": "2026-08-21",
+        "prevAsOf": "2026-08-20",
+        "live": true,
+        "latest": {
+          "date": "2026-08-24",
+          "close": 98.838,
+          "prevDate": "2026-08-21",
+          "prevClose": 98.8,
+          "change": 0.038,
+          "changePct": 0.04
+        },
+        "settled": {
+          "date": "2026-08-21",
+          "close": 98.8,
+          "prevDate": "2026-08-20",
+          "prevClose": 98.9,
+          "change": -0.1,
+          "changePct": -0.1
+        },
+        "quotePrice": 98.838,
+        "series": [
+          {
+            "date": "2026-08-17",
+            "close": 99.64
+          },
+          {
+            "date": "2026-08-18",
+            "close": 99.65
+          },
+          {
+            "date": "2026-08-19",
+            "close": 98.83
+          },
+          {
+            "date": "2026-08-20",
+            "close": 98.9
+          },
+          {
+            "date": "2026-08-21",
+            "close": 98.8
+          },
+          {
+            "date": "2026-08-24",
+            "close": 98.838
+          }
+        ],
         "currency": "USD",
-        "source": "Yahoo Finance chart API"
+        "timezone": "America/New_York",
+        "source": "Yahoo Finance chart API（日線）"
       }
     },
     "wti": {
@@ -141,13 +555,59 @@ window.MARKET_GLOBAL = {
       "label": "WTI 原油",
       "symbol": "CL%3DF",
       "value": {
-        "close": 85.64,
-        "prevClose": 85.83,
-        "change": -0.19,
-        "changePct": -0.22,
-        "asOf": "2026-08-24T05:05:25.000Z",
+        "close": 87.06,
+        "prevClose": 87.83,
+        "change": -0.77,
+        "changePct": -0.88,
+        "asOf": "2026-08-21",
+        "prevAsOf": "2026-08-20",
+        "live": true,
+        "latest": {
+          "date": "2026-08-24",
+          "close": 85.64,
+          "prevDate": "2026-08-21",
+          "prevClose": 87.06,
+          "change": -1.42,
+          "changePct": -1.63
+        },
+        "settled": {
+          "date": "2026-08-21",
+          "close": 87.06,
+          "prevDate": "2026-08-20",
+          "prevClose": 87.83,
+          "change": -0.77,
+          "changePct": -0.88
+        },
+        "quotePrice": 85.64,
+        "series": [
+          {
+            "date": "2026-08-17",
+            "close": 84.5
+          },
+          {
+            "date": "2026-08-18",
+            "close": 84.94
+          },
+          {
+            "date": "2026-08-19",
+            "close": 85.83
+          },
+          {
+            "date": "2026-08-20",
+            "close": 87.83
+          },
+          {
+            "date": "2026-08-21",
+            "close": 87.06
+          },
+          {
+            "date": "2026-08-24",
+            "close": 85.64
+          }
+        ],
         "currency": "USD",
-        "source": "Yahoo Finance chart API"
+        "timezone": "America/New_York",
+        "source": "Yahoo Finance chart API（日線）"
       }
     },
     "brent": {
@@ -155,13 +615,59 @@ window.MARKET_GLOBAL = {
       "label": "Brent 原油",
       "symbol": "BZ%3DF",
       "value": {
-        "close": 93.06,
-        "prevClose": 91.62,
-        "change": 1.44,
-        "changePct": 1.57,
-        "asOf": "2026-08-24T04:59:25.000Z",
+        "close": 94.39,
+        "prevClose": 93.78,
+        "change": 0.61,
+        "changePct": 0.65,
+        "asOf": "2026-08-21",
+        "prevAsOf": "2026-08-20",
+        "live": true,
+        "latest": {
+          "date": "2026-08-24",
+          "close": 93.13,
+          "prevDate": "2026-08-21",
+          "prevClose": 94.39,
+          "change": -1.26,
+          "changePct": -1.33
+        },
+        "settled": {
+          "date": "2026-08-21",
+          "close": 94.39,
+          "prevDate": "2026-08-20",
+          "prevClose": 93.78,
+          "change": 0.61,
+          "changePct": 0.65
+        },
+        "quotePrice": 93.13,
+        "series": [
+          {
+            "date": "2026-08-17",
+            "close": 90.87
+          },
+          {
+            "date": "2026-08-18",
+            "close": 91.02
+          },
+          {
+            "date": "2026-08-19",
+            "close": 91.62
+          },
+          {
+            "date": "2026-08-20",
+            "close": 93.78
+          },
+          {
+            "date": "2026-08-21",
+            "close": 94.39
+          },
+          {
+            "date": "2026-08-24",
+            "close": 93.13
+          }
+        ],
         "currency": "USD",
-        "source": "Yahoo Finance chart API"
+        "timezone": "America/New_York",
+        "source": "Yahoo Finance chart API（日線）"
       }
     },
     "gold": {
@@ -169,13 +675,59 @@ window.MARKET_GLOBAL = {
       "label": "黃金",
       "symbol": "GC%3DF",
       "value": {
-        "close": 4697.9,
-        "prevClose": 4489.4,
-        "change": 208.5,
-        "changePct": 4.64,
-        "asOf": "2026-08-24T05:05:37.000Z",
+        "close": 4624.1001,
+        "prevClose": 4516.2998,
+        "change": 107.8003,
+        "changePct": 2.39,
+        "asOf": "2026-08-21",
+        "prevAsOf": "2026-08-20",
+        "live": true,
+        "latest": {
+          "date": "2026-08-24",
+          "close": 4698.8999,
+          "prevDate": "2026-08-21",
+          "prevClose": 4624.1001,
+          "change": 74.7998,
+          "changePct": 1.62
+        },
+        "settled": {
+          "date": "2026-08-21",
+          "close": 4624.1001,
+          "prevDate": "2026-08-20",
+          "prevClose": 4516.2998,
+          "change": 107.8003,
+          "changePct": 2.39
+        },
+        "quotePrice": 4698.9,
+        "series": [
+          {
+            "date": "2026-08-17",
+            "close": 4417.7998
+          },
+          {
+            "date": "2026-08-18",
+            "close": 4366
+          },
+          {
+            "date": "2026-08-19",
+            "close": 4489.3999
+          },
+          {
+            "date": "2026-08-20",
+            "close": 4516.2998
+          },
+          {
+            "date": "2026-08-21",
+            "close": 4624.1001
+          },
+          {
+            "date": "2026-08-24",
+            "close": 4698.8999
+          }
+        ],
         "currency": "USD",
-        "source": "Yahoo Finance chart API"
+        "timezone": "America/New_York",
+        "source": "Yahoo Finance chart API（日線）"
       }
     },
     "usdjpy": {
@@ -183,13 +735,59 @@ window.MARKET_GLOBAL = {
       "label": "USD/JPY",
       "symbol": "JPY%3DX",
       "value": {
-        "close": 158.909,
-        "prevClose": 159.34,
-        "change": -0.431,
-        "changePct": -0.27,
-        "asOf": "2026-08-24T05:15:37.000Z",
+        "close": 158.883,
+        "prevClose": 158.276,
+        "change": 0.607,
+        "changePct": 0.38,
+        "asOf": "2026-08-21",
+        "prevAsOf": "2026-08-20",
+        "live": true,
+        "latest": {
+          "date": "2026-08-24",
+          "close": 158.89,
+          "prevDate": "2026-08-21",
+          "prevClose": 158.883,
+          "change": 0.007,
+          "changePct": 0
+        },
+        "settled": {
+          "date": "2026-08-21",
+          "close": 158.883,
+          "prevDate": "2026-08-20",
+          "prevClose": 158.276,
+          "change": 0.607,
+          "changePct": 0.38
+        },
+        "quotePrice": 158.89,
+        "series": [
+          {
+            "date": "2026-08-17",
+            "close": 159.223
+          },
+          {
+            "date": "2026-08-18",
+            "close": 159.34
+          },
+          {
+            "date": "2026-08-19",
+            "close": 159.55
+          },
+          {
+            "date": "2026-08-20",
+            "close": 158.276
+          },
+          {
+            "date": "2026-08-21",
+            "close": 158.883
+          },
+          {
+            "date": "2026-08-24",
+            "close": 158.89
+          }
+        ],
         "currency": "JPY",
-        "source": "Yahoo Finance chart API"
+        "timezone": "Europe/London",
+        "source": "Yahoo Finance chart API（日線）"
       }
     },
     "usdcny": {
@@ -197,13 +795,59 @@ window.MARKET_GLOBAL = {
       "label": "USD/CNY",
       "symbol": "CNY%3DX",
       "value": {
-        "close": 6.7221,
-        "prevClose": 6.7399,
-        "change": -0.0178,
-        "changePct": -0.26,
-        "asOf": "2026-08-24T05:15:23.000Z",
+        "close": 6.7225,
+        "prevClose": 6.7295,
+        "change": -0.007,
+        "changePct": -0.1,
+        "asOf": "2026-08-21",
+        "prevAsOf": "2026-08-20",
+        "live": true,
+        "latest": {
+          "date": "2026-08-24",
+          "close": 6.7225,
+          "prevDate": "2026-08-21",
+          "prevClose": 6.7225,
+          "change": 0,
+          "changePct": 0
+        },
+        "settled": {
+          "date": "2026-08-21",
+          "close": 6.7225,
+          "prevDate": "2026-08-20",
+          "prevClose": 6.7295,
+          "change": -0.007,
+          "changePct": -0.1
+        },
+        "quotePrice": 6.7225,
+        "series": [
+          {
+            "date": "2026-08-17",
+            "close": 6.7428
+          },
+          {
+            "date": "2026-08-18",
+            "close": 6.7399
+          },
+          {
+            "date": "2026-08-19",
+            "close": 6.7426
+          },
+          {
+            "date": "2026-08-20",
+            "close": 6.7295
+          },
+          {
+            "date": "2026-08-21",
+            "close": 6.7225
+          },
+          {
+            "date": "2026-08-24",
+            "close": 6.7225
+          }
+        ],
         "currency": "CNY",
-        "source": "Yahoo Finance chart API"
+        "timezone": "Europe/London",
+        "source": "Yahoo Finance chart API（日線）"
       }
     },
     "usdtwd": {
@@ -211,41 +855,124 @@ window.MARKET_GLOBAL = {
       "label": "USD/TWD",
       "symbol": "TWD%3DX",
       "value": {
-        "close": 31.781,
-        "prevClose": 31.8503,
-        "change": -0.0693,
-        "changePct": -0.22,
-        "asOf": "2026-08-24T05:15:38.000Z",
+        "close": 31.8383,
+        "prevClose": 31.8151,
+        "change": 0.0232,
+        "changePct": 0.07,
+        "asOf": "2026-08-21",
+        "prevAsOf": "2026-08-20",
+        "live": true,
+        "latest": {
+          "date": "2026-08-24",
+          "close": 31.902,
+          "prevDate": "2026-08-21",
+          "prevClose": 31.8383,
+          "change": 0.0637,
+          "changePct": 0.2
+        },
+        "settled": {
+          "date": "2026-08-21",
+          "close": 31.8383,
+          "prevDate": "2026-08-20",
+          "prevClose": 31.8151,
+          "change": 0.0232,
+          "changePct": 0.07
+        },
+        "quotePrice": 31.902,
+        "series": [
+          {
+            "date": "2026-08-17",
+            "close": 31.9902
+          },
+          {
+            "date": "2026-08-18",
+            "close": 31.8503
+          },
+          {
+            "date": "2026-08-19",
+            "close": 31.8819
+          },
+          {
+            "date": "2026-08-20",
+            "close": 31.8151
+          },
+          {
+            "date": "2026-08-21",
+            "close": 31.8383
+          },
+          {
+            "date": "2026-08-24",
+            "close": 31.902
+          }
+        ],
         "currency": "TWD",
-        "source": "Yahoo Finance chart API"
+        "timezone": "Europe/London",
+        "source": "Yahoo Finance chart API（日線）"
       }
     },
     "otcTwo": {
-      "ok": true,
+      "ok": false,
       "label": "櫃買指數 OTC",
-      "symbol": "%5ETWOII",
-      "value": {
-        "close": 269.45,
-        "prevClose": 267.72,
-        "change": 1.73,
-        "changePct": 0.65,
-        "asOf": "2024-10-11T20:00:00.000Z",
-        "currency": "TWD",
-        "source": "Yahoo Finance chart API"
-      }
+      "error": "yahoo(%5ETWOII) → 無日線陣列（timestamp 0 筆、close 0 筆，meta 鍵值：currency,symbol,exchangeName,fullExchangeName,instrumentType,firstTradeDate,regularMarketTime,hasPrePo"
     },
     "taiex": {
       "ok": true,
       "label": "TAIEX（交叉驗證）",
       "symbol": "%5ETWII",
       "value": {
-        "close": 44987.11,
-        "prevClose": 45308.68,
-        "change": -321.57,
-        "changePct": -0.71,
-        "asOf": "2026-08-24T04:55:35.000Z",
+        "close": 44762.3203,
+        "prevClose": 45224.2891,
+        "change": -461.9688,
+        "changePct": -1.02,
+        "asOf": "2026-08-24",
+        "prevAsOf": "2026-08-21",
+        "live": false,
+        "latest": {
+          "date": "2026-08-24",
+          "close": 44762.3203,
+          "prevDate": "2026-08-21",
+          "prevClose": 45224.2891,
+          "change": -461.9688,
+          "changePct": -1.02
+        },
+        "settled": {
+          "date": "2026-08-24",
+          "close": 44762.3203,
+          "prevDate": "2026-08-21",
+          "prevClose": 45224.2891,
+          "change": -461.9688,
+          "changePct": -1.02
+        },
+        "quotePrice": 44762.32,
+        "series": [
+          {
+            "date": "2026-08-17",
+            "close": 45857.2695
+          },
+          {
+            "date": "2026-08-18",
+            "close": 45308.6797
+          },
+          {
+            "date": "2026-08-19",
+            "close": 44719.3516
+          },
+          {
+            "date": "2026-08-20",
+            "close": 44933.7383
+          },
+          {
+            "date": "2026-08-21",
+            "close": 45224.2891
+          },
+          {
+            "date": "2026-08-24",
+            "close": 44762.3203
+          }
+        ],
         "currency": "TWD",
-        "source": "Yahoo Finance chart API"
+        "timezone": "Asia/Taipei",
+        "source": "Yahoo Finance chart API（日線）"
       }
     }
   }

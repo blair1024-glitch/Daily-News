@@ -6,7 +6,7 @@
  * ok:false 代表該欄位當天抓不到，error 說明原因——請據實標註，不要沿用舊值。
  */
 window.MARKET_AUTO = {
-  "fetchedAt": "2026-08-24T05:15:37.657Z",
+  "fetchedAt": "2026-08-24T06:12:38.961Z",
   "tradeDate": "20260821",
   "marketOpen": true,
   "okCount": 5,
@@ -108,6 +108,7 @@ window.MARKET_AUTO = {
         "turnoverYi": 2024.42,
         "quoteCount": 10584,
         "notes": [
+          "quotes 第 1 次 → terminated",
           "index tpex_mainboard_daily_index → 回應不是 JSON（前 120 字：<!DOCTYPE html><html lang=\"zh-Hant-tw\"><he",
           "index tpex_index_summary → 回應不是 JSON（前 120 字：<!DOCTYPE html><html lang=\"zh-Hant-tw\"><he"
         ]
