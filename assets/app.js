@@ -137,7 +137,7 @@
     '<div class="stat s-r"><div class="stat-label">台灣時間</div>' +
       '<div class="stat-value" style="font-size:1rem">' + esc(c.releaseTW) + "</div></div>");
   html(el("cpi-exp"), (c.expectations || []).map(function (e) {
-    return "<tr><td>" + esc(e.name) + '</td><td class="num">' + esc(e.value) + "</td></tr>";
+    return "<tr><td>" + esc(e.name) + '</td><td class="num">' + mdBold(e.value) + "</td></tr>";
   }).join(""));
   html(el("cpi-fear"), "<strong>⚠️ 真正的風險：</strong>" + mdBold(c.fear));
   html(el("cpi-scen"), (c.scenarios || []).map(function (s) {
@@ -146,7 +146,7 @@
            '<td class="sig"><span class="badge ' + sigClass(s.techSignal) + '">' +
              esc(s.tech) + "</span></td></tr>";
   }).join(""));
-  html(el("cpi-conc"), "<strong>結論：</strong>" + esc(c.conclusion));
+  html(el("cpi-conc"), "<strong>結論：</strong>" + mdBold(c.conclusion));
 
   // ---- ④ JPY --------------------------------------------------------------
   var j = D.jpy || {};
@@ -159,12 +159,12 @@
              (b.items || []).map(function (i) { return "<li>" + esc(i) + "</li>"; }).join("") +
              "</ul></div>";
   }).join(""));
-  html(el("jpy-conc"), "<strong>所以：</strong>" + esc(j.conclusion));
+  html(el("jpy-conc"), "<strong>所以：</strong>" + mdBold(j.conclusion));
 
   // ---- ⑤ CSP --------------------------------------------------------------
   var cs = D.csp || {};
   html(el("csp-rows"), (cs.rows || []).map(function (r) {
-    return "<tr><td><strong>" + esc(r.company) + "</strong></td><td>" + esc(r.result) +
+    return "<tr><td><strong>" + esc(r.company) + "</strong></td><td>" + mdBold(r.result) +
            '</td><td class="sig">' + esc(r.ai) + "</td></tr>";
   }).join(""));
   if (cs.capex) {
@@ -180,9 +180,9 @@
   }
   if (cs.takeaway) {
     html(el("csp-take"),
-      '<div class="callout s-y"><strong>還沒看到：</strong>' + esc(cs.takeaway.not) + "</div>" +
-      '<div class="callout s-g"><strong>反而看到：</strong>' + esc(cs.takeaway.but) + "</div>" +
-      '<div class="callout s-g"><strong>結論：</strong>' + esc(cs.takeaway.conclusion) + "</div>");
+      '<div class="callout s-y"><strong>還沒看到：</strong>' + mdBold(cs.takeaway.not) + "</div>" +
+      '<div class="callout s-g"><strong>反而看到：</strong>' + mdBold(cs.takeaway.but) + "</div>" +
+      '<div class="callout s-g"><strong>結論：</strong>' + mdBold(cs.takeaway.conclusion) + "</div>");
   }
 
   // ---- ⑥ NVIDIA -----------------------------------------------------------

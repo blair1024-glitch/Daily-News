@@ -104,6 +104,12 @@ TAIEX 一度抓到 44,987.11，而 8/21 的收盤是 45,224.29。
 `items.taiex` 是刻意放進去的**交叉驗證欄**：它應與 `market-auto.js` 的
 `dailyMarket.value.taiexClose` 一致（前提是同一個交易日）。不一致代表某一條管道有問題。
 
+**待修：`live` 判定對 24 小時市場過嚴。** 8/25 的執行中，殖利率（^TNX/^TYX/^FVX）、
+DXY、WTI、Brent、黃金六項因近乎 24 小時交易，`currentTradingPeriod.regular` 仍顯示開盤中，
+於是 `settled` 被退回前一個交易日，`close` 因此落後一天（`latest` 才是當日日線）。
+美股現貨（SOX/VIX/S&P/Nasdaq/Dow）判定正確。在修好之前，**讀這六項要先比對 `asOf`**，
+必要時改用 `latest` 並以新聞交叉驗證。
+
 ### 已知限制
 
 **櫃買 OTC 指數點位**：櫃買中心的 OpenAPI 沒有指數端點——目錄頁是 JS 渲染的
