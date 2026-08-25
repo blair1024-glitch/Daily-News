@@ -7,67 +7,67 @@
  */
 window.DASHBOARD = {
   meta: {
-    version: "v4.0",
-    date: "2026/08/25",
+    version: "v4.1",
+    date: "2026/08/26",
     time: "07:55",
     timezone: "台灣時間",
     countdown: {
       label: "🔥 NVIDIA 財報",
-      note: "8/26 美西 14:00 法說（台灣時間 8/27 清晨 05:00）",
+      note: "今晚美西 14:00 法說（台灣時間 8/27 清晨 05:00）",
       target: "2026-08-27T05:00:00+08:00"
     }
   },
 
   verdict: [
-    { label: "風險輪動", state: "殖利率與油價緩解，但錢跑去黃金", signal: "y" },
-    { label: "費半 SOX", state: "-2.70%，五個交易日 -9.5%", signal: "r" },
-    { label: "NVIDIA", state: "連 7 黑，2022/9 以來首見", signal: "r" },
-    { label: "外資", state: "翻空賣超 157.36 億", signal: "r" },
-    { label: "台股量能", state: "6,562 億，再創新低", signal: "r" },
-    { label: "30Y 殖利率", state: "回落至 5.231%，壓力暫緩", signal: "g" }
+    { label: "台指期基差", state: "-142 點，本波最大逆價差", signal: "r" },
+    { label: "台股", state: "V 轉 959 點，收復季線與 45,000", signal: "g" },
+    { label: "油價", state: "Brent 兩日 -9.0%，和解路徑", signal: "g" },
+    { label: "殖利率", state: "連兩日全線下滑", signal: "g" },
+    { label: "籌碼", state: "法人賣、散戶大舉加槓桿", signal: "r" },
+    { label: "NVIDIA", state: "連 7 黑中止，今晚財報", signal: "y" }
   ],
 
   global: {
     rows: [
-      { name: "🇺🇸 S&P 500", value: "7,652.86（-21.51｜-0.28%）", signal: "y" },
-      { name: "🇺🇸 Nasdaq", value: "25,980.19（-200.27｜-0.76%）", signal: "r" },
-      { name: "🇺🇸 Dow", value: "53,417.16（+140.15｜+0.26%）", signal: "g" },
-      { name: "🔥 費城半導體 SOX", value: "11,423.17（-317.20｜-2.70%）", signal: "r" },
-      { name: "VIX", value: "15.85（+0.72｜+4.76%）", signal: "y" },
-      { name: "🇺🇸 30Y 公債", value: "5.231%（-0.045）", signal: "g" },
-      { name: "🇺🇸 10Y 公債", value: "4.704%（-0.034）", signal: "g" },
-      { name: "🇺🇸 5Y 公債", value: "4.408%（-0.016）", signal: "g" },
-      { name: "DXY 美元指數", value: "98.98（+0.19%）", signal: "y" },
-      { name: "🛢️ WTI 原油", value: "85.14（-2.21%）", signal: "g" },
-      { name: "🛢️ Brent 原油", value: "92.13（-2.39%）", signal: "g" },
-      { name: "🥇 Gold 黃金", value: "4,728.90（+2.27%）", signal: "r" },
-      { name: "🇯🇵 USD/JPY", value: "158.90（+0.02）", signal: "y" },
-      { name: "🇨🇳 USD/CNY", value: "6.7210（-0.02%）", signal: "g" },
-      { name: "🇹🇼 USD/TWD", value: "31.822（-0.05%）", signal: "g" },
-      { name: "🇹🇼 TAIEX", value: "44,762.32（-461.97｜-1.02%）", signal: "r" },
-      { name: "🇹🇼 櫃買 OTC", value: "成交 1,939.53 億（點位未取得）", signal: "y" }
+      { name: "🇺🇸 S&P 500", value: "7,677.28（+24.42｜+0.32%）", signal: "g" },
+      { name: "🇺🇸 Nasdaq", value: "26,151.30（+171.11｜+0.66%）", signal: "g" },
+      { name: "🇺🇸 Dow", value: "53,577.40（+160.24｜+0.30%）", signal: "g" },
+      { name: "🔥 費城半導體 SOX", value: "11,588.04（+164.87｜+1.44%）", signal: "y" },
+      { name: "VIX", value: "15.45（-0.40｜-2.52%）", signal: "g" },
+      { name: "🇺🇸 30Y 公債", value: "5.174%（-0.057）", signal: "g" },
+      { name: "🇺🇸 10Y 公債", value: "4.639%（-0.065）", signal: "g" },
+      { name: "🇺🇸 5Y 公債", value: "4.351%（-0.057）", signal: "g" },
+      { name: "DXY 美元指數", value: "98.90（-0.10%）", signal: "g" },
+      { name: "🛢️ WTI 原油", value: "80.97（-4.04｜-4.75%）", signal: "g" },
+      { name: "🛢️ Brent 原油", value: "85.86（-6.31｜-6.85%）", signal: "g" },
+      { name: "🥇 Gold 黃金", value: "4,724.70（+83.90｜+1.81%）", signal: "r" },
+      { name: "🇯🇵 USD/JPY", value: "159.14（+0.235，逼近 160）", signal: "r" },
+      { name: "🇨🇳 USD/CNY", value: "6.7219（+0.01%）", signal: "g" },
+      { name: "🇹🇼 USD/TWD", value: "31.812（-0.03%）", signal: "g" },
+      { name: "🇹🇼 TAIEX", value: "45,169.46（+407.14｜+0.91%）", signal: "g" },
+      { name: "🇹🇼 櫃買 OTC", value: "成交 1,727.63 億（點位未取得）", signal: "y" }
     ],
     notes: [
-      "🔄 **今天的主軸是「風險輪動」，不是「風險解除」。** 前一版排第一的兩個風險同時緩解了：30Y 殖利率自 5.276% 回落至 **5.231%**（10Y 4.738% → 4.704%、5Y 亦降），油價則在利空落地後重挫。但錢**沒有回到 AI**——道瓊 +0.26%、Nasdaq -0.76%、費半 **-2.70%**，完整的防禦輪動階梯；同時黃金單日再漲 **2.27% 至 4,728.90**，連兩個交易日各漲逾 2.2%。壓力沒有消失，只是換了地方。",
-      "🔴 **一個被資訊缺口遮住的判讀，今天補上。** 本站的國際行情自動抓取管道昨天才建好，SOX 在 v3.6～v3.9 一直標「未取得」。補上歷史數據後才看見：費半自 8/17 的 **12,621 點**一路跌到 8/24 的 **11,423.17 點，五個交易日 -9.5%**。也就是說，過去一週我在頁面上討論「量能萎縮、基差翻負」的同時，半導體指數已經在破線了，而我沒看見。**這不是判斷失誤，是資料缺口造成的盲點**——這也正是為什麼要把行情抓取自動化。",
-      "🔴 **油價因果鏈方向寫錯了，更正。** v3.6～v3.8 把「美對伊朗制裁 → 油價上行 → 通膨壓力」列為風險來源。8/24 制裁實際落地——美國財政部長 Bessent 宣布針對與伊朗往來的實體與個人祭出史上最嚴厲制裁——**油價卻重挫**：WTI -2.21% 至 85.14、Brent -2.39% 至 92.13。這是典型的利多出盡，也顯示該制裁打的是**買方**而非伊朗產能。我原先的傳導方向是錯的。",
-      "NVIDIA 8/24 再跌逾 2%，**連續第 7 個交易日收黑，為 2022 年 9 月以來首見**，這一波累計跌約 7%。財報就在明天盤後（台灣 8/27 清晨），連黑紀錄與財報撞在一起。",
-      "⚠️ 資料註記：本版國際行情取自 `data/market-global.js` 的 **8/24 日線**。其中殖利率、DXY、原油、黃金六項因屬近乎 24 小時交易，腳本的「盤中判定」把它們的 settled 欄退回 8/21，故本版改採同檔案的 8/24 日線（`latest`），並已用當日新聞逐項交叉驗證（WTI 約 -2.5%、Brent 約 -2.5%、黃金約 4,712）。此為腳本待修的判定過嚴問題，已記錄。櫃買 OTC 指數點位仍無可用自動來源，維持「未取得」。"
+      "🟢 **國際面幾乎全面轉好，而且是同一條因果鏈。** 油價崩跌 → 通膨預期降溫 → 債市壓力緩解 → 股市得到支撐。Brent 單日重挫 **6.85%** 至 85.86、WTI **-4.75%** 至 80.97；殖利率連兩個交易日全線下滑（10Y 4.639%、30Y 5.174%、5Y 4.351%）；三大指數齊漲，S&P 500 逼近本月稍早創下的歷史高點。**前幾版我把油價與殖利率當成兩條風險線分開追，實際上它們是串在一起的**——這一版把它們寫成一條。",
+      "✅ **油價的更正方向確認了。** 上一版更正「制裁 → 油價上行」的因果寫錯，指出制裁打的是買方而非伊朗產能。8/25 進一步證實：油價再跌是因為**市場在交易和解路徑**——巴基斯坦陸軍參謀長赴德黑蘭斡旋、傳遞可能的制裁豁免方案，且美方措施比市場預期溫和，荷莫茲海峽重啟的預期升溫。Brent 兩個交易日自 94.39 跌到 85.86，**累計 -9.0%**。",
+      "🔴 **唯一不合群的訊號是黃金。** 油價崩、殖利率降、VIX 回落至 15.45、股市上漲——這組合理論上該讓黃金回落，但它**連續第三個交易日上漲**（+1.81% 至 4,724.70），三日累計漲逾 6%。避險需求並沒有跟著風險指標一起解除。中東實體風險仍在（阿曼外海油輪遭擊中失去動力、青年運動稱對紅海沙國超級油輪開火），這可能是黃金與油價背離的原因：**市場在賣「供給中斷」的溢價，同時繼續買「地緣衝突」的保險**。",
+      "🔥 **NVIDIA 連 7 黑中止**，8/25 小幅收高，晶片股在財報前普遍反彈（SOX +1.44%）。財報就在**今晚**（台灣 8/27 清晨 05:00）。",
+      "🔴 **USD/JPY 159.14，逼近 160。** 這是本版唯一惡化的國際指標。殖利率下滑理應減輕日圓壓力，但日圓仍走弱 0.235，代表壓力來源不只利差。"
     ]
   },
 
   fed: {
-    headline: "殖利率回落了，但這不是 Fed 轉向",
+    headline: "殖利率連兩日下滑，但真正的考驗在後天",
     stats: [
       { label: "現任主席", value: "Kevin Warsh（5/22 就任）", signal: "r" },
-      { label: "30Y 殖利率", value: "5.231%（-0.045）", signal: "g" },
-      { label: "10Y 殖利率", value: "4.704%（-0.034）", signal: "g" },
+      { label: "30Y 殖利率", value: "5.174%（連兩日降）", signal: "g" },
+      { label: "10Y 殖利率", value: "4.639%（-0.065）", signal: "g" },
       { label: "首場演說", value: "8/28 美東 10:00", signal: "r" },
       { label: "下次 FOMC", value: "9/15-16（演說後 19 天）", signal: "y" }
     ],
     shift: {
-      before: "🔴 「長端殖利率飆到 19 年新高，是第一順位風險」（前一版）",
-      after: "🟢 「殖利率全線回落，壓力暫緩——但只是暫緩」"
+      before: "🔴 「30Y 衝上 19 年新高 5.34%，是第一順位風險」（v3.8）",
+      after: "🟢 「兩個交易日退到 5.174%，且推力來自油價而非 Fed」"
     },
     probability: {
       label: "Warsh 首場主席演說",
@@ -75,61 +75,61 @@ window.DASHBOARD = {
       to: "台灣時間 8/28 22:00"
     },
     footnote:
-      "殖利率回落值得記錄，但**不要把它讀成 Fed 轉向**。三件事沒有變：一、Warsh 自 5/22 上任以來公開主張收緊通膨紀律與政策體制轉變；二、7 月會議紀要有三張主張升息的反對票，在新主席的脈絡下那是方向而非雜音；三、紀要把「AI 樂觀情緒降溫拖累消費」明列為總體下行風險。這次回落更像是**資金從股市流向債市的避險買盤**——同一天黃金大漲 2.27%、VIX 上升 4.76%，三者是同一個動作的三個面向。真正的答案在 **8/28 Warsh 首場主席演說**（台灣時間 8/28 晚間 10 點），那場演說距離 9/16 FOMC 只有 19 天。"
+      "**要看清楚殖利率為什麼降。** 這兩天的下滑不是 Fed 給了什麼訊號，而是**油價崩跌壓低了通膨預期**——因果的起點在中東，不在華盛頓。這種緩解是好事，但它可以同樣快地反轉：只要和解路徑生變、油價彈回，殖利率壓力就會回來。真正會改變利率路徑的仍是 **8/28 Warsh 首場主席演說**（台灣時間 8/28 晚間 10 點），距 9/16 FOMC 僅 19 天。他上任以來公開主張收緊通膨紀律與政策體制轉變，而 7 月紀要的三張升息反對票在這個脈絡下是方向而非雜音。**油價幫 Fed 爭取了時間，但沒有改變 Fed 的方向。**"
   },
 
   cpi: {
-    title: "本週雙事件：NVIDIA ＋ Warsh 首演說",
-    releaseUS: "8/26 NVIDIA（美西 14:00）",
-    releaseTW: "🇹🇼 8/28 Warsh 首場主席演說",
+    title: "今晚 NVIDIA，後天 Warsh",
+    releaseUS: "🔥 今晚 NVIDIA（台灣 8/27 05:00）",
+    releaseTW: "🎙️ 8/28 Warsh 首場主席演說",
     expectations: [
-      { name: "8/26 NVIDIA", value: "Q2 FY2027（台灣 8/27 05:00）" },
+      { name: "今晚 NVIDIA", value: "Q2 FY2027（台灣 8/27 05:00）" },
       { name: "市場預期", value: "營收 918.5 億美元、EPS 2.08" },
       { name: "公司財測", value: "營收 910 億美元 ±2%" },
-      { name: "8/28 Warsh", value: "**首場**主席演說（台灣 22:00）" },
-      { name: "接續", value: "8 月非農、8 月 CPI → 9/15-16 FOMC" }
+      { name: "進場姿態", value: "連 7 黑後止跌，SOX **+1.44%** 反彈" },
+      { name: "8/28 Warsh", value: "**首場**主席演說（台灣 22:00）" }
     ],
     fear:
-      "**兩天之內、兩個第一順位事件，而且方向可能互相抵銷。** NVIDIA 的門檻很明確：分析師預期營收 **918.5 億美元**、EPS **2.08**，公司自己的財測是 **910 億 ±2%**——市場已經把預期押在財測上緣，達標無功、不達標重罰。而它是**帶著連 7 黑走進財報**的，這種結構下財報只要中性，就可能被解讀為利空。8/28 Warsh 首度以主席身分站上 Jackson Hole 講台，歷史上這個講台就是政策轉向的訊號場（2022 年 Powell 的「痛苦」演說當天 S&P 500 跌約 3.4%）。最壞的組合仍是：NVIDIA 財報平淡，緊接著 Warsh 再確認緊縮方向。",
+      "**賠率結構在一天之內變了。** 上一版寫「它是帶著連 7 黑走進財報的，中性即利空」——8/25 連黑中止、晶片股回補，市場改成**帶著反彈進場**。這反而讓門檻變高了：預期已押在財測上緣（分析師營收 918.5 億 vs 公司財測 910 億 ±2%），而恐慌折價又剛被消化掉一部分。**現在需要的不只是達標，是明顯超標加上足夠強的 Guidance。** 而且財報之後只隔一天就是 Warsh 首度以主席身分站上 Jackson Hole 講台——歷史上這個講台就是政策轉向的訊號場（2022 年 Powell 的「痛苦」演說當天 S&P 500 跌約 3.4%）。",
     scenarios: [
-      { result: "NVIDIA 強 ＋ Warsh 溫和", fed: "壓力同時解除，資金回流半導體", fedSignal: "g", tech: "🟢🟢", techSignal: "g" },
-      { result: "NVIDIA 強 ＋ Warsh 偏鷹", fed: "估值受壓但基本面撐住", fedSignal: "y", tech: "🟡", techSignal: "y" },
-      { result: "NVIDIA 平 ＋ Warsh 偏鷹", fed: "連黑紀錄下，中性即利空", fedSignal: "r", tech: "🔴", techSignal: "r" },
-      { result: "NVIDIA 弱", fed: "呼應紀要點名的 AI 風險", fedSignal: "r", tech: "🔴🔴", techSignal: "r" }
+      { result: "NVIDIA 超標 ＋ Warsh 溫和", fed: "壓力全解，資金回流半導體", fedSignal: "g", tech: "🟢🟢", techSignal: "g" },
+      { result: "NVIDIA 超標 ＋ Warsh 偏鷹", fed: "估值受壓但基本面撐住", fedSignal: "y", tech: "🟡", techSignal: "y" },
+      { result: "NVIDIA 僅達標", fed: "反彈已先反映，容易獲利了結", fedSignal: "r", tech: "🔴", techSignal: "r" },
+      { result: "NVIDIA 不如預期", fed: "呼應紀要點名的 AI 風險", fedSignal: "r", tech: "🔴🔴", techSignal: "r" }
     ],
     conclusion:
-      "上一版寫「這一週結束前兩件事都會有答案」。目前為止市場的回答方式是：**先撤出半導體、買進黃金、等答案**。"
+      "台指期已經先表態了：指數大漲 407 點的同一天，**基差擴大到本波最大的 -142 點**。期貨市場不相信這根紅 K 撐得過今晚。"
   },
 
   jpy: {
-    level: "USD/JPY 158.90（8/24 收盤，+0.02）",
+    level: "USD/JPY 159.14（8/25 收盤，+0.235）",
     background:
-      "**終於有實際數字了**——這一欄在 v3.7～v3.9 連續三版標「未取得」，昨天建好的國際行情管道把它補上。8/24 收 **158.904**，日內區間約 158.36～159.14，較 8/17 的前值 159.47 略為回落。**160 關卡並未失守**，也沒有出現日銀干預的消息。同一天長端美債殖利率下滑，利差對日圓的壓力略減，這與日圓小幅走穩是一致的。",
-    keyLevel: "160 仍是關卡（158.90，距約 1.1 元）",
+      "🔴 **這是本版唯一惡化的國際指標，而且它惡化的方式值得注意。** 8/25 美債殖利率連續第二個交易日全線下滑（10Y 降 0.065），利差理應對日圓有利，**但日圓反而再貶 0.235 至 159.14**，距 160 關卡只剩約 0.9 元。利差解釋不了這個走勢，代表壓力另有來源。前一版把日圓評分自 4 上調至 5，理由是「不再需要憑空猜測」；本版下調回 **4**——不是因為數據又缺了，而是因為拿到的數據方向轉壞。",
+    keyLevel: "160 關卡（159.14，距約 0.9 元）",
     branches: [
       {
         condition: "若突破 160",
         signal: "r",
-        items: ["二次干預機率大增", "Carry Trade 平倉風險 ↑", "與美債殖利率形成共振"]
+        items: ["二次干預機率大增", "Carry Trade 平倉風險 ↑", "台股外資資金面連帶受壓"]
       },
       {
-        condition: "現況：守在 158~160",
-        signal: "y",
-        items: ["壓力暫緩 🟡", "美債殖利率回落，利差壓力略減 🟢", "仍需日銀實際動作才會反轉 🟡"]
+        condition: "現況：159 上緣",
+        signal: "r",
+        items: ["殖利率降但日圓續貶 🔴", "利差無法解釋，壓力另有來源 🔴", "距關卡不足 1 元 🔴"]
       }
     ],
     conclusion:
-      "從「無法判斷」回到「可以判斷」，本身就是進展。評分自 4 上調至 5——不是因為日圓轉強，而是因為不再需要憑空猜測。"
+      "殖利率下滑卻換不到日圓走穩，這件事本身就是訊號。160 若在 NVIDIA 財報與 Warsh 演說這兩天被突破，會是最不想看到的時間點。"
   },
 
   csp: {
     rows: [
-      { company: "NVIDIA", result: "8/26 財報｜連 7 黑，波段 -7%", ai: "⭐⭐⭐⭐⭐" },
-      { company: "費城半導體 SOX", result: "五個交易日 -9.5%", ai: "🔴🔴" },
+      { company: "NVIDIA", result: "**今晚財報**｜連 7 黑中止", ai: "⭐⭐⭐⭐⭐" },
+      { company: "費城半導體 SOX", result: "11,588.04（+1.44%），守住 11,400", ai: "🟡" },
+      { company: "台積電", result: "8/25 +25 元至 2,400，尾盤領軍 V 轉", ai: "🟢🟢" },
       { company: "CoreWeave", result: "Q2 營收 +112%", ai: "🟢🟢🟢" },
       { company: "Nebius", result: "財報後單日 +34%", ai: "🟢🟢🟢" },
-      { company: "Microsoft / Amazon", result: "Azure、AWS 強，CapEx 提高", ai: "🟢🟢🟢" },
-      { company: "Alphabet / Meta", result: "Cloud 與 AI CapEx 持續", ai: "🟢🟢🟢" }
+      { company: "Microsoft / Amazon", result: "Azure、AWS 強，CapEx 提高", ai: "🟢🟢🟢" }
     ],
     capex: {
       title: "四大 CSP AI CapEx 合計",
@@ -138,14 +138,14 @@ window.DASHBOARD = {
     },
     takeaway: {
       not: "基本面仍然沒有壞：CapEx 與 neocloud 營收兩層驗證都還在",
-      but: "但股價已經先走了——SOX 五個交易日 -9.5%、NVIDIA 連 7 黑，而這段期間沒有任何一則需求轉弱的消息",
+      but: "上一版標記的「基本面與股價落差擴大」，在 8/25 出現了收斂的第一步——SOX 反彈 1.44%、NVIDIA 止跌、台積電漲 25 元領軍",
       conclusion:
-        "**基本面與股價的落差正在擴大，這是本版最該盯的一件事。** 兩種解釋：一是市場在財報前提前降風險（那麼財報過關後會補漲），二是市場看到了財報數字以外的東西——例如 AI 發債推升殖利率的自我強化循環，或 Fed 對資產價格的容忍度下降。8/26 的財報會分辨出是哪一種。"
+        "**但這只是財報前的回補，不是答案。** 上一版提出兩種解釋：一是市場提前降風險（過關後補漲），二是市場看到了財報數字以外的東西。**一天的反彈分辨不出是哪一種**——真正的分辨點是今晚。而台指期用擴大到 -142 點的逆價差表達了它的看法。"
     }
   },
 
   nvidia: {
-    event: "8/26 NVIDIA 財報",
+    event: "🔥 今晚 NVIDIA 財報",
     subtitle: "Q2 FY2027｜美西 14:00 法說，台灣時間 8/27 清晨 05:00｜預期營收 918.5 億、EPS 2.08",
     watch: [
       "Data Center Revenue",
@@ -154,60 +154,60 @@ window.DASHBOARD = {
       "毛利率",
       "下一季 Guidance（對比 910 億 ±2% 財測）",
       "CapEx 的融資結構",
-      "連 7 黑是否在財報前變成連 8 黑"
+      "法說會對 AI 需求週期的措辭"
     ],
     note:
-      "🔴 **它是帶著連 7 黑走進財報的。** 8/24 再跌逾 2%，寫下 **2022 年 9 月以來第一次連續 7 個交易日收黑**，波段累計跌約 7%。這改變了財報的賠率結構：市場預期營收 918.5 億美元、EPS 2.08，而公司財測是 910 億 ±2%——預期已被押在財測上緣，**中性的財報在連黑的情緒下很可能被讀成利空**。同時 Fed 在 7 月紀要裡把「AI 樂觀情緒降溫」列為總體下行風險，等於把這場財報從產業事件升格為總經事件。剩 1 個交易日。"
+      "🔥 **今晚就是答案。** 上一版寫「它是帶著連 7 黑走進財報的」——8/25 連黑中止、小幅收高，2026 年以來仍漲逾 13%。**進場姿態從恐慌變成回補，門檻因此變高**：分析師預期營收 918.5 億美元、EPS 2.08，公司自己的財測是 910 億 ±2%，預期已押在財測上緣，而部分恐慌折價又被昨天的反彈吃掉了。**僅僅達標可能不夠。** Fed 在 7 月紀要裡把「AI 樂觀情緒降溫」列為總體下行風險，等於把這場財報從產業事件升格為總經事件；而它的答案揭曉後只隔一天，就是 Warsh 的首場主席演說。"
   },
 
   taiex: {
-    date: "8/24 收盤",
-    close: "44,762.32",
-    change: "-461.97",
-    changePct: "-1.02%",
-    turnover: "NT$656.3B",
+    date: "8/25 收盤",
+    close: "45,169.46",
+    change: "+407.14",
+    changePct: "+0.91%",
+    turnover: "NT$724.3B",
     note:
-      "**失守 45,000 關卡，而且是量縮下跌。** 指數開高走低收 44,762.32 點，跌 461.97 點；成交金額 **6,562.81 億元**，較 8/21 的 7,549 億再縮約 13%，續創本波新低——這已是連續第三個交易日刷新低量。前一版問「量能能否回到 9,000 億」，答案是**反向再創新低**。量縮下跌代表的不是恐慌性賣壓，而是**買方直接退場**：沒有人在這個位置接手。"
+      "**一根 V 轉紅 K：盤中一度跌逾 500 點，終場漲 407 點，高低差 959 點。** 台積電尾盤拉升領軍（+25 元至 2,400 元、+1.05%），指數同時收復**季線約 44,877 點與 45,000 點大關**，回答了上一版「量能能否止跌」的問題——成交金額自 6,562.81 億回升至 **7,242.58 億（+10.4%）**。**但別把回升讀成回溫**：這個量仍是 8 月的次低，僅高於前一天的最低量。權值股內部也不同步——台積電漲，台達電 -1.44%、聯發科 -0.8%。這是一根靠單一權值股拉出來的紅 K。"
   },
 
   chips: {
-    date: "8/24 盤後（證交所官方數據）",
+    date: "8/25 盤後（證交所官方數據）",
     institutions: [
-      { name: "外資及陸資", tse: "-157.36 億", otc: "未取得", signal: "r" },
-      { name: "投信", tse: "+30.55 億", otc: "未取得", signal: "g" },
-      { name: "自營商", tse: "-43.33 億", otc: "未取得", signal: "r" },
-      { name: "　自行買賣", tse: "-0.15 億", otc: "—", signal: "y" },
-      { name: "　避險", tse: "-43.18 億", otc: "—", signal: "r" },
-      { name: "三大法人合計", tse: "-170.14 億", otc: "未取得", signal: "r" }
+      { name: "外資及陸資", tse: "-7.87 億", otc: "未取得", signal: "y" },
+      { name: "投信", tse: "-39.84 億", otc: "未取得", signal: "r" },
+      { name: "自營商", tse: "+0.60 億", otc: "未取得", signal: "y" },
+      { name: "　自行買賣", tse: "+9.97 億", otc: "—", signal: "g" },
+      { name: "　避險", tse: "-9.37 億", otc: "—", signal: "y" },
+      { name: "三大法人合計", tse: "-47.11 億", otc: "未取得", signal: "r" }
     ],
     note:
-      "🔴 **明確更正前一版的判斷。** v3.9 的一眼結論寫「法人買超但市場未跟」，把法人買超當成支撐。**一個交易日就被推翻**：外資自 8/21 的買超 283.05 億直接翻為賣超 **157.36 億**，單日反轉超過 440 億元；三大法人合計由 +331.06 億轉為 **-170.14 億**（分項加總與官方合計完全相等，誤差 0）。唯一還站在買方的是投信，買超 30.55 億——但它的規模撐不住外資的賣壓。**「法人買超」這條支撐線已經斷了**，前一版把它列為僅存的多方理由，這個理由現在沒有了。",
+      "**指數漲了 407 點，法人整體還是賣方。** 外資賣壓大幅收斂（-157.36 → **-7.87 億**，幾乎打平），但**投信由買 30.55 億翻為賣 39.84 億**——這是三個交易日內第二次轉向（8/24 才剛由賣轉買）。三大法人合計仍賣超 **47.11 億**（分項加總與官方合計完全相等，誤差 0）。**上一版寫「法人買超這條支撐線已經斷了」，8/25 沒有把它接回來**：賣壓變小不等於買盤回來。這根紅 K 的買方不是法人。",
     margin: {
       title: "融資融券（信用交易）",
       rows: [
-        { name: "集中市場融資餘額", value: "5,452.59 億", signal: "g" },
-        { name: "融資單日增減", value: "-16.80 億", signal: "g" },
-        { name: "融資交易單位", value: "8,856,848 張（+10,901）", signal: "y" },
-        { name: "融券餘額", value: "201,513 張", signal: "r" },
-        { name: "融券單日增減", value: "+1,515 張", signal: "r" }
+        { name: "集中市場融資餘額", value: "5,469.38 億", signal: "r" },
+        { name: "融資單日增減", value: "+16.78 億", signal: "r" },
+        { name: "融資交易單位", value: "8,900,808 張（+43,964）", signal: "r" },
+        { name: "融券餘額", value: "200,504 張", signal: "y" },
+        { name: "融券單日增減", value: "-1,009 張", signal: "y" }
       ],
       warning:
-        "融資餘額續降至 5,452.59 億元（單日減 16.80 億，自 8/17 的 5,501.02 億連續第四個交易日下滑），融券再增 1,515 張至 201,513 張——散戶維持降槓桿並加空的方向，這一點與 8/21 一致。**但這次多看一個欄位就發現矛盾**：融資**金額**減少 16.80 億，融資**張數**卻**增加 10,901 張**。金額降、張數升，代表融資部位的平均單價在下滑——**資金正從高價股往低價股移動**。這通常出現在主流股（此刻就是半導體）失去領導地位、資金轉進投機性小型股的階段，與費半 -2.70%、櫃買成交同步萎縮的畫面是吻合的。這不是健康的換手。"
+        "🔴 **這根紅 K 的買方是散戶，而且是用槓桿買的。** 融資餘額自 5,452.59 億反轉增加 **16.78 億**至 5,469.38 億，終結連續四個交易日的下滑；融資張數單日暴增 **43,964 張**（前一日僅增 10,901 張，是其四倍），同時融券回補 1,009 張。**加槓桿做多、同時回補空單**，方向非常一致。把三件事疊起來看：法人賣 47.11 億、散戶融資暴增 4.4 萬張、台指期基差擴大到本波最大的 -142.46 點——這正是 v3.6 記錄過的「法人倒貨、散戶接刀」結構再現，而且發生在 **NVIDIA 財報前一天**。上一版標記的「融資金額降、張數升」觀察本版反轉：現在是**金額與張數同步大增**，散戶不只換股，是實質加碼。"
     }
   },
 
   futures: {
-    spot: "44,762.32",
-    future: "44,762（202609）",
-    basis: "-0.32 點（幾乎收斂至零）",
-    month: "台指期 202609（8/24）",
+    spot: "45,169.46",
+    future: "45,027（202609）",
+    basis: "-142.46 點逆價差（本波最大）",
+    month: "台指期 202609（8/25）",
     note:
-      "⚠️ **逆價差幾乎消失了，但這不是好消息——要看它是怎麼消失的。** 基差自 8/21 的 -76.29 點收斂到 **-0.32 點**，表面上像是期貨轉強。實際相反：**現貨跌了 461.97 點，期貨只跌約 386 點（45,148 → 44,762）**。逆價差不是因為期貨追上來而消失，是因為**現貨自己跌下去追上了期貨**。換句話說，v3.5 起連續四版標記的基差訊號，在 8/24 以「現貨補跌」的方式兌現了——當時貼水的期貨是對的。成交量 43,046 口（較 8/21 的 51,446 口縮 16%）、未平倉 102,558 口（+216 口，幾乎持平）。**未平倉沒動而成交量萎縮，代表沒有新的方向性資金進場**，多空都在等明天的財報。"
+      "🔴 **本版最重要的一個數字。** 基差自 8/24 的 -0.32 點暴走至 **-142.46 點**，是這一波以來最大的逆價差，超過 8/21 那次的 -76.29 點。算式很直白：**現貨漲 407.14 點，期貨只漲 265 點**（皆以收盤價計；期交所官方漲跌欄顯示 +287，那是對前一日**結算價**，口徑不同不可混用）——兩者差距 142.14 點，正好等於基差自 -0.32 變動到 -142.46 的幅度。指數愈往上，期貨愈不跟。路徑完整攤開是：8/12 +179 → 8/14 +29.99 → 8/17 +30.73 → 8/21 **-76.29** → 8/24 -0.32 → 8/25 **-142.46**。上一版問「基差是否再度擴大逆價差」，答案是**擴大到本波最大**。成交量回升至 55,218 口（前日 43,046 口）、未平倉 102,718 口（+160 口，幾乎不動）——**成交放大而未平倉不動，代表是當沖與換手，不是新的方向性布局**。期貨市場用最大的貼水說：不相信這根紅 K 撐得過今晚的財報。"
   },
 
   calendar: {
     tier1: [
-      { date: "8/26", event: "🔥 NVIDIA 財報（台灣 8/27 05:00）", hot: true },
+      { date: "8/26", event: "🔥 NVIDIA 財報（今晚，台灣 8/27 05:00）", hot: true },
       { date: "8/27-29", event: "🇺🇸 Jackson Hole 年會" },
       { date: "8/28", event: "🎙️ Warsh 首場主席演說（台灣 22:00）", hot: true },
       { date: "9/15-16", event: "🇺🇸 FOMC 利率決議", hot: true }
@@ -221,53 +221,54 @@ window.DASHBOARD = {
   },
 
   risks: [
-    { n: "①", name: "半導體單獨破線", signal: "r", desc: "SOX 五個交易日 -9.5%、NVIDIA 連 7 黑，而同期沒有任何需求轉弱的消息——股價與基本面正在脫節。" },
-    { n: "②", name: "外資翻空", signal: "r", desc: "單日由買超 283 億轉為賣超 157 億，前一版僅存的多方理由「法人買超」已消失。" },
-    { n: "③", name: "台股買方退場", signal: "r", desc: "6,562 億連三日刷新低量，量縮下跌代表沒有人接手，而非恐慌賣壓。" },
-    { n: "④", name: "8/28 Warsh 首演說", signal: "r", desc: "距 9/16 FOMC 僅 19 天，新主席公開立場為收緊通膨紀律，風險偏鷹。" },
-    { n: "⑤", name: "資金流向避險", signal: "y", desc: "黃金連兩日各漲逾 2.2%、VIX +4.76%、長債獲買盤——三者是同一個避險動作。" }
+    { n: "①", name: "基差 -142 本波最大", signal: "r", desc: "現貨漲 407 點、期貨只漲 265 點（同為收盤價口徑），指數愈漲期貨愈不跟，且發生在財報前一天。" },
+    { n: "②", name: "法人倒貨散戶接刀", signal: "r", desc: "法人賣 47.11 億（投信三日內二度轉向），散戶融資單日暴增 43,964 張並回補空單。" },
+    { n: "③", name: "今晚 NVIDIA 賠率變差", signal: "r", desc: "連黑中止、恐慌折價被吃掉一部分，預期已押在財測上緣，僅達標可能不夠。" },
+    { n: "④", name: "USD/JPY 逼近 160", signal: "r", desc: "殖利率下滑卻換不到日圓走穩，利差解釋不了，距關卡不足 1 元。" },
+    { n: "⑤", name: "黃金與油價背離", signal: "y", desc: "風險指標全面回落，黃金卻連三日漲逾 6%——避險需求並未跟著解除。" }
   ],
 
   scores: {
     items: [
-      { name: "AI 基本面", score: 7, signal: "y", note: "需求驗證仍在，但股價已明顯脫離基本面，落差本身就是風險。" },
-      { name: "美股趨勢", score: 5.5, signal: "y", note: "指數層面沒崩（S&P -0.28%），但內部結構裂開：Dow +0.26% vs SOX -2.70%。" },
-      { name: "Fed", score: 6, signal: "y", note: "殖利率全線回落是緩解，但 Warsh 8/28 首演說尚未過關，不宣告解除。" },
-      { name: "日圓", score: 5, signal: "y", note: "158.90 未破 160，且終於取得實際數據；上調不是因為轉強，是不再靠猜。" },
-      { name: "台股 AI", score: 4.5, signal: "r", note: "失守 45,000、外資翻空 157 億、量能連三日新低，三個負面同時到齊。" }
+      { name: "AI 基本面", score: 7, signal: "y", note: "SOX 反彈、NVIDIA 止跌，但那是財報前回補；答案今晚才揭曉，不預先加分。" },
+      { name: "美股趨勢", score: 6.5, signal: "y", note: "油價崩、殖利率降、三大指數齊漲，S&P 逼近歷史高點。" },
+      { name: "Fed", score: 6.5, signal: "y", note: "殖利率連兩日下滑，但推力來自油價而非 Fed；Warsh 8/28 尚未過關。" },
+      { name: "日圓", score: 4, signal: "r", note: "159.14 逼近 160，殖利率降卻仍貶值，利差解釋不了——下調。" },
+      { name: "台股 AI", score: 4.5, signal: "r", note: "收復季線與 45,000，但基差 -142 本波最大、法人續賣、量能仍是 8 月次低。" }
     ],
-    overall: { name: "整體", score: 5.6, signal: "y" },
+    overall: { name: "整體", score: 5.7, signal: "y" },
     summary: [
-      "今天最重要的一句話：**壓力沒有解除，只是換了地方。** 前一版排第一、第三的兩個風險（30Y 殖利率、油價）雙雙緩解，但錢沒有回到 AI——道瓊漲、Nasdaq 跌、費半重挫、黃金大漲，這是防禦輪動的標準隊形。",
-      "殖利率回落 🟢 ＋ 油價重挫 🟢 ＋ 日圓守住 🟢 ＋ SOX 破線 🔴 ＋ NVIDIA 連 7 黑 🔴 ＋ 外資翻空 🔴 ＋ 量能新低 🔴",
-      "整體評分 6.2 → **5.6**，是本站開始追蹤以來最低（8/14 曾為 8.2）。兩個判斷被市場推翻並已更正：**「法人買超」的支撐一天就斷了**，**「制裁推升油價」的因果方向是錯的**。而補上 SOX 數據後才看見半導體已破線五個交易日——**資料缺口本身就是判讀風險**。所有線仍指向同一個時間點：**明天盤後的 NVIDIA**。"
+      "今天的一句話：**外面的風險在解除，裡面的結構在惡化。** 國際面幾乎全好——油價兩日崩 9%、殖利率連兩日全線降、三大指數齊漲、SOX 反彈、NVIDIA 連黑中止；但台股內部同時出現三個負面訊號疊在一起：**法人賣 47 億、散戶融資暴增 4.4 萬張、基差擴大到本波最大的 -142 點**。",
+      "油價崩 🟢 ＋ 殖利率降 🟢 ＋ SOX 反彈 🟢 ＋ 量能回升 🟢 ＋ 基差 -142 🔴 ＋ 法人續賣 🔴 ＋ 散戶加槓桿 🔴 ＋ 日圓逼近 160 🔴",
+      "整體評分 5.6 → **5.7**，幾乎沒動——這不是因為沒事發生，而是**正負兩邊都很大而互相抵銷**。上一版的更正得到確認（油價因果鏈方向），上一版的觀察被反轉（融資「金額降張數升」變成兩者同步暴增）。所有線仍指向同一個時間點，而它終於到了：**今晚**。"
     ]
   },
 
   watchlist: [
-    "NVIDIA 財報與 Guidance（台灣 8/27 05:00）",
-    "連 7 黑會不會變成連 8 黑",
-    "SOX 能否守住 11,400",
-    "外資是否連續賣超",
-    "台股量能能否止跌（6,562 億）",
-    "基差是否再度擴大逆價差",
-    "融資「金額降、張數升」是否延續",
-    "黃金是否續創新高（避險資金指標）",
+    "NVIDIA 財報與 Guidance（今晚，台灣 8/27 05:00）",
+    "基差 -142 是否在財報後收斂",
+    "散戶融資暴增後是否出現追高套牢",
+    "投信會不會第三度轉向",
+    "USD/JPY 是否突破 160",
+    "台股量能能否真正站回 8,000 億",
+    "黃金連三漲後是否回落（避險是否真的解除）",
+    "油價和解路徑是否生變",
     "8/28 Warsh 首演說（台灣 22:00）"
   ],
 
   sources: [
-    { label: "Stock market news for Aug. 24, 2026 — CNBC", url: "https://www.cnbc.com/2026/08/23/stock-market-today-live-updates.html" },
-    { label: "Stock Market Today, Aug. 24: Nvidia Extends Losses as Tech Stocks Retreat — The Motley Fool", url: "https://www.fool.com/coverage/stock-market-today/2026/08/24/stock-market-today-aug-24-nvidia-extends-losses-as-tech-stocks-retreat/" },
-    { label: "Stock Market Today (Aug. 24, 2026)：Iran sanctions、US-Canada tariff — TheStreet", url: "https://www.thestreet.com/stock-market-today/stock-market-today-dow-jones-sp-500-nasdaq-updates-aug-24-2026" },
-    { label: "Oil price today: WTI, Brent, U.S. sanctions, Iran（8/24）— CNBC", url: "https://www.cnbc.com/2026/08/24/oil-price-today-wti-brent-us-sanctions-iran.html" },
-    { label: "Brent Oil Price Tops $93 as U.S.-Iran Impasse Persists — OilPrice.com", url: "https://oilprice.com/Latest-Energy-News/World-News/Brent-Oil-Price-Tops-93-as-US-Iran-Impasse-Persists.html" },
-    { label: "Gold prices today, Monday, August 24, 2026 — Yahoo Finance", url: "https://finance.yahoo.com/personal-finance/investing/article/gold-prices-today-monday-august-24-2026-gold-to-stay-hot-through-the-end-of-the-month-123911561.html" },
-    { label: "台股痛失季線 外資轉賣超 157 億元（8/24）— 鉅亨網", url: "https://news.cnyes.com/news/id/6585486" },
+    { label: "Stock Market News for Aug 25, 2026 — Yahoo Finance", url: "https://finance.yahoo.com/markets/stocks/articles/stock-market-news-aug-25-132700491.html" },
+    { label: "Stock Market Today (Aug. 25, 2026)：Nasdaq jumps — TheStreet", url: "https://www.thestreet.com/stock-market-today/stock-market-today-dow-jones-sp-500-nasdaq-updates-aug-25-2026" },
+    { label: "How major US stock indexes fared Tuesday 8/25/2026 — The Washington Post", url: "https://www.washingtonpost.com/business/2026/08/25/wall-street-stocks-dow-nasdaq/6dcac1e0-a0c3-11f1-8606-1d40ad00172e_story.html" },
+    { label: "S&P 500 closes higher as Treasury yields retreat — CNBC", url: "https://www.cnbc.com/2026/08/24/stock-market-today-live-updates.html" },
+    { label: "Brent crude oil：價格與歷史數據 — Trading Economics", url: "https://tradingeconomics.com/commodity/brent-crude-oil" },
+    { label: "Crude Oil：價格與歷史數據 — Trading Economics", url: "https://tradingeconomics.com/commodity/crude-oil" },
+    { label: "Oil price today: WTI, Brent, U.S. sanctions, Iran — CNBC", url: "https://www.cnbc.com/2026/08/24/oil-price-today-wti-brent-us-sanctions-iran.html" },
+    { label: "〈台股盤後〉震盪近千點 台積電尾盤拉升收漲 407 點 收復季線（8/25）— 鉅亨網", url: "https://news.cnyes.com/news/id/6586199" },
+    { label: "台積電領軍回神！台股 V 轉近千點站回季線 成交量寫 8 月次低 — 民眾日報", url: "https://www.peoplenews.tw/articles/economic-news/51680" },
+    { label: "台股開低走高！收漲 407 點收復 4 萬 5 台積電漲 25 元報 2400 — 壹蘋新聞網", url: "https://news.nextapple.com/finance/20260825/33046B5E15BB44FECA1F0EF756CD3EAB" },
     { label: "NVIDIA Q2 FY27 財報預覽：日期、預期與風險 — Intellectia", url: "https://intellectia.ai/blog/nvidia-q2-fy27-earnings-preview-august-2026" },
     { label: "Jackson Hole 2026：8/27-29 議程與 Warsh 首演說 — Regards of Wallstreet", url: "https://www.regardsofwallstreet.com/news/jackson-hole-2026-dates-schedule-warsh-first-speech" },
-    { label: "Warsh Jackson Hole 演說：債市關注、殖利率 5.2% — Gate News", url: "https://www.gate.com/news/detail/kevin-warshs-jackson-hole-speech-draws-bond-market-focus-as-treasury-yields-23670090" },
-    { label: "Kevin Warsh 宣誓就任主席（官方新聞稿）— Federal Reserve", url: "https://www.federalreserve.gov/newsevents/pressreleases/other20260522a.htm" },
     { label: "Minutes of the FOMC, July 28–29, 2026 — Federal Reserve", url: "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260819a.htm" },
     { label: "USD/JPY (JPY=X) Live Rate & Chart — Yahoo Finance", url: "https://finance.yahoo.com/quote/JPY=X/" },
     { label: "三大法人買賣金額統計 BFI82U — 臺灣證券交易所", url: "https://www.twse.com.tw/zh/trading/foreign/bfi82u.html" },
