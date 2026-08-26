@@ -6,8 +6,8 @@
  * ok:false 代表該標的當次抓不到，error 說明原因——請據實標註，不要沿用舊值。
  */
 window.MARKET_GLOBAL = {
-  "fetchedAt": "2026-08-26T23:43:44.551Z",
-  "okCount": 15,
+  "fetchedAt": "2026-08-26T23:45:26.027Z",
+  "okCount": 16,
   "totalCount": 17,
   "items": {
     "sox": {
@@ -671,9 +671,64 @@ window.MARKET_GLOBAL = {
       }
     },
     "gold": {
-      "ok": false,
-      "label": "黃金（現貨）",
-      "error": "yahoo(XAUUSD%3DX) → HTTP 404 | stooq(xauusd) → 表頭缺 date/close：<!DOCTYPE html><html><head><meta charset=\"utf-8\"><meta name=\"robots\" content=\"noindex,nofollow\"></head><body><noscript>This s"
+      "ok": true,
+      "label": "黃金",
+      "symbol": "GC%3DF",
+      "value": {
+        "close": 4638.1001,
+        "prevClose": 4640.7998,
+        "change": -2.6997,
+        "changePct": -0.06,
+        "asOf": "2026-08-25",
+        "prevAsOf": "2026-08-24",
+        "live": true,
+        "latest": {
+          "date": "2026-08-26",
+          "close": 4675.3999,
+          "prevDate": "2026-08-25",
+          "prevClose": 4638.1001,
+          "change": 37.2998,
+          "changePct": 0.8
+        },
+        "settled": {
+          "date": "2026-08-25",
+          "close": 4638.1001,
+          "prevDate": "2026-08-24",
+          "prevClose": 4640.7998,
+          "change": -2.6997,
+          "changePct": -0.06
+        },
+        "quotePrice": 4675.4,
+        "series": [
+          {
+            "date": "2026-08-19",
+            "close": 4489.3999
+          },
+          {
+            "date": "2026-08-20",
+            "close": 4516.2998
+          },
+          {
+            "date": "2026-08-21",
+            "close": 4624.1001
+          },
+          {
+            "date": "2026-08-24",
+            "close": 4640.7998
+          },
+          {
+            "date": "2026-08-25",
+            "close": 4638.1001
+          },
+          {
+            "date": "2026-08-26",
+            "close": 4675.3999
+          }
+        ],
+        "currency": "USD",
+        "timezone": "America/New_York",
+        "source": "Yahoo Finance chart API（日線）"
+      }
     },
     "usdjpy": {
       "ok": true,
@@ -689,10 +744,10 @@ window.MARKET_GLOBAL = {
         "live": true,
         "latest": {
           "date": "2026-08-27",
-          "close": 159.231,
+          "close": 159.246,
           "prevDate": "2026-08-26",
           "prevClose": 159.223,
-          "change": 0.008,
+          "change": 0.023,
           "changePct": 0.01
         },
         "settled": {
@@ -703,7 +758,7 @@ window.MARKET_GLOBAL = {
           "change": 0.084,
           "changePct": 0.05
         },
-        "quotePrice": 159.231,
+        "quotePrice": 159.246,
         "series": [
           {
             "date": "2026-08-20",
@@ -727,7 +782,7 @@ window.MARKET_GLOBAL = {
           },
           {
             "date": "2026-08-27",
-            "close": 159.231
+            "close": 159.246
           }
         ],
         "currency": "JPY",
