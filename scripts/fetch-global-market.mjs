@@ -40,9 +40,14 @@ const TARGETS = [
   { key: "us30y",  label: "US 30Y 殖利率",   yahoo: "%5ETYX",     stooq: null },
   { key: "us5y",   label: "US 5Y 殖利率",    yahoo: "%5EFVX",     stooq: null },
   { key: "dxy",    label: "DXY 美元指數",    yahoo: "DX-Y.NYB",   stooq: null },
-  { key: "wti",    label: "WTI 原油",        yahoo: "CL%3DF",     stooq: "cl.f" },
-  { key: "brent",  label: "Brent 原油",      yahoo: "BZ%3DF",     stooq: null },
-  { key: "gold",   label: "黃金",            yahoo: "GC%3DF",     stooq: "xauusd" },
+  // rollingFuture: 連續近月期貨。兩個已知問題見 fromYahoo 的說明。
+  { key: "wti",    label: "WTI 原油",        yahoo: "CL%3DF",     stooq: "cl.f",   rollingFuture: true },
+  { key: "brent",  label: "Brent 原油",      yahoo: "BZ%3DF",     stooq: null,     rollingFuture: true },
+  // 黃金改抓**現貨** XAUUSD，不用 GC=F。原因：GC=F 是連續近月合約，
+  // 換月時整條日線序列的價格水準會位移（8/27 那次約 88 點），拿換月
+  // 前後兩根 K 棒相減會把換約價差當成漲跌——v4.0 與 v4.1 的黃金
+  // 漲跌幅就是這樣錯的（實際持平，頁面卻寫成連三日大漲）。
+  { key: "gold",   label: "黃金（現貨）",     yahoo: "XAUUSD%3DX", stooq: "xauusd" },
   { key: "usdjpy", label: "USD/JPY",         yahoo: "JPY%3DX",    stooq: "usdjpy" },
   { key: "usdcny", label: "USD/CNY",         yahoo: "CNY%3DX",    stooq: "usdcny" },
   { key: "usdtwd", label: "USD/TWD",         yahoo: "TWD%3DX",    stooq: "usdtwd" },
@@ -164,7 +169,7 @@ async function request(label, url, timeoutMs = 20_000) {
 // 由相鄰兩根 K 棒相減得到真正的日變動；並判斷最後一根是否為未收盤的
 // 進行中 K 棒，另外提供 settled（最後一根**已收盤**日線）。
 // dashboard 報的是收盤價，所以更新流程請用 settled。
-async function fromYahoo(sym) {
+async function fromYahoo(sym, opts = {}) {
   const url =
     `https://query1.finance.yahoo.com/v8/finance/chart/${sym}` +
     `?range=1mo&interval=1d`;
@@ -253,9 +258,19 @@ async function fromYahoo(sym) {
   //   日期比交易所當地的今天還新 → 剛開始的次日 K 棒，一定還在跳
   //   比今天舊                   → 已經是過去的日期，收定了
   //   就是今天                   → 看今天的收盤時刻到了沒
+  //
+  // rollingFuture 例外：CME 能量／金屬合約的日線不以當日收盤定案。
+  // 實測 8/26 早上抓到的 WTI「8/25 收盤」是 80.97，隔天同一根 K 棒
+  // 已變成 82.36（Brent 85.86 → 88.58）。在本專案的兩個抓取時點，
+  // 最後一根 =F 日線都還在變動，所以一律視為未收盤、退用前一根。
   const lastDate = series[series.length - 1].date;
-  const live =
-    lastDate > todayEx ? true : lastDate < todayEx ? false : beforeEnd;
+  const live = opts.rollingFuture
+    ? true
+    : lastDate > todayEx
+      ? true
+      : lastDate < todayEx
+        ? false
+        : beforeEnd;
 
   // 日期判定的診斷。settled 若跳日，從這一行就能看出是哪個環節誤判。
   console.log(
@@ -352,7 +367,7 @@ async function main() {
     ]) {
       if (!sym) continue;
       try {
-        const value = await fn(sym);
+        const value = await fn(sym, { rollingFuture: !!t.rollingFuture });
         const age = stalenessDays(value.asOf);
         if (age != null && age > MAX_STALE_DAYS) {
           throw new Error(
