@@ -43,11 +43,16 @@ const TARGETS = [
   // rollingFuture: 連續近月期貨。兩個已知問題見 fromYahoo 的說明。
   { key: "wti",    label: "WTI 原油",        yahoo: "CL%3DF",     stooq: "cl.f",   rollingFuture: true },
   { key: "brent",  label: "Brent 原油",      yahoo: "BZ%3DF",     stooq: null,     rollingFuture: true },
-  // 黃金改抓**現貨** XAUUSD，不用 GC=F。原因：GC=F 是連續近月合約，
-  // 換月時整條日線序列的價格水準會位移（8/27 那次約 88 點），拿換月
-  // 前後兩根 K 棒相減會把換約價差當成漲跌——v4.0 與 v4.1 的黃金
-  // 漲跌幅就是這樣錯的（實際持平，頁面卻寫成連三日大漲）。
-  { key: "gold",   label: "黃金（現貨）",     yahoo: "XAUUSD%3DX", stooq: "xauusd" },
+  // 黃金曾短暫改抓現貨 XAUUSD=X，但 Yahoo 回 404、Stooq 該符號也解析
+  // 失敗，故改回 GC=F 並標記 rollingFuture。
+  //
+  // 一併更正一個我自己的誤判：v4.0／v4.1 黃金數字錯誤，我原先歸因於
+  // 「連續合約換月造成序列位移約 88 點」——那是錯的。對照後發現每次
+  // 抓取裡的**前一根** K 棒都與後續序列完全吻合（v4.1 推得的前收
+  // 4,640.80 = 今日序列的 8/24），錯的只有**最後一根**。也就是說黃金
+  // 跟 WTI／Brent 是同一個病：最後一根日線尚未定案。rollingFuture 就
+  // 足以修好，不需要換符號。
+  { key: "gold",   label: "黃金",            yahoo: "GC%3DF",     stooq: "xauusd", rollingFuture: true },
   { key: "usdjpy", label: "USD/JPY",         yahoo: "JPY%3DX",    stooq: "usdjpy" },
   { key: "usdcny", label: "USD/CNY",         yahoo: "CNY%3DX",    stooq: "usdcny" },
   { key: "usdtwd", label: "USD/TWD",         yahoo: "TWD%3DX",    stooq: "usdtwd" },
