@@ -265,13 +265,25 @@ async function twseDailyMarket(date) {
   const rows = j.data || [];
   if (!rows.length) throw new Error("data 為空");
 
-  // FMTQIK 回傳整月，取最後一列（或日期相符的那列）
+  // FMTQIK 回傳整月，取日期相符的那列；找不到才退回最後一列。
   const want = `${Number(date.slice(0, 4)) - 1911}/${date.slice(4, 6)}/${date.slice(6, 8)}`;
-  const row = rows.find((r) => String(r[0]).trim() === want) || rows[rows.length - 1];
+  const exact = rows.find((r) => String(r[0]).trim() === want);
+  const row = exact || rows[rows.length - 1];
+  const rocDate = String(row[0]).trim();
+
+  // date 必須反映**這一列實際是哪一天**，不能沿用請求日期。
+  // 8/27 出過事：排程延遲導致請求了尚未開盤的 8/28，這裡退回最後一列
+  // （其實是 8/27 的資料）卻仍標成 20260828，只有 rocDate 洩漏了真相。
+  const [roc, mm, dd] = rocDate.split("/");
+  const actualDate =
+    roc && mm && dd ? `${Number(roc) + 1911}${mm}${dd}` : date;
+
   // 每列：[日期, 成交股數, 成交金額, 成交筆數, 發行量加權股價指數, 漲跌點數]
   return {
-    date,
-    rocDate: String(row[0]).trim(),
+    date: actualDate,
+    requestedDate: date,
+    matchedRequest: !!exact,
+    rocDate,
     turnoverYi: toYi(num(row[2])),
     taiexClose: num(row[4]),
     taiexChange: num(row[5])

@@ -46,15 +46,31 @@ jobs:
       - name: 決定抓取日期
         id: pick
         run: |
+          # 取「最近一個已收盤的台股交易日」，而不是依排程時段猜。
+          #
+          # 舊寫法是比對 UTC 小時等於 23 來分辨「傍晚那次」與「隔天早上那次」。
+          # 8/27 出事：GitHub 把 11:00 UTC 的排程延後約 10 小時、20:54 UTC 才跑，
+          # 於是落到 else 分支，而當下台北已是 8/28 凌晨——抓了一個還沒開盤的
+          # 日期，融資融券／三大法人／台指期三個來源全部回「尚未發布」。
+          #
+          # 改用與啟動時刻無關的規則：台北時間未過 15:00（收盤 13:30 加緩衝）
+          # 就取前一天，否則取當天；再往回跳過週六日。不論排程延遲多久都成立。
           if [ -n "${{ inputs.date }}" ]; then
-            D="${{ inputs.date }}"                       # 手動指定
-          elif [ "$(date -u +%H)" = "23" ]; then
-            D="$(TZ=Asia/Taipei date -d yesterday +%Y%m%d)"  # 隔天早上那次：抓前一交易日
+            D="${{ inputs.date }}"                       # 手動指定優先
           else
-            D="$(TZ=Asia/Taipei date +%Y%m%d)"           # 傍晚那次：抓當天
+            TPE_H=$(TZ=Asia/Taipei date +%H)
+            if [ "$((10#$TPE_H))" -lt 15 ]; then
+              D="$(TZ=Asia/Taipei date -d yesterday +%Y%m%d)"
+            else
+              D="$(TZ=Asia/Taipei date +%Y%m%d)"
+            fi
+            # 週六日往前退到最近的平日（國定假日仍由腳本回報休市）
+            while [ "$(date -d "$D" +%u)" -gt 5 ]; do
+              D="$(date -d "$D -1 day" +%Y%m%d)"
+            done
           fi
           echo "date=$D" >> "$GITHUB_OUTPUT"
-          echo "抓取日期：$D"
+          echo "抓取日期：$D（台北時間 $(TZ=Asia/Taipei date '+%Y/%m/%d %H:%M')）"
 
       - name: 抓取台股數據
         run: node scripts/fetch-tw-market.mjs ${{ steps.pick.outputs.date }}
