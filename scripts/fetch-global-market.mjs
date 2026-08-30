@@ -39,23 +39,31 @@ const TARGETS = [
   { key: "us10y",  label: "US 10Y 殖利率",   yahoo: "%5ETNX",     stooq: null },
   { key: "us30y",  label: "US 30Y 殖利率",   yahoo: "%5ETYX",     stooq: null },
   { key: "us5y",   label: "US 5Y 殖利率",    yahoo: "%5EFVX",     stooq: null },
-  { key: "dxy",    label: "DXY 美元指數",    yahoo: "DX-Y.NYB",   stooq: null },
-  // rollingFuture: 連續近月期貨。兩個已知問題見 fromYahoo 的說明。
-  { key: "wti",    label: "WTI 原油",        yahoo: "CL%3DF",     stooq: "cl.f",   rollingFuture: true },
-  { key: "brent",  label: "Brent 原油",      yahoo: "BZ%3DF",     stooq: null,     rollingFuture: true },
+  // lastBarUnreliable：這個標的最後一根日線在本專案的抓取時點還會變，
+  // 一律退用前一根。判斷依據是實測，不是分類——凡是近乎 24 小時交易的
+  // 標的都中招，現金股市指數（SOX/S&P/Nasdaq/Dow/VIX/殖利率）則正常。
+  //
+  // 8/31 新增 dxy 與三組匯率。當天發現兩件事：
+  //   ① usdjpy 的 8/28 收盤，週六抓到 160.038，週一再抓變成 159.321。
+  //      160 正好是本站追蹤中的關鍵價位，差點誤報「週五收盤破 160」。
+  //   ② dxy 的「已收盤」落在 8/30——那是週日，根本不是交易日；
+  //      8/28 的真實收盤 99.70 反而被當成前一根。
+  { key: "dxy",    label: "DXY 美元指數",    yahoo: "DX-Y.NYB",   stooq: null,     lastBarUnreliable: true },
+  { key: "wti",    label: "WTI 原油",        yahoo: "CL%3DF",     stooq: "cl.f",   lastBarUnreliable: true },
+  { key: "brent",  label: "Brent 原油",      yahoo: "BZ%3DF",     stooq: null,     lastBarUnreliable: true },
   // 黃金曾短暫改抓現貨 XAUUSD=X，但 Yahoo 回 404、Stooq 該符號也解析
-  // 失敗，故改回 GC=F 並標記 rollingFuture。
+  // 失敗，故改回 GC=F 並標記 lastBarUnreliable。
   //
   // 一併更正一個我自己的誤判：v4.0／v4.1 黃金數字錯誤，我原先歸因於
   // 「連續合約換月造成序列位移約 88 點」——那是錯的。對照後發現每次
   // 抓取裡的**前一根** K 棒都與後續序列完全吻合（v4.1 推得的前收
   // 4,640.80 = 今日序列的 8/24），錯的只有**最後一根**。也就是說黃金
-  // 跟 WTI／Brent 是同一個病：最後一根日線尚未定案。rollingFuture 就
+  // 跟 WTI／Brent 是同一個病：最後一根日線尚未定案。lastBarUnreliable 就
   // 足以修好，不需要換符號。
-  { key: "gold",   label: "黃金",            yahoo: "GC%3DF",     stooq: "xauusd", rollingFuture: true },
-  { key: "usdjpy", label: "USD/JPY",         yahoo: "JPY%3DX",    stooq: "usdjpy" },
-  { key: "usdcny", label: "USD/CNY",         yahoo: "CNY%3DX",    stooq: "usdcny" },
-  { key: "usdtwd", label: "USD/TWD",         yahoo: "TWD%3DX",    stooq: "usdtwd" },
+  { key: "gold",   label: "黃金",            yahoo: "GC%3DF",     stooq: "xauusd", lastBarUnreliable: true },
+  { key: "usdjpy", label: "USD/JPY",         yahoo: "JPY%3DX",    stooq: "usdjpy", lastBarUnreliable: true },
+  { key: "usdcny", label: "USD/CNY",         yahoo: "CNY%3DX",    stooq: "usdcny", lastBarUnreliable: true },
+  { key: "usdtwd", label: "USD/TWD",         yahoo: "TWD%3DX",    stooq: "usdtwd", lastBarUnreliable: true },
   { key: "otcTwo", label: "櫃買指數 OTC",    yahoo: "%5ETWOII",   stooq: null },
   { key: "taiex",  label: "TAIEX（交叉驗證）", yahoo: "%5ETWII",  stooq: "^twse" }
 ];
@@ -264,12 +272,12 @@ async function fromYahoo(sym, opts = {}) {
   //   比今天舊                   → 已經是過去的日期，收定了
   //   就是今天                   → 看今天的收盤時刻到了沒
   //
-  // rollingFuture 例外：CME 能量／金屬合約的日線不以當日收盤定案。
+  // lastBarUnreliable 例外：CME 能量／金屬合約的日線不以當日收盤定案。
   // 實測 8/26 早上抓到的 WTI「8/25 收盤」是 80.97，隔天同一根 K 棒
   // 已變成 82.36（Brent 85.86 → 88.58）。在本專案的兩個抓取時點，
   // 最後一根 =F 日線都還在變動，所以一律視為未收盤、退用前一根。
   const lastDate = series[series.length - 1].date;
-  const live = opts.rollingFuture
+  const live = opts.lastBarUnreliable
     ? true
     : lastDate > todayEx
       ? true
@@ -372,7 +380,7 @@ async function main() {
     ]) {
       if (!sym) continue;
       try {
-        const value = await fn(sym, { rollingFuture: !!t.rollingFuture });
+        const value = await fn(sym, { lastBarUnreliable: !!t.lastBarUnreliable });
         const age = stalenessDays(value.asOf);
         if (age != null && age > MAX_STALE_DAYS) {
           throw new Error(
