@@ -95,7 +95,7 @@
   // ---- ① global -----------------------------------------------------------
   var g = D.global || {};
   html(el("global-rows"), (g.rows || []).map(function (r) {
-    return "<tr><td>" + esc(r.name) + '</td><td class="num">' + esc(r.value) +
+    return "<tr><td>" + esc(r.name) + '</td><td class="num">' + mdBold(r.value) +
            '</td><td class="sig">' + sigDot(r.signal) + "</td></tr>";
   }).join(""));
   html(el("global-notes"), (g.notes || []).map(function (n) {
@@ -290,7 +290,7 @@
 
   // ---- 👀 watchlist -------------------------------------------------------
   html(el("watch-list"), (D.watchlist || []).map(function (w, i) {
-    return '<li><span class="idx">' + (i + 1) + "</span>" + esc(w) + "</li>";
+    return '<li><span class="idx">' + (i + 1) + "</span>" + mdBold(w) + "</li>";
   }).join(""));
 
   // ---- 📚 sources ---------------------------------------------------------
