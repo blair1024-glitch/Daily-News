@@ -6,7 +6,7 @@
  * ok:false 代表該標的當次抓不到，error 說明原因——請據實標註，不要沿用舊值。
  */
 window.MARKET_GLOBAL = {
-  "fetchedAt": "2026-08-30T23:43:45.278Z",
+  "fetchedAt": "2026-08-31T17:55:31.667Z",
   "okCount": 16,
   "totalCount": 17,
   "items": {
@@ -21,14 +21,14 @@ window.MARKET_GLOBAL = {
         "changePct": -3.47,
         "asOf": "2026-08-28",
         "prevAsOf": "2026-08-27",
-        "live": false,
+        "live": true,
         "latest": {
-          "date": "2026-08-28",
-          "close": 11469.6602,
-          "prevDate": "2026-08-27",
-          "prevClose": 11882.1699,
-          "change": -412.5097,
-          "changePct": -3.47
+          "date": "2026-08-31",
+          "close": 11504.2207,
+          "prevDate": "2026-08-28",
+          "prevClose": 11469.6602,
+          "change": 34.5605,
+          "changePct": 0.3
         },
         "settled": {
           "date": "2026-08-28",
@@ -38,12 +38,8 @@ window.MARKET_GLOBAL = {
           "change": -412.5097,
           "changePct": -3.47
         },
-        "quotePrice": 11469.662,
+        "quotePrice": 11504.221,
         "series": [
-          {
-            "date": "2026-08-21",
-            "close": 11740.3701
-          },
           {
             "date": "2026-08-24",
             "close": 11423.1699
@@ -63,6 +59,10 @@ window.MARKET_GLOBAL = {
           {
             "date": "2026-08-28",
             "close": 11469.6602
+          },
+          {
+            "date": "2026-08-31",
+            "close": 11504.2207
           }
         ],
         "currency": "USD",
@@ -81,14 +81,14 @@ window.MARKET_GLOBAL = {
         "changePct": -0.55,
         "asOf": "2026-08-28",
         "prevAsOf": "2026-08-27",
-        "live": false,
+        "live": true,
         "latest": {
-          "date": "2026-08-28",
-          "close": 14.43,
-          "prevDate": "2026-08-27",
-          "prevClose": 14.51,
-          "change": -0.08,
-          "changePct": -0.55
+          "date": "2026-08-31",
+          "close": 15.12,
+          "prevDate": "2026-08-28",
+          "prevClose": 14.43,
+          "change": 0.69,
+          "changePct": 4.78
         },
         "settled": {
           "date": "2026-08-28",
@@ -98,12 +98,8 @@ window.MARKET_GLOBAL = {
           "change": -0.08,
           "changePct": -0.55
         },
-        "quotePrice": 14.43,
+        "quotePrice": 15.12,
         "series": [
-          {
-            "date": "2026-08-21",
-            "close": 15.13
-          },
           {
             "date": "2026-08-24",
             "close": 15.85
@@ -123,6 +119,10 @@ window.MARKET_GLOBAL = {
           {
             "date": "2026-08-28",
             "close": 14.43
+          },
+          {
+            "date": "2026-08-31",
+            "close": 15.12
           }
         ],
         "currency": "USD",
@@ -141,14 +141,14 @@ window.MARKET_GLOBAL = {
         "changePct": -0.25,
         "asOf": "2026-08-28",
         "prevAsOf": "2026-08-27",
-        "live": false,
+        "live": true,
         "latest": {
-          "date": "2026-08-28",
-          "close": 7711.7598,
-          "prevDate": "2026-08-27",
-          "prevClose": 7730.9902,
-          "change": -19.2304,
-          "changePct": -0.25
+          "date": "2026-08-31",
+          "close": 7684.71,
+          "prevDate": "2026-08-28",
+          "prevClose": 7711.7598,
+          "change": -27.0498,
+          "changePct": -0.35
         },
         "settled": {
           "date": "2026-08-28",
@@ -158,12 +158,8 @@ window.MARKET_GLOBAL = {
           "change": -19.2304,
           "changePct": -0.25
         },
-        "quotePrice": 7711.76,
+        "quotePrice": 7684.71,
         "series": [
-          {
-            "date": "2026-08-21",
-            "close": 7674.3701
-          },
           {
             "date": "2026-08-24",
             "close": 7652.8599
@@ -183,6 +179,10 @@ window.MARKET_GLOBAL = {
           {
             "date": "2026-08-28",
             "close": 7711.7598
+          },
+          {
+            "date": "2026-08-31",
+            "close": 7684.71
           }
         ],
         "currency": "USD",
@@ -201,14 +201,14 @@ window.MARKET_GLOBAL = {
         "changePct": -0.52,
         "asOf": "2026-08-28",
         "prevAsOf": "2026-08-27",
-        "live": false,
+        "live": true,
         "latest": {
-          "date": "2026-08-28",
-          "close": 26402.4199,
-          "prevDate": "2026-08-27",
-          "prevClose": 26541.3496,
-          "change": -138.9297,
-          "changePct": -0.52
+          "date": "2026-08-31",
+          "close": 26330.334,
+          "prevDate": "2026-08-28",
+          "prevClose": 26402.4199,
+          "change": -72.0859,
+          "changePct": -0.27
         },
         "settled": {
           "date": "2026-08-28",
@@ -218,12 +218,8 @@ window.MARKET_GLOBAL = {
           "change": -138.9297,
           "changePct": -0.52
         },
-        "quotePrice": 26402.424,
+        "quotePrice": 26330.334,
         "series": [
-          {
-            "date": "2026-08-21",
-            "close": 26180.4609
-          },
           {
             "date": "2026-08-24",
             "close": 25980.1895
@@ -243,6 +239,10 @@ window.MARKET_GLOBAL = {
           {
             "date": "2026-08-28",
             "close": 26402.4199
+          },
+          {
+            "date": "2026-08-31",
+            "close": 26330.334
           }
         ],
         "currency": "USD",
@@ -261,14 +261,14 @@ window.MARKET_GLOBAL = {
         "changePct": -0.02,
         "asOf": "2026-08-28",
         "prevAsOf": "2026-08-27",
-        "live": false,
+        "live": true,
         "latest": {
-          "date": "2026-08-28",
-          "close": 53559.9883,
-          "prevDate": "2026-08-27",
-          "prevClose": 53569.4414,
-          "change": -9.4531,
-          "changePct": -0.02
+          "date": "2026-08-31",
+          "close": 53256.3086,
+          "prevDate": "2026-08-28",
+          "prevClose": 53559.9883,
+          "change": -303.6797,
+          "changePct": -0.57
         },
         "settled": {
           "date": "2026-08-28",
@@ -278,12 +278,8 @@ window.MARKET_GLOBAL = {
           "change": -9.4531,
           "changePct": -0.02
         },
-        "quotePrice": 53559.99,
+        "quotePrice": 53256.31,
         "series": [
-          {
-            "date": "2026-08-21",
-            "close": 53277.0117
-          },
           {
             "date": "2026-08-24",
             "close": 53417.1602
@@ -303,6 +299,10 @@ window.MARKET_GLOBAL = {
           {
             "date": "2026-08-28",
             "close": 53559.9883
+          },
+          {
+            "date": "2026-08-31",
+            "close": 53256.3086
           }
         ],
         "currency": "USD",
@@ -321,14 +321,14 @@ window.MARKET_GLOBAL = {
         "changePct": 1.03,
         "asOf": "2026-08-28",
         "prevAsOf": "2026-08-27",
-        "live": false,
+        "live": true,
         "latest": {
-          "date": "2026-08-28",
-          "close": 4.72,
-          "prevDate": "2026-08-27",
-          "prevClose": 4.672,
-          "change": 0.048,
-          "changePct": 1.03
+          "date": "2026-08-31",
+          "close": 4.758,
+          "prevDate": "2026-08-28",
+          "prevClose": 4.72,
+          "change": 0.038,
+          "changePct": 0.81
         },
         "settled": {
           "date": "2026-08-28",
@@ -338,12 +338,8 @@ window.MARKET_GLOBAL = {
           "change": 0.048,
           "changePct": 1.03
         },
-        "quotePrice": 4.72,
+        "quotePrice": 4.7580004,
         "series": [
-          {
-            "date": "2026-08-21",
-            "close": 4.738
-          },
           {
             "date": "2026-08-24",
             "close": 4.704
@@ -363,6 +359,10 @@ window.MARKET_GLOBAL = {
           {
             "date": "2026-08-28",
             "close": 4.72
+          },
+          {
+            "date": "2026-08-31",
+            "close": 4.758
           }
         ],
         "currency": "USD",
@@ -381,14 +381,14 @@ window.MARKET_GLOBAL = {
         "changePct": 0.29,
         "asOf": "2026-08-28",
         "prevAsOf": "2026-08-27",
-        "live": false,
+        "live": true,
         "latest": {
-          "date": "2026-08-28",
-          "close": 5.206,
-          "prevDate": "2026-08-27",
-          "prevClose": 5.191,
-          "change": 0.015,
-          "changePct": 0.29
+          "date": "2026-08-31",
+          "close": 5.255,
+          "prevDate": "2026-08-28",
+          "prevClose": 5.206,
+          "change": 0.049,
+          "changePct": 0.94
         },
         "settled": {
           "date": "2026-08-28",
@@ -398,12 +398,8 @@ window.MARKET_GLOBAL = {
           "change": 0.015,
           "changePct": 0.29
         },
-        "quotePrice": 5.206,
+        "quotePrice": 5.255,
         "series": [
-          {
-            "date": "2026-08-21",
-            "close": 5.276
-          },
           {
             "date": "2026-08-24",
             "close": 5.231
@@ -423,6 +419,10 @@ window.MARKET_GLOBAL = {
           {
             "date": "2026-08-28",
             "close": 5.206
+          },
+          {
+            "date": "2026-08-31",
+            "close": 5.255
           }
         ],
         "currency": "USD",
@@ -441,14 +441,14 @@ window.MARKET_GLOBAL = {
         "changePct": 1.93,
         "asOf": "2026-08-28",
         "prevAsOf": "2026-08-27",
-        "live": false,
+        "live": true,
         "latest": {
-          "date": "2026-08-28",
-          "close": 4.481,
-          "prevDate": "2026-08-27",
-          "prevClose": 4.396,
-          "change": 0.085,
-          "changePct": 1.93
+          "date": "2026-08-31",
+          "close": 4.502,
+          "prevDate": "2026-08-28",
+          "prevClose": 4.481,
+          "change": 0.021,
+          "changePct": 0.47
         },
         "settled": {
           "date": "2026-08-28",
@@ -458,12 +458,8 @@ window.MARKET_GLOBAL = {
           "change": 0.085,
           "changePct": 1.93
         },
-        "quotePrice": 4.481,
+        "quotePrice": 4.502,
         "series": [
-          {
-            "date": "2026-08-21",
-            "close": 4.424
-          },
           {
             "date": "2026-08-24",
             "close": 4.408
@@ -483,6 +479,10 @@ window.MARKET_GLOBAL = {
           {
             "date": "2026-08-28",
             "close": 4.481
+          },
+          {
+            "date": "2026-08-31",
+            "close": 4.502
           }
         ],
         "currency": "USD",
@@ -503,12 +503,12 @@ window.MARKET_GLOBAL = {
         "prevAsOf": "2026-08-27",
         "live": true,
         "latest": {
-          "date": "2026-08-30",
-          "close": 99.65,
+          "date": "2026-08-31",
+          "close": 99.411,
           "prevDate": "2026-08-28",
           "prevClose": 99.7,
-          "change": -0.05,
-          "changePct": -0.05
+          "change": -0.289,
+          "changePct": -0.29
         },
         "settled": {
           "date": "2026-08-28",
@@ -518,7 +518,7 @@ window.MARKET_GLOBAL = {
           "change": 0.54,
           "changePct": 0.54
         },
-        "quotePrice": 99.65,
+        "quotePrice": 99.411,
         "series": [
           {
             "date": "2026-08-24",
@@ -541,8 +541,8 @@ window.MARKET_GLOBAL = {
             "close": 99.7
           },
           {
-            "date": "2026-08-30",
-            "close": 99.65
+            "date": "2026-08-31",
+            "close": 99.411
           }
         ],
         "currency": "USD",
@@ -563,12 +563,12 @@ window.MARKET_GLOBAL = {
         "prevAsOf": "2026-08-27",
         "live": true,
         "latest": {
-          "date": "2026-08-30",
-          "close": 84.8,
+          "date": "2026-08-31",
+          "close": 85.55,
           "prevDate": "2026-08-28",
           "prevClose": 83.4,
-          "change": 1.4,
-          "changePct": 1.68
+          "change": 2.15,
+          "changePct": 2.58
         },
         "settled": {
           "date": "2026-08-28",
@@ -578,7 +578,7 @@ window.MARKET_GLOBAL = {
           "change": -0.13,
           "changePct": -0.16
         },
-        "quotePrice": 84.8,
+        "quotePrice": 85.55,
         "series": [
           {
             "date": "2026-08-24",
@@ -601,8 +601,8 @@ window.MARKET_GLOBAL = {
             "close": 83.4
           },
           {
-            "date": "2026-08-30",
-            "close": 84.8
+            "date": "2026-08-31",
+            "close": 85.55
           }
         ],
         "currency": "USD",
@@ -623,12 +623,12 @@ window.MARKET_GLOBAL = {
         "prevAsOf": "2026-08-27",
         "live": true,
         "latest": {
-          "date": "2026-08-30",
-          "close": 89.66,
+          "date": "2026-08-31",
+          "close": 88.2,
           "prevDate": "2026-08-28",
           "prevClose": 89.31,
-          "change": 0.35,
-          "changePct": 0.39
+          "change": -1.11,
+          "changePct": -1.24
         },
         "settled": {
           "date": "2026-08-28",
@@ -638,7 +638,7 @@ window.MARKET_GLOBAL = {
           "change": -0.39,
           "changePct": -0.43
         },
-        "quotePrice": 89.66,
+        "quotePrice": 88.2,
         "series": [
           {
             "date": "2026-08-24",
@@ -661,8 +661,8 @@ window.MARKET_GLOBAL = {
             "close": 89.31
           },
           {
-            "date": "2026-08-30",
-            "close": 89.66
+            "date": "2026-08-31",
+            "close": 88.2
           }
         ],
         "currency": "USD",
@@ -683,12 +683,12 @@ window.MARKET_GLOBAL = {
         "prevAsOf": "2026-08-27",
         "live": true,
         "latest": {
-          "date": "2026-08-30",
-          "close": 4503.8999,
+          "date": "2026-08-31",
+          "close": 4486.5,
           "prevDate": "2026-08-28",
           "prevClose": 4478.1001,
-          "change": 25.7998,
-          "changePct": 0.58
+          "change": 8.3999,
+          "changePct": 0.19
         },
         "settled": {
           "date": "2026-08-28",
@@ -698,7 +698,7 @@ window.MARKET_GLOBAL = {
           "change": -131.6001,
           "changePct": -2.85
         },
-        "quotePrice": 4503.9,
+        "quotePrice": 4486.5,
         "series": [
           {
             "date": "2026-08-24",
@@ -721,8 +721,8 @@ window.MARKET_GLOBAL = {
             "close": 4478.1001
           },
           {
-            "date": "2026-08-30",
-            "close": 4503.8999
+            "date": "2026-08-31",
+            "close": 4486.5
           }
         ],
         "currency": "USD",
@@ -744,11 +744,11 @@ window.MARKET_GLOBAL = {
         "live": true,
         "latest": {
           "date": "2026-08-31",
-          "close": 160.119,
+          "close": 159.692,
           "prevDate": "2026-08-28",
           "prevClose": 159.321,
-          "change": 0.798,
-          "changePct": 0.5
+          "change": 0.371,
+          "changePct": 0.23
         },
         "settled": {
           "date": "2026-08-28",
@@ -758,7 +758,7 @@ window.MARKET_GLOBAL = {
           "change": 0.066,
           "changePct": 0.04
         },
-        "quotePrice": 160.119,
+        "quotePrice": 159.692,
         "series": [
           {
             "date": "2026-08-24",
@@ -782,7 +782,7 @@ window.MARKET_GLOBAL = {
           },
           {
             "date": "2026-08-31",
-            "close": 160.119
+            "close": 159.692
           }
         ],
         "currency": "JPY",
@@ -804,11 +804,11 @@ window.MARKET_GLOBAL = {
         "live": true,
         "latest": {
           "date": "2026-08-31",
-          "close": 6.7208,
+          "close": 6.7078,
           "prevDate": "2026-08-28",
           "prevClose": 6.7225,
-          "change": -0.0017,
-          "changePct": -0.03
+          "change": -0.0147,
+          "changePct": -0.22
         },
         "settled": {
           "date": "2026-08-28",
@@ -818,7 +818,7 @@ window.MARKET_GLOBAL = {
           "change": 0,
           "changePct": 0
         },
-        "quotePrice": 6.7208,
+        "quotePrice": 6.7078,
         "series": [
           {
             "date": "2026-08-24",
@@ -842,7 +842,7 @@ window.MARKET_GLOBAL = {
           },
           {
             "date": "2026-08-31",
-            "close": 6.7208
+            "close": 6.7078
           }
         ],
         "currency": "CNY",
@@ -864,11 +864,11 @@ window.MARKET_GLOBAL = {
         "live": true,
         "latest": {
           "date": "2026-08-31",
-          "close": 31.625,
+          "close": 31.681,
           "prevDate": "2026-08-28",
           "prevClose": 31.6609,
-          "change": -0.0359,
-          "changePct": -0.11
+          "change": 0.0201,
+          "changePct": 0.06
         },
         "settled": {
           "date": "2026-08-28",
@@ -878,7 +878,7 @@ window.MARKET_GLOBAL = {
           "change": -0.145,
           "changePct": -0.46
         },
-        "quotePrice": 31.625,
+        "quotePrice": 31.681,
         "series": [
           {
             "date": "2026-08-24",
@@ -902,7 +902,7 @@ window.MARKET_GLOBAL = {
           },
           {
             "date": "2026-08-31",
-            "close": 31.625
+            "close": 31.681
           }
         ],
         "currency": "TWD",
@@ -913,7 +913,7 @@ window.MARKET_GLOBAL = {
     "otcTwo": {
       "ok": false,
       "label": "櫃買指數 OTC",
-      "error": "yahoo(%5ETWOII) → 報價過期：asOf 2024-10-12 距今 687 天（上限 10 天），該來源可能已停止更新此代號"
+      "error": "yahoo(%5ETWOII) → 報價過期：asOf 2024-10-12 距今 688 天（上限 10 天），該來源可能已停止更新此代號"
     },
     "taiex": {
       "ok": true,
@@ -943,7 +943,7 @@ window.MARKET_GLOBAL = {
           "change": 356.2304,
           "changePct": 0.77
         },
-        "quotePrice": 46331.45,
+        "quotePrice": 46128.47,
         "series": [
           {
             "date": "2026-08-21",
