@@ -140,13 +140,33 @@ function deltaAt(series, i) {
   const cur = series[i];
   const prev = i > 0 ? series[i - 1] : null;
   const change = prev ? round(cur.close - prev.close, 4) : null;
+
+  // 陣列相鄰 ≠ 交易日相鄰。9/1 那次抓取，Yahoo 把 **8/28 整根 K 棒**
+  // 從所有美股序列裡漏掉了（8/27 直接接到 8/31），於是「日變動」變成
+  // 跨兩天的變動：S&P 顯示 -44.85，實際 8/31 當日只跌 25.62。
+  // 收盤價是對的，錯的是漲跌——這種錯不會讓任何欄位變成 null，
+  // 只會安靜地把數字寫錯，所以必須主動標出來。
+  //
+  // gapDays = 兩根 K 棒之間的日曆天數。正常是 1（平日）或 3（週五→週一）；
+  // 超過就可能是國定假日，也可能是漏根，交給每日流程判讀。
+  const gapDays =
+    prev && /^\d{4}-\d{2}-\d{2}$/.test(prev.date) && /^\d{4}-\d{2}-\d{2}$/.test(cur.date)
+      ? Math.round(
+          (Date.parse(cur.date + "T00:00:00Z") - Date.parse(prev.date + "T00:00:00Z")) /
+            86_400_000
+        )
+      : null;
+
   return {
     date: cur.date,
     close: cur.close,
     prevDate: prev ? prev.date : null,
     prevClose: prev ? prev.close : null,
     change,
-    changePct: prev && prev.close ? round((change / prev.close) * 100, 2) : null
+    changePct: prev && prev.close ? round((change / prev.close) * 100, 2) : null,
+    gapDays,
+    // true = 這個 change 橫跨了不只一個交易日，別直接當日變動用
+    gapSuspect: gapDays != null && gapDays > 3
   };
 }
 
@@ -306,6 +326,8 @@ async function fromYahoo(sym, opts = {}) {
     changePct: settled.changePct,
     asOf: settled.date,
     prevAsOf: settled.prevDate,
+    gapDays: settled.gapDays,       // prevAsOf 到 asOf 的日曆天數
+    gapSuspect: settled.gapSuspect, // true = change 跨了不只一個交易日，勿當日變動用
     live, // true = 抓取當下該市場正在交易，latest 是盤中價
     latest, // 最後一根（可能未收盤）
     settled, // 最後一根已收盤日線（= 上面的 close/change）
@@ -355,6 +377,8 @@ async function fromStooq(sym) {
     changePct: settled.changePct,
     asOf: settled.date,
     prevAsOf: settled.prevDate,
+    gapDays: settled.gapDays,
+    gapSuspect: settled.gapSuspect,
     live: false, // 日線歷史一律是已收盤資料
     latest: settled,
     settled,
