@@ -6,8 +6,8 @@
  * ok:false 代表該欄位當天抓不到，error 說明原因——請據實標註，不要沿用舊值。
  */
 window.MARKET_AUTO = {
-  "fetchedAt": "2026-09-01T05:37:40.094Z",
-  "tradeDate": "20260831",
+  "fetchedAt": "2026-09-01T15:24:12.120Z",
+  "tradeDate": "20260901",
   "marketOpen": true,
   "okCount": 5,
   "totalCount": 5,
@@ -16,45 +16,45 @@ window.MARKET_AUTO = {
       "ok": true,
       "source": "TWSE MI_MARGN",
       "value": {
-        "date": "20260831",
+        "date": "20260901",
         "financingAmountYi": {
-          "prevBalance": 5671.78,
-          "balance": 5698.77,
-          "change": 26.99,
+          "prevBalance": 5698.77,
+          "balance": 5781.15,
+          "change": 82.38,
           "raw": [
             "融資金額(仟元)",
-            "36,246,724",
-            "32,874,717",
-            "672,632",
-            "567,177,536",
-            "569,876,911"
+            "43,407,408",
+            "34,586,673",
+            "582,180",
+            "569,876,903",
+            "578,115,458"
           ]
         },
         "shortSellingAmountYi": null,
         "financingUnits": {
-          "prevBalance": 8892721,
-          "balance": 8860863,
-          "change": -31858,
+          "prevBalance": 8859895,
+          "balance": 8896994,
+          "change": 37099,
           "raw": [
             "融資(交易單位)",
-            "358,623",
-            "385,969",
-            "4,512",
-            "8,892,721",
-            "8,860,863"
+            "438,181",
+            "394,976",
+            "6,106",
+            "8,859,895",
+            "8,896,994"
           ]
         },
         "shortSellingUnits": {
-          "prevBalance": 213833,
-          "balance": 217718,
-          "change": 3885,
+          "prevBalance": 217718,
+          "balance": 220835,
+          "change": 3117,
           "raw": [
             "融券(交易單位)",
-            "19,657",
-            "24,969",
-            "1,427",
-            "213,833",
-            "217,718"
+            "19,778",
+            "25,538",
+            "2,643",
+            "217,718",
+            "220,835"
           ]
         },
         "summaryLabels": [
@@ -68,16 +68,16 @@ window.MARKET_AUTO = {
       "ok": true,
       "source": "TWSE BFI82U",
       "value": {
-        "date": "20260831",
+        "date": "20260901",
         "unit": "億元",
-        "foreign": -143.92,
-        "investmentTrust": -40,
-        "dealer": -74.53,
-        "dealerSelf": -11.79,
-        "dealerHedge": -62.74,
-        "total": -258.46,
-        "checksum": -258.45,
-        "checksumDelta": 0.01,
+        "foreign": 267.08,
+        "investmentTrust": 136,
+        "dealer": 163.29,
+        "dealerSelf": 31.57,
+        "dealerHedge": 131.72,
+        "total": 566.37,
+        "checksum": 566.37,
+        "checksumDelta": 0,
         "unitNames": [
           "自營商(自行買賣)",
           "自營商(避險)",
@@ -92,24 +92,24 @@ window.MARKET_AUTO = {
       "ok": true,
       "source": "TWSE FMTQIK",
       "value": {
-        "date": "20260831",
-        "requestedDate": "20260831",
+        "date": "20260901",
+        "requestedDate": "20260901",
         "matchedRequest": true,
-        "rocDate": "115/08/31",
-        "turnoverYi": 12892.28,
-        "taiexClose": 46128.47,
-        "taiexChange": -202.98
+        "rocDate": "115/09/01",
+        "turnoverYi": 11875.72,
+        "taiexClose": 46948.72,
+        "taiexChange": 820.25
       }
     },
     "otcTpex": {
       "ok": true,
       "source": "TPEx OpenAPI",
       "value": {
-        "date": "20260831",
+        "date": "20260901",
         "index": {
-          "close": 401.7,
+          "close": 410.77,
           "source": "TWSE MIS getStockInfo（otc_o00.tw）",
-          "field": "y",
+          "field": "z",
           "misDate": "20260901",
           "open": 402.12,
           "high": 412.9,
@@ -118,26 +118,26 @@ window.MARKET_AUTO = {
           "name": "櫃買指數"
         },
         "indexCross": {
-          "taiexFromMis": 46128.47,
-          "field": "y",
+          "taiexFromMis": 46948.72,
+          "field": "z",
           "misDate": "20260901"
         },
-        "turnoverYi": 3366.37,
-        "quoteCount": 10713
+        "turnoverYi": 2599.99,
+        "quoteCount": 10770
       }
     },
     "txfTaifex": {
       "ok": true,
       "source": "TAIFEX futDataDown",
       "value": {
-        "date": "20260831",
+        "date": "20260901",
         "contractMonth": "202609",
-        "close": 45983,
-        "change": -374,
-        "volume": 53336,
-        "openInterest": 104409,
+        "close": 47209,
+        "change": 1232,
+        "volume": 57627,
+        "openInterest": 104368,
         "session": "一般",
-        "rowCount": 23,
+        "rowCount": 24,
         "header": [
           "交易日期",
           "契約",
