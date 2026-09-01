@@ -1,0 +1,27 @@
+name: 探測櫃買指數端點
+
+# 只在手動觸發時執行，不寫任何資料檔。
+# 用途是把一批候選端點打一遍、把實際回應印進 log，用來釘住可用路徑。
+# 產生 dashboard 的 session 對 tpex.org.tw 等網域被 egress proxy 擋掉（403），
+# 只有 Actions runner 連得上，所以探測必須在這裡做。
+
+on:
+  workflow_dispatch:
+    inputs:
+      date:
+        description: "指定日期 YYYYMMDD（留空 = 台北今天）"
+        required: false
+        type: string
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: 探測
+        run: node scripts/probe-otc-index.mjs ${{ inputs.date }}
