@@ -64,7 +64,9 @@ const TARGETS = [
   { key: "usdjpy", label: "USD/JPY",         yahoo: "JPY%3DX",    stooq: "usdjpy", lastBarUnreliable: true },
   { key: "usdcny", label: "USD/CNY",         yahoo: "CNY%3DX",    stooq: "usdcny", lastBarUnreliable: true },
   { key: "usdtwd", label: "USD/TWD",         yahoo: "TWD%3DX",    stooq: "usdtwd", lastBarUnreliable: true },
-  { key: "otcTwo", label: "櫃買指數 OTC",    yahoo: "%5ETWOII",   stooq: null },
+  // otcTwo（Yahoo ^TWOII）已於 2026/09/01 移除：那是 2024-10-12 的死報價，
+  // 值 269.45 與真實水準差約 35%，每天以「報價過期」失敗一次只是噪音。
+  // 櫃買指數改由 fetch-tw-market.mjs 走證交所 MIS（otc_o00.tw）取得。
   { key: "taiex",  label: "TAIEX（交叉驗證）", yahoo: "%5ETWII",  stooq: "^twse" }
 ];
 

@@ -325,30 +325,86 @@ async function tpexOtc(date) {
     }
   }
 
-  // ② 再試指數點位。TPEx 的 OpenAPI 目錄是 JS 渲染的（原始碼無資料集名稱），
-  //    swagger.json 回 520，因此只能試少數幾個候選，且用短 timeout
-  //    避免拖累整體。目前尚未找到可用端點——見 README 的已知限制。
+  // ② 指數點位——這一項空了很久，2026/09/01 由 probe-otc-index.mjs 找到來源。
+  //
+  //    走的不是櫃買自己的網站，而是**證交所的 MIS 即時資訊服務**：
+  //      https://mis.twse.com.tw/stock/api/getStockInfo.jsp?ex_ch=otc_o00.tw
+  //    櫃買指數在 MIS 的代號是 o00（加權指數是 t00）。注意兩件事：
+  //      - 必須帶 Referer，否則被擋
+  //      - mis.tpex.org.tw 同路徑回的是 HTML 頁，只有 mis.twse.com.tw 可用
+  //
+  //    同時抓 t00 是為了**交叉驗證**：t00 的收盤／昨收應該等於 TWSE
+  //    FMTQIK 的加權指數收盤。對得上，才敢相信同一個回應裡的 o00。
+  //
+  //    欄位：z=最新成交價、y=昨收、o=開盤、h=最高、l=最低、d=資料日期。
+  //    MIS 給的是「當下這一盤」，所以要看 d 決定該取 z 還是 y：
+  //      d == 要的日期      → 用 z（當日收盤）
+  //      d == 要的日期的次日 → 用 y（該日已成昨收）
+  //    其他情況一律不採用，寧可留 null。
   let index = null;
-  for (const url of [
-    "https://www.tpex.org.tw/openapi/v1/tpex_mainboard_daily_index",
-    "https://www.tpex.org.tw/openapi/v1/tpex_index_summary"
-  ]) {
-    try {
-      const j = await getJson("TPEx index", url, undefined, 10_000);
-      if (Array.isArray(j) && j.length) {
-        const row = j.find((r) => /櫃買|大盤|OTC/i.test(JSON.stringify(r))) || j[0];
-        index = { endpoint: url, keys: Object.keys(row), row };
-        break;
-      }
-    } catch (e) {
-      notes.push(`index ${url.split("/").pop()} → ${String(e.message).slice(0, 60)}`);
+  let indexCross = null;
+  try {
+    const j = await getJson(
+      "TWSE MIS o00+t00",
+      "https://mis.twse.com.tw/stock/api/getStockInfo.jsp?ex_ch=tse_t00.tw|otc_o00.tw&json=1&delay=0",
+      { headers: { Referer: "https://mis.twse.com.tw/stock/index.jsp" } },
+      15_000
+    );
+    const arr = Array.isArray(j?.msgArray) ? j.msgArray : [];
+    const pick = (code) => arr.find((r) => String(r.c).trim() === code) || null;
+    const otc = pick("o00");
+    const tse = pick("t00");
+
+    const valueFor = (row) => {
+      if (!row) return null;
+      const d = String(row.d || "").trim();
+      if (d === date) return { value: num(row.z), field: "z", misDate: d };
+      // d 是次日 → 要的那天已經變成「昨收」
+      const next = new Date(
+        Number(date.slice(0, 4)),
+        Number(date.slice(4, 6)) - 1,
+        Number(date.slice(6, 8)) + 1
+      );
+      const nextStr =
+        `${next.getFullYear()}` +
+        String(next.getMonth() + 1).padStart(2, "0") +
+        String(next.getDate()).padStart(2, "0");
+      if (d === nextStr) return { value: num(row.y), field: "y", misDate: d };
+      return { value: null, field: null, misDate: d };
+    };
+
+    const o = valueFor(otc);
+    const t = valueFor(tse);
+
+    if (o && o.value != null) {
+      index = {
+        close: o.value,
+        source: "TWSE MIS getStockInfo（otc_o00.tw）",
+        field: o.field, // z = 當日收盤，y = 次日回看的昨收
+        misDate: o.misDate,
+        open: num(otc.o),
+        high: num(otc.h),
+        low: num(otc.l),
+        prevClose: num(otc.y),
+        name: String(otc.n || "").trim()
+      };
+    } else {
+      notes.push(`MIS o00 日期不符（回 ${o ? o.misDate : "無資料"}，要 ${date}）`);
     }
+
+    // 交叉驗證：同一個回應裡的加權指數，應與 FMTQIK 的收盤一致。
+    if (t && t.value != null) {
+      indexCross = { taiexFromMis: t.value, field: t.field, misDate: t.misDate };
+    }
+  } catch (e) {
+    notes.push(`MIS → ${String(e.message).slice(0, 100)}`);
   }
 
   if (!index && turnover == null) throw new Error(notes.join(" | ") || "全部來源皆失敗");
   return {
     date,
-    index, // 目前恆為 null，指數點位改由每日 WebSearch 補（見 README 已知限制）
+    index,       // { close, source, field, ... }，取不到才是 null
+    indexCross,  // 同一回應的加權指數，供與 FMTQIK 對照
     turnoverYi: turnover,
     quoteCount,
     notes: notes.length ? notes : undefined

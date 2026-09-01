@@ -39,10 +39,12 @@ https://<你的帳號>.github.io/Daily-News/
 │   ├── market-global.js  # Actions 自動抓的國際行情（勿手動改）
 │   └── stock-3535.js     # 個股頁的所有數字
 ├── scripts/
-│   ├── fetch-tw-market.mjs      # 台股抓數（TWSE／TPEx／TAIFEX）
-│   └── fetch-global-market.mjs  # 國際行情（Yahoo Finance／Stooq）
+│   ├── fetch-tw-market.mjs      # 台股抓數（TWSE／TPEx／TAIFEX／MIS）
+│   ├── fetch-global-market.mjs  # 國際行情（Yahoo Finance／Stooq）
+│   └── probe-otc-index.mjs      # 櫃買指數端點探測（僅手動觸發）
 ├── .github/workflows/
-│   └── fetch-tw-market.yml   # 19:00 抓當日 ＋ 隔天 07:00 補抓
+│   ├── fetch-tw-market.yml   # 19:00 抓當日 ＋ 隔天 07:00 補抓
+│   └── probe-otc-index.yml   # 端點探測，不寫資料檔
 └── README.md
 ```
 
@@ -115,38 +117,50 @@ TAIEX 一度抓到 44,987.11，而 8/21 的收盤是 45,224.29。
 每個標的都會印一行 `⌚ tz=… 當地=… 末根=… tp.end=… live=…` 的診斷到 Actions log，
 日期若再跳掉可直接定位。
 
-**期貨標的（WTI／Brent／黃金）一律退用前一根日線。** 這三項在 TARGETS 裡帶
-`rollingFuture: true`，`live` 直接設為 true，`settled` 因此取倒數第二根。原因是 CME
+**期貨與匯率標的一律退用前一根日線。** `dxy`／`wti`／`brent`／`gold`／`usdjpy`／
+`usdcny`／`usdtwd` 在 TARGETS 裡帶 `lastBarUnreliable: true`，`live` 直接設為 true，`settled` 因此取倒數第二根。原因是 CME
 能量與金屬合約的日線在本專案的兩個抓取時點都還沒定案：8/26 早上抓到的「8/25 收盤」
 WTI 是 80.97，隔天同一根 K 棒已變成 82.36（Brent 85.86 → 88.58、黃金 4,724.70 →
-4,638.10）。代價是這三項的 `asOf` 會比其他標的落後一個交易日——**引用時務必照著
+4,638.10）。代價是這幾項的 `asOf` 會比其他標的落後一個交易日——**引用時務必照著
 `asOf` 標日期**，不要跟美股放在同一個日期下。
 
 > 這個問題一度被我誤判為「連續合約換月造成序列位移」。實際不是：每次抓取裡的
 > **前一根** K 棒都與後續序列吻合，錯的只有最後一根。判斷方法很簡單——用
 > `close - change` 推回前收，再跟隔天序列裡同一天的值對照，吻合就不是換月問題。
 
+### ✅ 已關閉：櫃買 OTC 指數點位
+
+這是本專案最久的資料缺口，2026/09/01 關閉。
+
+**為什麼卡這麼久**：櫃買中心的 OpenAPI 目錄頁是 JS 渲染的、`swagger.json` 回 520、
+猜的資料集名稱與新舊網站 AJAX 路徑全部回 404 頁（HTTP 200 但內容是 HTML）。
+Yahoo 的 `^TWOII` 更危險——它認得代號、回一個量級看似正確的報價 269.45，
+但 `regularMarketTime` 停在 **2024-10-12**，是死報價，而且**與真實水準差約 35%**
+（8/31 實際約 401.70）。這一項靠 `MAX_STALE_DAYS` 的過期檢查擋著。
+
+**解法**：走**證交所的 MIS 即時資訊服務**，不走櫃買自己的網站。
+
+```
+https://mis.twse.com.tw/stock/api/getStockInfo.jsp?ex_ch=tse_t00.tw|otc_o00.tw&json=1&delay=0
+```
+
+- 櫃買指數在 MIS 的代號是 `o00`，加權指數是 `t00`
+- **必須帶 `Referer`**，否則被擋；`mis.tpex.org.tw` 的同路徑只回 HTML 頁，只有
+  `mis.twse.com.tw` 可用
+- 欄位：`z`=最新成交價、`y`=昨收、`o`=開盤、`h`=最高、`l`=最低、`d`=資料日期
+- MIS 給的是「當下這一盤」，所以要看 `d` 決定取 `z` 還是 `y`：`d` 等於要的日期就取
+  `z`，等於次日就取 `y`，其他情況一律不採用、留 `null`
+
+**同時抓 `t00` 是刻意的**：它是交叉驗證欄。`t00` 的收盤／昨收應等於 TWSE FMTQIK 的
+加權指數收盤——首次驗證時兩者都是 **46,128.47**，完全相同，才敢相信同一個回應裡的
+`o00`。結果寫在 `items.otcTpex.value.index`，交叉驗證值寫在 `indexCross`。
+
+`scripts/probe-otc-index.mjs` 是找出這條路的探測腳本（打 18 個候選端點、把實際回應
+印進 log），保留下來供端點改版時重跑：`.github/workflows/probe-otc-index.yml`。
+
 ### 已知限制
 
-**櫃買 OTC 指數點位**：櫃買中心的 OpenAPI 沒有指數端點——目錄頁是 JS 渲染的
-（原始碼裡沒有資料集名稱），`swagger.json` 回 520，候選路徑全是 HTML 404。
-成交金額可以由個股報價彙總得出（已在用）。
-
-Yahoo Finance 的 `^TWOII` 也**不可用**，而且失敗方式很危險：Yahoo 認得這個代號、
-`meta` 回一個看起來完全正常的報價（269.45，量級也對），但
-`timestamp` / `close` 兩個陣列是空的，`regularMarketTime` 指向 **2024-10-12**——
-那是將近兩年前的死報價。照抄就會把 2024 年的數字當成今天的櫃買指數印上頁面。
-
-因此 `fetch-global-market.mjs` 加了一道 `MAX_STALE_DAYS = 10` 的過期檢查：
-任何標的的 `asOf` 距今超過 10 天一律轉為 `ok: false`，錯誤訊息寫明距今幾天。
-`^TWOII` 保留在清單裡，讓它每天以明確理由失敗（若 Yahoo 哪天恢復更新即自動生效）。
-
-**結論：櫃買 OTC 指數點位目前無可用自動來源。**成交金額有（個股彙總），
-點位請用 WebSearch 從盤後新聞補；找不到就標「點位未取得」，**不要推估**。
-
-另有一條 `quoteOnly: true` 的退路：某標的有 `meta` 報價但無日線歷史時會啟用，
-此時前收取自 Yahoo 自報的 `chartPreviousClose`、**未經日線交叉驗證**，
-且 `live: true` 代表那是盤中價。引用時請照 `note` 的敘述標註。
+目前沒有已知的資料缺口。若某欄抓不到，`ok: false` 加 `error` 會據實標註。
 
 > 📌 **為什麼國際行情也要走 Actions？** 早期版本只有台股走自動管道，
 > SOX、原油、黃金、USD/JPY 全靠 WebSearch——但搜尋只讀得到新聞句子裡
@@ -230,6 +244,8 @@ meta: {
 | `futures.future` | `items.txfTaifex.value.close` |
 | `futures.basis` | `txfTaifex.value.close − dailyMarket.value.taiexClose` |
 | `taiex.turnover` | `items.dailyMarket.value.turnoverYi` |
+| 櫃買指數點位 | `items.otcTpex.value.index.close`（來源 MIS `otc_o00.tw`） |
+| 櫃買成交金額 | `items.otcTpex.value.turnoverYi` |
 
 抄之前先確認 `instTwse.value.checksumDelta` 是 0（合計 = 分項加總）。
 若某欄 `ok: false`，才寫 `"未取得"` 並在 `warning` 引述 `error`——不要沿用舊值而不標註。
