@@ -251,7 +251,11 @@ meta: {
 若某欄 `ok: false`，才寫 `"未取得"` 並在 `warning` 引述 `error`——不要沿用舊值而不標註。
 
 內文欄位（`note`、`warning`、`global.notes`、`scores.summary` 等）支援 `**粗體**`，
-renderer 會先做 HTML 逃逸再轉換，寫 markdown 是安全的。
+renderer 會先做 HTML 逃逸再轉換，寫 markdown 是安全的。短欄位中
+`global.rows[].value`、`chips.margin.rows[].value`、`cpi.expectations[].value`、
+`csp.rows[].result`、`watchlist[]` 也走同一條路徑；**`verdict[].state` 不支援**，
+那裡是短標籤，寫了會印出字面的 `**`。發版前用 Playwright 檢查頁面上
+literal `**` 為 0，可以把漏接的欄位抓出來。
 
 ### 4. 推上去
 

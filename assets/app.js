@@ -223,7 +223,7 @@
   html(el("margin-stats"), (mg.rows || []).map(function (r) {
     return '<div class="stat ' + sigClass(r.signal) + '">' +
              '<div class="stat-label">' + esc(r.name) + "</div>" +
-             '<div class="stat-value" style="font-size:1.05rem">' + esc(r.value) + "</div>" +
+             '<div class="stat-value" style="font-size:1.05rem">' + mdBold(r.value) + "</div>" +
            "</div>";
   }).join(""));
   setRich(el("margin-warning"), mg.warning);
