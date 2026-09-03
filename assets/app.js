@@ -108,7 +108,7 @@
   html(el("fed-stats"), (f.stats || []).map(function (s) {
     return '<div class="stat ' + sigClass(s.signal) + '">' +
              '<div class="stat-label">' + esc(s.label) + "</div>" +
-             '<div class="stat-value">' + esc(s.value) + "</div>" +
+             '<div class="stat-value">' + mdBold(s.value) + "</div>" +
            "</div>";
   }).join(""));
   if (f.shift) {
@@ -133,9 +133,9 @@
   el("cpi-title").textContent = "🔥 " + (c.title || "CPI");
   html(el("cpi-release"),
     '<div class="stat s-y"><div class="stat-label">美國時間</div>' +
-      '<div class="stat-value" style="font-size:1rem">' + esc(c.releaseUS) + "</div></div>" +
+      '<div class="stat-value" style="font-size:1rem">' + mdBold(c.releaseUS) + "</div></div>" +
     '<div class="stat s-r"><div class="stat-label">台灣時間</div>' +
-      '<div class="stat-value" style="font-size:1rem">' + esc(c.releaseTW) + "</div></div>");
+      '<div class="stat-value" style="font-size:1rem">' + mdBold(c.releaseTW) + "</div></div>");
   html(el("cpi-exp"), (c.expectations || []).map(function (e) {
     return "<tr><td>" + esc(e.name) + '</td><td class="num">' + mdBold(e.value) + "</td></tr>";
   }).join(""));
@@ -232,11 +232,11 @@
   var fu = D.futures || {};
   html(el("fut-stats"),
     '<div class="stat s-g"><div class="stat-label">現貨 TAIEX</div>' +
-      '<div class="stat-value">' + esc(fu.spot) + "</div></div>" +
+      '<div class="stat-value">' + mdBold(fu.spot) + "</div></div>" +
     '<div class="stat s-y"><div class="stat-label">' + esc(fu.month || "台指期") + "</div>" +
-      '<div class="stat-value">' + esc(fu.future) + "</div></div>" +
+      '<div class="stat-value">' + mdBold(fu.future) + "</div></div>" +
     '<div class="stat s-r"><div class="stat-label">基差</div>' +
-      '<div class="stat-value" style="font-size:1.05rem">' + esc(fu.basis) + "</div></div>");
+      '<div class="stat-value" style="font-size:1.05rem">' + mdBold(fu.basis) + "</div></div>");
   html(el("fut-note"), mdBold(fu.note));
 
   // ---- ⑨ calendar ---------------------------------------------------------
