@@ -6,7 +6,7 @@
  * ok:false 代表該欄位當天抓不到，error 說明原因——請據實標註，不要沿用舊值。
  */
 window.MARKET_AUTO = {
-  "fetchedAt": "2026-09-04T14:49:50.242Z",
+  "fetchedAt": "2026-09-05T00:37:59.058Z",
   "tradeDate": "20260904",
   "marketOpen": true,
   "okCount": 5,
@@ -123,10 +123,7 @@ window.MARKET_AUTO = {
           "misDate": "20260904"
         },
         "turnoverYi": 2005.19,
-        "quoteCount": 10963,
-        "notes": [
-          "quotes 第 1 次 → terminated"
-        ]
+        "quoteCount": 10963
       }
     },
     "txfTaifex": {
