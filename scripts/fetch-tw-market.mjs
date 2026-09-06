@@ -359,12 +359,19 @@ async function tpexOtc(date) {
       if (!row) return null;
       const d = String(row.d || "").trim();
       if (d === date) return { value: num(row.z), field: "z", misDate: d };
-      // d 是次日 → 要的那天已經變成「昨收」
+      // d 是「下一個交易日」→ 要的那天已經變成 y（昨收）。
+      // 必須跳過週六日：週一早上抓週五的資料時 d 會是週一，差三天而不是一天。
+      // 這裡只跳週末，不處理國定假日——連假後第一個交易日仍會落空而回 null，
+      // 那是刻意的：寧可標「未取得」也不猜。真正的把關是同一批回應裡的 t00，
+      // 它的 y 必須等於證交所 FMTQIK 當日的加權指數收盤，對不上就不該採用。
       const next = new Date(
         Number(date.slice(0, 4)),
         Number(date.slice(4, 6)) - 1,
-        Number(date.slice(6, 8)) + 1
+        Number(date.slice(6, 8))
       );
+      do {
+        next.setDate(next.getDate() + 1);
+      } while (next.getDay() === 0 || next.getDay() === 6);
       const nextStr =
         `${next.getFullYear()}` +
         String(next.getMonth() + 1).padStart(2, "0") +
