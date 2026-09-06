@@ -6,7 +6,7 @@
  * ok:false 代表該標的當次抓不到，error 說明原因——請據實標註，不要沿用舊值。
  */
 window.MARKET_GLOBAL = {
-  "fetchedAt": "2026-09-06T23:34:12.906Z",
+  "fetchedAt": "2026-09-06T23:36:31.916Z",
   "okCount": 16,
   "totalCount": 16,
   "items": {
@@ -554,11 +554,11 @@ window.MARKET_GLOBAL = {
         "live": true,
         "latest": {
           "date": "2026-09-06",
-          "close": 99.134,
+          "close": 99.139,
           "prevDate": "2026-09-04",
           "prevClose": 99.16,
-          "change": -0.026,
-          "changePct": -0.03,
+          "change": -0.021,
+          "changePct": -0.02,
           "gapDays": 2,
           "gapSuspect": false
         },
@@ -572,7 +572,7 @@ window.MARKET_GLOBAL = {
           "gapDays": 1,
           "gapSuspect": false
         },
-        "quotePrice": 99.134,
+        "quotePrice": 99.139,
         "series": [
           {
             "date": "2026-08-31",
@@ -596,7 +596,7 @@ window.MARKET_GLOBAL = {
           },
           {
             "date": "2026-09-06",
-            "close": 99.134
+            "close": 99.139
           }
         ],
         "currency": "USD",
@@ -818,10 +818,10 @@ window.MARKET_GLOBAL = {
         "live": true,
         "latest": {
           "date": "2026-09-07",
-          "close": 156.096,
+          "close": 156.102,
           "prevDate": "2026-09-04",
           "prevClose": 155.66,
-          "change": 0.436,
+          "change": 0.442,
           "changePct": 0.28,
           "gapDays": 3,
           "gapSuspect": false
@@ -836,7 +836,7 @@ window.MARKET_GLOBAL = {
           "gapDays": 1,
           "gapSuspect": false
         },
-        "quotePrice": 156.096,
+        "quotePrice": 156.102,
         "series": [
           {
             "date": "2026-08-31",
@@ -860,7 +860,7 @@ window.MARKET_GLOBAL = {
           },
           {
             "date": "2026-09-07",
-            "close": 156.096
+            "close": 156.102
           }
         ],
         "currency": "JPY",
