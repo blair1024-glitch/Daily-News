@@ -121,10 +121,10 @@
   }
   if (f.probability) {
     html(el("fed-prob"),
-      '<span class="lbl">' + esc(f.probability.label) + "</span>" +
-      '<span class="from">' + esc(f.probability.from) + "</span>" +
+      '<span class="lbl">' + mdBold(f.probability.label) + "</span>" +
+      '<span class="from">' + mdBold(f.probability.from) + "</span>" +
       '<span class="lbl">→</span>' +
-      '<span class="to">' + esc(f.probability.to) + "</span>");
+      '<span class="to">' + mdBold(f.probability.to) + "</span>");
   }
   setRich(el("fed-foot"), f.footnote);
 
@@ -172,10 +172,10 @@
       '<h3 style="font-size:1rem;margin-bottom:12px">' + esc(cs.capex.title) + "</h3>" +
       '<div class="shift">' +
         '<div class="shift-box"><div class="t">2025</div><div class="v">' +
-          esc(cs.capex.from) + "</div></div>" +
+          mdBold(cs.capex.from) + "</div></div>" +
         '<div class="shift-arrow">→</div>' +
         '<div class="shift-box s-g" style="border-left:3px solid var(--green)">' +
-          '<div class="t">2026 (E)</div><div class="v">' + esc(cs.capex.to) + "</div></div>" +
+          '<div class="t">2026 (E)</div><div class="v">' + mdBold(cs.capex.to) + "</div></div>" +
       "</div>");
   }
   if (cs.takeaway) {
