@@ -142,9 +142,9 @@
   html(el("cpi-fear"), "<strong>⚠️ 真正的風險：</strong>" + mdBold(c.fear));
   html(el("cpi-scen"), (c.scenarios || []).map(function (s) {
     return '<tr><td class="num" style="text-align:left">' + esc(s.result) + "</td>" +
-           "<td>" + sigDot(s.fedSignal) + " " + esc(s.fed) + "</td>" +
+           "<td>" + sigDot(s.fedSignal) + " " + mdBold(s.fed) + "</td>" +
            '<td class="sig"><span class="badge ' + sigClass(s.techSignal) + '">' +
-             esc(s.tech) + "</span></td></tr>";
+             mdBold(s.tech) + "</span></td></tr>";
   }).join(""));
   html(el("cpi-conc"), "<strong>結論：</strong>" + mdBold(c.conclusion));
 
@@ -244,7 +244,7 @@
     return (list || []).map(function (e) {
       return '<div class="cal-item' + (e.hot ? " hot" : "") + '">' +
                '<span class="cal-date">' + esc(e.date) + "</span>" +
-               '<span class="cal-event">' + esc(e.event) + "</span></div>";
+               '<span class="cal-event">' + mdBold(e.event) + "</span></div>";
     }).join("");
   }
   var cal = D.calendar || {};

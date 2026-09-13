@@ -256,7 +256,8 @@ renderer 會先做 HTML 逃逸再轉換，寫 markdown 是安全的。短欄位�
 `watchlist[]`，**所有 `stat-value` 小卡**（`fed.stats[].value`、
 `cpi.releaseUS`／`releaseTW`、`chips.margin.rows[].value`、
 `futures.spot`／`future`／`basis`），以及 `fed.probability.{label,from,to}`
-與 `csp.capex.{from,to}` 都走同一條路徑；**`verdict[].state` 不支援**，
+、`csp.capex.{from,to}`、`cpi.scenarios[].{fed,tech}` 與 `calendar.*[].event`
+都走同一條路徑；**`verdict[].state` 不支援**，
 那裡是短標籤，寫了會印出字面的 `**`。發版前用 Playwright 檢查頁面上
 literal `**` 為 0，可以把漏接的欄位抓出來。
 
