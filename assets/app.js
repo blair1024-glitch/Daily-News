@@ -288,6 +288,171 @@
     for (var i = 0; i < bars.length; i++) bars[i].style.width = bars[i].dataset.w + "%";
   });
 
+  // ---- 📉 trend（整體風險評分 × TAIEX 歷史對照）---------------------------
+  (function renderTrend() {
+    var RH = window.RISK_HISTORY;
+    var pts = RH && RH.points ? RH.points : [];
+    var section = el("trend");
+    if (!pts.length) { if (section) section.hidden = true; return; }
+
+    var last = pts[pts.length - 1];
+    el("trend-hint").textContent =
+      "今日 " + last.score.toFixed(1) + " " + sigDot(last.signal) + "　·　" + pts.length + " 個交易日";
+    el("trend-note").textContent = RH.note || "";
+
+    // ---- 數據表 ----
+    html(el("trend-table-body"), pts.map(function (p) {
+      var chgSign = p.chg >= 0 ? "+" : "";
+      return "<tr>" +
+        "<td>" + esc(p.date) + "</td>" +
+        "<td>" + esc(p.v) + "</td>" +
+        '<td class="num">' + p.score.toFixed(1) + "</td>" +
+        '<td class="sig">' + sigDot(p.signal) + "</td>" +
+        '<td class="num">' + Math.round(p.taiex).toLocaleString("en-US") + "</td>" +
+        '<td class="num">' + chgSign + p.chg.toFixed(2) + "</td>" +
+      "</tr>";
+    }).join(""));
+
+    // ---- 圖表 ----
+    var PAD_L = 42, PAD_R = 12, PAD_T = 14, PAD_B = 22;
+
+    function xScale(i, W) { return PAD_L + (i / (pts.length - 1)) * (W - PAD_L - PAD_R); }
+    function buildYScale(min, max, pad, H) {
+      var lo = min - pad, hi = max + pad;
+      return function (v) { return PAD_T + (1 - (v - lo) / (hi - lo)) * (H - PAD_T - PAD_B); };
+    }
+    function niceTicks(min, max, count) {
+      var span = max - min, rawStep = span / count;
+      var mag = Math.pow(10, Math.floor(Math.log(rawStep) / Math.LN10));
+      var norm = rawStep / mag, step;
+      if (norm < 1.5) step = 1 * mag;
+      else if (norm < 3) step = 2 * mag;
+      else if (norm < 7) step = 5 * mag;
+      else step = 10 * mag;
+      var ticks = [], t = Math.ceil(min / step) * step;
+      for (; t <= max + 1e-9; t += step) ticks.push(Math.round(t * 100) / 100);
+      return ticks;
+    }
+
+    function renderOne(svgId, key, opts) {
+      var svg = el(svgId);
+      var vb = svg.getAttribute("viewBox").split(" ");
+      var W = Number(vb[2]), H = Number(vb[3]);
+      var vals = pts.map(function (p) { return p[key]; });
+      var min = Math.min.apply(null, vals), max = Math.max.apply(null, vals);
+      var padAmt = (max - min) * 0.18 || max * 0.05;
+      var y = buildYScale(min, max, padAmt, H);
+      var ticks = niceTicks(min - padAmt, max + padAmt, 4);
+      var out = "";
+
+      ticks.forEach(function (t) {
+        var yy = y(t);
+        out += '<line class="trend-grid" x1="' + PAD_L + '" y1="' + yy + '" x2="' + (W - PAD_R) + '" y2="' + yy + '"></line>';
+        out += '<text class="trend-axis-label" x="' + (PAD_L - 6) + '" y="' + (yy + 3) + '" text-anchor="end">' + opts.fmtY(t) + "</text>";
+      });
+      out += '<line class="trend-baseline" x1="' + PAD_L + '" y1="' + (H - PAD_B) + '" x2="' + (W - PAD_R) + '" y2="' + (H - PAD_B) + '"></line>';
+
+      pts.forEach(function (p, i) {
+        if (i % 2 === 0 || i === pts.length - 1) {
+          out += '<text class="trend-axis-label" x="' + xScale(i, W) + '" y="' + (H - 6) + '" text-anchor="middle">' + esc(p.date) + "</text>";
+        }
+      });
+
+      var linePts = pts.map(function (p, i) { return xScale(i, W) + "," + y(p[key]); }).join(" L ");
+      out += '<path class="' + opts.areaClass + '" d="M ' + xScale(0, W) + "," + (H - PAD_B) +
+             " L " + linePts + " L " + xScale(pts.length - 1, W) + "," + (H - PAD_B) + ' Z"></path>';
+      out += '<path class="' + opts.lineClass + '" d="M ' + linePts + '"></path>';
+
+      pts.forEach(function (p, i) {
+        var xx = xScale(i, W), yy = y(p[key]);
+        var dotClass = opts.bySignal ? "trend-dot " + sigClass(p.signal) : "trend-dot-taiex";
+        out += '<circle class="trend-dot-ring" cx="' + xx + '" cy="' + yy + '" r="6"></circle>';
+        out += '<circle class="' + dotClass + '" cx="' + xx + '" cy="' + yy + '" r="4.2"></circle>';
+      });
+
+      var lastI = pts.length - 1;
+      out += '<text class="trend-end-label" x="' + xScale(lastI, W) + '" y="' + (y(pts[lastI][key]) - 12) + '" text-anchor="end">' + opts.fmtY(pts[lastI][key]) + "</text>";
+
+      var extI = opts.extreme === "min"
+        ? pts.reduce(function (mi, p, i) { return p[key] < pts[mi][key] ? i : mi; }, 0)
+        : pts.reduce(function (mi, p, i) { return p[key] > pts[mi][key] ? i : mi; }, 0);
+      if (extI !== lastI) {
+        var dy = opts.extreme === "min" ? -12 : 16;
+        out += '<text class="trend-extreme-label" x="' + xScale(extI, W) + '" y="' + (y(pts[extI][key]) + dy) + '" text-anchor="middle">' + opts.extremeLabel + opts.fmtY(pts[extI][key]) + "</text>";
+      }
+
+      out += '<line class="trend-crosshair" id="trend-ch-' + svgId + '" x1="0" y1="' + PAD_T + '" x2="0" y2="' + (H - PAD_B) + '"></line>';
+      out += '<rect class="trend-hit" id="trend-hit-' + svgId + '" x="' + PAD_L + '" y="0" width="' + (W - PAD_L - PAD_R) + '" height="' + H + '"></rect>';
+
+      svg.innerHTML = out;
+      return W;
+    }
+
+    var scoreW = renderOne("trend-svg-score", "score", {
+      fmtY: function (v) { return v.toFixed(1); },
+      lineClass: "trend-line-score", areaClass: "trend-area-score",
+      bySignal: true, extreme: "min", extremeLabel: "波段低點 "
+    });
+    renderOne("trend-svg-taiex", "taiex", {
+      fmtY: function (v) { return Math.round(v).toLocaleString("en-US"); },
+      lineClass: "trend-line-taiex", areaClass: "trend-area-taiex",
+      bySignal: false, extreme: "max", extremeLabel: "波段高點 "
+    });
+
+    // ---- 共用十字線 + tooltip ----
+    var tooltip = el("trend-tooltip");
+    var wrap = el("trend-wrap");
+    var chScore = el("trend-ch-trend-svg-score");
+    var chTaiex = el("trend-ch-trend-svg-taiex");
+    var hitScore = el("trend-hit-trend-svg-score");
+    var hitTaiex = el("trend-hit-trend-svg-taiex");
+
+    function nearestIndex(clientX, hitEl, W) {
+      var rect = hitEl.getBoundingClientRect();
+      var plotW = W - PAD_L - PAD_R;
+      var scale = plotW / rect.width;
+      var localX = PAD_L + (clientX - rect.left) * scale;
+      var best = 0, bestDist = Infinity;
+      pts.forEach(function (_, i) {
+        var dist = Math.abs(xScale(i, W) - localX);
+        if (dist < bestDist) { bestDist = dist; best = i; }
+      });
+      return best;
+    }
+
+    function showAt(i) {
+      var xx = xScale(i, scoreW);
+      [chScore, chTaiex].forEach(function (ch) {
+        ch.setAttribute("x1", xx); ch.setAttribute("x2", xx); ch.style.opacity = 1;
+      });
+      var p = pts[i];
+      var chgSign = p.chg >= 0 ? "+" : "";
+      html(tooltip,
+        '<div class="tt-date">' + esc(p.date) + "（" + esc(p.v) + "）</div>" +
+        '<div class="tt-row"><span class="tt-key ' + sigClass(p.signal) + '" style="background:var(--sig)"></span>評分' +
+          '<span class="tt-val">' + p.score.toFixed(1) + "　" + sigDot(p.signal) + "</span></div>" +
+        '<div class="tt-row"><span class="tt-key" style="background:var(--accent-2)"></span>TAIEX' +
+          '<span class="tt-val">' + Math.round(p.taiex).toLocaleString("en-US") + "（" + chgSign + p.chg.toFixed(2) + "）</span></div>"
+      );
+      tooltip.style.opacity = 1;
+      var svgRect = el("trend-svg-score").getBoundingClientRect();
+      var wrapRect = wrap.getBoundingClientRect();
+      var ratio = svgRect.width / scoreW;
+      var left = xx * ratio + 12;
+      if (left + 190 > wrapRect.width) left = xx * ratio - 190 - 12;
+      tooltip.style.left = left + "px";
+      tooltip.style.top = "0px";
+    }
+    function hideAll() {
+      [chScore, chTaiex].forEach(function (ch) { ch.style.opacity = 0; });
+      tooltip.style.opacity = 0;
+    }
+    [hitScore, hitTaiex].forEach(function (hit) {
+      hit.addEventListener("pointermove", function (e) { showAt(nearestIndex(e.clientX, hit, scoreW)); });
+      hit.addEventListener("pointerleave", hideAll);
+    });
+  })();
+
   // ---- 👀 watchlist -------------------------------------------------------
   html(el("watch-list"), (D.watchlist || []).map(function (w, i) {
     return '<li><span class="idx">' + (i + 1) + "</span>" + mdBold(w) + "</li>";

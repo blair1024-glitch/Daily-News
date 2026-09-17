@@ -42,6 +42,7 @@
     <li><a href="#calendar">⑩ 重要事件</a></li>
     <li><a href="#risks">⑪ 四大風險</a></li>
     <li><a href="#scores">🎯 總評</a></li>
+    <li><a href="#trend">📉 風險趨勢</a></li>
     <li><a href="#watchlist">👀 追蹤清單</a></li>
   </ul>
 </nav>
@@ -223,6 +224,32 @@
     </div>
   </section>
 
+  <section class="block" id="trend">
+    <div class="block-head"><h2>📉 風險趨勢 × 台股</h2><span class="hint" id="trend-hint"></span></div>
+    <div class="card">
+      <p class="note" id="trend-note" style="margin-bottom:14px"></p>
+      <div class="trend-legend">
+        <span class="key"><span class="sw" style="background:var(--green)"></span>🟢 偏多／安全</span>
+        <span class="key"><span class="sw" style="background:var(--yellow)"></span>🟡 中性／觀察</span>
+        <span class="key"><span class="sw" style="background:var(--red)"></span>🔴 風險／警戒</span>
+      </div>
+      <div class="trend-chart-wrap" id="trend-wrap">
+        <div id="trend-tooltip" class="trend-tooltip"></div>
+        <svg class="trend-chart" id="trend-svg-score" viewBox="0 0 680 190"></svg>
+        <svg class="trend-chart" id="trend-svg-taiex" viewBox="0 0 680 170"></svg>
+      </div>
+      <details class="trend-table">
+        <summary>顯示完整數據表</summary>
+        <div class="table-scroll">
+          <table>
+            <thead><tr><th>交易日</th><th>版本</th><th class="num">評分</th><th class="sig">訊號</th><th class="num">TAIEX 收盤</th><th class="num">單日漲跌</th></tr></thead>
+            <tbody id="trend-table-body"></tbody>
+          </table>
+        </div>
+      </details>
+    </div>
+  </section>
+
   <section class="block" id="watchlist">
     <div class="block-head"><h2>👀 明天特別追這幾個數字</h2></div>
     <div class="card">
@@ -245,6 +272,7 @@
 </main>
 
 <script src="data/dashboard.js"></script>
+<script src="data/risk-history.js"></script>
 <script src="assets/app.js"></script>
 </body>
 </html>

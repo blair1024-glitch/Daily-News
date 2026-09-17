@@ -37,6 +37,7 @@ https://<你的帳號>.github.io/Daily-News/
 │   ├── dashboard.js      # ★ 每天只要改這一個檔案 ★
 │   ├── market-auto.js    # Actions 自動抓的台股數字（勿手動改）
 │   ├── market-global.js  # Actions 自動抓的國際行情（勿手動改）
+│   ├── risk-history.js   # 整體風險評分／TAIEX 歷史序列（首頁「風險趨勢」圖）
 │   └── stock-3535.js     # 個股頁的所有數字
 ├── scripts/
 │   ├── fetch-tw-market.mjs      # 台股抓數（TWSE／TPEx／TAIFEX／MIS）
@@ -227,6 +228,7 @@ meta: {
 | `calendar`  | ⑩ 未來重要事件（兩級）      |
 | `risks`     | ⑪ 四大風險            |
 | `scores`    | 🎯 市場總評（分數條會自動畫）  |
+| `RISK_HISTORY`（`data/risk-history.js`） | 📉 風險趨勢 × 台股（見下方第 4 步） |
 | `watchlist` | 👀 明天追蹤的數字        |
 | `sources`   | 📚 資料來源           |
 
@@ -261,10 +263,35 @@ renderer 會先做 HTML 逃逸再轉換，寫 markdown 是安全的。短欄位�
 不支援**，那裡是短標籤，寫了會印出字面的 `**`。發版前用 Playwright 檢查頁面上
 literal `**` 為 0，可以把漏接的欄位抓出來。
 
-### 4. 推上去
+### 4. 更新風險趨勢圖（`data/risk-history.js`）
+
+寫完 `dashboard.js` 之後，在 `RISK_HISTORY.points` **陣列尾端追加當天一筆**，
+不倒序、不覆寫舊資料：
+
+```js
+{ date: "9/16", v: "v5.9", score: 3.0, signal: "r", taiex: 45848.90, chg: 337.41 }
+```
+
+各欄位對應 `dashboard.js` 的位置：
+
+| risk-history 欄位 | 取自 |
+| --- | --- |
+| `date` | `taiex.date`（資料交易日，格式 `M/D`，不是 `meta.date` 發布日） |
+| `v` | `meta.version` |
+| `score` | `scores.overall.score` |
+| `signal` | `scores.overall.signal` |
+| `taiex` | `taiex.close`（去除千分位的數字） |
+| `chg` | `taiex.change`（數字） |
+
+首頁「📉 風險趨勢 × 台股」區塊會自動讀這個檔案畫兩張同步的折線圖
+（整體評分 × TAIEX 收盤，游標共用十字線）；若某天官方數字事後更正，
+比照 `dashboard.js` 的誠實原則，在當天那筆旁邊加註或於 `note` 說明，
+不可靜默覆蓋歷史值。這個檔案不影響 `dashboard.js` 本身，兩者分開維護。
+
+### 5. 推上去
 
 ```bash
-git add data/dashboard.js
+git add data/dashboard.js data/risk-history.js
 git commit -m "dashboard: 2026/08/12 更新"
 git push
 ```

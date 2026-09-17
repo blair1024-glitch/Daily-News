@@ -22,6 +22,7 @@
   --yellow-soft:   rgba(180, 117, 0, 0.13);
   --red:           #d13438;
   --red-soft:      rgba(209, 52, 56, 0.11);
+  --accent-2:      #0e7490; /* 風險趨勢圖：TAIEX 線，與 accent 藍區隔的第二色（青） */
 
   --shadow:        0 1px 2px rgba(16, 21, 31, .05), 0 8px 24px rgba(16, 21, 31, .06);
   --radius:        14px;
@@ -53,6 +54,7 @@
     --yellow-soft:   rgba(240, 180, 41, 0.15);
     --red:           #ff6b6b;
     --red-soft:      rgba(255, 107, 107, 0.15);
+    --accent-2:      #22d3ee;
 
     --shadow: 0 1px 2px rgba(0, 0, 0, .4), 0 8px 24px rgba(0, 0, 0, .35);
   }
@@ -78,6 +80,7 @@
   --yellow-soft:   rgba(240, 180, 41, 0.15);
   --red:           #ff6b6b;
   --red-soft:      rgba(255, 107, 107, 0.15);
+  --accent-2:      #22d3ee;
 
   --shadow: 0 1px 2px rgba(0, 0, 0, .4), 0 8px 24px rgba(0, 0, 0, .35);
 }
@@ -540,3 +543,51 @@ td.bar-cell .score-fill { border-radius: 4px; transition: width .6s cubic-bezier
   border-radius: 6px; padding: 6px 9px;
 }
 .branch .trigger b { color: var(--sig, var(--text)); }
+
+/* ==========================================================================
+   風險趨勢圖（首頁 #trend）— 純新增，未覆寫任何既有規則
+   ========================================================================== */
+.trend-legend { display: flex; flex-wrap: wrap; gap: 14px; margin-bottom: 10px; font-size: .82rem; color: var(--text-muted); }
+.trend-legend .key { display: inline-flex; align-items: center; gap: 6px; }
+.trend-legend .key .sw { width: 9px; height: 9px; border-radius: 50%; display: inline-block; }
+
+.trend-chart-wrap { position: relative; }
+.trend-chart { width: 100%; height: auto; display: block; overflow: visible; }
+.trend-chart + .trend-chart { margin-top: 18px; }
+
+.trend-grid { stroke: var(--border); stroke-width: 1; }
+.trend-baseline { stroke: var(--border-strong); stroke-width: 1; }
+.trend-axis-label { fill: var(--text-faint); font-family: var(--mono); font-size: 9.5px; }
+.trend-end-label { fill: var(--text); font-family: var(--mono); font-size: 11px; font-weight: 700; }
+.trend-extreme-label { fill: var(--text-muted); font-family: var(--mono); font-size: 9.5px; }
+
+.trend-line-score { fill: none; stroke: var(--accent); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.trend-line-taiex { fill: none; stroke: var(--accent-2); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.trend-area-score { fill: var(--accent); opacity: .08; }
+.trend-area-taiex { fill: var(--accent-2); opacity: .08; }
+
+.trend-dot-ring { fill: var(--bg-elev); }
+.trend-dot { fill: var(--sig, var(--accent)); }
+.trend-dot-taiex { fill: var(--accent-2); }
+
+.trend-crosshair { stroke: var(--text-faint); stroke-width: 1; stroke-dasharray: 3 3; opacity: 0; pointer-events: none; }
+.trend-hit { fill: transparent; cursor: crosshair; }
+
+.trend-tooltip {
+  position: absolute; pointer-events: none; z-index: 5;
+  background: var(--bg-elev); border: 1px solid var(--border);
+  border-radius: var(--radius-sm); box-shadow: var(--shadow);
+  padding: 8px 11px; font-size: .78rem; line-height: 1.6;
+  opacity: 0; transition: opacity .08s; white-space: nowrap;
+}
+.trend-tooltip .tt-date { font-weight: 700; margin-bottom: 3px; }
+.trend-tooltip .tt-row { display: flex; align-items: center; gap: 7px; color: var(--text-muted); }
+.trend-tooltip .tt-key { width: 10px; height: 2px; border-radius: 1px; flex: none; }
+.trend-tooltip .tt-val {
+  margin-left: auto; padding-left: 10px; font-weight: 700; color: var(--text);
+  font-family: var(--mono); font-variant-numeric: tabular-nums;
+}
+
+details.trend-table { margin-top: 6px; }
+details.trend-table summary { cursor: pointer; font-size: .84rem; color: var(--text-muted); padding: 6px 0; }
+details.trend-table table { margin-top: 6px; }
