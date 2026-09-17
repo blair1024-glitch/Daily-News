@@ -6,10 +6,10 @@
  * ok:false 代表該欄位當天抓不到，error 說明原因——請據實標註，不要沿用舊值。
  */
 window.MARKET_AUTO = {
-  "fetchedAt": "2026-09-17T23:34:05.929Z",
+  "fetchedAt": "2026-09-17T23:44:46.054Z",
   "tradeDate": "20260917",
   "marketOpen": true,
-  "okCount": 4,
+  "okCount": 5,
   "totalCount": 5,
   "items": {
     "marginTwse": {
@@ -127,9 +127,39 @@ window.MARKET_AUTO = {
       }
     },
     "txfTaifex": {
-      "ok": false,
+      "ok": true,
       "source": "TAIFEX futDataDown",
-      "error": "HTTP 403"
+      "value": {
+        "date": "20260917",
+        "contractMonth": "202610",
+        "close": 46445,
+        "change": 385,
+        "volume": 50102,
+        "openInterest": 99476,
+        "session": "一般",
+        "rowCount": 25,
+        "header": [
+          "交易日期",
+          "契約",
+          "到期月份(週別)",
+          "開盤價",
+          "最高價",
+          "最低價",
+          "收盤價",
+          "漲跌價",
+          "漲跌%",
+          "成交量",
+          "結算價",
+          "未沖銷契約數",
+          "最後最佳買價",
+          "最後最佳賣價",
+          "歷史最高價",
+          "歷史最低價",
+          "是否因訊息面暫停交易",
+          "交易時段",
+          "價差對單式委託成交量"
+        ]
+      }
     }
   }
 };
