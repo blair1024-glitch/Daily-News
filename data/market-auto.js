@@ -6,10 +6,10 @@
  * ok:false 代表該欄位當天抓不到，error 說明原因——請據實標註，不要沿用舊值。
  */
 window.MARKET_AUTO = {
-  "fetchedAt": "2026-09-17T15:27:10.750Z",
+  "fetchedAt": "2026-09-17T23:34:05.929Z",
   "tradeDate": "20260917",
   "marketOpen": true,
-  "okCount": 5,
+  "okCount": 4,
   "totalCount": 5,
   "items": {
     "marginTwse": {
@@ -109,57 +109,27 @@ window.MARKET_AUTO = {
         "index": {
           "close": 398.17,
           "source": "TWSE MIS getStockInfo（otc_o00.tw）",
-          "field": "z",
-          "misDate": "20260917",
-          "open": 400.61,
-          "high": 407.8,
-          "low": 397.65,
-          "prevClose": 399.21,
+          "field": "y",
+          "misDate": "20260918",
+          "open": null,
+          "high": null,
+          "low": null,
+          "prevClose": 398.17,
           "name": "櫃買指數"
         },
         "indexCross": {
           "taiexFromMis": 46288,
-          "field": "z",
-          "misDate": "20260917"
+          "field": "y",
+          "misDate": "20260918"
         },
         "turnoverYi": 2692.5,
         "quoteCount": 11479
       }
     },
     "txfTaifex": {
-      "ok": true,
+      "ok": false,
       "source": "TAIFEX futDataDown",
-      "value": {
-        "date": "20260917",
-        "contractMonth": "202610",
-        "close": 46445,
-        "change": 385,
-        "volume": 50102,
-        "openInterest": 99476,
-        "session": "一般",
-        "rowCount": 25,
-        "header": [
-          "交易日期",
-          "契約",
-          "到期月份(週別)",
-          "開盤價",
-          "最高價",
-          "最低價",
-          "收盤價",
-          "漲跌價",
-          "漲跌%",
-          "成交量",
-          "結算價",
-          "未沖銷契約數",
-          "最後最佳買價",
-          "最後最佳賣價",
-          "歷史最高價",
-          "歷史最低價",
-          "是否因訊息面暫停交易",
-          "交易時段",
-          "價差對單式委託成交量"
-        ]
-      }
+      "error": "HTTP 403"
     }
   }
 };
