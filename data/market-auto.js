@@ -6,8 +6,8 @@
  * ok:false 代表該欄位當天抓不到，error 說明原因——請據實標註，不要沿用舊值。
  */
 window.MARKET_AUTO = {
-  "fetchedAt": "2026-09-26T01:13:28.057Z",
-  "tradeDate": "20260925",
+  "fetchedAt": "2026-09-28T18:30:30.810Z",
+  "tradeDate": "20260928",
   "marketOpen": true,
   "okCount": 2,
   "totalCount": 5,
@@ -27,7 +27,7 @@ window.MARKET_AUTO = {
       "source": "TWSE FMTQIK",
       "value": {
         "date": "20260924",
-        "requestedDate": "20260925",
+        "requestedDate": "20260928",
         "matchedRequest": false,
         "rocDate": "115/09/24",
         "turnoverYi": 7755.91,
@@ -39,13 +39,13 @@ window.MARKET_AUTO = {
       "ok": true,
       "source": "TPEx OpenAPI",
       "value": {
-        "date": "20260925",
+        "date": "20260928",
         "index": null,
         "indexCross": null,
         "turnoverYi": 2024.3,
         "quoteCount": 11660,
         "notes": [
-          "MIS o00 日期不符（回 20260924，要 20260925）"
+          "MIS o00 日期不符（回 20260924，要 20260928）"
         ]
       }
     },
