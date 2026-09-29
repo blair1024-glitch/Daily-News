@@ -269,6 +269,8 @@ window.DASHBOARD = {
     { label: "每日市場成交資訊 FMTQIK — 臺灣證券交易所", url: "https://www.twse.com.tw/zh/indices/taiex/mi-5min-hist.html" },
     { label: "融資融券餘額 MI_MARGN — 臺灣證券交易所", url: "https://www.twse.com.tw/zh/trading/margin/mi-margn.html" },
     { label: "櫃買指數（MIS 即時資訊 otc_o00.tw）— 臺灣證券交易所", url: "https://mis.twse.com.tw/stock/index.jsp" },
-    { label: "期貨每日交易行情（台指期與基差）— 臺灣期貨交易所", url: "https://www.taifex.com.tw/cht/3/futDailyMarketReport" }
+    { label: "期貨每日交易行情（台指期與基差）— 臺灣期貨交易所", url: "https://www.taifex.com.tw/cht/3/futDailyMarketReport" },
+    { label: "WTI 原油期貨 CL=F（本站油價數字來源，每日自動抓取）— Yahoo Finance", url: "https://finance.yahoo.com/quote/CL=F/" },
+    { label: "Brent 原油期貨 BZ=F（本站油價數字來源，每日自動抓取）— Yahoo Finance", url: "https://finance.yahoo.com/quote/BZ=F/" }
   ]
 };
