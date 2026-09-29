@@ -87,8 +87,10 @@
   html(el("verdict-grid"), (D.verdict || []).map(function (v) {
     return '<div class="chip ' + sigClass(v.signal) + '">' +
              '<span class="dot"></span>' +
-             '<span class="chip-label">' + esc(v.label) + "</span>" +
-             '<span class="chip-state">' + esc(v.state) + "</span>" +
+             '<span class="chip-text">' +
+               '<span class="chip-label">' + esc(v.label) + "</span>" +
+               '<span class="chip-state">' + esc(v.state) + "</span>" +
+             "</span>" +
            "</div>";
   }).join(""));
 
