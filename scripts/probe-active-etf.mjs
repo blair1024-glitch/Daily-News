@@ -68,6 +68,25 @@ async function probe(label, url) {
   }
 }
 
+async function dumpMoneyDjTable(code) {
+  const url = `https://www.moneydj.com/etf/x/basic/basic0007.xdjhtm?etfid=${code.toLowerCase()}.tw`;
+  const res = await fetch(url, { headers: { "User-Agent": UA, Accept: "*/*" } });
+  const html = await res.text();
+  console.log(`\n=== MoneyDJ 表格結構 dump: ${code} (${html.length}B) ===`);
+
+  // 抓出所有 <table ...>...</table>，印出每個表格的前兩列原始 HTML，方便判斷欄位。
+  const tables = html.match(/<table[\s\S]*?<\/table>/gi) || [];
+  console.log(`  共 ${tables.length} 個 <table>`);
+  tables.forEach((t, i) => {
+    const rows = t.match(/<tr[\s\S]*?<\/tr>/gi) || [];
+    console.log(`  table[${i}]: ${rows.length} 列`);
+    if (rows.length >= 2 && /股票|代號|權重|持股|比例/.test(t)) {
+      console.log(`  --- table[${i}] 前 3 列原始 HTML ---`);
+      rows.slice(0, 3).forEach((r, j) => console.log(`  row[${j}]: ${r.replace(/\s+/g, " ").slice(0, 500)}`));
+    }
+  });
+}
+
 async function main() {
   console.log(`=== 主動式ETF持股來源探測 === 候選 ${CANDIDATES.length} 個\n`);
   const results = [];
@@ -80,6 +99,8 @@ async function main() {
     if (r.error) console.log(`  ✖ ${r.label.padEnd(28)} ${r.error}`);
     else console.log(`  ${r.status === 200 ? "✅" : "  "} ${r.label.padEnd(28)} HTTP ${r.status} ${r.isHtml ? "HTML" : "非HTML"} ${r.len}B`);
   }
+
+  await dumpMoneyDjTable("00980A");
 }
 
 main().catch((e) => {
