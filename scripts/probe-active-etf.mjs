@@ -88,19 +88,11 @@ async function dumpMoneyDjTable(code) {
 }
 
 async function main() {
-  console.log(`=== 主動式ETF持股來源探測 === 候選 ${CANDIDATES.length} 個\n`);
-  const results = [];
-  for (const [label, url] of CANDIDATES) {
-    results.push(await probe(label, url));
-    await new Promise((r) => setTimeout(r, 300));
-  }
-  console.log(`\n\n=== 摘要 ===`);
-  for (const r of results) {
-    if (r.error) console.log(`  ✖ ${r.label.padEnd(28)} ${r.error}`);
-    else console.log(`  ${r.status === 200 ? "✅" : "  "} ${r.label.padEnd(28)} HTTP ${r.status} ${r.isHtml ? "HTML" : "非HTML"} ${r.len}B`);
-  }
-
-  await dumpMoneyDjTable("00980A");
+  console.log(`=== 海外型主動式ETF表格結構探測 ===\n`);
+  await dumpMoneyDjTable("00983A");
+  await dumpMoneyDjTable("00986A");
+  await dumpMoneyDjTable("00990A");
+  await dumpMoneyDjTable("00997A");
 }
 
 main().catch((e) => {
