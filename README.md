@@ -303,22 +303,26 @@ literal `**` 為 0，可以把漏接的欄位抓出來。
 
 | 欄位 | 內容 |
 | --- | --- |
-| `funds[CODE]` | 每檔基金的前十大持股（`code`／`name`／`weightPct`／`shares`） |
+| `funds[CODE]` | 每檔基金的前十大持股（`code`／`name`／`exchange`／`weightPct`／`shares`） |
+| `funds[CODE].category` | `tw`（台股型）或 `overseas`（海外型），決定歸入哪一組統計 |
 | `funds[CODE].diff` | 與前一次快照比對出的增減（`新增`／`增持`／`減持`／`剔除`） |
-| `summary.topBought`／`topSold` | 跨基金彙總：哪些股票被最多基金同步增持／減持 |
-| `summary.concentrationPct` | 集中度——當天買賣異動最明顯的前5支個股佔全部異動動作數的比例，數字越高代表買賣行為越集中在少數股票 |
+| `summaryTw`／`summaryOverseas` | 各自的跨基金彙總：`topBought`／`topSold`（哪些股票被最多基金同步增持／減持）與 `concentrationPct` |
 
-**追蹤範圍只限台股型**，以下主動式ETF經查證後是海外為主、已從候選清單排除
-（見 `fetch-active-etf.mjs` 開頭註解）：00983A（美股為主）、00986A（全球
-龍頭股，美股占比約76%）、00990A（美股約66%／台股16%／日股7%）、00997A
-（美股為主）。新基金上市後，若主要投資台股且 MoneyDJ 已有頁面，把代號
-加進 `CANDIDATES` 即可自動開始追蹤。
+**基金分兩類分開統計，不要混在一起算**：`CANDIDATES_TW`（持有台股個股）
+與 `CANDIDATES_OVERSEAS`（持有美股／全球股票，經查證包含 00983A 美股為主、
+00986A 全球龍頭股美股占比約76%、00990A 美股約65%／台股19%、00997A 美股
+約77%／台股約7%）。兩群基金買賣的是不同市場的股票，混算集中度沒有意義。
+持股代號的解析要同時認得台股數字代號（`2330.TW`）與海外字母代號＋不同
+交易所後綴（`LITE.US`、`4062.JP`），見 `parseHoldingRows` 的正規表達式。
+新基金上市後，若 MoneyDJ 已有頁面，依其實際投資範圍加進對應的候選清單
+即可自動開始追蹤。
 
 **`data/active-etf-snapshot.json`** 只保留「今天」一份快照供明天比對用，
 不是給 dashboard 讀的，也不是完整歷史——這是刻意的設計，避免檔案無限增長。
 
-每日更新流程把 `summary` 整理成 `dashboard.js` 的 `activeEtf` 欄位（見上方
-第 3 步的對照表）。**第一天建立快照時沒有前一天的資料可比對，`topBought`／
+每日更新流程把 `summaryTw`／`summaryOverseas` 分別整理成 `dashboard.js` 的
+`activeEtf.tw`／`activeEtf.overseas` 兩個欄位（見上方第 3 步的對照表）。
+**第一天建立快照時沒有前一天的資料可比對，`topBought`／
 `topSold` 會是空陣列、`concentrationPct` 是 `null`**——這是正常現象，不是
 抓取失敗，照實寫「還沒有可比對的資料」即可，不要編造方向。
 
