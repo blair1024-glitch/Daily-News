@@ -229,6 +229,7 @@ meta: {
 | `risks`     | ⑪ 四大風險            |
 | `scores`    | 🎯 市場總評（分數條會自動畫）  |
 | `RISK_HISTORY`（`data/risk-history.js`） | 📉 風險趨勢 × 台股（見下方第 4 步） |
+| `activeEtf` | 🔬 主動式ETF動向（見下方「主動式ETF持股追蹤」） |
 | `watchlist` | 👀 明天追蹤的數字        |
 | `sources`   | 📚 資料來源           |
 
@@ -288,7 +289,40 @@ literal `**` 為 0，可以把漏接的欄位抓出來。
 比照 `dashboard.js` 的誠實原則，在當天那筆旁邊加註或於 `note` 說明，
 不可靜默覆蓋歷史值。這個檔案不影響 `dashboard.js` 本身，兩者分開維護。
 
-### 5. 推上去
+### 5. 主動式ETF持股追蹤（`data/active-etf.js`）
+
+**資料怎麼來**：台灣主動式ETF（00980A、00981A…）沒有單一的證交所官方API
+可以抓每日持股明細，各投信揭露格式都不同（JSON、Excel、靜態HTML、JS渲染
+的SPA）。經探測（`scripts/probe-active-etf.mjs`），MoneyDJ的ETF持股頁對
+所有主動式ETF都用同一套靜態HTML表格模板，是目前唯一能用同一套解析邏輯
+覆蓋所有基金的來源——**但這是第三方整理頁面，不是投信官網或證交所原始
+揭露**，dashboard 引用時務必標明來源。
+
+`scripts/fetch-active-etf.mjs` 由 `.github/workflows/fetch-active-etf.yml`
+排程執行（每個交易日台灣時間 07:30），產出 `data/active-etf.js`：
+
+| 欄位 | 內容 |
+| --- | --- |
+| `funds[CODE]` | 每檔基金的前十大持股（`code`／`name`／`weightPct`／`shares`） |
+| `funds[CODE].diff` | 與前一次快照比對出的增減（`新增`／`增持`／`減持`／`剔除`） |
+| `summary.topBought`／`topSold` | 跨基金彙總：哪些股票被最多基金同步增持／減持 |
+| `summary.concentrationPct` | 集中度——當天買賣異動最明顯的前5支個股佔全部異動動作數的比例，數字越高代表買賣行為越集中在少數股票 |
+
+**追蹤範圍只限台股型**，以下主動式ETF經查證後是海外為主、已從候選清單排除
+（見 `fetch-active-etf.mjs` 開頭註解）：00983A（美股為主）、00986A（全球
+龍頭股，美股占比約76%）、00990A（美股約66%／台股16%／日股7%）、00997A
+（美股為主）。新基金上市後，若主要投資台股且 MoneyDJ 已有頁面，把代號
+加進 `CANDIDATES` 即可自動開始追蹤。
+
+**`data/active-etf-snapshot.json`** 只保留「今天」一份快照供明天比對用，
+不是給 dashboard 讀的，也不是完整歷史——這是刻意的設計，避免檔案無限增長。
+
+每日更新流程把 `summary` 整理成 `dashboard.js` 的 `activeEtf` 欄位（見上方
+第 3 步的對照表）。**第一天建立快照時沒有前一天的資料可比對，`topBought`／
+`topSold` 會是空陣列、`concentrationPct` 是 `null`**——這是正常現象，不是
+抓取失敗，照實寫「還沒有可比對的資料」即可，不要編造方向。
+
+### 6. 推上去
 
 ```bash
 git add data/dashboard.js data/risk-history.js

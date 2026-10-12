@@ -455,6 +455,33 @@
     });
   })();
 
+  // ---- 🔬 active-etf（主動式ETF動向）--------------------------------------
+  (function activeEtf() {
+    var ae = D.activeEtf;
+    if (!ae) { var s = el("active-etf"); if (s) s.hidden = true; return; }
+    el("etf-date").textContent = ae.date || "";
+    setRich(el("etf-summary"), ae.summary);
+
+    html(el("etf-stats"),
+      '<div class="stat s-y"><div class="stat-label">追蹤基金數</div>' +
+        '<div class="stat-value">' + esc(ae.trackedCount != null ? ae.trackedCount : "—") + "</div></div>" +
+      '<div class="stat s-y"><div class="stat-label">較上次有異動</div>' +
+        '<div class="stat-value">' + esc(ae.fundsWithDiff != null ? ae.fundsWithDiff : "—") + "</div></div>" +
+      '<div class="stat s-y"><div class="stat-label">買賣集中度</div>' +
+        '<div class="stat-value">' + esc(ae.concentrationPct != null ? ae.concentrationPct + "%" : "—") + "</div></div>");
+
+    function stockLi(s) {
+      return "<li>" + esc(s.name) + "（" + esc(s.code) + "）　" +
+             '<span style="color:var(--text-muted);font-size:.82rem">' +
+             (s.fundsUp ? s.fundsUp + " 檔增持" : "") +
+             (s.fundsDown ? (s.fundsUp ? "／" : "") + s.fundsDown + " 檔減持" : "") +
+             "</span></li>";
+    }
+    html(el("etf-bought"), (ae.topBought || []).map(stockLi).join("") || "<li>（尚無可比對的異動資料）</li>");
+    html(el("etf-sold"), (ae.topSold || []).map(stockLi).join("") || "<li>（尚無可比對的異動資料）</li>");
+    setRich(el("etf-note"), ae.note);
+  })();
+
   // ---- 👀 watchlist -------------------------------------------------------
   html(el("watch-list"), (D.watchlist || []).map(function (w, i) {
     return '<li><span class="idx">' + (i + 1) + "</span>" + mdBold(w) + "</li>";
