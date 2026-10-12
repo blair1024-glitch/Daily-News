@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * fetch-active-etf.mjs — 台股主動式ETF每日持股明細抓取與增減比對
+ * fetch-active-etf.mjs — 主動式ETF每日持股明細抓取與增減比對
  * ------------------------------------------------------------------
  * 背景：
  *   台灣主動式ETF（00980A、00981A...）沒有單一的證交所官方API可以
@@ -12,6 +12,10 @@
  *
  *   這是第三方資料來源，不是投信官網或證交所原始揭露，請在 dashboard
  *   引用時明確標註來源與資料日期。
+ *
+ *   基金分成「台股型」與「海外型」兩類分開統計（見 CANDIDATES_TW／
+ *   CANDIDATES_OVERSEAS），因為兩群基金的持股方向天生不可比——台股型
+ *   買賣的是台股，海外型買賣的是美股，混在一起算集中度沒有意義。
  *
  * 設計原則（與 fetch-tw-market.mjs 一致）：
  *   1. 零相依，只用 Node 22 內建 fetch。
@@ -37,21 +41,29 @@ const UA =
 const TIMEOUT_MS = 20_000;
 
 /**
- * 候選代號清單。台灣主動式ETF仍在持續新增，這份清單需要人工維護——
- * 新基金上市後，若 MoneyDJ 已有頁面且主要投資台股，加進這裡即可自動
- * 開始追蹤。對應不到基金的代號會自動標記 ok:false，不影響其他代號。
+ * 候選代號清單，分兩類。台灣主動式ETF仍在持續新增，這份清單需要人工
+ * 維護——新基金上市後，若 MoneyDJ 已有頁面，依其主要投資範圍加進對應
+ * 分類即可自動開始追蹤。對應不到基金的代號會自動標記 ok:false，不影響
+ * 其他代號。
  *
- * 明確排除以下已確認為「海外為主」的主動式ETF（不是台股型，加進來
- * 會混淆方向/集中性統計，經查證後排除）：
- *   00983A 主動中信ARK創新（美股為主，持股特斯拉、Shopify等）
- *   00986A 主動台新龍頭成長（全球龍頭股，美股占比約76%）
- *   00990A 主動元大AI新經濟（美股約66%、台股16%、日股7%）
- *   00997A 主動群益美國增長（美股為主）
+ * 分類依據是公開說明書/投信公告的實際投資區域（不是看名稱裡有沒有
+ * 「全球」「AI」字樣），兩類分開統計方向與集中性，避免混在一起誤導：
+ *   tw       —— 主要持有台股個股
+ *   overseas —— 主要持有美股／全球股票（經查證以下四檔屬此類）：
+ *     00983A 主動中信ARK創新（美股為主，持股特斯拉、Shopify等）
+ *     00986A 主動台新龍頭成長（全球龍頭股，美股占比約76%）
+ *     00990A 主動元大AI新經濟（美股約65%、台股19%）
+ *     00997A 主動群益美國增長（美股約77%、台股約7%）
  */
-const CANDIDATES = [
+const CANDIDATES_TW = [
   "00403A", "00980A", "00981A", "00982A", "00984A",
   "00985A", "00987A", "00991A", "00992A",
   "00993A", "00994A", "00995A"
+];
+const CANDIDATES_OVERSEAS = ["00983A", "00986A", "00990A", "00997A"];
+const CANDIDATES = [
+  ...CANDIDATES_TW.map((code) => [code, "tw"]),
+  ...CANDIDATES_OVERSEAS.map((code) => [code, "overseas"])
 ];
 
 function taipeiToday() {
@@ -97,7 +109,11 @@ function num(s) {
   return Number(cleaned);
 }
 
-/** 解析個股持股表格：每列是 <tr><td>名稱(代號.TW)</td><td>比例</td><td>股數</td></tr> */
+/**
+ * 解析個股持股表格：每列是 <tr><td>名稱(代號.交易所)</td><td>比例</td><td>股數</td></tr>
+ * 台股代號是數字＋.TW（例如 2330.TW），海外持股用股票代碼＋.US等
+ * （例如 LITE.US），兩種都要能解析，否則海外型基金的持股會全部漏掉。
+ */
 function parseHoldingRows(tableHtml) {
   const rows = tableHtml.match(/<tr[\s\S]*?<\/tr>/gi) || [];
   const out = [];
@@ -106,14 +122,15 @@ function parseHoldingRows(tableHtml) {
     const cells = row.match(/<td[\s\S]*?<\/td>/gi);
     if (!cells || cells.length < 3) continue;
     const nameCell = stripTags(cells[0]);
-    const codeMatch = cells[0].match(/etfid=(\d{4,6})\.TW/i);
-    const nameMatch = nameCell.match(/^(.*?)\(([\dA-Z]+)\.TW\)$/);
+    const codeMatch = cells[0].match(/etfid=([A-Za-z0-9.]+)\.([A-Z]{2,3})(?:&|')/i);
+    const nameMatch = nameCell.match(/^(.*?)\(([A-Za-z0-9.]+)\.([A-Z]{2,3})\)$/);
     const name = nameMatch ? nameMatch[1] : nameCell;
     const code = codeMatch ? codeMatch[1] : (nameMatch ? nameMatch[2] : null);
+    const exchange = codeMatch ? codeMatch[2] : (nameMatch ? nameMatch[3] : null);
     const weightPct = num(stripTags(cells[1]));
     const shares = num(stripTags(cells[2]));
     if (code == null || weightPct == null) continue;
-    out.push({ code, name, weightPct, shares });
+    out.push({ code, name, exchange, weightPct, shares });
   }
   return out;
 }
@@ -163,11 +180,12 @@ function diffHoldings(prevFund, prevDate, currHoldings) {
 }
 
 /** 跨基金彙總：方向（增減家數）與集中性（買超/賣超集中在哪幾支股票）。 */
-function aggregate(funds) {
+function aggregate(funds, category) {
   const perStock = new Map(); // code -> { name, fundsUp, fundsDown, totalSharesChange }
   let fundsWithDiff = 0;
 
   for (const f of Object.values(funds)) {
+    if (f.category !== category) continue;
     if (!f.ok || !f.diff) continue;
     fundsWithDiff++;
     for (const c of f.diff.changes) {
@@ -207,7 +225,7 @@ function aggregate(funds) {
 }
 
 async function main() {
-  console.log(`=== 主動式ETF持股抓取 === 候選 ${CANDIDATES.length} 檔`);
+  console.log(`=== 主動式ETF持股抓取 === 候選 ${CANDIDATES.length} 檔（台股型 ${CANDIDATES_TW.length}／海外型 ${CANDIDATES_OVERSEAS.length}）`);
   const today = taipeiToday();
 
   let prevSnapshot = { date: null, funds: {} };
@@ -222,22 +240,23 @@ async function main() {
   console.log(`今天：${today}，上次快照日期：${prevSnapshot.date || "（無）"}，${isNewDay ? "視為新的一天" : "同一天重跑"}`);
 
   const funds = {};
-  for (const code of CANDIDATES) {
+  for (const [code, category] of CANDIDATES) {
     try {
       const { fundName, source, holdings } = await fetchOneEtf(code);
       const prevFund = prevSnapshot.funds[code];
       // 只有「換了一個新的交易日」才拿舊快照來做增減比對，同一天重跑不要跟自己比。
       const diff = isNewDay ? diffHoldings(prevFund, prevSnapshot.date, holdings) : null;
-      funds[code] = { ok: true, fundName, source, fetchedDate: today, holdings, diff };
-      console.log(`[${code}] → OK ${fundName}，${holdings.length} 筆持股${diff ? `，${diff.changes.length} 筆較上次有異動` : "（無上次快照可比對）"}`);
+      funds[code] = { ok: true, category, fundName, source, fetchedDate: today, holdings, diff };
+      console.log(`[${code}/${category}] → OK ${fundName}，${holdings.length} 筆持股${diff ? `，${diff.changes.length} 筆較上次有異動` : "（無上次快照可比對）"}`);
     } catch (err) {
-      funds[code] = { ok: false, error: String(err.message || err) };
-      console.log(`[${code}] → FAIL ${err.message || err}`);
+      funds[code] = { ok: false, category, error: String(err.message || err) };
+      console.log(`[${code}/${category}] → FAIL ${err.message || err}`);
     }
   }
 
   const okCount = Object.values(funds).filter((f) => f.ok).length;
-  const summary = aggregate(funds);
+  const summaryTw = aggregate(funds, "tw");
+  const summaryOverseas = aggregate(funds, "overseas");
 
   const payload = {
     fetchedAt: new Date().toISOString(),
@@ -246,7 +265,8 @@ async function main() {
     okCount,
     totalCount: CANDIDATES.length,
     funds,
-    summary
+    summaryTw,
+    summaryOverseas
   };
 
   mkdirSync(dirname(OUT), { recursive: true });
@@ -273,7 +293,7 @@ async function main() {
     "utf8"
   );
 
-  console.log(`\n=== 完成：${okCount}/${CANDIDATES.length} 檔成功 ===`);
+  console.log(`\n=== 完成：${okCount}/${CANDIDATES.length} 檔成功（台股型異動 ${summaryTw.fundsWithDiff} 檔／海外型異動 ${summaryOverseas.fundsWithDiff} 檔） ===`);
   console.log(`已寫入 ${OUT}`);
 }
 
