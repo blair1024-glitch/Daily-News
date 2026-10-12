@@ -7,11 +7,11 @@
  * ok:false 代表該代號當次抓不到（可能代號不存在、已下市或頁面改版）。
  */
 window.ACTIVE_ETF = {
-  "fetchedAt": "2026-10-12T01:32:49.099Z",
+  "fetchedAt": "2026-10-12T01:35:06.568Z",
   "date": "20261012",
   "source": "MoneyDJ理財網 ETF持股狀況頁（第三方資料，非投信/證交所官方原始揭露，逐檔以 fund.source 列出網址）",
-  "okCount": 15,
-  "totalCount": 16,
+  "okCount": 12,
+  "totalCount": 12,
   "funds": {
     "00403A": {
       "ok": true,
@@ -283,10 +283,6 @@ window.ACTIVE_ETF = {
       ],
       "diff": null
     },
-    "00983A": {
-      "ok": false,
-      "error": "持股表格存在但解析出 0 筆資料"
-    },
     "00984A": {
       "ok": true,
       "fundName": "主動安聯台灣高息",
@@ -419,21 +415,6 @@ window.ACTIVE_ETF = {
       ],
       "diff": null
     },
-    "00986A": {
-      "ok": true,
-      "fundName": "主動台新龍頭成長",
-      "source": "https://www.moneydj.com/etf/x/basic/basic0007.xdjhtm?etfid=00986a.tw",
-      "fetchedDate": "20261012",
-      "holdings": [
-        {
-          "code": "2330",
-          "name": "台積電",
-          "weightPct": 7.89,
-          "shares": 18000
-        }
-      ],
-      "diff": null
-    },
     "00987A": {
       "ok": true,
       "fundName": "主動台新優勢成長",
@@ -499,27 +480,6 @@ window.ACTIVE_ETF = {
           "name": "聯亞",
           "weightPct": 3.53,
           "shares": 29800
-        }
-      ],
-      "diff": null
-    },
-    "00990A": {
-      "ok": true,
-      "fundName": "主動元大AI新經濟",
-      "source": "https://www.moneydj.com/etf/x/basic/basic0007.xdjhtm?etfid=00990a.tw",
-      "fetchedDate": "20261012",
-      "holdings": [
-        {
-          "code": "2308",
-          "name": "台達電",
-          "weightPct": 3.28,
-          "shares": 633000
-        },
-        {
-          "code": "2330",
-          "name": "台積電",
-          "weightPct": 2.73,
-          "shares": 406000
         }
       ],
       "diff": null
@@ -865,21 +825,6 @@ window.ACTIVE_ETF = {
           "name": "貿聯-KY",
           "weightPct": 3.88,
           "shares": 81000
-        }
-      ],
-      "diff": null
-    },
-    "00997A": {
-      "ok": true,
-      "fundName": "主動群益美國增長",
-      "source": "https://www.moneydj.com/etf/x/basic/basic0007.xdjhtm?etfid=00997a.tw",
-      "fetchedDate": "20261012",
-      "holdings": [
-        {
-          "code": "3037",
-          "name": "欣興",
-          "weightPct": 3.7,
-          "shares": 360000
         }
       ],
       "diff": null
