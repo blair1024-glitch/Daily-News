@@ -6,10 +6,10 @@
  * ok:false 代表該欄位當天抓不到，error 說明原因——請據實標註，不要沿用舊值。
  */
 window.MARKET_AUTO = {
-  "fetchedAt": "2026-10-14T15:43:00.004Z",
+  "fetchedAt": "2026-10-14T23:40:03.339Z",
   "tradeDate": "20261014",
   "marketOpen": true,
-  "okCount": 4,
+  "okCount": 5,
   "totalCount": 5,
   "items": {
     "marginTwse": {
@@ -109,27 +109,57 @@ window.MARKET_AUTO = {
         "index": {
           "close": 420.13,
           "source": "TWSE MIS getStockInfo（otc_o00.tw）",
-          "field": "z",
-          "misDate": "20261014",
-          "open": 415.03,
-          "high": 421.67,
-          "low": 415.03,
-          "prevClose": 414.31,
+          "field": "y",
+          "misDate": "20261015",
+          "open": null,
+          "high": null,
+          "low": null,
+          "prevClose": 420.13,
           "name": "櫃買指數"
         },
         "indexCross": {
           "taiexFromMis": 48625.83,
-          "field": "z",
-          "misDate": "20261014"
+          "field": "y",
+          "misDate": "20261015"
         },
         "turnoverYi": 2333.7,
         "quoteCount": 12466
       }
     },
     "txfTaifex": {
-      "ok": false,
+      "ok": true,
       "source": "TAIFEX futDataDown",
-      "error": "表頭找不到收盤價，實際表頭：<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01//EN\" \"http://www.w3.org/TR/html4/strict.dtd\">"
+      "value": {
+        "date": "20261014",
+        "contractMonth": "202610",
+        "close": 48792,
+        "change": 400,
+        "volume": 44607,
+        "openInterest": 105601,
+        "session": "一般",
+        "rowCount": 25,
+        "header": [
+          "交易日期",
+          "契約",
+          "到期月份(週別)",
+          "開盤價",
+          "最高價",
+          "最低價",
+          "收盤價",
+          "漲跌價",
+          "漲跌%",
+          "成交量",
+          "結算價",
+          "未沖銷契約數",
+          "最後最佳買價",
+          "最後最佳賣價",
+          "歷史最高價",
+          "歷史最低價",
+          "是否因訊息面暫停交易",
+          "交易時段",
+          "價差對單式委託成交量"
+        ]
+      }
     }
   }
 };
