@@ -40,5 +40,13 @@ jobs:
             echo "沒有變化，不產生 commit"
           else
             git commit -m "chore(data): 主動式ETF持股 $(TZ=Asia/Taipei date +%Y/%m/%d)"
-            git push
+            # 這個 workflow 跟 fetch-tw-market.yml 常常幾乎同時觸發（手動補跑時
+            # 尤其容易撞上），push 被拒絕就 rebase 到最新 main 再試一次。
+            for i in 1 2 3 4 5; do
+              if git push; then break; fi
+              echo "push 被拒絕，第 $i 次重試：rebase 到最新 main"
+              git fetch origin main
+              git rebase origin/main
+              sleep $((i * 3))
+            done
           fi
