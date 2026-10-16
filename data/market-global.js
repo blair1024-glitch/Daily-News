@@ -6,7 +6,7 @@
  * ok:false 代表該標的當次抓不到，error 說明原因——請據實標註，不要沿用舊值。
  */
 window.MARKET_GLOBAL = {
-  "fetchedAt": "2026-10-16T01:02:28.903Z",
+  "fetchedAt": "2026-10-16T15:16:20.950Z",
   "okCount": 16,
   "totalCount": 16,
   "items": {
@@ -15,41 +15,37 @@ window.MARKET_GLOBAL = {
       "label": "費城半導體 SOX",
       "symbol": "%5ESOX",
       "value": {
-        "close": 11581.2148,
+        "close": 11581.21,
         "prevClose": 11684.3799,
-        "change": -103.1651,
+        "change": -103.1699,
         "changePct": -0.88,
         "asOf": "2026-10-15",
         "prevAsOf": "2026-10-14",
         "gapDays": 1,
         "gapSuspect": false,
-        "live": false,
+        "live": true,
         "latest": {
-          "date": "2026-10-15",
-          "close": 11581.2148,
-          "prevDate": "2026-10-14",
-          "prevClose": 11684.3799,
-          "change": -103.1651,
-          "changePct": -0.88,
+          "date": "2026-10-16",
+          "close": 11340.4609,
+          "prevDate": "2026-10-15",
+          "prevClose": 11581.21,
+          "change": -240.7491,
+          "changePct": -2.08,
           "gapDays": 1,
           "gapSuspect": false
         },
         "settled": {
           "date": "2026-10-15",
-          "close": 11581.2148,
+          "close": 11581.21,
           "prevDate": "2026-10-14",
           "prevClose": 11684.3799,
-          "change": -103.1651,
+          "change": -103.1699,
           "changePct": -0.88,
           "gapDays": 1,
           "gapSuspect": false
         },
-        "quotePrice": 11581.215,
+        "quotePrice": 11340.461,
         "series": [
-          {
-            "date": "2026-10-08",
-            "close": 12623.71
-          },
           {
             "date": "2026-10-09",
             "close": 12572.4199
@@ -68,7 +64,11 @@ window.MARKET_GLOBAL = {
           },
           {
             "date": "2026-10-15",
-            "close": 11581.2148
+            "close": 11581.21
+          },
+          {
+            "date": "2026-10-16",
+            "close": 11340.4609
           }
         ],
         "currency": "USD",
@@ -89,14 +89,14 @@ window.MARKET_GLOBAL = {
         "prevAsOf": "2026-10-14",
         "gapDays": 1,
         "gapSuspect": false,
-        "live": false,
+        "live": true,
         "latest": {
-          "date": "2026-10-15",
-          "close": 16.46,
-          "prevDate": "2026-10-14",
-          "prevClose": 16.87,
-          "change": -0.41,
-          "changePct": -2.43,
+          "date": "2026-10-16",
+          "close": 15.87,
+          "prevDate": "2026-10-15",
+          "prevClose": 16.46,
+          "change": -0.59,
+          "changePct": -3.58,
           "gapDays": 1,
           "gapSuspect": false
         },
@@ -110,12 +110,8 @@ window.MARKET_GLOBAL = {
           "gapDays": 1,
           "gapSuspect": false
         },
-        "quotePrice": 16.46,
+        "quotePrice": 15.87,
         "series": [
-          {
-            "date": "2026-10-08",
-            "close": 15.41
-          },
           {
             "date": "2026-10-09",
             "close": 14.84
@@ -135,6 +131,10 @@ window.MARKET_GLOBAL = {
           {
             "date": "2026-10-15",
             "close": 16.46
+          },
+          {
+            "date": "2026-10-16",
+            "close": 15.87
           }
         ],
         "currency": "USD",
@@ -155,14 +155,14 @@ window.MARKET_GLOBAL = {
         "prevAsOf": "2026-10-14",
         "gapDays": 1,
         "gapSuspect": false,
-        "live": false,
+        "live": true,
         "latest": {
-          "date": "2026-10-15",
-          "close": 7744.0601,
-          "prevDate": "2026-10-14",
-          "prevClose": 7718.9399,
-          "change": 25.1202,
-          "changePct": 0.33,
+          "date": "2026-10-16",
+          "close": 7722.3501,
+          "prevDate": "2026-10-15",
+          "prevClose": 7744.0601,
+          "change": -21.71,
+          "changePct": -0.28,
           "gapDays": 1,
           "gapSuspect": false
         },
@@ -176,12 +176,8 @@ window.MARKET_GLOBAL = {
           "gapDays": 1,
           "gapSuspect": false
         },
-        "quotePrice": 7744.06,
+        "quotePrice": 7722.35,
         "series": [
-          {
-            "date": "2026-10-08",
-            "close": 7765.3599
-          },
           {
             "date": "2026-10-09",
             "close": 7811.54
@@ -201,6 +197,10 @@ window.MARKET_GLOBAL = {
           {
             "date": "2026-10-15",
             "close": 7744.0601
+          },
+          {
+            "date": "2026-10-16",
+            "close": 7722.3501
           }
         ],
         "currency": "USD",
@@ -213,41 +213,37 @@ window.MARKET_GLOBAL = {
       "label": "Nasdaq 綜合",
       "symbol": "%5EIXIC",
       "value": {
-        "close": 26713.0254,
+        "close": 26713.0293,
         "prevClose": 26692.8691,
-        "change": 20.1563,
+        "change": 20.1602,
         "changePct": 0.08,
         "asOf": "2026-10-15",
         "prevAsOf": "2026-10-14",
         "gapDays": 1,
         "gapSuspect": false,
-        "live": false,
+        "live": true,
         "latest": {
-          "date": "2026-10-15",
-          "close": 26713.0254,
-          "prevDate": "2026-10-14",
-          "prevClose": 26692.8691,
-          "change": 20.1563,
-          "changePct": 0.08,
+          "date": "2026-10-16",
+          "close": 26420.9961,
+          "prevDate": "2026-10-15",
+          "prevClose": 26713.0293,
+          "change": -292.0332,
+          "changePct": -1.09,
           "gapDays": 1,
           "gapSuspect": false
         },
         "settled": {
           "date": "2026-10-15",
-          "close": 26713.0254,
+          "close": 26713.0293,
           "prevDate": "2026-10-14",
           "prevClose": 26692.8691,
-          "change": 20.1563,
+          "change": 20.1602,
           "changePct": 0.08,
           "gapDays": 1,
           "gapSuspect": false
         },
-        "quotePrice": 26713.025,
+        "quotePrice": 26420.996,
         "series": [
-          {
-            "date": "2026-10-08",
-            "close": 27193.3398
-          },
           {
             "date": "2026-10-09",
             "close": 27366.1699
@@ -266,7 +262,11 @@ window.MARKET_GLOBAL = {
           },
           {
             "date": "2026-10-15",
-            "close": 26713.0254
+            "close": 26713.0293
+          },
+          {
+            "date": "2026-10-16",
+            "close": 26420.9961
           }
         ],
         "currency": "USD",
@@ -287,14 +287,14 @@ window.MARKET_GLOBAL = {
         "prevAsOf": "2026-10-14",
         "gapDays": 1,
         "gapSuspect": false,
-        "live": false,
+        "live": true,
         "latest": {
-          "date": "2026-10-15",
-          "close": 52177.6914,
-          "prevDate": "2026-10-14",
-          "prevClose": 51621.4805,
-          "change": 556.2109,
-          "changePct": 1.08,
+          "date": "2026-10-16",
+          "close": 52376.0586,
+          "prevDate": "2026-10-15",
+          "prevClose": 52177.6914,
+          "change": 198.3672,
+          "changePct": 0.38,
           "gapDays": 1,
           "gapSuspect": false
         },
@@ -308,12 +308,8 @@ window.MARKET_GLOBAL = {
           "gapDays": 1,
           "gapSuspect": false
         },
-        "quotePrice": 52177.69,
+        "quotePrice": 52376.06,
         "series": [
-          {
-            "date": "2026-10-08",
-            "close": 51231.6406
-          },
           {
             "date": "2026-10-09",
             "close": 51654.9492
@@ -333,6 +329,10 @@ window.MARKET_GLOBAL = {
           {
             "date": "2026-10-15",
             "close": 52177.6914
+          },
+          {
+            "date": "2026-10-16",
+            "close": 52376.0586
           }
         ],
         "currency": "USD",
@@ -353,14 +353,14 @@ window.MARKET_GLOBAL = {
         "prevAsOf": "2026-10-14",
         "gapDays": 1,
         "gapSuspect": false,
-        "live": false,
+        "live": true,
         "latest": {
-          "date": "2026-10-15",
-          "close": 5.089,
-          "prevDate": "2026-10-14",
-          "prevClose": 5.19,
-          "change": -0.101,
-          "changePct": -1.95,
+          "date": "2026-10-16",
+          "close": 5.092,
+          "prevDate": "2026-10-15",
+          "prevClose": 5.089,
+          "change": 0.003,
+          "changePct": 0.06,
           "gapDays": 1,
           "gapSuspect": false
         },
@@ -374,12 +374,8 @@ window.MARKET_GLOBAL = {
           "gapDays": 1,
           "gapSuspect": false
         },
-        "quotePrice": 5.089,
+        "quotePrice": 5.092,
         "series": [
-          {
-            "date": "2026-10-08",
-            "close": 5.231
-          },
           {
             "date": "2026-10-09",
             "close": 5.244
@@ -399,6 +395,10 @@ window.MARKET_GLOBAL = {
           {
             "date": "2026-10-15",
             "close": 5.089
+          },
+          {
+            "date": "2026-10-16",
+            "close": 5.092
           }
         ],
         "currency": "USD",
@@ -419,14 +419,14 @@ window.MARKET_GLOBAL = {
         "prevAsOf": "2026-10-14",
         "gapDays": 1,
         "gapSuspect": false,
-        "live": false,
+        "live": true,
         "latest": {
-          "date": "2026-10-15",
-          "close": 5.429,
-          "prevDate": "2026-10-14",
-          "prevClose": 5.525,
-          "change": -0.096,
-          "changePct": -1.74,
+          "date": "2026-10-16",
+          "close": 5.43,
+          "prevDate": "2026-10-15",
+          "prevClose": 5.429,
+          "change": 0.001,
+          "changePct": 0.02,
           "gapDays": 1,
           "gapSuspect": false
         },
@@ -440,12 +440,8 @@ window.MARKET_GLOBAL = {
           "gapDays": 1,
           "gapSuspect": false
         },
-        "quotePrice": 5.429,
+        "quotePrice": 5.43,
         "series": [
-          {
-            "date": "2026-10-08",
-            "close": 5.606
-          },
           {
             "date": "2026-10-09",
             "close": 5.6
@@ -465,6 +461,10 @@ window.MARKET_GLOBAL = {
           {
             "date": "2026-10-15",
             "close": 5.429
+          },
+          {
+            "date": "2026-10-16",
+            "close": 5.43
           }
         ],
         "currency": "USD",
@@ -485,14 +485,14 @@ window.MARKET_GLOBAL = {
         "prevAsOf": "2026-10-14",
         "gapDays": 1,
         "gapSuspect": false,
-        "live": false,
+        "live": true,
         "latest": {
-          "date": "2026-10-15",
-          "close": 4.899,
-          "prevDate": "2026-10-14",
-          "prevClose": 4.992,
-          "change": -0.093,
-          "changePct": -1.86,
+          "date": "2026-10-16",
+          "close": 4.891,
+          "prevDate": "2026-10-15",
+          "prevClose": 4.899,
+          "change": -0.008,
+          "changePct": -0.16,
           "gapDays": 1,
           "gapSuspect": false
         },
@@ -506,12 +506,8 @@ window.MARKET_GLOBAL = {
           "gapDays": 1,
           "gapSuspect": false
         },
-        "quotePrice": 4.899,
+        "quotePrice": 4.891,
         "series": [
-          {
-            "date": "2026-10-08",
-            "close": 4.991
-          },
           {
             "date": "2026-10-09",
             "close": 5.021
@@ -531,6 +527,10 @@ window.MARKET_GLOBAL = {
           {
             "date": "2026-10-15",
             "close": 4.899
+          },
+          {
+            "date": "2026-10-16",
+            "close": 4.891
           }
         ],
         "currency": "USD",
@@ -543,41 +543,37 @@ window.MARKET_GLOBAL = {
       "label": "DXY 美元指數",
       "symbol": "DX-Y.NYB",
       "value": {
-        "close": 102.55,
-        "prevClose": 102.18,
-        "change": 0.37,
-        "changePct": 0.36,
-        "asOf": "2026-10-14",
-        "prevAsOf": "2026-10-13",
+        "close": 102,
+        "prevClose": 102.55,
+        "change": -0.55,
+        "changePct": -0.54,
+        "asOf": "2026-10-15",
+        "prevAsOf": "2026-10-14",
         "gapDays": 1,
         "gapSuspect": false,
         "live": true,
         "latest": {
-          "date": "2026-10-15",
-          "close": 102.063,
-          "prevDate": "2026-10-14",
-          "prevClose": 102.55,
-          "change": -0.487,
-          "changePct": -0.47,
+          "date": "2026-10-16",
+          "close": 101.642,
+          "prevDate": "2026-10-15",
+          "prevClose": 102,
+          "change": -0.358,
+          "changePct": -0.35,
           "gapDays": 1,
           "gapSuspect": false
         },
         "settled": {
-          "date": "2026-10-14",
-          "close": 102.55,
-          "prevDate": "2026-10-13",
-          "prevClose": 102.18,
-          "change": 0.37,
-          "changePct": 0.36,
+          "date": "2026-10-15",
+          "close": 102,
+          "prevDate": "2026-10-14",
+          "prevClose": 102.55,
+          "change": -0.55,
+          "changePct": -0.54,
           "gapDays": 1,
           "gapSuspect": false
         },
-        "quotePrice": 102.063,
+        "quotePrice": 101.642,
         "series": [
-          {
-            "date": "2026-10-08",
-            "close": 102.14
-          },
           {
             "date": "2026-10-09",
             "close": 102.21
@@ -596,7 +592,11 @@ window.MARKET_GLOBAL = {
           },
           {
             "date": "2026-10-15",
-            "close": 102.063
+            "close": 102
+          },
+          {
+            "date": "2026-10-16",
+            "close": 101.642
           }
         ],
         "currency": "USD",
@@ -609,41 +609,37 @@ window.MARKET_GLOBAL = {
       "label": "WTI 原油",
       "symbol": "CL%3DF",
       "value": {
-        "close": 95.09,
-        "prevClose": 94.14,
-        "change": 0.95,
-        "changePct": 1.01,
-        "asOf": "2026-10-14",
-        "prevAsOf": "2026-10-13",
+        "close": 97.97,
+        "prevClose": 95.09,
+        "change": 2.88,
+        "changePct": 3.03,
+        "asOf": "2026-10-15",
+        "prevAsOf": "2026-10-14",
         "gapDays": 1,
         "gapSuspect": false,
         "live": true,
         "latest": {
-          "date": "2026-10-15",
-          "close": 96.01,
-          "prevDate": "2026-10-14",
-          "prevClose": 95.09,
-          "change": 0.92,
-          "changePct": 0.97,
+          "date": "2026-10-16",
+          "close": 95.8,
+          "prevDate": "2026-10-15",
+          "prevClose": 97.97,
+          "change": -2.17,
+          "changePct": -2.21,
           "gapDays": 1,
           "gapSuspect": false
         },
         "settled": {
-          "date": "2026-10-14",
-          "close": 95.09,
-          "prevDate": "2026-10-13",
-          "prevClose": 94.14,
-          "change": 0.95,
-          "changePct": 1.01,
+          "date": "2026-10-15",
+          "close": 97.97,
+          "prevDate": "2026-10-14",
+          "prevClose": 95.09,
+          "change": 2.88,
+          "changePct": 3.03,
           "gapDays": 1,
           "gapSuspect": false
         },
-        "quotePrice": 96.01,
+        "quotePrice": 95.8,
         "series": [
-          {
-            "date": "2026-10-08",
-            "close": 91.49
-          },
           {
             "date": "2026-10-09",
             "close": 91.85
@@ -662,7 +658,11 @@ window.MARKET_GLOBAL = {
           },
           {
             "date": "2026-10-15",
-            "close": 96.01
+            "close": 97.97
+          },
+          {
+            "date": "2026-10-16",
+            "close": 95.8
           }
         ],
         "currency": "USD",
@@ -675,41 +675,37 @@ window.MARKET_GLOBAL = {
       "label": "Brent 原油",
       "symbol": "BZ%3DF",
       "value": {
-        "close": 106.06,
-        "prevClose": 105.69,
-        "change": 0.37,
-        "changePct": 0.35,
-        "asOf": "2026-10-14",
-        "prevAsOf": "2026-10-13",
+        "close": 105.92,
+        "prevClose": 106.06,
+        "change": -0.14,
+        "changePct": -0.13,
+        "asOf": "2026-10-15",
+        "prevAsOf": "2026-10-14",
         "gapDays": 1,
         "gapSuspect": false,
         "live": true,
         "latest": {
-          "date": "2026-10-15",
-          "close": 105.5,
-          "prevDate": "2026-10-14",
-          "prevClose": 106.06,
-          "change": -0.56,
-          "changePct": -0.53,
+          "date": "2026-10-16",
+          "close": 105.91,
+          "prevDate": "2026-10-15",
+          "prevClose": 105.92,
+          "change": -0.01,
+          "changePct": -0.01,
           "gapDays": 1,
           "gapSuspect": false
         },
         "settled": {
-          "date": "2026-10-14",
-          "close": 106.06,
-          "prevDate": "2026-10-13",
-          "prevClose": 105.69,
-          "change": 0.37,
-          "changePct": 0.35,
+          "date": "2026-10-15",
+          "close": 105.92,
+          "prevDate": "2026-10-14",
+          "prevClose": 106.06,
+          "change": -0.14,
+          "changePct": -0.13,
           "gapDays": 1,
           "gapSuspect": false
         },
-        "quotePrice": 105.5,
+        "quotePrice": 105.91,
         "series": [
-          {
-            "date": "2026-10-08",
-            "close": 104.28
-          },
           {
             "date": "2026-10-09",
             "close": 104.72
@@ -728,7 +724,11 @@ window.MARKET_GLOBAL = {
           },
           {
             "date": "2026-10-15",
-            "close": 105.5
+            "close": 105.92
+          },
+          {
+            "date": "2026-10-16",
+            "close": 105.91
           }
         ],
         "currency": "USD",
@@ -741,41 +741,37 @@ window.MARKET_GLOBAL = {
       "label": "黃金",
       "symbol": "GC%3DF",
       "value": {
-        "close": 4107.8999,
-        "prevClose": 4177.2998,
-        "change": -69.3999,
-        "changePct": -1.66,
-        "asOf": "2026-10-14",
-        "prevAsOf": "2026-10-13",
+        "close": 4170.1001,
+        "prevClose": 4107.8999,
+        "change": 62.2002,
+        "changePct": 1.51,
+        "asOf": "2026-10-15",
+        "prevAsOf": "2026-10-14",
         "gapDays": 1,
         "gapSuspect": false,
         "live": true,
         "latest": {
-          "date": "2026-10-15",
-          "close": 4176.3999,
-          "prevDate": "2026-10-14",
-          "prevClose": 4107.8999,
-          "change": 68.5,
-          "changePct": 1.67,
+          "date": "2026-10-16",
+          "close": 4207.1001,
+          "prevDate": "2026-10-15",
+          "prevClose": 4170.1001,
+          "change": 37,
+          "changePct": 0.89,
           "gapDays": 1,
           "gapSuspect": false
         },
         "settled": {
-          "date": "2026-10-14",
-          "close": 4107.8999,
-          "prevDate": "2026-10-13",
-          "prevClose": 4177.2998,
-          "change": -69.3999,
-          "changePct": -1.66,
+          "date": "2026-10-15",
+          "close": 4170.1001,
+          "prevDate": "2026-10-14",
+          "prevClose": 4107.8999,
+          "change": 62.2002,
+          "changePct": 1.51,
           "gapDays": 1,
           "gapSuspect": false
         },
-        "quotePrice": 4176.4,
+        "quotePrice": 4207.1,
         "series": [
-          {
-            "date": "2026-10-08",
-            "close": 4157
-          },
           {
             "date": "2026-10-09",
             "close": 4216.2998
@@ -794,7 +790,11 @@ window.MARKET_GLOBAL = {
           },
           {
             "date": "2026-10-15",
-            "close": 4176.3999
+            "close": 4170.1001
+          },
+          {
+            "date": "2026-10-16",
+            "close": 4207.1001
           }
         ],
         "currency": "USD",
@@ -818,11 +818,11 @@ window.MARKET_GLOBAL = {
         "live": true,
         "latest": {
           "date": "2026-10-16",
-          "close": 158.149,
+          "close": 157.874,
           "prevDate": "2026-10-15",
           "prevClose": 157.957,
-          "change": 0.192,
-          "changePct": 0.12,
+          "change": -0.083,
+          "changePct": -0.05,
           "gapDays": 1,
           "gapSuspect": false
         },
@@ -836,7 +836,7 @@ window.MARKET_GLOBAL = {
           "gapDays": 1,
           "gapSuspect": false
         },
-        "quotePrice": 158.149,
+        "quotePrice": 157.874,
         "series": [
           {
             "date": "2026-10-09",
@@ -860,7 +860,7 @@ window.MARKET_GLOBAL = {
           },
           {
             "date": "2026-10-16",
-            "close": 158.149
+            "close": 157.874
           }
         ],
         "currency": "JPY",
@@ -884,11 +884,11 @@ window.MARKET_GLOBAL = {
         "live": true,
         "latest": {
           "date": "2026-10-16",
-          "close": 6.6904,
+          "close": 6.6755,
           "prevDate": "2026-10-15",
           "prevClose": 6.6926,
-          "change": -0.0022,
-          "changePct": -0.03,
+          "change": -0.0171,
+          "changePct": -0.26,
           "gapDays": 1,
           "gapSuspect": false
         },
@@ -902,7 +902,7 @@ window.MARKET_GLOBAL = {
           "gapDays": 1,
           "gapSuspect": false
         },
-        "quotePrice": 6.6904,
+        "quotePrice": 6.6755,
         "series": [
           {
             "date": "2026-10-09",
@@ -926,7 +926,7 @@ window.MARKET_GLOBAL = {
           },
           {
             "date": "2026-10-16",
-            "close": 6.6904
+            "close": 6.6755
           }
         ],
         "currency": "CNY",
@@ -950,11 +950,11 @@ window.MARKET_GLOBAL = {
         "live": true,
         "latest": {
           "date": "2026-10-16",
-          "close": 32.38,
+          "close": 32.415,
           "prevDate": "2026-10-15",
           "prevClose": 32.1899,
-          "change": 0.1901,
-          "changePct": 0.59,
+          "change": 0.2251,
+          "changePct": 0.7,
           "gapDays": 1,
           "gapSuspect": false
         },
@@ -968,7 +968,7 @@ window.MARKET_GLOBAL = {
           "gapDays": 1,
           "gapSuspect": false
         },
-        "quotePrice": 32.38,
+        "quotePrice": 32.415,
         "series": [
           {
             "date": "2026-10-09",
@@ -992,7 +992,7 @@ window.MARKET_GLOBAL = {
           },
           {
             "date": "2026-10-16",
-            "close": 32.38
+            "close": 32.415
           }
         ],
         "currency": "TWD",
@@ -1005,41 +1005,37 @@ window.MARKET_GLOBAL = {
       "label": "TAIEX（交叉驗證）",
       "symbol": "%5ETWII",
       "value": {
-        "close": 46969.8711,
-        "prevClose": 48625.8281,
-        "change": -1655.957,
-        "changePct": -3.41,
-        "asOf": "2026-10-15",
-        "prevAsOf": "2026-10-14",
+        "close": 47111.2617,
+        "prevClose": 46969.8711,
+        "change": 141.3906,
+        "changePct": 0.3,
+        "asOf": "2026-10-16",
+        "prevAsOf": "2026-10-15",
         "gapDays": 1,
         "gapSuspect": false,
         "live": false,
         "latest": {
-          "date": "2026-10-15",
-          "close": 46969.8711,
-          "prevDate": "2026-10-14",
-          "prevClose": 48625.8281,
-          "change": -1655.957,
-          "changePct": -3.41,
+          "date": "2026-10-16",
+          "close": 47111.2617,
+          "prevDate": "2026-10-15",
+          "prevClose": 46969.8711,
+          "change": 141.3906,
+          "changePct": 0.3,
           "gapDays": 1,
           "gapSuspect": false
         },
         "settled": {
-          "date": "2026-10-15",
-          "close": 46969.8711,
-          "prevDate": "2026-10-14",
-          "prevClose": 48625.8281,
-          "change": -1655.957,
-          "changePct": -3.41,
+          "date": "2026-10-16",
+          "close": 47111.2617,
+          "prevDate": "2026-10-15",
+          "prevClose": 46969.8711,
+          "change": 141.3906,
+          "changePct": 0.3,
           "gapDays": 1,
           "gapSuspect": false
         },
-        "quotePrice": 46969.87,
+        "quotePrice": 47111.26,
         "series": [
-          {
-            "date": "2026-10-07",
-            "close": 49806.3711
-          },
           {
             "date": "2026-10-08",
             "close": 49313.4414
@@ -1059,6 +1055,10 @@ window.MARKET_GLOBAL = {
           {
             "date": "2026-10-15",
             "close": 46969.8711
+          },
+          {
+            "date": "2026-10-16",
+            "close": 47111.2617
           }
         ],
         "currency": "TWD",
