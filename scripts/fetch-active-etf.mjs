@@ -287,9 +287,19 @@ async function main() {
   );
 
   // 快照只保留「今天」這一份，供明天比對用——不是給 dashboard 讀的。
+  // 以舊快照為底，今天成功抓到的基金覆蓋進去；今天失敗的基金維持舊快照裡的
+  // 持股不變，而不是整筆丟掉。這是刻意的：10/17（週六，MoneyDJ 當天 0/16
+  // 全部失敗，可能是非交易日沒更新）曾經把前一天（10/16）完整的 16/16 快照
+  // 直接覆寫成空的 {}，導致下一個交易日完全失去比對基準、所有基金都變成
+  // 「無上次快照可比對」——明明資料好好的在 10/16 那份裡，只是被這天的失敗
+  // 覆蓋掉。改成合併後，單一天的全部或部分失敗不會再抹掉歷史。
+  const mergedSnapshotFunds = { ...prevSnapshot.funds };
+  for (const [code, v] of Object.entries(funds)) {
+    if (v.ok) mergedSnapshotFunds[code] = { holdings: v.holdings };
+  }
   writeFileSync(
     SNAPSHOT,
-    JSON.stringify({ date: today, funds: Object.fromEntries(Object.entries(funds).map(([k, v]) => [k, v.ok ? { holdings: v.holdings } : undefined]).filter(([, v]) => v)) }, null, 0),
+    JSON.stringify({ date: today, funds: mergedSnapshotFunds }, null, 0),
     "utf8"
   );
 
