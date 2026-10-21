@@ -7,7 +7,7 @@
  * ok:false 代表該代號當次抓不到（可能代號不存在、已下市或頁面改版）。
  */
 window.ACTIVE_ETF = {
-  "fetchedAt": "2026-10-20T23:40:35.196Z",
+  "fetchedAt": "2026-10-21T01:51:51.073Z",
   "date": "20261021",
   "source": "MoneyDJ理財網 ETF持股狀況頁（第三方資料，非投信/證交所官方原始揭露，逐檔以 fund.source 列出網址）",
   "okCount": 16,
@@ -91,18 +91,7 @@ window.ACTIVE_ETF = {
           "shares": 930000
         }
       ],
-      "diff": {
-        "prevAsOf": "20261020",
-        "changes": [
-          {
-            "code": "3017",
-            "name": "奇鋐",
-            "action": "增持",
-            "sharesChange": 60000,
-            "weightChange": 0.26
-          }
-        ]
-      }
+      "diff": null
     },
     "00980A": {
       "ok": true,
@@ -182,10 +171,7 @@ window.ACTIVE_ETF = {
           "shares": 1096000
         }
       ],
-      "diff": {
-        "prevAsOf": "20261020",
-        "changes": []
-      }
+      "diff": null
     },
     "00981A": {
       "ok": true,
@@ -265,32 +251,7 @@ window.ACTIVE_ETF = {
           "shares": 7582000
         }
       ],
-      "diff": {
-        "prevAsOf": "20261020",
-        "changes": [
-          {
-            "code": "2330",
-            "name": "台積電",
-            "action": "增持",
-            "sharesChange": 279000,
-            "weightChange": 0.44
-          },
-          {
-            "code": "3017",
-            "name": "奇鋐",
-            "action": "增持",
-            "sharesChange": 40000,
-            "weightChange": 0.24
-          },
-          {
-            "code": "3653",
-            "name": "健策",
-            "action": "增持",
-            "sharesChange": 10000,
-            "weightChange": 0.24
-          }
-        ]
-      }
+      "diff": null
     },
     "00982A": {
       "ok": true,
@@ -370,10 +331,7 @@ window.ACTIVE_ETF = {
           "shares": 309000
         }
       ],
-      "diff": {
-        "prevAsOf": "20261020",
-        "changes": []
-      }
+      "diff": null
     },
     "00984A": {
       "ok": true,
@@ -453,10 +411,7 @@ window.ACTIVE_ETF = {
           "shares": 6789000
         }
       ],
-      "diff": {
-        "prevAsOf": "20261020",
-        "changes": []
-      }
+      "diff": null
     },
     "00985A": {
       "ok": true,
@@ -536,25 +491,7 @@ window.ACTIVE_ETF = {
           "shares": 9243000
         }
       ],
-      "diff": {
-        "prevAsOf": "20261020",
-        "changes": [
-          {
-            "code": "6669",
-            "name": "緯穎",
-            "action": "增持",
-            "sharesChange": 145000,
-            "weightChange": 1.04
-          },
-          {
-            "code": "1216",
-            "name": "統一",
-            "action": "減持",
-            "sharesChange": -2485000,
-            "weightChange": -0.68
-          }
-        ]
-      }
+      "diff": null
     },
     "00987A": {
       "ok": true,
@@ -634,10 +571,7 @@ window.ACTIVE_ETF = {
           "shares": 36000
         }
       ],
-      "diff": {
-        "prevAsOf": "20261020",
-        "changes": []
-      }
+      "diff": null
     },
     "00991A": {
       "ok": true,
@@ -717,18 +651,7 @@ window.ACTIVE_ETF = {
           "shares": 10000000
         }
       ],
-      "diff": {
-        "prevAsOf": "20261020",
-        "changes": [
-          {
-            "code": "2059",
-            "name": "川湖",
-            "action": "增持",
-            "sharesChange": 12000,
-            "weightChange": 0.44
-          }
-        ]
-      }
+      "diff": null
     },
     "00992A": {
       "ok": true,
@@ -808,25 +731,7 @@ window.ACTIVE_ETF = {
           "shares": 183000
         }
       ],
-      "diff": {
-        "prevAsOf": "20261020",
-        "changes": [
-          {
-            "code": "2059",
-            "name": "川湖",
-            "action": "新增",
-            "sharesChange": 183000,
-            "weightChange": 4.09
-          },
-          {
-            "code": "6223",
-            "name": "旺矽",
-            "action": "剔除",
-            "sharesChange": -364000,
-            "weightChange": -4.17
-          }
-        ]
-      }
+      "diff": null
     },
     "00993A": {
       "ok": true,
@@ -906,10 +811,7 @@ window.ACTIVE_ETF = {
           "shares": 45000
         }
       ],
-      "diff": {
-        "prevAsOf": "20261020",
-        "changes": []
-      }
+      "diff": null
     },
     "00994A": {
       "ok": true,
@@ -989,32 +891,7 @@ window.ACTIVE_ETF = {
           "shares": 95000
         }
       ],
-      "diff": {
-        "prevAsOf": "20261020",
-        "changes": [
-          {
-            "code": "3017",
-            "name": "奇鋐",
-            "action": "增持",
-            "sharesChange": 8000,
-            "weightChange": 0.84
-          },
-          {
-            "code": "2059",
-            "name": "川湖",
-            "action": "新增",
-            "sharesChange": 13001,
-            "weightChange": 3.36
-          },
-          {
-            "code": "3189",
-            "name": "景碩",
-            "action": "剔除",
-            "sharesChange": -120000,
-            "weightChange": -2.94
-          }
-        ]
-      }
+      "diff": null
     },
     "00995A": {
       "ok": true,
@@ -1094,18 +971,7 @@ window.ACTIVE_ETF = {
           "shares": 85260
         }
       ],
-      "diff": {
-        "prevAsOf": "20261020",
-        "changes": [
-          {
-            "code": "2330",
-            "name": "台積電",
-            "action": "減持",
-            "sharesChange": -11000,
-            "weightChange": -0.49
-          }
-        ]
-      }
+      "diff": null
     },
     "00983A": {
       "ok": true,
@@ -1185,32 +1051,7 @@ window.ACTIVE_ETF = {
           "shares": 4290
         }
       ],
-      "diff": {
-        "prevAsOf": "20261020",
-        "changes": [
-          {
-            "code": "TSLA",
-            "name": "Tesla",
-            "action": "減持",
-            "sharesChange": -23,
-            "weightChange": 0.15
-          },
-          {
-            "code": "NVDA",
-            "name": "NVIDIA",
-            "action": "新增",
-            "sharesChange": 4290,
-            "weightChange": 3.45
-          },
-          {
-            "code": "AMD",
-            "name": "AMD",
-            "action": "剔除",
-            "sharesChange": -1683,
-            "weightChange": -3.35
-          }
-        ]
-      }
+      "diff": null
     },
     "00986A": {
       "ok": true,
@@ -1290,10 +1131,7 @@ window.ACTIVE_ETF = {
           "shares": 450
         }
       ],
-      "diff": {
-        "prevAsOf": "20261020",
-        "changes": []
-      }
+      "diff": null
     },
     "00990A": {
       "ok": true,
@@ -1373,32 +1211,7 @@ window.ACTIVE_ETF = {
           "shares": 101200
         }
       ],
-      "diff": {
-        "prevAsOf": "20261020",
-        "changes": [
-          {
-            "code": "NVDA",
-            "name": "NVIDIA",
-            "action": "增持",
-            "sharesChange": 47700,
-            "weightChange": 1.01
-          },
-          {
-            "code": "MSFT",
-            "name": "Microsoft",
-            "action": "增持",
-            "sharesChange": 9640,
-            "weightChange": 0.49
-          },
-          {
-            "code": "LITE",
-            "name": "Lumentum",
-            "action": "減持",
-            "sharesChange": -12400,
-            "weightChange": -0.99
-          }
-        ]
-      }
+      "diff": null
     },
     "00997A": {
       "ok": true,
@@ -1478,128 +1291,23 @@ window.ACTIVE_ETF = {
           "shares": 21042
         }
       ],
-      "diff": {
-        "prevAsOf": "20261020",
-        "changes": []
-      }
+      "diff": null
     }
   },
   "summaryTw": {
-    "fundsWithDiff": 12,
-    "totalActiveStocks": 8,
-    "topBought": [
-      {
-        "code": "2059",
-        "name": "川湖",
-        "fundsUp": 3,
-        "fundsDown": 0,
-        "totalSharesChange": 208001
-      },
-      {
-        "code": "3017",
-        "name": "奇鋐",
-        "fundsUp": 3,
-        "fundsDown": 0,
-        "totalSharesChange": 108000
-      },
-      {
-        "code": "2330",
-        "name": "台積電",
-        "fundsUp": 1,
-        "fundsDown": 1,
-        "totalSharesChange": 268000
-      },
-      {
-        "code": "6669",
-        "name": "緯穎",
-        "fundsUp": 1,
-        "fundsDown": 0,
-        "totalSharesChange": 145000
-      },
-      {
-        "code": "3653",
-        "name": "健策",
-        "fundsUp": 1,
-        "fundsDown": 0,
-        "totalSharesChange": 10000
-      }
-    ],
-    "topSold": [
-      {
-        "code": "1216",
-        "name": "統一",
-        "fundsUp": 0,
-        "fundsDown": 1,
-        "totalSharesChange": -2485000
-      },
-      {
-        "code": "6223",
-        "name": "旺矽",
-        "fundsUp": 0,
-        "fundsDown": 1,
-        "totalSharesChange": -364000
-      },
-      {
-        "code": "3189",
-        "name": "景碩",
-        "fundsUp": 0,
-        "fundsDown": 1,
-        "totalSharesChange": -120000
-      },
-      {
-        "code": "2330",
-        "name": "台積電",
-        "fundsUp": 1,
-        "fundsDown": 1,
-        "totalSharesChange": 268000
-      }
-    ],
-    "concentrationPct": 69.23,
+    "fundsWithDiff": 0,
+    "totalActiveStocks": 0,
+    "topBought": [],
+    "topSold": [],
+    "concentrationPct": null,
     "concentrationNote": "concentrationPct = 當天買賣異動最明顯的前5支個股，佔全部異動動作數的比例；數字越高代表主動式ETF的買賣行為越集中在少數股票"
   },
   "summaryOverseas": {
-    "fundsWithDiff": 4,
-    "totalActiveStocks": 5,
-    "topBought": [
-      {
-        "code": "NVDA",
-        "name": "NVIDIA",
-        "fundsUp": 2,
-        "fundsDown": 0,
-        "totalSharesChange": 51990
-      },
-      {
-        "code": "MSFT",
-        "name": "Microsoft",
-        "fundsUp": 1,
-        "fundsDown": 0,
-        "totalSharesChange": 9640
-      }
-    ],
-    "topSold": [
-      {
-        "code": "LITE",
-        "name": "Lumentum",
-        "fundsUp": 0,
-        "fundsDown": 1,
-        "totalSharesChange": -12400
-      },
-      {
-        "code": "AMD",
-        "name": "AMD",
-        "fundsUp": 0,
-        "fundsDown": 1,
-        "totalSharesChange": -1683
-      },
-      {
-        "code": "TSLA",
-        "name": "Tesla",
-        "fundsUp": 0,
-        "fundsDown": 1,
-        "totalSharesChange": -23
-      }
-    ],
-    "concentrationPct": 100,
+    "fundsWithDiff": 0,
+    "totalActiveStocks": 0,
+    "topBought": [],
+    "topSold": [],
+    "concentrationPct": null,
     "concentrationNote": "concentrationPct = 當天買賣異動最明顯的前5支個股，佔全部異動動作數的比例；數字越高代表主動式ETF的買賣行為越集中在少數股票"
   }
 };
