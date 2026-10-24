@@ -7,8 +7,8 @@
  * ok:false 代表該代號當次抓不到（可能代號不存在、已下市或頁面改版）。
  */
 window.ACTIVE_ETF = {
-  "fetchedAt": "2026-10-23T01:45:50.677Z",
-  "date": "20261023",
+  "fetchedAt": "2026-10-24T01:50:51.105Z",
+  "date": "20261024",
   "source": "MoneyDJ理財網 ETF持股狀況頁（第三方資料，非投信/證交所官方原始揭露，逐檔以 fund.source 列出網址）",
   "okCount": 16,
   "totalCount": 16,
@@ -18,7 +18,7 @@ window.ACTIVE_ETF = {
       "category": "tw",
       "fundName": "主動統一升級50",
       "source": "https://www.moneydj.com/etf/x/basic/basic0007.xdjhtm?etfid=00403a.tw",
-      "fetchedDate": "20261023",
+      "fetchedDate": "20261024",
       "holdings": [
         {
           "code": "2330",
@@ -91,14 +91,17 @@ window.ACTIVE_ETF = {
           "shares": 8800000
         }
       ],
-      "diff": null
+      "diff": {
+        "prevAsOf": "20261023",
+        "changes": []
+      }
     },
     "00980A": {
       "ok": true,
       "category": "tw",
       "fundName": "主動野村臺灣優選",
       "source": "https://www.moneydj.com/etf/x/basic/basic0007.xdjhtm?etfid=00980a.tw",
-      "fetchedDate": "20261023",
+      "fetchedDate": "20261024",
       "holdings": [
         {
           "code": "2330",
@@ -171,14 +174,17 @@ window.ACTIVE_ETF = {
           "shares": 134000
         }
       ],
-      "diff": null
+      "diff": {
+        "prevAsOf": "20261023",
+        "changes": []
+      }
     },
     "00981A": {
       "ok": true,
       "category": "tw",
       "fundName": "主動統一台股增長",
       "source": "https://www.moneydj.com/etf/x/basic/basic0007.xdjhtm?etfid=00981a.tw",
-      "fetchedDate": "20261023",
+      "fetchedDate": "20261024",
       "holdings": [
         {
           "code": "2330",
@@ -251,14 +257,17 @@ window.ACTIVE_ETF = {
           "shares": 8937000
         }
       ],
-      "diff": null
+      "diff": {
+        "prevAsOf": "20261023",
+        "changes": []
+      }
     },
     "00982A": {
       "ok": true,
       "category": "tw",
       "fundName": "主動群益台灣強棒",
       "source": "https://www.moneydj.com/etf/x/basic/basic0007.xdjhtm?etfid=00982a.tw",
-      "fetchedDate": "20261023",
+      "fetchedDate": "20261024",
       "holdings": [
         {
           "code": "2330",
@@ -331,14 +340,17 @@ window.ACTIVE_ETF = {
           "shares": 253000
         }
       ],
-      "diff": null
+      "diff": {
+        "prevAsOf": "20261023",
+        "changes": []
+      }
     },
     "00984A": {
       "ok": true,
       "category": "tw",
       "fundName": "主動安聯台灣高息",
       "source": "https://www.moneydj.com/etf/x/basic/basic0007.xdjhtm?etfid=00984a.tw",
-      "fetchedDate": "20261023",
+      "fetchedDate": "20261024",
       "holdings": [
         {
           "code": "2881",
@@ -411,14 +423,17 @@ window.ACTIVE_ETF = {
           "shares": 386000
         }
       ],
-      "diff": null
+      "diff": {
+        "prevAsOf": "20261023",
+        "changes": []
+      }
     },
     "00985A": {
       "ok": true,
       "category": "tw",
       "fundName": "主動野村台灣50",
       "source": "https://www.moneydj.com/etf/x/basic/basic0007.xdjhtm?etfid=00985a.tw",
-      "fetchedDate": "20261023",
+      "fetchedDate": "20261024",
       "holdings": [
         {
           "code": "2330",
@@ -491,14 +506,17 @@ window.ACTIVE_ETF = {
           "shares": 403000
         }
       ],
-      "diff": null
+      "diff": {
+        "prevAsOf": "20261023",
+        "changes": []
+      }
     },
     "00987A": {
       "ok": true,
       "category": "tw",
       "fundName": "主動台新優勢成長",
       "source": "https://www.moneydj.com/etf/x/basic/basic0007.xdjhtm?etfid=00987a.tw",
-      "fetchedDate": "20261023",
+      "fetchedDate": "20261024",
       "holdings": [
         {
           "code": "2330",
@@ -571,14 +589,17 @@ window.ACTIVE_ETF = {
           "shares": 44000
         }
       ],
-      "diff": null
+      "diff": {
+        "prevAsOf": "20261023",
+        "changes": []
+      }
     },
     "00991A": {
       "ok": true,
       "category": "tw",
       "fundName": "主動復華未來50",
       "source": "https://www.moneydj.com/etf/x/basic/basic0007.xdjhtm?etfid=00991a.tw",
-      "fetchedDate": "20261023",
+      "fetchedDate": "20261024",
       "holdings": [
         {
           "code": "2330",
@@ -651,14 +672,17 @@ window.ACTIVE_ETF = {
           "shares": 10000000
         }
       ],
-      "diff": null
+      "diff": {
+        "prevAsOf": "20261023",
+        "changes": []
+      }
     },
     "00992A": {
       "ok": true,
       "category": "tw",
       "fundName": "主動群益科技創新",
       "source": "https://www.moneydj.com/etf/x/basic/basic0007.xdjhtm?etfid=00992a.tw",
-      "fetchedDate": "20261023",
+      "fetchedDate": "20261024",
       "holdings": [
         {
           "code": "3017",
@@ -731,14 +755,17 @@ window.ACTIVE_ETF = {
           "shares": 364000
         }
       ],
-      "diff": null
+      "diff": {
+        "prevAsOf": "20261023",
+        "changes": []
+      }
     },
     "00993A": {
       "ok": true,
       "category": "tw",
       "fundName": "主動安聯台灣",
       "source": "https://www.moneydj.com/etf/x/basic/basic0007.xdjhtm?etfid=00993a.tw",
-      "fetchedDate": "20261023",
+      "fetchedDate": "20261024",
       "holdings": [
         {
           "code": "2330",
@@ -811,14 +838,17 @@ window.ACTIVE_ETF = {
           "shares": 362000
         }
       ],
-      "diff": null
+      "diff": {
+        "prevAsOf": "20261023",
+        "changes": []
+      }
     },
     "00994A": {
       "ok": true,
       "category": "tw",
       "fundName": "主動第一金台股優",
       "source": "https://www.moneydj.com/etf/x/basic/basic0007.xdjhtm?etfid=00994a.tw",
-      "fetchedDate": "20261023",
+      "fetchedDate": "20261024",
       "holdings": [
         {
           "code": "2330",
@@ -891,14 +921,17 @@ window.ACTIVE_ETF = {
           "shares": 95000
         }
       ],
-      "diff": null
+      "diff": {
+        "prevAsOf": "20261023",
+        "changes": []
+      }
     },
     "00995A": {
       "ok": true,
       "category": "tw",
       "fundName": "主動中信台灣卓越",
       "source": "https://www.moneydj.com/etf/x/basic/basic0007.xdjhtm?etfid=00995a.tw",
-      "fetchedDate": "20261023",
+      "fetchedDate": "20261024",
       "holdings": [
         {
           "code": "2330",
@@ -971,14 +1004,17 @@ window.ACTIVE_ETF = {
           "shares": 138000
         }
       ],
-      "diff": null
+      "diff": {
+        "prevAsOf": "20261023",
+        "changes": []
+      }
     },
     "00983A": {
       "ok": true,
       "category": "overseas",
       "fundName": "主動中信ARK創新",
       "source": "https://www.moneydj.com/etf/x/basic/basic0007.xdjhtm?etfid=00983a.tw",
-      "fetchedDate": "20261023",
+      "fetchedDate": "20261024",
       "holdings": [
         {
           "code": "TSLA",
@@ -1051,14 +1087,17 @@ window.ACTIVE_ETF = {
           "shares": 4581
         }
       ],
-      "diff": null
+      "diff": {
+        "prevAsOf": "20261023",
+        "changes": []
+      }
     },
     "00986A": {
       "ok": true,
       "category": "overseas",
       "fundName": "主動台新龍頭成長",
       "source": "https://www.moneydj.com/etf/x/basic/basic0007.xdjhtm?etfid=00986a.tw",
-      "fetchedDate": "20261023",
+      "fetchedDate": "20261024",
       "holdings": [
         {
           "code": "2330",
@@ -1131,14 +1170,17 @@ window.ACTIVE_ETF = {
           "shares": 450
         }
       ],
-      "diff": null
+      "diff": {
+        "prevAsOf": "20261023",
+        "changes": []
+      }
     },
     "00990A": {
       "ok": true,
       "category": "overseas",
       "fundName": "主動元大AI新經濟",
       "source": "https://www.moneydj.com/etf/x/basic/basic0007.xdjhtm?etfid=00990a.tw",
-      "fetchedDate": "20261023",
+      "fetchedDate": "20261024",
       "holdings": [
         {
           "code": "NVDA",
@@ -1211,14 +1253,17 @@ window.ACTIVE_ETF = {
           "shares": 224000
         }
       ],
-      "diff": null
+      "diff": {
+        "prevAsOf": "20261023",
+        "changes": []
+      }
     },
     "00997A": {
       "ok": true,
       "category": "overseas",
       "fundName": "主動群益美國增長",
       "source": "https://www.moneydj.com/etf/x/basic/basic0007.xdjhtm?etfid=00997a.tw",
-      "fetchedDate": "20261023",
+      "fetchedDate": "20261024",
       "holdings": [
         {
           "code": "CRWD",
@@ -1291,11 +1336,14 @@ window.ACTIVE_ETF = {
           "shares": 72940
         }
       ],
-      "diff": null
+      "diff": {
+        "prevAsOf": "20261023",
+        "changes": []
+      }
     }
   },
   "summaryTw": {
-    "fundsWithDiff": 0,
+    "fundsWithDiff": 12,
     "totalActiveStocks": 0,
     "topBought": [],
     "topSold": [],
@@ -1303,7 +1351,7 @@ window.ACTIVE_ETF = {
     "concentrationNote": "concentrationPct = 當天買賣異動最明顯的前5支個股，佔全部異動動作數的比例；數字越高代表主動式ETF的買賣行為越集中在少數股票"
   },
   "summaryOverseas": {
-    "fundsWithDiff": 0,
+    "fundsWithDiff": 4,
     "totalActiveStocks": 0,
     "topBought": [],
     "topSold": [],
