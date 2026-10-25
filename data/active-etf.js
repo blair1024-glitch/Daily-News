@@ -7,8 +7,8 @@
  * ok:false 代表該代號當次抓不到（可能代號不存在、已下市或頁面改版）。
  */
 window.ACTIVE_ETF = {
-  "fetchedAt": "2026-10-24T01:50:51.105Z",
-  "date": "20261024",
+  "fetchedAt": "2026-10-25T23:40:53.828Z",
+  "date": "20261026",
   "source": "MoneyDJ理財網 ETF持股狀況頁（第三方資料，非投信/證交所官方原始揭露，逐檔以 fund.source 列出網址）",
   "okCount": 16,
   "totalCount": 16,
@@ -18,7 +18,7 @@ window.ACTIVE_ETF = {
       "category": "tw",
       "fundName": "主動統一升級50",
       "source": "https://www.moneydj.com/etf/x/basic/basic0007.xdjhtm?etfid=00403a.tw",
-      "fetchedDate": "20261024",
+      "fetchedDate": "20261026",
       "holdings": [
         {
           "code": "2330",
@@ -92,7 +92,7 @@ window.ACTIVE_ETF = {
         }
       ],
       "diff": {
-        "prevAsOf": "20261023",
+        "prevAsOf": "20261024",
         "changes": []
       }
     },
@@ -101,7 +101,7 @@ window.ACTIVE_ETF = {
       "category": "tw",
       "fundName": "主動野村臺灣優選",
       "source": "https://www.moneydj.com/etf/x/basic/basic0007.xdjhtm?etfid=00980a.tw",
-      "fetchedDate": "20261024",
+      "fetchedDate": "20261026",
       "holdings": [
         {
           "code": "2330",
@@ -175,7 +175,7 @@ window.ACTIVE_ETF = {
         }
       ],
       "diff": {
-        "prevAsOf": "20261023",
+        "prevAsOf": "20261024",
         "changes": []
       }
     },
@@ -184,7 +184,7 @@ window.ACTIVE_ETF = {
       "category": "tw",
       "fundName": "主動統一台股增長",
       "source": "https://www.moneydj.com/etf/x/basic/basic0007.xdjhtm?etfid=00981a.tw",
-      "fetchedDate": "20261024",
+      "fetchedDate": "20261026",
       "holdings": [
         {
           "code": "2330",
@@ -258,7 +258,7 @@ window.ACTIVE_ETF = {
         }
       ],
       "diff": {
-        "prevAsOf": "20261023",
+        "prevAsOf": "20261024",
         "changes": []
       }
     },
@@ -267,7 +267,7 @@ window.ACTIVE_ETF = {
       "category": "tw",
       "fundName": "主動群益台灣強棒",
       "source": "https://www.moneydj.com/etf/x/basic/basic0007.xdjhtm?etfid=00982a.tw",
-      "fetchedDate": "20261024",
+      "fetchedDate": "20261026",
       "holdings": [
         {
           "code": "2330",
@@ -341,7 +341,7 @@ window.ACTIVE_ETF = {
         }
       ],
       "diff": {
-        "prevAsOf": "20261023",
+        "prevAsOf": "20261024",
         "changes": []
       }
     },
@@ -350,7 +350,7 @@ window.ACTIVE_ETF = {
       "category": "tw",
       "fundName": "主動安聯台灣高息",
       "source": "https://www.moneydj.com/etf/x/basic/basic0007.xdjhtm?etfid=00984a.tw",
-      "fetchedDate": "20261024",
+      "fetchedDate": "20261026",
       "holdings": [
         {
           "code": "2881",
@@ -424,7 +424,7 @@ window.ACTIVE_ETF = {
         }
       ],
       "diff": {
-        "prevAsOf": "20261023",
+        "prevAsOf": "20261024",
         "changes": []
       }
     },
@@ -433,7 +433,7 @@ window.ACTIVE_ETF = {
       "category": "tw",
       "fundName": "主動野村台灣50",
       "source": "https://www.moneydj.com/etf/x/basic/basic0007.xdjhtm?etfid=00985a.tw",
-      "fetchedDate": "20261024",
+      "fetchedDate": "20261026",
       "holdings": [
         {
           "code": "2330",
@@ -507,7 +507,7 @@ window.ACTIVE_ETF = {
         }
       ],
       "diff": {
-        "prevAsOf": "20261023",
+        "prevAsOf": "20261024",
         "changes": []
       }
     },
@@ -516,7 +516,7 @@ window.ACTIVE_ETF = {
       "category": "tw",
       "fundName": "主動台新優勢成長",
       "source": "https://www.moneydj.com/etf/x/basic/basic0007.xdjhtm?etfid=00987a.tw",
-      "fetchedDate": "20261024",
+      "fetchedDate": "20261026",
       "holdings": [
         {
           "code": "2330",
@@ -590,7 +590,7 @@ window.ACTIVE_ETF = {
         }
       ],
       "diff": {
-        "prevAsOf": "20261023",
+        "prevAsOf": "20261024",
         "changes": []
       }
     },
@@ -599,7 +599,7 @@ window.ACTIVE_ETF = {
       "category": "tw",
       "fundName": "主動復華未來50",
       "source": "https://www.moneydj.com/etf/x/basic/basic0007.xdjhtm?etfid=00991a.tw",
-      "fetchedDate": "20261024",
+      "fetchedDate": "20261026",
       "holdings": [
         {
           "code": "2330",
@@ -673,7 +673,7 @@ window.ACTIVE_ETF = {
         }
       ],
       "diff": {
-        "prevAsOf": "20261023",
+        "prevAsOf": "20261024",
         "changes": []
       }
     },
@@ -682,7 +682,7 @@ window.ACTIVE_ETF = {
       "category": "tw",
       "fundName": "主動群益科技創新",
       "source": "https://www.moneydj.com/etf/x/basic/basic0007.xdjhtm?etfid=00992a.tw",
-      "fetchedDate": "20261024",
+      "fetchedDate": "20261026",
       "holdings": [
         {
           "code": "3017",
@@ -756,7 +756,7 @@ window.ACTIVE_ETF = {
         }
       ],
       "diff": {
-        "prevAsOf": "20261023",
+        "prevAsOf": "20261024",
         "changes": []
       }
     },
@@ -765,7 +765,7 @@ window.ACTIVE_ETF = {
       "category": "tw",
       "fundName": "主動安聯台灣",
       "source": "https://www.moneydj.com/etf/x/basic/basic0007.xdjhtm?etfid=00993a.tw",
-      "fetchedDate": "20261024",
+      "fetchedDate": "20261026",
       "holdings": [
         {
           "code": "2330",
@@ -839,7 +839,7 @@ window.ACTIVE_ETF = {
         }
       ],
       "diff": {
-        "prevAsOf": "20261023",
+        "prevAsOf": "20261024",
         "changes": []
       }
     },
@@ -848,7 +848,7 @@ window.ACTIVE_ETF = {
       "category": "tw",
       "fundName": "主動第一金台股優",
       "source": "https://www.moneydj.com/etf/x/basic/basic0007.xdjhtm?etfid=00994a.tw",
-      "fetchedDate": "20261024",
+      "fetchedDate": "20261026",
       "holdings": [
         {
           "code": "2330",
@@ -922,7 +922,7 @@ window.ACTIVE_ETF = {
         }
       ],
       "diff": {
-        "prevAsOf": "20261023",
+        "prevAsOf": "20261024",
         "changes": []
       }
     },
@@ -931,7 +931,7 @@ window.ACTIVE_ETF = {
       "category": "tw",
       "fundName": "主動中信台灣卓越",
       "source": "https://www.moneydj.com/etf/x/basic/basic0007.xdjhtm?etfid=00995a.tw",
-      "fetchedDate": "20261024",
+      "fetchedDate": "20261026",
       "holdings": [
         {
           "code": "2330",
@@ -1005,7 +1005,7 @@ window.ACTIVE_ETF = {
         }
       ],
       "diff": {
-        "prevAsOf": "20261023",
+        "prevAsOf": "20261024",
         "changes": []
       }
     },
@@ -1014,7 +1014,7 @@ window.ACTIVE_ETF = {
       "category": "overseas",
       "fundName": "主動中信ARK創新",
       "source": "https://www.moneydj.com/etf/x/basic/basic0007.xdjhtm?etfid=00983a.tw",
-      "fetchedDate": "20261024",
+      "fetchedDate": "20261026",
       "holdings": [
         {
           "code": "TSLA",
@@ -1088,7 +1088,7 @@ window.ACTIVE_ETF = {
         }
       ],
       "diff": {
-        "prevAsOf": "20261023",
+        "prevAsOf": "20261024",
         "changes": []
       }
     },
@@ -1097,7 +1097,7 @@ window.ACTIVE_ETF = {
       "category": "overseas",
       "fundName": "主動台新龍頭成長",
       "source": "https://www.moneydj.com/etf/x/basic/basic0007.xdjhtm?etfid=00986a.tw",
-      "fetchedDate": "20261024",
+      "fetchedDate": "20261026",
       "holdings": [
         {
           "code": "2330",
@@ -1171,7 +1171,7 @@ window.ACTIVE_ETF = {
         }
       ],
       "diff": {
-        "prevAsOf": "20261023",
+        "prevAsOf": "20261024",
         "changes": []
       }
     },
@@ -1180,7 +1180,7 @@ window.ACTIVE_ETF = {
       "category": "overseas",
       "fundName": "主動元大AI新經濟",
       "source": "https://www.moneydj.com/etf/x/basic/basic0007.xdjhtm?etfid=00990a.tw",
-      "fetchedDate": "20261024",
+      "fetchedDate": "20261026",
       "holdings": [
         {
           "code": "NVDA",
@@ -1254,7 +1254,7 @@ window.ACTIVE_ETF = {
         }
       ],
       "diff": {
-        "prevAsOf": "20261023",
+        "prevAsOf": "20261024",
         "changes": []
       }
     },
@@ -1263,7 +1263,7 @@ window.ACTIVE_ETF = {
       "category": "overseas",
       "fundName": "主動群益美國增長",
       "source": "https://www.moneydj.com/etf/x/basic/basic0007.xdjhtm?etfid=00997a.tw",
-      "fetchedDate": "20261024",
+      "fetchedDate": "20261026",
       "holdings": [
         {
           "code": "CRWD",
@@ -1337,7 +1337,7 @@ window.ACTIVE_ETF = {
         }
       ],
       "diff": {
-        "prevAsOf": "20261023",
+        "prevAsOf": "20261024",
         "changes": []
       }
     }
