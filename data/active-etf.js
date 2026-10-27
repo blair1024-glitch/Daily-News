@@ -7,7 +7,7 @@
  * ok:false 代表該代號當次抓不到（可能代號不存在、已下市或頁面改版）。
  */
 window.ACTIVE_ETF = {
-  "fetchedAt": "2026-10-26T23:40:18.643Z",
+  "fetchedAt": "2026-10-27T02:20:07.091Z",
   "date": "20261027",
   "source": "MoneyDJ理財網 ETF持股狀況頁（第三方資料，非投信/證交所官方原始揭露，逐檔以 fund.source 列出網址）",
   "okCount": 16,
@@ -91,10 +91,7 @@ window.ACTIVE_ETF = {
           "shares": 8800000
         }
       ],
-      "diff": {
-        "prevAsOf": "20261026",
-        "changes": []
-      }
+      "diff": null
     },
     "00980A": {
       "ok": true,
@@ -174,10 +171,7 @@ window.ACTIVE_ETF = {
           "shares": 134000
         }
       ],
-      "diff": {
-        "prevAsOf": "20261026",
-        "changes": []
-      }
+      "diff": null
     },
     "00981A": {
       "ok": true,
@@ -257,10 +251,7 @@ window.ACTIVE_ETF = {
           "shares": 8937000
         }
       ],
-      "diff": {
-        "prevAsOf": "20261026",
-        "changes": []
-      }
+      "diff": null
     },
     "00982A": {
       "ok": true,
@@ -340,10 +331,7 @@ window.ACTIVE_ETF = {
           "shares": 253000
         }
       ],
-      "diff": {
-        "prevAsOf": "20261026",
-        "changes": []
-      }
+      "diff": null
     },
     "00984A": {
       "ok": true,
@@ -423,10 +411,7 @@ window.ACTIVE_ETF = {
           "shares": 386000
         }
       ],
-      "diff": {
-        "prevAsOf": "20261026",
-        "changes": []
-      }
+      "diff": null
     },
     "00985A": {
       "ok": true,
@@ -506,10 +491,7 @@ window.ACTIVE_ETF = {
           "shares": 403000
         }
       ],
-      "diff": {
-        "prevAsOf": "20261026",
-        "changes": []
-      }
+      "diff": null
     },
     "00987A": {
       "ok": true,
@@ -589,10 +571,7 @@ window.ACTIVE_ETF = {
           "shares": 44000
         }
       ],
-      "diff": {
-        "prevAsOf": "20261026",
-        "changes": []
-      }
+      "diff": null
     },
     "00991A": {
       "ok": true,
@@ -672,10 +651,7 @@ window.ACTIVE_ETF = {
           "shares": 10000000
         }
       ],
-      "diff": {
-        "prevAsOf": "20261026",
-        "changes": []
-      }
+      "diff": null
     },
     "00992A": {
       "ok": true,
@@ -755,10 +731,7 @@ window.ACTIVE_ETF = {
           "shares": 364000
         }
       ],
-      "diff": {
-        "prevAsOf": "20261026",
-        "changes": []
-      }
+      "diff": null
     },
     "00993A": {
       "ok": true,
@@ -838,10 +811,7 @@ window.ACTIVE_ETF = {
           "shares": 362000
         }
       ],
-      "diff": {
-        "prevAsOf": "20261026",
-        "changes": []
-      }
+      "diff": null
     },
     "00994A": {
       "ok": true,
@@ -921,10 +891,7 @@ window.ACTIVE_ETF = {
           "shares": 95000
         }
       ],
-      "diff": {
-        "prevAsOf": "20261026",
-        "changes": []
-      }
+      "diff": null
     },
     "00995A": {
       "ok": true,
@@ -1004,10 +971,7 @@ window.ACTIVE_ETF = {
           "shares": 138000
         }
       ],
-      "diff": {
-        "prevAsOf": "20261026",
-        "changes": []
-      }
+      "diff": null
     },
     "00983A": {
       "ok": true,
@@ -1087,10 +1051,7 @@ window.ACTIVE_ETF = {
           "shares": 4581
         }
       ],
-      "diff": {
-        "prevAsOf": "20261026",
-        "changes": []
-      }
+      "diff": null
     },
     "00986A": {
       "ok": true,
@@ -1170,10 +1131,7 @@ window.ACTIVE_ETF = {
           "shares": 450
         }
       ],
-      "diff": {
-        "prevAsOf": "20261026",
-        "changes": []
-      }
+      "diff": null
     },
     "00990A": {
       "ok": true,
@@ -1253,10 +1211,7 @@ window.ACTIVE_ETF = {
           "shares": 224000
         }
       ],
-      "diff": {
-        "prevAsOf": "20261026",
-        "changes": []
-      }
+      "diff": null
     },
     "00997A": {
       "ok": true,
@@ -1336,14 +1291,11 @@ window.ACTIVE_ETF = {
           "shares": 72940
         }
       ],
-      "diff": {
-        "prevAsOf": "20261026",
-        "changes": []
-      }
+      "diff": null
     }
   },
   "summaryTw": {
-    "fundsWithDiff": 12,
+    "fundsWithDiff": 0,
     "totalActiveStocks": 0,
     "topBought": [],
     "topSold": [],
@@ -1351,7 +1303,7 @@ window.ACTIVE_ETF = {
     "concentrationNote": "concentrationPct = 當天買賣異動最明顯的前5支個股，佔全部異動動作數的比例；數字越高代表主動式ETF的買賣行為越集中在少數股票"
   },
   "summaryOverseas": {
-    "fundsWithDiff": 4,
+    "fundsWithDiff": 0,
     "totalActiveStocks": 0,
     "topBought": [],
     "topSold": [],
