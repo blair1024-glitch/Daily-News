@@ -7,7 +7,7 @@
  * ok:false 代表該代號當次抓不到（可能代號不存在、已下市或頁面改版）。
  */
 window.ACTIVE_ETF = {
-  "fetchedAt": "2026-10-28T23:40:56.993Z",
+  "fetchedAt": "2026-10-29T02:40:55.590Z",
   "date": "20261029",
   "source": "MoneyDJ理財網 ETF持股狀況頁（第三方資料，非投信/證交所官方原始揭露，逐檔以 fund.source 列出網址）",
   "okCount": 16,
@@ -91,39 +91,7 @@ window.ACTIVE_ETF = {
           "shares": 4450000
         }
       ],
-      "diff": {
-        "prevAsOf": "20261028",
-        "changes": [
-          {
-            "code": "2454",
-            "name": "聯發科",
-            "action": "增持",
-            "sharesChange": 30000,
-            "weightChange": 0.22
-          },
-          {
-            "code": "3443",
-            "name": "創意",
-            "action": "增持",
-            "sharesChange": 30000,
-            "weightChange": 0.4
-          },
-          {
-            "code": "3189",
-            "name": "景碩",
-            "action": "新增",
-            "sharesChange": 4450000,
-            "weightChange": 3.5
-          },
-          {
-            "code": "2308",
-            "name": "台達電",
-            "action": "剔除",
-            "sharesChange": -2900000,
-            "weightChange": -3.47
-          }
-        ]
-      }
+      "diff": null
     },
     "00980A": {
       "ok": true,
@@ -203,10 +171,7 @@ window.ACTIVE_ETF = {
           "shares": 967000
         }
       ],
-      "diff": {
-        "prevAsOf": "20261028",
-        "changes": []
-      }
+      "diff": null
     },
     "00981A": {
       "ok": true,
@@ -286,25 +251,7 @@ window.ACTIVE_ETF = {
           "shares": 8937000
         }
       ],
-      "diff": {
-        "prevAsOf": "20261028",
-        "changes": [
-          {
-            "code": "2454",
-            "name": "聯發科",
-            "action": "增持",
-            "sharesChange": 73000,
-            "weightChange": 0.25
-          },
-          {
-            "code": "3037",
-            "name": "欣興",
-            "action": "增持",
-            "sharesChange": 50000,
-            "weightChange": -0.07
-          }
-        ]
-      }
+      "diff": null
     },
     "00982A": {
       "ok": true,
@@ -384,18 +331,7 @@ window.ACTIVE_ETF = {
           "shares": 309000
         }
       ],
-      "diff": {
-        "prevAsOf": "20261028",
-        "changes": [
-          {
-            "code": "2330",
-            "name": "台積電",
-            "action": "增持",
-            "sharesChange": 65000,
-            "weightChange": 0.07
-          }
-        ]
-      }
+      "diff": null
     },
     "00984A": {
       "ok": true,
@@ -475,10 +411,7 @@ window.ACTIVE_ETF = {
           "shares": 6789000
         }
       ],
-      "diff": {
-        "prevAsOf": "20261028",
-        "changes": []
-      }
+      "diff": null
     },
     "00985A": {
       "ok": true,
@@ -558,10 +491,7 @@ window.ACTIVE_ETF = {
           "shares": 605000
         }
       ],
-      "diff": {
-        "prevAsOf": "20261028",
-        "changes": []
-      }
+      "diff": null
     },
     "00987A": {
       "ok": true,
@@ -641,25 +571,7 @@ window.ACTIVE_ETF = {
           "shares": 25000
         }
       ],
-      "diff": {
-        "prevAsOf": "20261028",
-        "changes": [
-          {
-            "code": "6510",
-            "name": "精測",
-            "action": "新增",
-            "sharesChange": 25000,
-            "weightChange": 3.53
-          },
-          {
-            "code": "3665",
-            "name": "貿聯-KY",
-            "action": "剔除",
-            "sharesChange": -44000,
-            "weightChange": -3.56
-          }
-        ]
-      }
+      "diff": null
     },
     "00991A": {
       "ok": true,
@@ -739,18 +651,7 @@ window.ACTIVE_ETF = {
           "shares": 10200000
         }
       ],
-      "diff": {
-        "prevAsOf": "20261028",
-        "changes": [
-          {
-            "code": "3017",
-            "name": "奇鋐",
-            "action": "增持",
-            "sharesChange": 50000,
-            "weightChange": 0.11
-          }
-        ]
-      }
+      "diff": null
     },
     "00992A": {
       "ok": true,
@@ -830,10 +731,7 @@ window.ACTIVE_ETF = {
           "shares": 183000
         }
       ],
-      "diff": {
-        "prevAsOf": "20261028",
-        "changes": []
-      }
+      "diff": null
     },
     "00993A": {
       "ok": true,
@@ -913,10 +811,7 @@ window.ACTIVE_ETF = {
           "shares": 69000
         }
       ],
-      "diff": {
-        "prevAsOf": "20261028",
-        "changes": []
-      }
+      "diff": null
     },
     "00994A": {
       "ok": true,
@@ -996,32 +891,7 @@ window.ACTIVE_ETF = {
           "shares": 120000
         }
       ],
-      "diff": {
-        "prevAsOf": "20261028",
-        "changes": [
-          {
-            "code": "2330",
-            "name": "台積電",
-            "action": "減持",
-            "sharesChange": -17000,
-            "weightChange": -1.68
-          },
-          {
-            "code": "3189",
-            "name": "景碩",
-            "action": "新增",
-            "sharesChange": 120000,
-            "weightChange": 3.16
-          },
-          {
-            "code": "8046",
-            "name": "南電",
-            "action": "剔除",
-            "sharesChange": -95000,
-            "weightChange": -3.18
-          }
-        ]
-      }
+      "diff": null
     },
     "00995A": {
       "ok": true,
@@ -1101,25 +971,7 @@ window.ACTIVE_ETF = {
           "shares": 138000
         }
       ],
-      "diff": {
-        "prevAsOf": "20261028",
-        "changes": [
-          {
-            "code": "5274",
-            "name": "信驊",
-            "action": "新增",
-            "sharesChange": 8800,
-            "weightChange": 3.45
-          },
-          {
-            "code": "3711",
-            "name": "日月光投控",
-            "action": "剔除",
-            "sharesChange": -217000,
-            "weightChange": -3.39
-          }
-        ]
-      }
+      "diff": null
     },
     "00983A": {
       "ok": true,
@@ -1199,46 +1051,7 @@ window.ACTIVE_ETF = {
           "shares": 12592
         }
       ],
-      "diff": {
-        "prevAsOf": "20261028",
-        "changes": [
-          {
-            "code": "TSLA",
-            "name": "Tesla",
-            "action": "減持",
-            "sharesChange": -44,
-            "weightChange": 0.39
-          },
-          {
-            "code": "CRCL",
-            "name": "Circle",
-            "action": "減持",
-            "sharesChange": -1800,
-            "weightChange": -1
-          },
-          {
-            "code": "COIN",
-            "name": "Coinbase",
-            "action": "減持",
-            "sharesChange": -357,
-            "weightChange": -0.55
-          },
-          {
-            "code": "TXG",
-            "name": "10x Genomics",
-            "action": "新增",
-            "sharesChange": 12592,
-            "weightChange": 3.49
-          },
-          {
-            "code": "HOOD",
-            "name": "Robinhood Markets",
-            "action": "剔除",
-            "sharesChange": -10155,
-            "weightChange": -3.59
-          }
-        ]
-      }
+      "diff": null
     },
     "00986A": {
       "ok": true,
@@ -1318,10 +1131,7 @@ window.ACTIVE_ETF = {
           "shares": 450
         }
       ],
-      "diff": {
-        "prevAsOf": "20261028",
-        "changes": []
-      }
+      "diff": null
     },
     "00990A": {
       "ok": true,
@@ -1401,25 +1211,7 @@ window.ACTIVE_ETF = {
           "shares": 101200
         }
       ],
-      "diff": {
-        "prevAsOf": "20261028",
-        "changes": [
-          {
-            "code": "LITE",
-            "name": "Lumentum",
-            "action": "新增",
-            "sharesChange": 41239,
-            "weightChange": 3.43
-          },
-          {
-            "code": "SHOP",
-            "name": "Shopify",
-            "action": "剔除",
-            "sharesChange": -204100,
-            "weightChange": -3.4
-          }
-        ]
-      }
+      "diff": null
     },
     "00997A": {
       "ok": true,
@@ -1499,213 +1291,23 @@ window.ACTIVE_ETF = {
           "shares": 43260
         }
       ],
-      "diff": {
-        "prevAsOf": "20261028",
-        "changes": [
-          {
-            "code": "SPCX",
-            "name": "SpaceX",
-            "action": "新增",
-            "sharesChange": 72940,
-            "weightChange": 3.11
-          },
-          {
-            "code": "MRVL",
-            "name": "Marvell",
-            "action": "減持",
-            "sharesChange": -13125,
-            "weightChange": -0.78
-          },
-          {
-            "code": "AMD",
-            "name": "AMD",
-            "action": "剔除",
-            "sharesChange": -21148,
-            "weightChange": -3.24
-          }
-        ]
-      }
+      "diff": null
     }
   },
   "summaryTw": {
-    "fundsWithDiff": 12,
-    "totalActiveStocks": 12,
-    "topBought": [
-      {
-        "code": "3189",
-        "name": "景碩",
-        "fundsUp": 2,
-        "fundsDown": 0,
-        "totalSharesChange": 4570000
-      },
-      {
-        "code": "2454",
-        "name": "聯發科",
-        "fundsUp": 2,
-        "fundsDown": 0,
-        "totalSharesChange": 103000
-      },
-      {
-        "code": "3037",
-        "name": "欣興",
-        "fundsUp": 1,
-        "fundsDown": 0,
-        "totalSharesChange": 50000
-      },
-      {
-        "code": "3017",
-        "name": "奇鋐",
-        "fundsUp": 1,
-        "fundsDown": 0,
-        "totalSharesChange": 50000
-      },
-      {
-        "code": "2330",
-        "name": "台積電",
-        "fundsUp": 1,
-        "fundsDown": 1,
-        "totalSharesChange": 48000
-      },
-      {
-        "code": "3443",
-        "name": "創意",
-        "fundsUp": 1,
-        "fundsDown": 0,
-        "totalSharesChange": 30000
-      },
-      {
-        "code": "6510",
-        "name": "精測",
-        "fundsUp": 1,
-        "fundsDown": 0,
-        "totalSharesChange": 25000
-      },
-      {
-        "code": "5274",
-        "name": "信驊",
-        "fundsUp": 1,
-        "fundsDown": 0,
-        "totalSharesChange": 8800
-      }
-    ],
-    "topSold": [
-      {
-        "code": "2308",
-        "name": "台達電",
-        "fundsUp": 0,
-        "fundsDown": 1,
-        "totalSharesChange": -2900000
-      },
-      {
-        "code": "3711",
-        "name": "日月光投控",
-        "fundsUp": 0,
-        "fundsDown": 1,
-        "totalSharesChange": -217000
-      },
-      {
-        "code": "8046",
-        "name": "南電",
-        "fundsUp": 0,
-        "fundsDown": 1,
-        "totalSharesChange": -95000
-      },
-      {
-        "code": "3665",
-        "name": "貿聯-KY",
-        "fundsUp": 0,
-        "fundsDown": 1,
-        "totalSharesChange": -44000
-      },
-      {
-        "code": "2330",
-        "name": "台積電",
-        "fundsUp": 1,
-        "fundsDown": 1,
-        "totalSharesChange": 48000
-      }
-    ],
-    "concentrationPct": 46.67,
+    "fundsWithDiff": 0,
+    "totalActiveStocks": 0,
+    "topBought": [],
+    "topSold": [],
+    "concentrationPct": null,
     "concentrationNote": "concentrationPct = 當天買賣異動最明顯的前5支個股，佔全部異動動作數的比例；數字越高代表主動式ETF的買賣行為越集中在少數股票"
   },
   "summaryOverseas": {
-    "fundsWithDiff": 4,
-    "totalActiveStocks": 10,
-    "topBought": [
-      {
-        "code": "SPCX",
-        "name": "SpaceX",
-        "fundsUp": 1,
-        "fundsDown": 0,
-        "totalSharesChange": 72940
-      },
-      {
-        "code": "LITE",
-        "name": "Lumentum",
-        "fundsUp": 1,
-        "fundsDown": 0,
-        "totalSharesChange": 41239
-      },
-      {
-        "code": "TXG",
-        "name": "10x Genomics",
-        "fundsUp": 1,
-        "fundsDown": 0,
-        "totalSharesChange": 12592
-      }
-    ],
-    "topSold": [
-      {
-        "code": "SHOP",
-        "name": "Shopify",
-        "fundsUp": 0,
-        "fundsDown": 1,
-        "totalSharesChange": -204100
-      },
-      {
-        "code": "AMD",
-        "name": "AMD",
-        "fundsUp": 0,
-        "fundsDown": 1,
-        "totalSharesChange": -21148
-      },
-      {
-        "code": "MRVL",
-        "name": "Marvell",
-        "fundsUp": 0,
-        "fundsDown": 1,
-        "totalSharesChange": -13125
-      },
-      {
-        "code": "HOOD",
-        "name": "Robinhood Markets",
-        "fundsUp": 0,
-        "fundsDown": 1,
-        "totalSharesChange": -10155
-      },
-      {
-        "code": "CRCL",
-        "name": "Circle",
-        "fundsUp": 0,
-        "fundsDown": 1,
-        "totalSharesChange": -1800
-      },
-      {
-        "code": "COIN",
-        "name": "Coinbase",
-        "fundsUp": 0,
-        "fundsDown": 1,
-        "totalSharesChange": -357
-      },
-      {
-        "code": "TSLA",
-        "name": "Tesla",
-        "fundsUp": 0,
-        "fundsDown": 1,
-        "totalSharesChange": -44
-      }
-    ],
-    "concentrationPct": 50,
+    "fundsWithDiff": 0,
+    "totalActiveStocks": 0,
+    "topBought": [],
+    "topSold": [],
+    "concentrationPct": null,
     "concentrationNote": "concentrationPct = 當天買賣異動最明顯的前5支個股，佔全部異動動作數的比例；數字越高代表主動式ETF的買賣行為越集中在少數股票"
   }
 };
