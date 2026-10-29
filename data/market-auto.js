@@ -6,7 +6,7 @@
  * ok:false 代表該欄位當天抓不到，error 說明原因——請據實標註，不要沿用舊值。
  */
 window.MARKET_AUTO = {
-  "fetchedAt": "2026-10-29T17:19:13.250Z",
+  "fetchedAt": "2026-10-29T23:41:02.110Z",
   "tradeDate": "20261029",
   "marketOpen": true,
   "okCount": 5,
@@ -109,18 +109,18 @@ window.MARKET_AUTO = {
         "index": {
           "close": 387.37,
           "source": "TWSE MIS getStockInfo（otc_o00.tw）",
-          "field": "z",
-          "misDate": "20261029",
-          "open": 396.4,
-          "high": 397.17,
-          "low": 385.26,
-          "prevClose": 394.61,
+          "field": "y",
+          "misDate": "20261030",
+          "open": null,
+          "high": null,
+          "low": null,
+          "prevClose": 387.37,
           "name": "櫃買指數"
         },
         "indexCross": {
           "taiexFromMis": 46368.33,
-          "field": "z",
-          "misDate": "20261029"
+          "field": "y",
+          "misDate": "20261030"
         },
         "turnoverYi": 2141.57,
         "quoteCount": 13242
