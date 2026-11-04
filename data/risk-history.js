@@ -60,6 +60,7 @@ window.RISK_HISTORY = {
     { date: "10/29", v: "v6.30", score: 2.94, signal: "r", taiex: 46368.33, chg: -667.25 },
     { date: "10/30", v: "v6.31", score: 2.34, signal: "r", taiex: 45211.83, chg: -1156.50 },
     { date: "11/2", v: "v6.32", score: 2.44, signal: "r", taiex: 44920.14, chg: -291.69 },
-    { date: "11/3", v: "v6.33", score: 2.26, signal: "r", taiex: 43307.54, chg: -1612.60 }
+    { date: "11/3", v: "v6.33", score: 2.26, signal: "r", taiex: 43307.54, chg: -1612.60 },
+    { date: "11/4", v: "v6.34", score: 2.46, signal: "r", taiex: 42948.91, chg: -358.63 }
   ]
 };
