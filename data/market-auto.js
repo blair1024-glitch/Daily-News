@@ -6,7 +6,7 @@
  * ok:false 代表該欄位當天抓不到，error 說明原因——請據實標註，不要沿用舊值。
  */
 window.MARKET_AUTO = {
-  "fetchedAt": "2026-11-13T18:25:04.982Z",
+  "fetchedAt": "2026-11-14T02:55:16.113Z",
   "tradeDate": "20261113",
   "marketOpen": true,
   "okCount": 5,
