@@ -7,7 +7,7 @@
  * ok:false 代表該代號當次抓不到（可能代號不存在、已下市或頁面改版）。
  */
 window.ACTIVE_ETF = {
-  "fetchedAt": "2026-11-16T23:41:06.542Z",
+  "fetchedAt": "2026-11-17T05:11:22.358Z",
   "date": "20261117",
   "source": "MoneyDJ理財網 ETF持股狀況頁（第三方資料，非投信/證交所官方原始揭露，逐檔以 fund.source 列出網址）",
   "okCount": 16,
@@ -91,10 +91,7 @@ window.ACTIVE_ETF = {
           "shares": 8800000
         }
       ],
-      "diff": {
-        "prevAsOf": "20261114",
-        "changes": []
-      }
+      "diff": null
     },
     "00980A": {
       "ok": true,
@@ -167,10 +164,7 @@ window.ACTIVE_ETF = {
           "shares": 625000
         }
       ],
-      "diff": {
-        "prevAsOf": "20261114",
-        "changes": []
-      }
+      "diff": null
     },
     "00981A": {
       "ok": true,
@@ -250,10 +244,7 @@ window.ACTIVE_ETF = {
           "shares": 23519000
         }
       ],
-      "diff": {
-        "prevAsOf": "20261114",
-        "changes": []
-      }
+      "diff": null
     },
     "00982A": {
       "ok": true,
@@ -333,39 +324,7 @@ window.ACTIVE_ETF = {
           "shares": 338000
         }
       ],
-      "diff": {
-        "prevAsOf": "20261114",
-        "changes": [
-          {
-            "code": "6139",
-            "name": "亞翔",
-            "action": "增持",
-            "sharesChange": 16000,
-            "weightChange": 0.11
-          },
-          {
-            "code": "3491",
-            "name": "昇達科",
-            "action": "增持",
-            "sharesChange": 135000,
-            "weightChange": 0.66
-          },
-          {
-            "code": "3008",
-            "name": "大立光",
-            "action": "增持",
-            "sharesChange": 1000,
-            "weightChange": -0.07
-          },
-          {
-            "code": "2383",
-            "name": "台光電",
-            "action": "增持",
-            "sharesChange": 2000,
-            "weightChange": -0.06
-          }
-        ]
-      }
+      "diff": null
     },
     "00984A": {
       "ok": true,
@@ -445,25 +404,7 @@ window.ACTIVE_ETF = {
           "shares": 349000
         }
       ],
-      "diff": {
-        "prevAsOf": "20261114",
-        "changes": [
-          {
-            "code": "2395",
-            "name": "研華",
-            "action": "新增",
-            "sharesChange": 349000,
-            "weightChange": 2.24
-          },
-          {
-            "code": "3711",
-            "name": "日月光投控",
-            "action": "剔除",
-            "sharesChange": -362000,
-            "weightChange": -2.25
-          }
-        ]
-      }
+      "diff": null
     },
     "00985A": {
       "ok": true,
@@ -543,60 +484,7 @@ window.ACTIVE_ETF = {
           "shares": 342000
         }
       ],
-      "diff": {
-        "prevAsOf": "20261114",
-        "changes": [
-          {
-            "code": "2027",
-            "name": "大成鋼",
-            "action": "增持",
-            "sharesChange": 44000,
-            "weightChange": 0.22
-          },
-          {
-            "code": "2383",
-            "name": "台光電",
-            "action": "增持",
-            "sharesChange": 21000,
-            "weightChange": 0.21
-          },
-          {
-            "code": "3653",
-            "name": "健策",
-            "action": "增持",
-            "sharesChange": 23000,
-            "weightChange": 0.33
-          },
-          {
-            "code": "3037",
-            "name": "欣興",
-            "action": "新增",
-            "sharesChange": 918000,
-            "weightChange": 2.56
-          },
-          {
-            "code": "3081",
-            "name": "聯亞",
-            "action": "新增",
-            "sharesChange": 342000,
-            "weightChange": 2.56
-          },
-          {
-            "code": "2345",
-            "name": "智邦",
-            "action": "剔除",
-            "sharesChange": -441000,
-            "weightChange": -2.47
-          },
-          {
-            "code": "6446",
-            "name": "藥華藥",
-            "action": "剔除",
-            "sharesChange": -460000,
-            "weightChange": -2.34
-          }
-        ]
-      }
+      "diff": null
     },
     "00987A": {
       "ok": true,
@@ -676,25 +564,7 @@ window.ACTIVE_ETF = {
           "shares": 52000
         }
       ],
-      "diff": {
-        "prevAsOf": "20261114",
-        "changes": [
-          {
-            "code": "3491",
-            "name": "昇達科",
-            "action": "新增",
-            "sharesChange": 52000,
-            "weightChange": 3.77
-          },
-          {
-            "code": "3008",
-            "name": "大立光",
-            "action": "剔除",
-            "sharesChange": -15000,
-            "weightChange": -3.68
-          }
-        ]
-      }
+      "diff": null
     },
     "00991A": {
       "ok": true,
@@ -774,10 +644,7 @@ window.ACTIVE_ETF = {
           "shares": 4200000
         }
       ],
-      "diff": {
-        "prevAsOf": "20261114",
-        "changes": []
-      }
+      "diff": null
     },
     "00992A": {
       "ok": true,
@@ -857,25 +724,7 @@ window.ACTIVE_ETF = {
           "shares": 364000
         }
       ],
-      "diff": {
-        "prevAsOf": "20261114",
-        "changes": [
-          {
-            "code": "6223",
-            "name": "旺矽",
-            "action": "新增",
-            "sharesChange": 364000,
-            "weightChange": 3.78
-          },
-          {
-            "code": "2059",
-            "name": "川湖",
-            "action": "剔除",
-            "sharesChange": -218000,
-            "weightChange": -3.78
-          }
-        ]
-      }
+      "diff": null
     },
     "00993A": {
       "ok": true,
@@ -955,10 +804,7 @@ window.ACTIVE_ETF = {
           "shares": 145000
         }
       ],
-      "diff": {
-        "prevAsOf": "20261114",
-        "changes": []
-      }
+      "diff": null
     },
     "00994A": {
       "ok": true,
@@ -1038,32 +884,7 @@ window.ACTIVE_ETF = {
           "shares": 52000
         }
       ],
-      "diff": {
-        "prevAsOf": "20261114",
-        "changes": [
-          {
-            "code": "2383",
-            "name": "台光電",
-            "action": "減持",
-            "sharesChange": -10000,
-            "weightChange": -1.33
-          },
-          {
-            "code": "6805",
-            "name": "富世達",
-            "action": "新增",
-            "sharesChange": 52000,
-            "weightChange": 3.15
-          },
-          {
-            "code": "3711",
-            "name": "日月光投控",
-            "action": "剔除",
-            "sharesChange": -177002,
-            "weightChange": -3.22
-          }
-        ]
-      }
+      "diff": null
     },
     "00995A": {
       "ok": true,
@@ -1143,10 +964,7 @@ window.ACTIVE_ETF = {
           "shares": 398000
         }
       ],
-      "diff": {
-        "prevAsOf": "20261114",
-        "changes": []
-      }
+      "diff": null
     },
     "00983A": {
       "ok": true,
@@ -1226,60 +1044,7 @@ window.ACTIVE_ETF = {
           "shares": 12613
         }
       ],
-      "diff": {
-        "prevAsOf": "20261114",
-        "changes": [
-          {
-            "code": "SPCX",
-            "name": "SpaceX",
-            "action": "增持",
-            "sharesChange": 488,
-            "weightChange": 0.39
-          },
-          {
-            "code": "TEM",
-            "name": "Tempus",
-            "action": "減持",
-            "sharesChange": -900,
-            "weightChange": -0.49
-          },
-          {
-            "code": "META",
-            "name": "Meta",
-            "action": "增持",
-            "sharesChange": 37,
-            "weightChange": 0.26
-          },
-          {
-            "code": "CRSP",
-            "name": "CRISPR Therapeutics",
-            "action": "減持",
-            "sharesChange": -948,
-            "weightChange": -0.13
-          },
-          {
-            "code": "PLTR",
-            "name": "Palantir Technologies",
-            "action": "新增",
-            "sharesChange": 4704,
-            "weightChange": 3.2
-          },
-          {
-            "code": "CRCL",
-            "name": "Circle",
-            "action": "減持",
-            "sharesChange": -277,
-            "weightChange": -0.09
-          },
-          {
-            "code": "TWST",
-            "name": "Twist Bioscience",
-            "action": "剔除",
-            "sharesChange": -7089,
-            "weightChange": -3.21
-          }
-        ]
-      }
+      "diff": null
     },
     "00986A": {
       "ok": true,
@@ -1359,10 +1124,7 @@ window.ACTIVE_ETF = {
           "shares": 800
         }
       ],
-      "diff": {
-        "prevAsOf": "20261114",
-        "changes": []
-      }
+      "diff": null
     },
     "00990A": {
       "ok": true,
@@ -1442,39 +1204,7 @@ window.ACTIVE_ETF = {
           "shares": 132263
         }
       ],
-      "diff": {
-        "prevAsOf": "20261114",
-        "changes": [
-          {
-            "code": "GOOGL",
-            "name": "Alphabet - Class A Common Stock",
-            "action": "新增",
-            "sharesChange": 130520,
-            "weightChange": 4.27
-          },
-          {
-            "code": "CRWD",
-            "name": "CrowdStrike Holdings",
-            "action": "新增",
-            "sharesChange": 132263,
-            "weightChange": 3.32
-          },
-          {
-            "code": "SPCX",
-            "name": "SpaceX",
-            "action": "剔除",
-            "sharesChange": -251728,
-            "weightChange": -3.87
-          },
-          {
-            "code": "SHOP",
-            "name": "Shopify",
-            "action": "剔除",
-            "sharesChange": -204100,
-            "weightChange": -3.29
-          }
-        ]
-      }
+      "diff": null
     },
     "00997A": {
       "ok": true,
@@ -1554,234 +1284,23 @@ window.ACTIVE_ETF = {
           "shares": 360000
         }
       ],
-      "diff": {
-        "prevAsOf": "20261114",
-        "changes": [
-          {
-            "code": "AMD",
-            "name": "AMD",
-            "action": "增持",
-            "sharesChange": 11643,
-            "weightChange": 1.92
-          }
-        ]
-      }
+      "diff": null
     }
   },
   "summaryTw": {
-    "fundsWithDiff": 12,
-    "totalActiveStocks": 15,
-    "topBought": [
-      {
-        "code": "3491",
-        "name": "昇達科",
-        "fundsUp": 2,
-        "fundsDown": 0,
-        "totalSharesChange": 187000
-      },
-      {
-        "code": "2383",
-        "name": "台光電",
-        "fundsUp": 2,
-        "fundsDown": 1,
-        "totalSharesChange": 13000
-      },
-      {
-        "code": "3037",
-        "name": "欣興",
-        "fundsUp": 1,
-        "fundsDown": 0,
-        "totalSharesChange": 918000
-      },
-      {
-        "code": "6223",
-        "name": "旺矽",
-        "fundsUp": 1,
-        "fundsDown": 0,
-        "totalSharesChange": 364000
-      },
-      {
-        "code": "2395",
-        "name": "研華",
-        "fundsUp": 1,
-        "fundsDown": 0,
-        "totalSharesChange": 349000
-      },
-      {
-        "code": "3081",
-        "name": "聯亞",
-        "fundsUp": 1,
-        "fundsDown": 0,
-        "totalSharesChange": 342000
-      },
-      {
-        "code": "6805",
-        "name": "富世達",
-        "fundsUp": 1,
-        "fundsDown": 0,
-        "totalSharesChange": 52000
-      },
-      {
-        "code": "2027",
-        "name": "大成鋼",
-        "fundsUp": 1,
-        "fundsDown": 0,
-        "totalSharesChange": 44000
-      },
-      {
-        "code": "3653",
-        "name": "健策",
-        "fundsUp": 1,
-        "fundsDown": 0,
-        "totalSharesChange": 23000
-      },
-      {
-        "code": "6139",
-        "name": "亞翔",
-        "fundsUp": 1,
-        "fundsDown": 0,
-        "totalSharesChange": 16000
-      }
-    ],
-    "topSold": [
-      {
-        "code": "3711",
-        "name": "日月光投控",
-        "fundsUp": 0,
-        "fundsDown": 2,
-        "totalSharesChange": -539002
-      },
-      {
-        "code": "6446",
-        "name": "藥華藥",
-        "fundsUp": 0,
-        "fundsDown": 1,
-        "totalSharesChange": -460000
-      },
-      {
-        "code": "2345",
-        "name": "智邦",
-        "fundsUp": 0,
-        "fundsDown": 1,
-        "totalSharesChange": -441000
-      },
-      {
-        "code": "2059",
-        "name": "川湖",
-        "fundsUp": 0,
-        "fundsDown": 1,
-        "totalSharesChange": -218000
-      },
-      {
-        "code": "3008",
-        "name": "大立光",
-        "fundsUp": 1,
-        "fundsDown": 1,
-        "totalSharesChange": -14000
-      },
-      {
-        "code": "2383",
-        "name": "台光電",
-        "fundsUp": 2,
-        "fundsDown": 1,
-        "totalSharesChange": 13000
-      }
-    ],
-    "concentrationPct": 45,
+    "fundsWithDiff": 0,
+    "totalActiveStocks": 0,
+    "topBought": [],
+    "topSold": [],
+    "concentrationPct": null,
     "concentrationNote": "concentrationPct = 當天買賣異動最明顯的前5支個股，佔全部異動動作數的比例；數字越高代表主動式ETF的買賣行為越集中在少數股票"
   },
   "summaryOverseas": {
-    "fundsWithDiff": 4,
-    "totalActiveStocks": 11,
-    "topBought": [
-      {
-        "code": "CRWD",
-        "name": "CrowdStrike Holdings",
-        "fundsUp": 1,
-        "fundsDown": 0,
-        "totalSharesChange": 132263
-      },
-      {
-        "code": "GOOGL",
-        "name": "Alphabet - Class A Common Stock",
-        "fundsUp": 1,
-        "fundsDown": 0,
-        "totalSharesChange": 130520
-      },
-      {
-        "code": "AMD",
-        "name": "AMD",
-        "fundsUp": 1,
-        "fundsDown": 0,
-        "totalSharesChange": 11643
-      },
-      {
-        "code": "PLTR",
-        "name": "Palantir Technologies",
-        "fundsUp": 1,
-        "fundsDown": 0,
-        "totalSharesChange": 4704
-      },
-      {
-        "code": "META",
-        "name": "Meta",
-        "fundsUp": 1,
-        "fundsDown": 0,
-        "totalSharesChange": 37
-      },
-      {
-        "code": "SPCX",
-        "name": "SpaceX",
-        "fundsUp": 1,
-        "fundsDown": 1,
-        "totalSharesChange": -251240
-      }
-    ],
-    "topSold": [
-      {
-        "code": "SPCX",
-        "name": "SpaceX",
-        "fundsUp": 1,
-        "fundsDown": 1,
-        "totalSharesChange": -251240
-      },
-      {
-        "code": "SHOP",
-        "name": "Shopify",
-        "fundsUp": 0,
-        "fundsDown": 1,
-        "totalSharesChange": -204100
-      },
-      {
-        "code": "TWST",
-        "name": "Twist Bioscience",
-        "fundsUp": 0,
-        "fundsDown": 1,
-        "totalSharesChange": -7089
-      },
-      {
-        "code": "CRSP",
-        "name": "CRISPR Therapeutics",
-        "fundsUp": 0,
-        "fundsDown": 1,
-        "totalSharesChange": -948
-      },
-      {
-        "code": "TEM",
-        "name": "Tempus",
-        "fundsUp": 0,
-        "fundsDown": 1,
-        "totalSharesChange": -900
-      },
-      {
-        "code": "CRCL",
-        "name": "Circle",
-        "fundsUp": 0,
-        "fundsDown": 1,
-        "totalSharesChange": -277
-      }
-    ],
-    "concentrationPct": 41.67,
+    "fundsWithDiff": 0,
+    "totalActiveStocks": 0,
+    "topBought": [],
+    "topSold": [],
+    "concentrationPct": null,
     "concentrationNote": "concentrationPct = 當天買賣異動最明顯的前5支個股，佔全部異動動作數的比例；數字越高代表主動式ETF的買賣行為越集中在少數股票"
   }
 };
