@@ -7,7 +7,7 @@
  * ok:false 代表該代號當次抓不到（可能代號不存在、已下市或頁面改版）。
  */
 window.ACTIVE_ETF = {
-  "fetchedAt": "2026-11-24T23:41:26.904Z",
+  "fetchedAt": "2026-11-25T05:36:16.695Z",
   "date": "20261125",
   "source": "MoneyDJ理財網 ETF持股狀況頁（第三方資料，非投信/證交所官方原始揭露，逐檔以 fund.source 列出網址）",
   "okCount": 16,
@@ -91,18 +91,7 @@ window.ACTIVE_ETF = {
           "shares": 8800000
         }
       ],
-      "diff": {
-        "prevAsOf": "20261124",
-        "changes": [
-          {
-            "code": "2330",
-            "name": "台積電",
-            "action": "增持",
-            "sharesChange": 212000,
-            "weightChange": -0.62
-          }
-        ]
-      }
+      "diff": null
     },
     "00980A": {
       "ok": true,
@@ -175,10 +164,7 @@ window.ACTIVE_ETF = {
           "shares": 625000
         }
       ],
-      "diff": {
-        "prevAsOf": "20261124",
-        "changes": []
-      }
+      "diff": null
     },
     "00981A": {
       "ok": true,
@@ -258,32 +244,7 @@ window.ACTIVE_ETF = {
           "shares": 17940000
         }
       ],
-      "diff": {
-        "prevAsOf": "20261124",
-        "changes": [
-          {
-            "code": "2330",
-            "name": "台積電",
-            "action": "增持",
-            "sharesChange": 544000,
-            "weightChange": -1.86
-          },
-          {
-            "code": "FITXN12",
-            "name": "台指期貨 2026/12",
-            "action": "新增",
-            "sharesChange": 1533,
-            "weightChange": 4.36
-          },
-          {
-            "code": "2308",
-            "name": "台達電",
-            "action": "剔除",
-            "sharesChange": -7582000,
-            "weightChange": -3.35
-          }
-        ]
-      }
+      "diff": null
     },
     "00982A": {
       "ok": true,
@@ -363,10 +324,7 @@ window.ACTIVE_ETF = {
           "shares": 270000
         }
       ],
-      "diff": {
-        "prevAsOf": "20261124",
-        "changes": []
-      }
+      "diff": null
     },
     "00984A": {
       "ok": true,
@@ -446,25 +404,7 @@ window.ACTIVE_ETF = {
           "shares": 614000
         }
       ],
-      "diff": {
-        "prevAsOf": "20261124",
-        "changes": [
-          {
-            "code": "6505",
-            "name": "台塑化",
-            "action": "增持",
-            "sharesChange": 59000,
-            "weightChange": -0.36
-          },
-          {
-            "code": "2603",
-            "name": "長榮",
-            "action": "增持",
-            "sharesChange": 16000,
-            "weightChange": 0.01
-          }
-        ]
-      }
+      "diff": null
     },
     "00985A": {
       "ok": true,
@@ -544,18 +484,7 @@ window.ACTIVE_ETF = {
           "shares": 441000
         }
       ],
-      "diff": {
-        "prevAsOf": "20261124",
-        "changes": [
-          {
-            "code": "2330",
-            "name": "台積電",
-            "action": "減持",
-            "sharesChange": -62000,
-            "weightChange": -0.85
-          }
-        ]
-      }
+      "diff": null
     },
     "00987A": {
       "ok": true,
@@ -635,10 +564,7 @@ window.ACTIVE_ETF = {
           "shares": 580000
         }
       ],
-      "diff": {
-        "prevAsOf": "20261124",
-        "changes": []
-      }
+      "diff": null
     },
     "00991A": {
       "ok": true,
@@ -718,10 +644,7 @@ window.ACTIVE_ETF = {
           "shares": 4200000
         }
       ],
-      "diff": {
-        "prevAsOf": "20261124",
-        "changes": []
-      }
+      "diff": null
     },
     "00992A": {
       "ok": true,
@@ -801,10 +724,7 @@ window.ACTIVE_ETF = {
           "shares": 12620868
         }
       ],
-      "diff": {
-        "prevAsOf": "20261124",
-        "changes": []
-      }
+      "diff": null
     },
     "00993A": {
       "ok": true,
@@ -884,10 +804,7 @@ window.ACTIVE_ETF = {
           "shares": 454000
         }
       ],
-      "diff": {
-        "prevAsOf": "20261124",
-        "changes": []
-      }
+      "diff": null
     },
     "00994A": {
       "ok": true,
@@ -967,10 +884,7 @@ window.ACTIVE_ETF = {
           "shares": 52000
         }
       ],
-      "diff": {
-        "prevAsOf": "20261124",
-        "changes": []
-      }
+      "diff": null
     },
     "00995A": {
       "ok": true,
@@ -1050,10 +964,7 @@ window.ACTIVE_ETF = {
           "shares": 398000
         }
       ],
-      "diff": {
-        "prevAsOf": "20261124",
-        "changes": []
-      }
+      "diff": null
     },
     "00983A": {
       "ok": true,
@@ -1133,18 +1044,7 @@ window.ACTIVE_ETF = {
           "shares": 4704
         }
       ],
-      "diff": {
-        "prevAsOf": "20261124",
-        "changes": [
-          {
-            "code": "SPCX",
-            "name": "SpaceX",
-            "action": "減持",
-            "sharesChange": -330,
-            "weightChange": -0.42
-          }
-        ]
-      }
+      "diff": null
     },
     "00986A": {
       "ok": true,
@@ -1224,10 +1124,7 @@ window.ACTIVE_ETF = {
           "shares": 1250
         }
       ],
-      "diff": {
-        "prevAsOf": "20261124",
-        "changes": []
-      }
+      "diff": null
     },
     "00990A": {
       "ok": true,
@@ -1307,32 +1204,7 @@ window.ACTIVE_ETF = {
           "shares": 115363
         }
       ],
-      "diff": {
-        "prevAsOf": "20261124",
-        "changes": [
-          {
-            "code": "MSFT",
-            "name": "Microsoft",
-            "action": "增持",
-            "sharesChange": 15880,
-            "weightChange": 0.9
-          },
-          {
-            "code": "GOOGL",
-            "name": "Alphabet - Class A Common Stock",
-            "action": "增持",
-            "sharesChange": 28960,
-            "weightChange": 1.17
-          },
-          {
-            "code": "AAPL",
-            "name": "Apple",
-            "action": "增持",
-            "sharesChange": 22480,
-            "weightChange": 0.95
-          }
-        ]
-      }
+      "diff": null
     },
     "00997A": {
       "ok": true,
@@ -1412,129 +1284,23 @@ window.ACTIVE_ETF = {
           "shares": 132000
         }
       ],
-      "diff": {
-        "prevAsOf": "20261124",
-        "changes": [
-          {
-            "code": "WDC",
-            "name": "Western Digital",
-            "action": "新增",
-            "sharesChange": 27614,
-            "weightChange": 3.07
-          },
-          {
-            "code": "ABBV",
-            "name": "AbbVie",
-            "action": "剔除",
-            "sharesChange": -27170,
-            "weightChange": -3.12
-          }
-        ]
-      }
+      "diff": null
     }
   },
   "summaryTw": {
-    "fundsWithDiff": 12,
-    "totalActiveStocks": 5,
-    "topBought": [
-      {
-        "code": "2330",
-        "name": "台積電",
-        "fundsUp": 2,
-        "fundsDown": 1,
-        "totalSharesChange": 694000
-      },
-      {
-        "code": "6505",
-        "name": "台塑化",
-        "fundsUp": 1,
-        "fundsDown": 0,
-        "totalSharesChange": 59000
-      },
-      {
-        "code": "2603",
-        "name": "長榮",
-        "fundsUp": 1,
-        "fundsDown": 0,
-        "totalSharesChange": 16000
-      },
-      {
-        "code": "FITXN12",
-        "name": "台指期貨 2026/12",
-        "fundsUp": 1,
-        "fundsDown": 0,
-        "totalSharesChange": 1533
-      }
-    ],
-    "topSold": [
-      {
-        "code": "2308",
-        "name": "台達電",
-        "fundsUp": 0,
-        "fundsDown": 1,
-        "totalSharesChange": -7582000
-      },
-      {
-        "code": "2330",
-        "name": "台積電",
-        "fundsUp": 2,
-        "fundsDown": 1,
-        "totalSharesChange": 694000
-      }
-    ],
-    "concentrationPct": 100,
+    "fundsWithDiff": 0,
+    "totalActiveStocks": 0,
+    "topBought": [],
+    "topSold": [],
+    "concentrationPct": null,
     "concentrationNote": "concentrationPct = 當天買賣異動最明顯的前5支個股，佔全部異動動作數的比例；數字越高代表主動式ETF的買賣行為越集中在少數股票"
   },
   "summaryOverseas": {
-    "fundsWithDiff": 4,
-    "totalActiveStocks": 6,
-    "topBought": [
-      {
-        "code": "GOOGL",
-        "name": "Alphabet - Class A Common Stock",
-        "fundsUp": 1,
-        "fundsDown": 0,
-        "totalSharesChange": 28960
-      },
-      {
-        "code": "WDC",
-        "name": "Western Digital",
-        "fundsUp": 1,
-        "fundsDown": 0,
-        "totalSharesChange": 27614
-      },
-      {
-        "code": "AAPL",
-        "name": "Apple",
-        "fundsUp": 1,
-        "fundsDown": 0,
-        "totalSharesChange": 22480
-      },
-      {
-        "code": "MSFT",
-        "name": "Microsoft",
-        "fundsUp": 1,
-        "fundsDown": 0,
-        "totalSharesChange": 15880
-      }
-    ],
-    "topSold": [
-      {
-        "code": "ABBV",
-        "name": "AbbVie",
-        "fundsUp": 0,
-        "fundsDown": 1,
-        "totalSharesChange": -27170
-      },
-      {
-        "code": "SPCX",
-        "name": "SpaceX",
-        "fundsUp": 0,
-        "fundsDown": 1,
-        "totalSharesChange": -330
-      }
-    ],
-    "concentrationPct": 83.33,
+    "fundsWithDiff": 0,
+    "totalActiveStocks": 0,
+    "topBought": [],
+    "topSold": [],
+    "concentrationPct": null,
     "concentrationNote": "concentrationPct = 當天買賣異動最明顯的前5支個股，佔全部異動動作數的比例；數字越高代表主動式ETF的買賣行為越集中在少數股票"
   }
 };
