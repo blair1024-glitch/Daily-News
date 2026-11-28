@@ -7,8 +7,8 @@
  * ok:false 代表該代號當次抓不到（可能代號不存在、已下市或頁面改版）。
  */
 window.ACTIVE_ETF = {
-  "fetchedAt": "2026-11-27T05:15:31.582Z",
-  "date": "20261127",
+  "fetchedAt": "2026-11-28T04:53:12.119Z",
+  "date": "20261128",
   "source": "MoneyDJ理財網 ETF持股狀況頁（第三方資料，非投信/證交所官方原始揭露，逐檔以 fund.source 列出網址）",
   "okCount": 16,
   "totalCount": 16,
@@ -18,695 +18,757 @@ window.ACTIVE_ETF = {
       "category": "tw",
       "fundName": "主動統一升級50",
       "source": "https://www.moneydj.com/etf/x/basic/basic0007.xdjhtm?etfid=00403a.tw",
-      "fetchedDate": "20261127",
+      "fetchedDate": "20261128",
       "holdings": [
         {
           "code": "2330",
           "name": "台積電",
           "exchange": "TW",
-          "weightPct": 15.76,
+          "weightPct": 16.04,
           "shares": 8750000
         },
         {
           "code": "3017",
           "name": "奇鋐",
           "exchange": "TW",
-          "weightPct": 6.34,
-          "shares": 2700000
+          "weightPct": 6.56,
+          "shares": 2780000
         },
         {
           "code": "2454",
           "name": "聯發科",
           "exchange": "TW",
-          "weightPct": 6.07,
+          "weightPct": 6.04,
           "shares": 1950000
         },
         {
           "code": "3653",
           "name": "健策",
           "exchange": "TW",
-          "weightPct": 3.97,
+          "weightPct": 4.23,
           "shares": 1030000
         },
         {
           "code": "3037",
           "name": "欣興",
           "exchange": "TW",
-          "weightPct": 3.89,
+          "weightPct": 3.91,
           "shares": 7200000
         },
         {
           "code": "2383",
           "name": "台光電",
           "exchange": "TW",
-          "weightPct": 3.69,
+          "weightPct": 3.64,
           "shares": 1200000
         },
         {
           "code": "3443",
           "name": "創意",
           "exchange": "TW",
-          "weightPct": 3.62,
+          "weightPct": 3.43,
           "shares": 800000
         },
         {
           "code": "6223",
           "name": "旺矽",
           "exchange": "TW",
-          "weightPct": 3.21,
+          "weightPct": 3.07,
           "shares": 930000
         },
         {
           "code": "1303",
           "name": "南亞",
           "exchange": "TW",
-          "weightPct": 3.09,
+          "weightPct": 3.06,
           "shares": 15100000
         },
         {
           "code": "6669",
           "name": "緯穎",
           "exchange": "TW",
-          "weightPct": 2.52,
+          "weightPct": 2.68,
           "shares": 1910956
         }
       ],
-      "diff": null
+      "diff": {
+        "prevAsOf": "20261127",
+        "changes": [
+          {
+            "code": "3017",
+            "name": "奇鋐",
+            "action": "增持",
+            "sharesChange": 80000,
+            "weightChange": 0.22
+          }
+        ]
+      }
     },
     "00980A": {
       "ok": true,
       "category": "tw",
       "fundName": "主動野村臺灣優選",
       "source": "https://www.moneydj.com/etf/x/basic/basic0007.xdjhtm?etfid=00980a.tw",
-      "fetchedDate": "20261127",
+      "fetchedDate": "20261128",
       "holdings": [
         {
           "code": "2330",
           "name": "台積電",
           "exchange": "TW",
-          "weightPct": 10.28,
+          "weightPct": 10.53,
           "shares": 753000
         },
         {
           "code": "2454",
           "name": "聯發科",
           "exchange": "TW",
-          "weightPct": 6.25,
+          "weightPct": 6.26,
           "shares": 265000
         },
         {
           "code": "2383",
           "name": "台光電",
           "exchange": "TW",
-          "weightPct": 5.43,
+          "weightPct": 5.39,
           "shares": 233000
         },
         {
           "code": "1303",
           "name": "南亞",
           "exchange": "TW",
-          "weightPct": 4.5,
+          "weightPct": 4.48,
           "shares": 2900000
         },
         {
           "code": "2059",
           "name": "川湖",
           "exchange": "TW",
-          "weightPct": 3.82,
+          "weightPct": 3.79,
           "shares": 84000
         },
         {
           "code": "FITXN12",
           "name": "台灣證交所加權股價指數",
           "exchange": "TF",
-          "weightPct": 3.02,
+          "weightPct": 3.03,
           "shares": 60
+        },
+        {
+          "code": "3653",
+          "name": "健策",
+          "exchange": "TW",
+          "weightPct": 3.01,
+          "shares": 96000
         },
         {
           "code": "2317",
           "name": "鴻海",
           "exchange": "TW",
-          "weightPct": 2.9,
+          "weightPct": 2.96,
           "shares": 2108000
         },
         {
           "code": "2308",
           "name": "台達電",
           "exchange": "TW",
-          "weightPct": 2.88,
+          "weightPct": 2.92,
           "shares": 404000
-        },
-        {
-          "code": "3653",
-          "name": "健策",
-          "exchange": "TW",
-          "weightPct": 2.8,
-          "shares": 96000
         },
         {
           "code": "3017",
           "name": "奇鋐",
           "exchange": "TW",
-          "weightPct": 2.79,
+          "weightPct": 2.83,
           "shares": 157000
         }
       ],
-      "diff": null
+      "diff": {
+        "prevAsOf": "20261127",
+        "changes": []
+      }
     },
     "00981A": {
       "ok": true,
       "category": "tw",
       "fundName": "主動統一台股增長",
       "source": "https://www.moneydj.com/etf/x/basic/basic0007.xdjhtm?etfid=00981a.tw",
-      "fetchedDate": "20261127",
+      "fetchedDate": "20261128",
       "holdings": [
         {
           "code": "2330",
           "name": "台積電",
           "exchange": "TW",
-          "weightPct": 15.4,
+          "weightPct": 15.85,
           "shares": 20216000
         },
         {
           "code": "2454",
           "name": "聯發科",
           "exchange": "TW",
-          "weightPct": 7.71,
+          "weightPct": 7.76,
           "shares": 5861000
         },
         {
           "code": "3017",
           "name": "奇鋐",
           "exchange": "TW",
-          "weightPct": 7.49,
+          "weightPct": 7.61,
           "shares": 7542000
         },
         {
           "code": "2383",
           "name": "台光電",
           "exchange": "TW",
-          "weightPct": 5.42,
+          "weightPct": 5.41,
           "shares": 4172000
-        },
-        {
-          "code": "2345",
-          "name": "智邦",
-          "exchange": "TW",
-          "weightPct": 4.64,
-          "shares": 8056000
         },
         {
           "code": "3037",
           "name": "欣興",
           "exchange": "TW",
-          "weightPct": 4.51,
+          "weightPct": 4.59,
           "shares": 19739000
         },
         {
-          "code": "FITXN12",
-          "name": "台指期貨 2026/12",
-          "exchange": "TF",
-          "weightPct": 4.3,
-          "shares": 1533
+          "code": "2345",
+          "name": "智邦",
+          "exchange": "TW",
+          "weightPct": 4.51,
+          "shares": 8056000
         },
         {
           "code": "3653",
           "name": "健策",
           "exchange": "TW",
-          "weightPct": 4.16,
+          "weightPct": 4.48,
           "shares": 2552000
         },
         {
-          "code": "6223",
-          "name": "旺矽",
-          "exchange": "TW",
-          "weightPct": 4.11,
-          "shares": 2813000
+          "code": "FITXN12",
+          "name": "台指期貨 2026/12",
+          "exchange": "TF",
+          "weightPct": 4.34,
+          "shares": 1533
         },
         {
           "code": "3711",
           "name": "日月光投控",
           "exchange": "TW",
-          "weightPct": 4.01,
+          "weightPct": 4.09,
           "shares": 22105000
+        },
+        {
+          "code": "6223",
+          "name": "旺矽",
+          "exchange": "TW",
+          "weightPct": 3.98,
+          "shares": 2813000
         }
       ],
-      "diff": null
+      "diff": {
+        "prevAsOf": "20261127",
+        "changes": []
+      }
     },
     "00982A": {
       "ok": true,
       "category": "tw",
       "fundName": "主動群益台灣強棒",
       "source": "https://www.moneydj.com/etf/x/basic/basic0007.xdjhtm?etfid=00982a.tw",
-      "fetchedDate": "20261127",
+      "fetchedDate": "20261128",
       "holdings": [
         {
           "code": "2454",
           "name": "聯發科",
           "exchange": "TW",
-          "weightPct": 9.11,
+          "weightPct": 9.07,
           "shares": 957000
         },
         {
           "code": "2330",
           "name": "台積電",
           "exchange": "TW",
-          "weightPct": 8.86,
+          "weightPct": 9.04,
           "shares": 1609000
         },
         {
           "code": "3105",
           "name": "穩懋",
           "exchange": "TW",
-          "weightPct": 8.06,
+          "weightPct": 8.08,
           "shares": 7059000
         },
         {
           "code": "6531",
           "name": "愛普*",
           "exchange": "TW",
-          "weightPct": 6.35,
+          "weightPct": 6.2,
           "shares": 4637000
         },
         {
           "code": "6139",
           "name": "亞翔",
           "exchange": "TW",
-          "weightPct": 6.17,
+          "weightPct": 6.18,
           "shares": 4018000
         },
         {
           "code": "3491",
           "name": "昇達科",
           "exchange": "TW",
-          "weightPct": 4.71,
+          "weightPct": 5.07,
           "shares": 1330000
         },
         {
           "code": "2383",
           "name": "台光電",
           "exchange": "TW",
-          "weightPct": 3.47,
+          "weightPct": 3.43,
           "shares": 369000
         },
         {
           "code": "3017",
           "name": "奇鋐",
           "exchange": "TW",
-          "weightPct": 3.37,
+          "weightPct": 3.4,
           "shares": 470000
         },
         {
           "code": "6223",
           "name": "旺矽",
           "exchange": "TW",
-          "weightPct": 3.18,
+          "weightPct": 3.05,
           "shares": 301000
         },
         {
           "code": "3008",
           "name": "大立光",
           "exchange": "TW",
-          "weightPct": 3.07,
+          "weightPct": 2.95,
           "shares": 270000
         }
       ],
-      "diff": null
+      "diff": {
+        "prevAsOf": "20261127",
+        "changes": []
+      }
     },
     "00984A": {
       "ok": true,
       "category": "tw",
       "fundName": "主動安聯台灣高息",
       "source": "https://www.moneydj.com/etf/x/basic/basic0007.xdjhtm?etfid=00984a.tw",
-      "fetchedDate": "20261127",
+      "fetchedDate": "20261128",
       "holdings": [
         {
           "code": "3017",
           "name": "奇鋐",
           "exchange": "TW",
-          "weightPct": 3.87,
+          "weightPct": 3.89,
           "shares": 120000
         },
         {
           "code": "6505",
           "name": "台塑化",
           "exchange": "TW",
-          "weightPct": 3.68,
+          "weightPct": 3.72,
           "shares": 3730000
         },
         {
           "code": "1303",
           "name": "南亞",
           "exchange": "TW",
-          "weightPct": 3.22,
+          "weightPct": 3.21,
           "shares": 1151000
         },
         {
           "code": "2603",
           "name": "長榮",
           "exchange": "TW",
-          "weightPct": 2.92,
+          "weightPct": 2.89,
           "shares": 1003000
-        },
-        {
-          "code": "2059",
-          "name": "川湖",
-          "exchange": "TW",
-          "weightPct": 2.46,
-          "shares": 30000
         },
         {
           "code": "2395",
           "name": "研華",
           "exchange": "TW",
-          "weightPct": 2.43,
+          "weightPct": 2.5,
           "shares": 360000
+        },
+        {
+          "code": "2059",
+          "name": "川湖",
+          "exchange": "TW",
+          "weightPct": 2.44,
+          "shares": 30000
         },
         {
           "code": "1326",
           "name": "台化",
           "exchange": "TW",
-          "weightPct": 2.39,
+          "weightPct": 2.38,
           "shares": 3306000
         },
         {
           "code": "2330",
           "name": "台積電",
           "exchange": "TW",
-          "weightPct": 2.29,
+          "weightPct": 2.34,
           "shares": 93000
         },
         {
           "code": "3711",
           "name": "日月光投控",
           "exchange": "TW",
-          "weightPct": 2.19,
+          "weightPct": 2.22,
           "shares": 374000
         },
         {
           "code": "2408",
           "name": "南亞科",
           "exchange": "TW",
-          "weightPct": 2.17,
+          "weightPct": 2.2,
           "shares": 619000
         }
       ],
-      "diff": null
+      "diff": {
+        "prevAsOf": "20261127",
+        "changes": []
+      }
     },
     "00985A": {
       "ok": true,
       "category": "tw",
       "fundName": "主動野村台灣50",
       "source": "https://www.moneydj.com/etf/x/basic/basic0007.xdjhtm?etfid=00985a.tw",
-      "fetchedDate": "20261127",
+      "fetchedDate": "20261128",
       "holdings": [
         {
           "code": "2330",
           "name": "台積電",
           "exchange": "TW",
-          "weightPct": 13.43,
+          "weightPct": 13.7,
           "shares": 1583000
-        },
-        {
-          "code": "3653",
-          "name": "健策",
-          "exchange": "TW",
-          "weightPct": 5.2,
-          "shares": 287000
-        },
-        {
-          "code": "2308",
-          "name": "台達電",
-          "exchange": "TW",
-          "weightPct": 4.1,
-          "shares": 926000
-        },
-        {
-          "code": "2383",
-          "name": "台光電",
-          "exchange": "TW",
-          "weightPct": 3.42,
-          "shares": 236000
-        },
-        {
-          "code": "6669",
-          "name": "緯穎",
-          "exchange": "TW",
-          "weightPct": 3.42,
-          "shares": 551036
-        },
-        {
-          "code": "3037",
-          "name": "欣興",
-          "exchange": "TW",
-          "weightPct": 3,
-          "shares": 1180000
         },
         {
           "code": "2408",
           "name": "南亞科",
           "exchange": "TW",
-          "weightPct": 2.95,
-          "shares": 2440000
+          "weightPct": 4.32,
+          "shares": 3530000
         },
         {
-          "code": "7769",
-          "name": "鴻勁",
+          "code": "2308",
+          "name": "台達電",
           "exchange": "TW",
-          "weightPct": 2.94,
+          "weightPct": 4.13,
+          "shares": 926000
+        },
+        {
+          "code": "6669",
+          "name": "緯穎",
+          "exchange": "TW",
+          "weightPct": 3.65,
+          "shares": 551036
+        },
+        {
+          "code": "2383",
+          "name": "台光電",
+          "exchange": "TW",
+          "weightPct": 3.38,
           "shares": 236000
+        },
+        {
+          "code": "3036",
+          "name": "文曄",
+          "exchange": "TW",
+          "weightPct": 3.29,
+          "shares": 4791000
+        },
+        {
+          "code": "3037",
+          "name": "欣興",
+          "exchange": "TW",
+          "weightPct": 3.03,
+          "shares": 1180000
         },
         {
           "code": "2059",
           "name": "川湖",
           "exchange": "TW",
-          "weightPct": 2.92,
+          "weightPct": 2.87,
           "shares": 103000
+        },
+        {
+          "code": "7769",
+          "name": "鴻勁",
+          "exchange": "TW",
+          "weightPct": 2.86,
+          "shares": 236000
         },
         {
           "code": "2376",
           "name": "技嘉",
           "exchange": "TW",
-          "weightPct": 2.84,
+          "weightPct": 2.85,
           "shares": 2621000
         }
       ],
-      "diff": null
+      "diff": {
+        "prevAsOf": "20261127",
+        "changes": [
+          {
+            "code": "2408",
+            "name": "南亞科",
+            "action": "增持",
+            "sharesChange": 1090000,
+            "weightChange": 1.37
+          },
+          {
+            "code": "3036",
+            "name": "文曄",
+            "action": "新增",
+            "sharesChange": 4791000,
+            "weightChange": 3.29
+          },
+          {
+            "code": "3653",
+            "name": "健策",
+            "action": "剔除",
+            "sharesChange": -287000,
+            "weightChange": -5.2
+          }
+        ]
+      }
     },
     "00987A": {
       "ok": true,
       "category": "tw",
       "fundName": "主動台新優勢成長",
       "source": "https://www.moneydj.com/etf/x/basic/basic0007.xdjhtm?etfid=00987a.tw",
-      "fetchedDate": "20261127",
+      "fetchedDate": "20261128",
       "holdings": [
         {
           "code": "2330",
           "name": "台積電",
           "exchange": "TW",
-          "weightPct": 8.05,
+          "weightPct": 8.56,
           "shares": 70000
         },
         {
           "code": "3017",
           "name": "奇鋐",
           "exchange": "TW",
-          "weightPct": 7.79,
+          "weightPct": 8.18,
           "shares": 52000
         },
         {
           "code": "2383",
           "name": "台光電",
           "exchange": "TW",
-          "weightPct": 7.45,
+          "weightPct": 7.69,
           "shares": 38000
         },
         {
           "code": "2454",
           "name": "聯發科",
           "exchange": "TW",
-          "weightPct": 5.36,
+          "weightPct": 5.57,
           "shares": 27000
-        },
-        {
-          "code": "3443",
-          "name": "創意",
-          "exchange": "TW",
-          "weightPct": 4.91,
-          "shares": 17000
         },
         {
           "code": "3653",
           "name": "健策",
           "exchange": "TW",
-          "weightPct": 4.42,
+          "weightPct": 4.93,
           "shares": 18000
         },
         {
-          "code": "3665",
-          "name": "貿聯-KY",
+          "code": "3443",
+          "name": "創意",
           "exchange": "TW",
-          "weightPct": 4.22,
-          "shares": 44000
-        },
-        {
-          "code": "3037",
-          "name": "欣興",
-          "exchange": "TW",
-          "weightPct": 4,
-          "shares": 116000
-        },
-        {
-          "code": "3491",
-          "name": "昇達科",
-          "exchange": "TW",
-          "weightPct": 3.85,
-          "shares": 52000
+          "weightPct": 4.86,
+          "shares": 17000
         },
         {
           "code": "6223",
           "name": "旺矽",
           "exchange": "TW",
-          "weightPct": 3.75,
-          "shares": 17000
+          "weightPct": 4.63,
+          "shares": 21000
+        },
+        {
+          "code": "3491",
+          "name": "昇達科",
+          "exchange": "TW",
+          "weightPct": 4.32,
+          "shares": 52000
+        },
+        {
+          "code": "3037",
+          "name": "欣興",
+          "exchange": "TW",
+          "weightPct": 4.2,
+          "shares": 116000
+        },
+        {
+          "code": "3665",
+          "name": "貿聯-KY",
+          "exchange": "TW",
+          "weightPct": 4.15,
+          "shares": 44000
         }
       ],
-      "diff": null
+      "diff": {
+        "prevAsOf": "20261127",
+        "changes": [
+          {
+            "code": "6223",
+            "name": "旺矽",
+            "action": "增持",
+            "sharesChange": 4000,
+            "weightChange": 0.88
+          }
+        ]
+      }
     },
     "00991A": {
       "ok": true,
       "category": "tw",
       "fundName": "主動復華未來50",
       "source": "https://www.moneydj.com/etf/x/basic/basic0007.xdjhtm?etfid=00991a.tw",
-      "fetchedDate": "20261127",
+      "fetchedDate": "20261128",
       "holdings": [
         {
           "code": "2330",
           "name": "台積電",
           "exchange": "TW",
-          "weightPct": 16.09,
+          "weightPct": 17.4,
           "shares": 5100000
         },
         {
           "code": "2383",
           "name": "台光電",
           "exchange": "TW",
-          "weightPct": 7.8,
+          "weightPct": 8.18,
           "shares": 1450000
         },
         {
           "code": "3017",
           "name": "奇鋐",
           "exchange": "TW",
-          "weightPct": 7.4,
+          "weightPct": 7.9,
           "shares": 1800000
         },
         {
           "code": "2454",
           "name": "聯發科",
           "exchange": "TW",
-          "weightPct": 7.08,
+          "weightPct": 7.49,
           "shares": 1300000
         },
         {
           "code": "2059",
           "name": "川湖",
           "exchange": "TW",
-          "weightPct": 5.79,
+          "weightPct": 6.05,
           "shares": 550000
         },
         {
           "code": "3037",
           "name": "欣興",
           "exchange": "TW",
-          "weightPct": 5.48,
+          "weightPct": 5.87,
           "shares": 5800000
         },
         {
           "code": "1303",
           "name": "南亞",
           "exchange": "TW",
-          "weightPct": 5.38,
+          "weightPct": 5.66,
           "shares": 15000000
         },
         {
           "code": "3189",
           "name": "景碩",
           "exchange": "TW",
-          "weightPct": 3.9,
+          "weightPct": 4.13,
           "shares": 5000000
         },
         {
           "code": "8046",
           "name": "南電",
           "exchange": "TW",
-          "weightPct": 3.87,
+          "weightPct": 4.02,
           "shares": 3600000
         },
         {
           "code": "3711",
           "name": "日月光投控",
           "exchange": "TW",
-          "weightPct": 3.61,
+          "weightPct": 3.86,
           "shares": 4800000
         }
       ],
-      "diff": null
+      "diff": {
+        "prevAsOf": "20261127",
+        "changes": []
+      }
     },
     "00992A": {
       "ok": true,
       "category": "tw",
       "fundName": "主動群益科技創新",
       "source": "https://www.moneydj.com/etf/x/basic/basic0007.xdjhtm?etfid=00992a.tw",
-      "fetchedDate": "20261127",
+      "fetchedDate": "20261128",
       "holdings": [
         {
           "code": "3665",
           "name": "貿聯-KY",
           "exchange": "TW",
-          "weightPct": 7.81,
+          "weightPct": 7.45,
           "shares": 1731000
         },
         {
           "code": "2330",
           "name": "台積電",
           "exchange": "TW",
-          "weightPct": 6.74,
+          "weightPct": 6.96,
           "shares": 1246000
         },
         {
           "code": "3017",
           "name": "奇鋐",
           "exchange": "TW",
-          "weightPct": 6.49,
+          "weightPct": 6.62,
           "shares": 921000
         },
         {
           "code": "2383",
           "name": "台光電",
           "exchange": "TW",
-          "weightPct": 5.63,
+          "weightPct": 5.64,
           "shares": 610000
         },
         {
           "code": "2345",
           "name": "智邦",
           "exchange": "TW",
-          "weightPct": 5.53,
+          "weightPct": 5.4,
           "shares": 1355000
         },
         {
           "code": "3037",
           "name": "欣興",
           "exchange": "TW",
-          "weightPct": 4.91,
+          "weightPct": 5.02,
           "shares": 3032000
         },
         {
           "code": "3008",
           "name": "大立光",
           "exchange": "TW",
-          "weightPct": 4.62,
+          "weightPct": 4.49,
           "shares": 414000
         },
         {
@@ -720,118 +782,124 @@ window.ACTIVE_ETF = {
           "code": "8996",
           "name": "高力",
           "exchange": "TW",
-          "weightPct": 4.2,
+          "weightPct": 4.12,
           "shares": 1743000
         },
         {
           "code": "6223",
           "name": "旺矽",
           "exchange": "TW",
-          "weightPct": 3.78,
+          "weightPct": 3.67,
           "shares": 364000
         }
       ],
-      "diff": null
+      "diff": {
+        "prevAsOf": "20261127",
+        "changes": []
+      }
     },
     "00993A": {
       "ok": true,
       "category": "tw",
       "fundName": "主動安聯台灣",
       "source": "https://www.moneydj.com/etf/x/basic/basic0007.xdjhtm?etfid=00993a.tw",
-      "fetchedDate": "20261127",
+      "fetchedDate": "20261128",
       "holdings": [
         {
           "code": "2330",
           "name": "台積電",
           "exchange": "TW",
-          "weightPct": 11.51,
+          "weightPct": 11.75,
           "shares": 376000
         },
         {
           "code": "3491",
           "name": "昇達科",
           "exchange": "TW",
-          "weightPct": 4.98,
+          "weightPct": 5.37,
           "shares": 253000
-        },
-        {
-          "code": "2383",
-          "name": "台光電",
-          "exchange": "TW",
-          "weightPct": 4.75,
-          "shares": 91000
         },
         {
           "code": "3017",
           "name": "奇鋐",
           "exchange": "TW",
-          "weightPct": 4.7,
+          "weightPct": 4.74,
           "shares": 118000
         },
         {
-          "code": "3443",
-          "name": "創意",
+          "code": "2383",
+          "name": "台光電",
           "exchange": "TW",
-          "weightPct": 4.53,
-          "shares": 59000
+          "weightPct": 4.7,
+          "shares": 91000
         },
         {
           "code": "3653",
           "name": "健策",
           "exchange": "TW",
-          "weightPct": 4.18,
+          "weightPct": 4.48,
           "shares": 64000
+        },
+        {
+          "code": "3443",
+          "name": "創意",
+          "exchange": "TW",
+          "weightPct": 4.3,
+          "shares": 59000
         },
         {
           "code": "3037",
           "name": "欣興",
           "exchange": "TW",
-          "weightPct": 4,
+          "weightPct": 4.04,
           "shares": 436000
         },
         {
           "code": "3105",
           "name": "穩懋",
           "exchange": "TW",
-          "weightPct": 3.55,
+          "weightPct": 3.57,
           "shares": 560000
         },
         {
           "code": "3189",
           "name": "景碩",
           "exchange": "TW",
-          "weightPct": 3.43,
+          "weightPct": 3.44,
           "shares": 454000
         },
         {
           "code": "6223",
           "name": "旺矽",
           "exchange": "TW",
-          "weightPct": 3.4,
+          "weightPct": 3.27,
           "shares": 58000
         }
       ],
-      "diff": null
+      "diff": {
+        "prevAsOf": "20261127",
+        "changes": []
+      }
     },
     "00994A": {
       "ok": true,
       "category": "tw",
       "fundName": "主動第一金台股優",
       "source": "https://www.moneydj.com/etf/x/basic/basic0007.xdjhtm?etfid=00994a.tw",
-      "fetchedDate": "20261127",
+      "fetchedDate": "20261128",
       "holdings": [
         {
           "code": "2330",
           "name": "台積電",
           "exchange": "TW",
-          "weightPct": 17,
+          "weightPct": 17.43,
           "shares": 223000
         },
         {
           "code": "3017",
           "name": "奇鋐",
           "exchange": "TW",
-          "weightPct": 8.3,
+          "weightPct": 8.39,
           "shares": 83500
         },
         {
@@ -845,140 +913,161 @@ window.ACTIVE_ETF = {
           "code": "3037",
           "name": "欣興",
           "exchange": "TW",
-          "weightPct": 5.47,
+          "weightPct": 5.53,
           "shares": 239001
         },
         {
           "code": "2383",
           "name": "台光電",
           "exchange": "TW",
-          "weightPct": 5.34,
+          "weightPct": 5.3,
           "shares": 41002
-        },
-        {
-          "code": "2368",
-          "name": "金像電",
-          "exchange": "TW",
-          "weightPct": 4.82,
-          "shares": 136000
         },
         {
           "code": "3653",
           "name": "健策",
           "exchange": "TW",
-          "weightPct": 4.73,
+          "weightPct": 5.08,
           "shares": 29000
         },
         {
-          "code": "3443",
-          "name": "創意",
+          "code": "2368",
+          "name": "金像電",
           "exchange": "TW",
-          "weightPct": 3.75,
-          "shares": 19550
+          "weightPct": 4.53,
+          "shares": 136000
         },
         {
           "code": "1303",
           "name": "南亞",
           "exchange": "TW",
-          "weightPct": 3.62,
+          "weightPct": 3.6,
           "shares": 417000
+        },
+        {
+          "code": "3443",
+          "name": "創意",
+          "exchange": "TW",
+          "weightPct": 3.57,
+          "shares": 19550
         },
         {
           "code": "6805",
           "name": "富世達",
           "exchange": "TW",
-          "weightPct": 3.12,
+          "weightPct": 3.02,
           "shares": 52000
         }
       ],
-      "diff": null
+      "diff": {
+        "prevAsOf": "20261127",
+        "changes": []
+      }
     },
     "00995A": {
       "ok": true,
       "category": "tw",
       "fundName": "主動中信台灣卓越",
       "source": "https://www.moneydj.com/etf/x/basic/basic0007.xdjhtm?etfid=00995a.tw",
-      "fetchedDate": "20261127",
+      "fetchedDate": "20261128",
       "holdings": [
         {
           "code": "2330",
           "name": "台積電",
           "exchange": "TW",
-          "weightPct": 8.62,
-          "shares": 142000
+          "weightPct": 9.15,
+          "shares": 148000
         },
         {
           "code": "2383",
           "name": "台光電",
           "exchange": "TW",
-          "weightPct": 7.44,
+          "weightPct": 7.4,
           "shares": 72000
         },
         {
           "code": "2454",
           "name": "聯發科",
           "exchange": "TW",
-          "weightPct": 7.32,
+          "weightPct": 7.34,
           "shares": 70000
         },
         {
           "code": "3017",
           "name": "奇鋐",
           "exchange": "TW",
-          "weightPct": 6.31,
+          "weightPct": 6.39,
           "shares": 80000
-        },
-        {
-          "code": "6223",
-          "name": "旺矽",
-          "exchange": "TW",
-          "weightPct": 4.42,
-          "shares": 38000
         },
         {
           "code": "3653",
           "name": "健策",
           "exchange": "TW",
-          "weightPct": 4.27,
+          "weightPct": 4.59,
           "shares": 33000
         },
         {
-          "code": "8046",
-          "name": "南電",
+          "code": "6223",
+          "name": "旺矽",
           "exchange": "TW",
-          "weightPct": 3.51,
-          "shares": 170000
-        },
-        {
-          "code": "3665",
-          "name": "貿聯-KY",
-          "exchange": "TW",
-          "weightPct": 3.18,
-          "shares": 63000
+          "weightPct": 4.26,
+          "shares": 38000
         },
         {
           "code": "3711",
           "name": "日月光投控",
           "exchange": "TW",
-          "weightPct": 3.13,
+          "weightPct": 3.18,
           "shares": 217000
         },
         {
           "code": "1303",
           "name": "南亞",
           "exchange": "TW",
-          "weightPct": 3.05,
+          "weightPct": 3.04,
           "shares": 442000
+        },
+        {
+          "code": "3665",
+          "name": "貿聯-KY",
+          "exchange": "TW",
+          "weightPct": 3.02,
+          "shares": 63000
+        },
+        {
+          "code": "8046",
+          "name": "南電",
+          "exchange": "TW",
+          "weightPct": 2.97,
+          "shares": 146000
         }
       ],
-      "diff": null
+      "diff": {
+        "prevAsOf": "20261127",
+        "changes": [
+          {
+            "code": "2330",
+            "name": "台積電",
+            "action": "增持",
+            "sharesChange": 6000,
+            "weightChange": 0.53
+          },
+          {
+            "code": "8046",
+            "name": "南電",
+            "action": "減持",
+            "sharesChange": -24000,
+            "weightChange": -0.54
+          }
+        ]
+      }
     },
     "00983A": {
       "ok": true,
       "category": "overseas",
       "fundName": "主動中信ARK創新",
       "source": "https://www.moneydj.com/etf/x/basic/basic0007.xdjhtm?etfid=00983a.tw",
-      "fetchedDate": "20261127",
+      "fetchedDate": "20261128",
       "holdings": [
         {
           "code": "TSLA",
@@ -1051,14 +1140,17 @@ window.ACTIVE_ETF = {
           "shares": 4704
         }
       ],
-      "diff": null
+      "diff": {
+        "prevAsOf": "20261127",
+        "changes": []
+      }
     },
     "00986A": {
       "ok": true,
       "category": "overseas",
       "fundName": "主動台新龍頭成長",
       "source": "https://www.moneydj.com/etf/x/basic/basic0007.xdjhtm?etfid=00986a.tw",
-      "fetchedDate": "20261127",
+      "fetchedDate": "20261128",
       "holdings": [
         {
           "code": "2330",
@@ -1131,14 +1223,17 @@ window.ACTIVE_ETF = {
           "shares": 1250
         }
       ],
-      "diff": null
+      "diff": {
+        "prevAsOf": "20261127",
+        "changes": []
+      }
     },
     "00990A": {
       "ok": true,
       "category": "overseas",
       "fundName": "主動元大AI新經濟",
       "source": "https://www.moneydj.com/etf/x/basic/basic0007.xdjhtm?etfid=00990a.tw",
-      "fetchedDate": "20261127",
+      "fetchedDate": "20261128",
       "holdings": [
         {
           "code": "MSFT",
@@ -1211,14 +1306,17 @@ window.ACTIVE_ETF = {
           "shares": 67000
         }
       ],
-      "diff": null
+      "diff": {
+        "prevAsOf": "20261127",
+        "changes": []
+      }
     },
     "00997A": {
       "ok": true,
       "category": "overseas",
       "fundName": "主動群益美國增長",
       "source": "https://www.moneydj.com/etf/x/basic/basic0007.xdjhtm?etfid=00997a.tw",
-      "fetchedDate": "20261127",
+      "fetchedDate": "20261128",
       "holdings": [
         {
           "code": "AAPL",
@@ -1291,19 +1389,73 @@ window.ACTIVE_ETF = {
           "shares": 27614
         }
       ],
-      "diff": null
+      "diff": {
+        "prevAsOf": "20261127",
+        "changes": []
+      }
     }
   },
   "summaryTw": {
-    "fundsWithDiff": 0,
-    "totalActiveStocks": 0,
-    "topBought": [],
-    "topSold": [],
-    "concentrationPct": null,
+    "fundsWithDiff": 12,
+    "totalActiveStocks": 7,
+    "topBought": [
+      {
+        "code": "3036",
+        "name": "文曄",
+        "fundsUp": 1,
+        "fundsDown": 0,
+        "totalSharesChange": 4791000
+      },
+      {
+        "code": "2408",
+        "name": "南亞科",
+        "fundsUp": 1,
+        "fundsDown": 0,
+        "totalSharesChange": 1090000
+      },
+      {
+        "code": "3017",
+        "name": "奇鋐",
+        "fundsUp": 1,
+        "fundsDown": 0,
+        "totalSharesChange": 80000
+      },
+      {
+        "code": "2330",
+        "name": "台積電",
+        "fundsUp": 1,
+        "fundsDown": 0,
+        "totalSharesChange": 6000
+      },
+      {
+        "code": "6223",
+        "name": "旺矽",
+        "fundsUp": 1,
+        "fundsDown": 0,
+        "totalSharesChange": 4000
+      }
+    ],
+    "topSold": [
+      {
+        "code": "3653",
+        "name": "健策",
+        "fundsUp": 0,
+        "fundsDown": 1,
+        "totalSharesChange": -287000
+      },
+      {
+        "code": "8046",
+        "name": "南電",
+        "fundsUp": 0,
+        "fundsDown": 1,
+        "totalSharesChange": -24000
+      }
+    ],
+    "concentrationPct": 71.43,
     "concentrationNote": "concentrationPct = 當天買賣異動最明顯的前5支個股，佔全部異動動作數的比例；數字越高代表主動式ETF的買賣行為越集中在少數股票"
   },
   "summaryOverseas": {
-    "fundsWithDiff": 0,
+    "fundsWithDiff": 4,
     "totalActiveStocks": 0,
     "topBought": [],
     "topSold": [],
